@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //Game States
+    // Game States
     public enum GameState
     {
         Title,
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     }
     public GameState state;
     
+    // Game Levels
     public enum GameLevel
     {
         Level1,
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     public GameLevel level;
     
-    //Singleton
+    // Singleton
     private static GameManager _instance;
     public static GameManager instance
     {
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Pause or resume the game with Escape key
+        // Pause or resume the game with Escape key
         if (Input.GetKeyDown("escape"))
         {
             if (state == GameState.Pause)
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    // Update the state of the Game
     public void UpdateGameState(GameState newState)
     {
         state = newState;
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Update the Level of the game
     public void UpdateGameLevel(GameLevel newLevel)
     {
         level = newLevel;
@@ -108,6 +111,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Handle the new States
     private void HandleTitle()
     {
         SceneManager.LoadSceneAsync("Title screen");
@@ -122,6 +126,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
     }
+    
+    // Handle the new Levels
     private void HandleLevel1()
     {
         SceneManager.LoadSceneAsync("Level 1");
