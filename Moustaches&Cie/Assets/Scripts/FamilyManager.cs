@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FamilyManager : MonoBehaviour
 {
@@ -26,6 +26,18 @@ public class FamilyManager : MonoBehaviour
     private bool m_Outdoor;
     private bool m_Animals;
     private string m_Comment;
+    
+    // UI elements
+    public Image pictureImage;
+    public TMP_Text nameTMP;
+    public TMP_Text forenameTMP;
+    public TMP_Text ageTMP;
+    public TMP_Text jobTMP;
+    public TMP_Text incomeTMP;
+    public TMP_Text childTMP;
+    public TMP_Text outdoorTMP;
+    public TMP_Text animalsTMP;
+    public TMP_Text commentTMP;
 
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
@@ -42,6 +54,15 @@ public class FamilyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("n"))
+        {
+            GenerateFamilyInformations();
+            GenerateFamilyPicture();
+            PrintFamilyInformation();
+            PrintFamilyPicture(pictureImage.transform);
+        }
+        
+        
         if (Input.GetKeyDown("f"))
         {
             GenerateFamilyPicture();
@@ -91,7 +112,7 @@ public class FamilyManager : MonoBehaviour
             {
                 int index = Random.Range(0, familyInfos.listJobs.Count);
                 m_Job = familyInfos.listJobs[index].jobName;
-                m_Income = familyInfos.listJobs[index].income;
+                m_Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
                 m_FreeTime = familyInfos.listJobs[index].freeTime;
                 
                 int q = Random.Range(1, 101);
@@ -128,7 +149,7 @@ public class FamilyManager : MonoBehaviour
         {
             int index = Random.Range(0, familyInfos.listJobs.Count);
             m_Job = familyInfos.listJobs[index].jobName;
-            m_Income = familyInfos.listJobs[index].income;
+            m_Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
             m_FreeTime = familyInfos.listJobs[index].freeTime;
             
             int q = Random.Range(1, 101);
@@ -165,5 +186,18 @@ public class FamilyManager : MonoBehaviour
         obj.transform.SetParent(canvas.transform);
         obj = Instantiate(m_Accessories, location);
         obj.transform.SetParent(canvas.transform);
+    }
+
+    public void PrintFamilyInformation()
+    {
+        nameTMP.text += m_Name;
+        forenameTMP.text += m_Forename;
+        ageTMP.text += m_Age.ToString();
+        jobTMP.text += m_Job;
+        incomeTMP.text += m_Income.ToString();
+        childTMP.text += m_Child.ToString();
+        animalsTMP.text += m_Animals.ToString();
+        outdoorTMP.text += m_Outdoor.ToString();
+        commentTMP.text += m_Comment;
     }
 }
