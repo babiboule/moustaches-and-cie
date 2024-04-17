@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 466576416}
   - component: {fileID: 466576417}
   m_Layer: 0
-  m_Name: FamilyPictureLocation
+  m_Name: FamilyInfoLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
+  familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
   canvas: {fileID: 1652291827}
 --- !u!1 &501050162
 GameObject:

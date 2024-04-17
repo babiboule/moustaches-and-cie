@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35be043ffd41cbf44beed48e75af1032, type: 3}
+  m_Name: FamilyInfos
+  m_EditorClassIdentifier: 
+  listNames:
+  - DUPONT
+  - DUPUIS
+  - DUCRAMPTE
+  listForenames:
+  - Pierre
+  - Paul
+  - Jacques
+  listAges: 110000001500000018000000200000002600000029000000380000003d00000043000000470000005c000000
+  listJobs:
+  - jobName: "Infirmier.i\xE8re"
+    income: 1700
+    freeTime: 1
+  - jobName: Professeur
+    income: 2000
+    freeTime: 2
+  - jobName: "Au ch\xF4mage"
+    income: 1000
+    freeTime: 3
+  listComments:
+  - Je veux trop un chat !
+  - J'ai besoin d'un peu de compagnie...
+  - "J'aimerais offrir un chat \xE0 ma soeur"

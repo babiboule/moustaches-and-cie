@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/FamilyPictureScriptableObject", order = 1)]
+    [CreateAssetMenu(fileName = "FamilyPicture", menuName = "ScriptableObjects/FamilyPictureScriptableObject", order = 1)]
     
     public class FamilyPictureScriptableObject : ScriptableObject
     {
