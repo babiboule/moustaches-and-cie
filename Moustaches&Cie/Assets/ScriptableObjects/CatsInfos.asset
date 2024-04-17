@@ -16,6 +16,7 @@ MonoBehaviour:
   - name: Sakado
     age: 0.8
     race: "Tigr\xE9"
+    sex: 0
     sick: 0
     nature: 0
     outdoor: 0
@@ -24,6 +25,7 @@ MonoBehaviour:
   - name: Roubignole
     age: 4
     race: Persan
+    sex: 1
     sick: 1
     nature: 1
     outdoor: 0

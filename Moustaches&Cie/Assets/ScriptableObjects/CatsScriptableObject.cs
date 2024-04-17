@@ -13,12 +13,19 @@ namespace ScriptableObjects
             Peureux,
             Agressif
         }
+
+        public enum Sex
+        {
+            M,
+            F
+        }
         [System.Serializable] public struct Cat
         {
             public Image picture;
             public string name;
             public float age;
             public string race;
+            public Sex sex;
             public bool sick;
             public Nature nature;
             public bool outdoor;
