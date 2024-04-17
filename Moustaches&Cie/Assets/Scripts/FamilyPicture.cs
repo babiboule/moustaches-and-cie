@@ -52,4 +52,17 @@ public class FamilyPicture : MonoBehaviour
 
         return newPicture;
     }
+    
+    // Print the face at the vector location in parameter
+    public void PrintFamilyPicture(FamilyPicture picture, Transform location)
+    {
+        Instantiate(picture.m_Skin, location);
+        Instantiate(picture.m_Eyes, location);
+        Instantiate(picture.m_Eyebrows, location);
+        Instantiate(picture.m_Nose, location);
+        Instantiate(picture.m_Mouth, location);
+        Instantiate(picture.m_Cloth, location);
+        Instantiate(picture.m_Hair, location);
+        Instantiate(picture.m_Accessories, location);
+    }
 }
