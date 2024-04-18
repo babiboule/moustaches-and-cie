@@ -13,34 +13,34 @@ MonoBehaviour:
   m_Name: FamilyPicture
   m_EditorClassIdentifier: 
   listHairs:
-  - {fileID: 4729523356837773219, guid: f8d3e27f0bea60a4ea4eac79f7b02e18, type: 3}
-  - {fileID: 4971067999301926654, guid: 645ceb7af227ee149bd1c287076b71d0, type: 3}
-  - {fileID: 2191306243841915573, guid: cfbd99023dfea124aa56690a842ba667, type: 3}
+  - {fileID: 21300000, guid: 288e6db381546d947a58faa47c2c9f4c, type: 3}
+  - {fileID: 21300000, guid: c5213809de6fa6b4b91ffbc42af56350, type: 3}
+  - {fileID: 21300000, guid: c8e6fe9899d85c94289408c358761d8d, type: 3}
   listSkins:
-  - {fileID: 2600920926782287421, guid: 978955775a3d0334a9c8e82b118c993a, type: 3}
-  - {fileID: 3032792022014655003, guid: 4a3f65baac72fcc40bad66402deba499, type: 3}
-  - {fileID: 7254647702960287381, guid: 133eb196d88b35141a1c2a9b64da2b4b, type: 3}
+  - {fileID: 21300000, guid: 8da72cc50a02cdc4ea5fd0bde8587aa0, type: 3}
+  - {fileID: 21300000, guid: f4589383edc1b40449f9b32b51f99e88, type: 3}
+  - {fileID: 21300000, guid: 85f202b7323104445944e0e731b6d6f6, type: 3}
   listEyes:
-  - {fileID: 797316743427875474, guid: 1d98168861a2501428f69e28779c41c0, type: 3}
-  - {fileID: 3866617560376993049, guid: 10fa64c8f485561488be4519bb473952, type: 3}
-  - {fileID: 5110751201531765945, guid: 74237b1a7128ed64a825d675d09fb12c, type: 3}
+  - {fileID: 21300000, guid: 71fe7b491bc15aa4f8ce9b4cbf43bb44, type: 3}
+  - {fileID: 21300000, guid: e0a3631d80d1b164eb95476977b5bcd9, type: 3}
+  - {fileID: 21300000, guid: fcaf87ea6946e104193f313a11d97f66, type: 3}
   listNoses:
-  - {fileID: 4274481446490574074, guid: f3684694104c40f46a372285eb9edd94, type: 3}
-  - {fileID: 2388909287653695662, guid: 7bc4bf1565daa4e408b253fab1196ec4, type: 3}
-  - {fileID: 1808310861840108217, guid: 9e8b66bf94bff6a45b183b4eeaa5e31a, type: 3}
+  - {fileID: 21300000, guid: 6ba0f026c5df5554083c9b65083858ce, type: 3}
+  - {fileID: 21300000, guid: 8e674b98c0694a543912dcfb0d317a23, type: 3}
+  - {fileID: 21300000, guid: fbaac07d33e661547b294bea22357336, type: 3}
   listMouths:
-  - {fileID: 8818488648335961196, guid: 3d4dbbd4e24a682489c8b5fa9e706e3a, type: 3}
-  - {fileID: 5645983295219620612, guid: 7191841bc26a5f146a83943e32221089, type: 3}
-  - {fileID: 6433477083349576240, guid: 3ae39949f21dce84eaecf26098b353b5, type: 3}
+  - {fileID: 21300000, guid: 1e9917ac1bcd299418af587f6e322957, type: 3}
+  - {fileID: 21300000, guid: c45f43b9dcf155047b346c1893e0092d, type: 3}
+  - {fileID: 21300000, guid: ba2854a9ee34b5b428cfceadfa06b076, type: 3}
   listEyebrows:
-  - {fileID: 4835989317058848354, guid: 21977b2e32c520e4db633e2380c85486, type: 3}
-  - {fileID: 3643460706460697621, guid: 85c849136d830884dba2ec6129c8bf20, type: 3}
-  - {fileID: 2925370253279432462, guid: ca5a781a607f4e942bf9bae4ddd0cd0d, type: 3}
+  - {fileID: 21300000, guid: 724e2a913444aee41984ecc312081674, type: 3}
+  - {fileID: 21300000, guid: a19ea3bae51f62342b3c688ff1c774d0, type: 3}
+  - {fileID: 21300000, guid: 61857c4ac1aa31447b1ed55a94a581c4, type: 3}
   listClothes:
-  - {fileID: 7812155501245409316, guid: 033e88849123e264ba3c104528d37f81, type: 3}
-  - {fileID: 6882108655652835296, guid: 149bf2b8baedf1142885b84bb77a8a66, type: 3}
-  - {fileID: 8239524193746340936, guid: dd989a7a154bf8141944ad9693fe251f, type: 3}
+  - {fileID: 21300000, guid: 711bf38f82fec3a4e85be6c4f09bd3d8, type: 3}
+  - {fileID: 21300000, guid: 38a17186cd8a7004fbd49c75ec6a3b2a, type: 3}
+  - {fileID: 21300000, guid: 7b52b3843fda3684989e43149657dbe6, type: 3}
   listAccessories:
-  - {fileID: 8443379815368188098, guid: 2a649cfb086a0c64aa3a461b8d9bbbe6, type: 3}
-  - {fileID: 8701904170398204799, guid: 9bd32b3211e292c4bac511e727650582, type: 3}
-  - {fileID: 2358658216487274140, guid: d891eec0f6cb6d5499475509fe53552f, type: 3}
+  - {fileID: 21300000, guid: fba00294c4e60fb4da6957074b296d39, type: 3}
+  - {fileID: 21300000, guid: 2d30895caef5679428c3700261b58083, type: 3}
+  - {fileID: 21300000, guid: 54f721e16c5e5784f8f8a1c2eb15f77a, type: 3}
