@@ -26,6 +26,7 @@ public class FamilyManager : MonoBehaviour
     private bool m_Outdoor;
     private bool m_Animals;
     private string m_Comment;
+    private CatsScriptableObject.Cat m_Cat;
     
     // UI elements
     public Image pictureImage;
@@ -38,9 +39,11 @@ public class FamilyManager : MonoBehaviour
     public TMP_Text outdoorTMP;
     public TMP_Text animalsTMP;
     public TMP_Text commentTMP;
+    public TMP_Text catTMP;
 
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
+    public CatsScriptableObject cats;
 
     public Canvas canvas;
     
@@ -93,6 +96,9 @@ public class FamilyManager : MonoBehaviour
         m_Outdoor = false;
         m_Child = false;
         m_Animals = false;
+        
+        int i = Random.Range(0, cats.cats.Count);
+        m_Cat = cats.cats[i];
         
         // If -25 years old
         if (m_Age < 25)
@@ -190,14 +196,24 @@ public class FamilyManager : MonoBehaviour
 
     public void PrintFamilyInformation()
     {
-        nameTMP.text += m_Name;
-        forenameTMP.text += m_Forename;
-        ageTMP.text += m_Age.ToString();
-        jobTMP.text += m_Job;
-        incomeTMP.text += m_Income.ToString();
-        childTMP.text += m_Child.ToString();
-        animalsTMP.text += m_Animals.ToString();
-        outdoorTMP.text += m_Outdoor.ToString();
-        commentTMP.text += m_Comment;
+        nameTMP.text = "Nom : " + m_Name;
+        forenameTMP.text = "Prénom : " + m_Forename;
+        ageTMP.text = "Age : " + m_Age + " ans";
+        jobTMP.text = "Profession : " + m_Job;
+        incomeTMP.text =  "Revenus : " + m_Income + " €/mois";
+        if(m_Child)
+            childTMP.text = "Enfants en bas-âge : oui";
+        else
+            childTMP.text = "Enfants en bas-âge : non";
+        if(m_Animals)
+            animalsTMP.text = "Autres animaux : oui";
+        else
+            animalsTMP.text = "Autres animaux : non";
+        if(m_Outdoor)
+            outdoorTMP.text = "Extérieur : oui";
+        else 
+            outdoorTMP.text = "Extérieur : non";
+        commentTMP.text = "Commentaire : " + m_Comment;
+        catTMP.text = "Chat demandé : " + m_Cat.name;
     }
 }

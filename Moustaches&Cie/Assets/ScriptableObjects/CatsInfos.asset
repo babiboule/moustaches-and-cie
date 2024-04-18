@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CatsInfos
   m_EditorClassIdentifier: 
   cats:
-  - name: Sakado
+  - picture: {fileID: 819484656799485556, guid: b3f43a42767d2b6438fa7df5d85094df, type: 3}
+    name: Sakado
     age: 0.8
     race: "Tigr\xE9"
     sex: 0
@@ -22,7 +23,9 @@ MonoBehaviour:
     outdoor: 0
     animals: 1
     adopted: 0
-  - name: Roubignole
+    level: 1
+  - picture: {fileID: 9172058833227377542, guid: a6fa5f7828acbaa45a32d86c044897d4, type: 3}
+    name: Roubignole
     age: 4
     race: Persan
     sex: 1
@@ -31,3 +34,15 @@ MonoBehaviour:
     outdoor: 0
     animals: 0
     adopted: 0
+    level: 2
+  - picture: {fileID: 562648148190522493, guid: cc261df397febde49b3e99e38bf17233, type: 3}
+    name: Prout
+    age: 8
+    race: Siamois
+    sex: 0
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3

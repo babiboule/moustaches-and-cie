@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 namespace ScriptableObjects
 {
@@ -21,7 +21,7 @@ namespace ScriptableObjects
         }
         [System.Serializable] public struct Cat
         {
-            public Image picture;
+            public GameObject picture;
             public string name;
             public float age;
             public string race;
@@ -31,6 +31,7 @@ namespace ScriptableObjects
             public bool outdoor;
             public bool animals;
             public bool adopted;
+            public int level;
         }
 
         public List<Cat> cats;
