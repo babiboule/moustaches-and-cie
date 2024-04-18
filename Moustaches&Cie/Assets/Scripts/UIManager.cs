@@ -12,13 +12,17 @@ public class UIManager : MonoBehaviour
     
     // Pause components
     [SerializeField] private Button playButton;
+    [SerializeField] private Button optionsButton;
     [SerializeField] private Button toTitleButton;
+    
     
     private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
         
+        // Pause Buttons Listeners
         playButton.onClick.AddListener(PlayButtonClicked);
+        optionsButton.onClick.AddListener(OptionsButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
     }
 
@@ -32,22 +36,15 @@ public class UIManager : MonoBehaviour
         pause_Panel.SetActive(state == GameManager.GameState.Pause);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void PlayButtonClicked()
     {
         GameManager.instance.UpdateGameState(GameManager.GameState.Play);
+    }
+
+    private void OptionsButtonClicked()
+    {
+        pause_Panel.SetActive(false);
+        options_Panel.SetActive(true);
     }
     
     private void ToTitleButtonClicked()
