@@ -14,6 +14,7 @@ public class FamilyManager : MonoBehaviour
     private Sprite m_Eyebrows;
     private Sprite m_Cloth;
     private Sprite m_Accessories;
+    private Sprite m_Wrinkles;
     
     // Family information
     private string m_Name;
@@ -48,6 +49,7 @@ public class FamilyManager : MonoBehaviour
     [SerializeField] private Image eyebrows;
     [SerializeField] private Image cloth;
     [SerializeField] private Image accessories;
+    [SerializeField] private Image wrinkles;
 
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
@@ -92,6 +94,10 @@ public class FamilyManager : MonoBehaviour
         m_Eyebrows = familyPicture.listEyebrows[Random.Range(0, familyPicture.listEyebrows.Count)];
         m_Cloth = familyPicture.listClothes[Random.Range(0, familyPicture.listClothes.Count)];
         m_Accessories = familyPicture.listAccessories[Random.Range(0, familyPicture.listAccessories.Count)];
+        if (m_Age > 65)
+            m_Wrinkles = familyPicture.listWrinkles[1];
+        else 
+            m_Wrinkles = familyPicture.listWrinkles[0];
     }
 
     public void GenerateFamilyInformations()

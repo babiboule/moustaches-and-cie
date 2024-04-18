@@ -18,5 +18,6 @@ namespace ScriptableObjects
         public List<Sprite> listEyebrows;
         public List<Sprite> listClothes;
         public List<Sprite> listAccessories;
+        public List<Sprite> listWrinkles;
     }
 }
