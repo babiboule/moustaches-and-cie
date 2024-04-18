@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class FamilyManager : MonoBehaviour
 {
     // Prefabs that compose the unique face
-    private GameObject m_Hair;
-    private GameObject m_Skin;
-    private GameObject m_Eyes;
-    private GameObject m_Nose;
-    private GameObject m_Mouth;
-    private GameObject m_Eyebrows;
-    private GameObject m_Cloth;
-    private GameObject m_Accessories;
+    private Image m_Hair;
+    private Image m_Skin;
+    private Image m_Eyes;
+    private Image m_Nose;
+    private Image m_Mouth;
+    private Image m_Eyebrows;
+    private Image m_Cloth;
+    private Image m_Accessories;
     
     // Family information
     private string m_Name;
@@ -29,7 +29,6 @@ public class FamilyManager : MonoBehaviour
     private CatsScriptableObject.Cat m_Cat;
     
     // UI elements
-    public Image pictureImage;
     public TMP_Text nameTMP;
     public TMP_Text forenameTMP;
     public TMP_Text ageTMP;
@@ -40,6 +39,15 @@ public class FamilyManager : MonoBehaviour
     public TMP_Text animalsTMP;
     public TMP_Text commentTMP;
     public TMP_Text catTMP;
+    
+    [SerializeField] private Image hair;
+    [SerializeField] private Image skin;
+    [SerializeField] private Image eyes;
+    [SerializeField] private Image nose;
+    [SerializeField] private Image mouth;
+    [SerializeField] private Image eyebrows;
+    [SerializeField] private Image cloth;
+    [SerializeField] private Image accessories;
 
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
@@ -62,14 +70,14 @@ public class FamilyManager : MonoBehaviour
             GenerateFamilyInformations();
             GenerateFamilyPicture();
             PrintFamilyInformation();
-            PrintFamilyPicture(pictureImage.transform);
+            PrintFamilyPicture();
         }
         
         
         if (Input.GetKeyDown("f"))
         {
             GenerateFamilyPicture();
-            PrintFamilyPicture(gameObject.transform);
+            PrintFamilyPicture();
         }
     }
     
@@ -174,24 +182,16 @@ public class FamilyManager : MonoBehaviour
     }
     
     // Print the face at the vector location in parameter
-    public void PrintFamilyPicture(Transform location)
+    public void PrintFamilyPicture()
     {
-        GameObject obj = Instantiate(m_Skin, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Eyes, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Eyebrows, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Nose, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Mouth, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Cloth, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Hair, location);
-        obj.transform.SetParent(canvas.transform);
-        obj = Instantiate(m_Accessories, location);
-        obj.transform.SetParent(canvas.transform);
+        skin.sprite = m_Skin.sprite;
+        hair.sprite = m_Hair.sprite;
+        eyes.sprite = m_Eyes.sprite;
+        eyebrows.sprite = m_Eyebrows.sprite;
+        nose.sprite = m_Nose.sprite;
+        mouth.sprite = m_Mouth.sprite;
+        cloth.sprite = m_Cloth.sprite;
+        accessories.sprite = m_Accessories.sprite;
     }
 
     public void PrintFamilyInformation()

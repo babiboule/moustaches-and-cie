@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ScriptableObjects
 {
@@ -9,13 +10,13 @@ namespace ScriptableObjects
     public class FamilyPictureScriptableObject : ScriptableObject
     {
         // Lists of Prefabs from different assets composing the face
-        public List<GameObject> listHairs;
-        public List<GameObject> listSkins;
-        public List<GameObject> listEyes;
-        public List<GameObject> listNoses;
-        public List<GameObject> listMouths;
-        public List<GameObject> listEyebrows;
-        public List<GameObject> listClothes;
-        public List<GameObject> listAccessories;
+        public List<Image> listHairs;
+        public List<Image> listSkins;
+        public List<Image> listEyes;
+        public List<Image> listNoses;
+        public List<Image> listMouths;
+        public List<Image> listEyebrows;
+        public List<Image> listClothes;
+        public List<Image> listAccessories;
     }
 }
