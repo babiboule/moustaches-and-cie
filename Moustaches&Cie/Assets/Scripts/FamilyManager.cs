@@ -198,6 +198,7 @@ public class FamilyManager : MonoBehaviour
         mouth.sprite = m_Mouth;
         cloth.sprite = m_Cloth;
         accessories.sprite = m_Accessories;
+        wrinkles.sprite = m_Wrinkles;
     }
 
     public void PrintFamilyInformation()
