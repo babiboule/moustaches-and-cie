@@ -10,13 +10,13 @@ namespace ScriptableObjects
     public class FamilyPictureScriptableObject : ScriptableObject
     {
         // Lists of Prefabs from different assets composing the face
-        public List<Image> listHairs;
-        public List<Image> listSkins;
-        public List<Image> listEyes;
-        public List<Image> listNoses;
-        public List<Image> listMouths;
-        public List<Image> listEyebrows;
-        public List<Image> listClothes;
-        public List<Image> listAccessories;
+        public List<Sprite> listHairs;
+        public List<Sprite> listSkins;
+        public List<Sprite> listEyes;
+        public List<Sprite> listNoses;
+        public List<Sprite> listMouths;
+        public List<Sprite> listEyebrows;
+        public List<Sprite> listClothes;
+        public List<Sprite> listAccessories;
     }
 }

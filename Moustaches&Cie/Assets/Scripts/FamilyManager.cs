@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class FamilyManager : MonoBehaviour
 {
     // Prefabs that compose the unique face
-    private Image m_Hair;
-    private Image m_Skin;
-    private Image m_Eyes;
-    private Image m_Nose;
-    private Image m_Mouth;
-    private Image m_Eyebrows;
-    private Image m_Cloth;
-    private Image m_Accessories;
+    private Sprite m_Hair;
+    private Sprite m_Skin;
+    private Sprite m_Eyes;
+    private Sprite m_Nose;
+    private Sprite m_Mouth;
+    private Sprite m_Eyebrows;
+    private Sprite m_Cloth;
+    private Sprite m_Accessories;
     
     // Family information
     private string m_Name;
@@ -184,14 +184,14 @@ public class FamilyManager : MonoBehaviour
     // Print the face at the vector location in parameter
     public void PrintFamilyPicture()
     {
-        skin.sprite = m_Skin.sprite;
-        hair.sprite = m_Hair.sprite;
-        eyes.sprite = m_Eyes.sprite;
-        eyebrows.sprite = m_Eyebrows.sprite;
-        nose.sprite = m_Nose.sprite;
-        mouth.sprite = m_Mouth.sprite;
-        cloth.sprite = m_Cloth.sprite;
-        accessories.sprite = m_Accessories.sprite;
+        skin.sprite = m_Skin;
+        hair.sprite = m_Hair;
+        eyes.sprite = m_Eyes;
+        eyebrows.sprite = m_Eyebrows;
+        nose.sprite = m_Nose;
+        mouth.sprite = m_Mouth;
+        cloth.sprite = m_Cloth;
+        accessories.sprite = m_Accessories;
     }
 
     public void PrintFamilyInformation()
