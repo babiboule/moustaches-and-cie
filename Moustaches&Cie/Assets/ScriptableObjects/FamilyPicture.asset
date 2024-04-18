@@ -44,3 +44,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fba00294c4e60fb4da6957074b296d39, type: 3}
   - {fileID: 21300000, guid: 2d30895caef5679428c3700261b58083, type: 3}
   - {fileID: 21300000, guid: 54f721e16c5e5784f8f8a1c2eb15f77a, type: 3}
+  listWrinkles:
+  - {fileID: 21300000, guid: 1c45c0492040892458dcab7d8d92db73, type: 3}
+  - {fileID: 21300000, guid: 09f43b63e485b4f43b3187741eb66de7, type: 3}
