@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     }
     public GameLevel level;
     
+    // Events
+    public static event Action<GameState> OnGameStateChanged ;
+    
     // Singleton
     private static GameManager _instance;
     public static GameManager instance
@@ -48,7 +51,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateGameState(GameState.Title);
+        UpdateGameState(GameState.Play);
         UpdateGameLevel(GameLevel.Level1);
     }
 
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
+        OnGameStateChanged?.Invoke(newState);
     }
 
     // Update the Level of the game
