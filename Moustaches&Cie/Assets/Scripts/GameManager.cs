@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateGameState(GameState.Play);
-        //UpdateGameLevel(GameLevel.Title);
+        UpdateGameLevel(GameLevel.Title);
     }
     
     // Update the state of the Game

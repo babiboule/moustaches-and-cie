@@ -1773,10 +1773,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 186754439}
+  mainButtons: {fileID: 1094505773}
+  extrasButtons: {fileID: 1340984189}
   newGameButton: {fileID: 504971915}
   continueButton: {fileID: 2108995272}
   optionsButton: {fileID: 1318364253}
   extrasButton: {fileID: 2088447508}
+  albumButton: {fileID: 497151941}
+  creditsButton: {fileID: 1297637607}
+  returnButton: {fileID: 1214220537}
   toDesktopButton: {fileID: 486064644}
 --- !u!1 &715011663
 GameObject:
