@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     // Panels
-    [FormerlySerializedAs("pause_Panel")] [SerializeField] private GameObject pausePanel;
     [FormerlySerializedAs("options_Panel")] [SerializeField] private GameObject optionsPanel;
     
     // Settings components
-    [SerializeField] private Button toPauseMenuButton;
+    [SerializeField] private Button quitOptionsButton;
     [SerializeField] private Button toGeneralSettingsButton;
     [SerializeField] private Button toGraphicsSettingsButton;
     [SerializeField] private Button toAudioSettingsButton;
@@ -21,16 +20,15 @@ public class SettingsManager : MonoBehaviour
     private void Awake()
     {
         // Settings Menu Buttons Listeners
-        toPauseMenuButton.onClick.AddListener(ToPauseMenuButtonClicked);
+        quitOptionsButton.onClick.AddListener(QuitOptionsButtonClicked);
         toGeneralSettingsButton.onClick.AddListener(ToGeneralSettingsButtonClicked);
         toGraphicsSettingsButton.onClick.AddListener(ToGraphicsSettingsButtonClicked);
         toAudioSettingsButton.onClick.AddListener(ToAudioSettingsButtonClicked);
     }
 
-    private void ToPauseMenuButtonClicked()
+    private void QuitOptionsButtonClicked()
     {
         optionsPanel.SetActive(false);
-        pausePanel.SetActive(true);
     }
 
     private void ToGeneralSettingsButtonClicked()

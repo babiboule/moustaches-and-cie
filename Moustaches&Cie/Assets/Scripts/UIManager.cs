@@ -55,7 +55,6 @@ public class UIManager : MonoBehaviour
 
     private void OptionsButtonClicked()
     {
-        pausePanel.SetActive(false);
         optionsPanel.SetActive(true);
     }
     

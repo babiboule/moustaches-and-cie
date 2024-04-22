@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TitleScreen : MonoBehaviour
 {
     // Panels 
-    //[SerializeField] private GameObject titleScreenPanel;
+    [SerializeField] private GameObject optionsPanel;
     
     // UI Components
     [SerializeField] private Button newGameButton;
@@ -38,7 +38,7 @@ public class TitleScreen : MonoBehaviour
 
     private void OptionsButtonClicked()
     {
-        throw new NotImplementedException();
+        optionsPanel.SetActive(true);
     }
     
     private void ExtrasButtonClicked()
