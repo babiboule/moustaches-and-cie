@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -118,7 +116,7 @@ public class GameManager : MonoBehaviour
     // Handle the new States
     private void HandleTitle()
     {
-        SceneManager.LoadSceneAsync("Title screen");
+        SceneManager.LoadScene("Title screen");
     }
 
     private void HandlePlay()
@@ -134,21 +132,21 @@ public class GameManager : MonoBehaviour
     // Handle the new Levels
     private void HandleLevel1()
     {
-        SceneManager.LoadSceneAsync("Level 1");
+        SceneManager.LoadScene("Level 1");
     }
 
     private void HandleLevel2()
     {
-        SceneManager.LoadSceneAsync("Level 2");
+        SceneManager.LoadScene("Level 2");
     }
 
     private void HandleLevel3()
     {
-        SceneManager.LoadSceneAsync("Level 3");
+        SceneManager.LoadScene("Level 3");
     }
     
     private void HandleScoreLevel()
     {
-        SceneManager.LoadSceneAsync("Score screen");
+        SceneManager.LoadScene("Score screen");
     }
 }
