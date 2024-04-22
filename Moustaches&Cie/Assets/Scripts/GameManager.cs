@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Play,
-        Pause
+        Pause,
+        GameOver
     }
     public GameState state;
     
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour
             case GameState.Pause:
                 HandlePause();
                 break;
+            case GameState.GameOver:
+                HandleGameOver();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -121,6 +125,11 @@ public class GameManager : MonoBehaviour
     private void HandlePause()
     {
         Time.timeScale = 0.0f;
+    }
+
+    private void HandleGameOver()
+    {
+        SceneManager.LoadSceneAsync("GameOver screen");
     }
     
     // Handle the new Levels

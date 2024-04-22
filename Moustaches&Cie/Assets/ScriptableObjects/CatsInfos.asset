@@ -34,7 +34,7 @@ MonoBehaviour:
     outdoor: 0
     animals: 0
     adopted: 0
-    level: 2
+    level: 1
   - picture: {fileID: 562648148190522493, guid: cc261df397febde49b3e99e38bf17233, type: 3}
     name: Prout
     age: 8
@@ -45,4 +45,4 @@ MonoBehaviour:
     outdoor: 1
     animals: 0
     adopted: 0
-    level: 3
+    level: 1
