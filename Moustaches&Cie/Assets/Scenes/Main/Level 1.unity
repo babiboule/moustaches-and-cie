@@ -3133,6 +3133,8 @@ MonoBehaviour:
   playButton: {fileID: 821860573}
   optionsButton: {fileID: 1612395930}
   toTitleButton: {fileID: 48142832}
+  nextCatButton: {fileID: 1362128757}
+  previousCatButton: {fileID: 918882109}
 --- !u!114 &734771196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3605,9 +3607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
-  currentCats: []
-  index: 0
-  indexMax: 0
   picture: {fileID: 1688336775}
   nameTMP: {fileID: 913794501}
   ageTMP: {fileID: 2129798688}
@@ -3617,8 +3616,6 @@ MonoBehaviour:
   natureTMP: {fileID: 1230968063}
   outdoorTMP: {fileID: 825572558}
   animalsTMP: {fileID: 1751875003}
-  nextCatButton: {fileID: 1362128757}
-  previousCatButton: {fileID: 918882109}
 --- !u!4 &795614995
 Transform:
   m_ObjectHideFlags: 0

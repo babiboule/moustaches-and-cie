@@ -27,8 +27,6 @@ public class CatManager : MonoBehaviour
     public TMP_Text natureTMP;
     public TMP_Text outdoorTMP;
     public TMP_Text animalsTMP;
-    public Button nextCatButton;
-    public Button previousCatButton;
     
     private static Image _picture;
     private static TMP_Text _nameTMP;
@@ -39,13 +37,11 @@ public class CatManager : MonoBehaviour
     private static TMP_Text _natureTMP;
     private static TMP_Text _outdoorTMP;
     private static TMP_Text _animalsTMP;
-    private static Button _nextCatButton;
-    private static Button _previousCatButton;
+
 
     private void Awake()
     {
-        nextCatButton.onClick.AddListener(NextCatButtonClicked);
-        previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
+
     }
 
     // Start is called before the first frame update
@@ -62,8 +58,6 @@ public class CatManager : MonoBehaviour
         _natureTMP = natureTMP;
         _outdoorTMP = outdoorTMP;
         _animalsTMP = animalsTMP;
-        _nextCatButton = nextCatButton;
-        _previousCatButton = previousCatButton;
         
         InitialiseCurrentCats(GameManager.instance.level);
         _index = 0;
@@ -102,7 +96,7 @@ public class CatManager : MonoBehaviour
             _animalsTMP.text = "OK animaux : non";
     }
 
-    private static void InitialiseCurrentCats(GameManager.GameLevel level)
+    public static void InitialiseCurrentCats(GameManager.GameLevel level)
     {
         switch (level)
         {
@@ -139,23 +133,6 @@ public class CatManager : MonoBehaviour
                 break;
         }
     }
-    private void NextCatButtonClicked()
-    {
-        _index++;
-        if(_indexMax > 0)
-            PrintCatInfos(_currentCats[_index%_indexMax]);
-        else 
-            SceneManager.LoadSceneAsync("Score screen");
-    }
-
-    private void PreviousCatButtonClicked()
-    {
-        _index--;
-        if(_indexMax > 0)
-            PrintCatInfos(_currentCats[_index%_indexMax]);
-        else 
-            SceneManager.LoadSceneAsync("Score screen");
-    }
 
     public static List<CatsScriptableObject.Cat> GetCurrentCats()
     {
@@ -166,14 +143,21 @@ public class CatManager : MonoBehaviour
     {
         return _index;
     }
-
-    public static void SetIndex(int newIndex)
-    {
-        _index = newIndex;
-    }
-
+    
     public static int GetIndexMax()
     {
         return _indexMax;
     }
+
+    public static void NextIndex()
+    {
+        _index++;
+    }
+    
+    public static void PreviousIndex()
+    {
+        _index--;
+    }
+
+
 }

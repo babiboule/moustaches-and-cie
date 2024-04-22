@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button toTitleButton;
     
+    // Gameplay components
+    [SerializeField] private Button nextCatButton;
+    [SerializeField] private Button previousCatButton;
 
     
     
@@ -25,6 +28,9 @@ public class UIManager : MonoBehaviour
         playButton.onClick.AddListener(PlayButtonClicked);
         optionsButton.onClick.AddListener(OptionsButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
+        
+        nextCatButton.onClick.AddListener(NextCatButtonClicked);
+        previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
     }
 
     private void OnDestroy()
@@ -74,5 +80,29 @@ public class UIManager : MonoBehaviour
     private void ToTitleButtonClicked()
     {
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
+    }
+    
+    private void NextCatButtonClicked()
+    {
+        CatManager.NextIndex();
+        int indexMax = CatManager.GetIndexMax();
+        int index = CatManager.GetIndex();
+        
+        if(indexMax > 0)
+            CatManager.PrintCatInfos(CatManager.GetCurrentCats()[index%indexMax]);
+        else 
+            GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
+    }
+
+    private void PreviousCatButtonClicked()
+    {
+        CatManager.PreviousIndex();
+        int indexMax = CatManager.GetIndexMax();
+        int index = CatManager.GetIndex();
+        
+        if(indexMax > 0)
+            CatManager.PrintCatInfos(CatManager.GetCurrentCats()[index%indexMax]);
+        else 
+            GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }
 }
