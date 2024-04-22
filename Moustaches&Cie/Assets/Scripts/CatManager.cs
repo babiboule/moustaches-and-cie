@@ -12,9 +12,9 @@ public class CatManager : MonoBehaviour
 {
     public CatsScriptableObject cats;
 
-    public List<CatsScriptableObject.Cat> currentCats;
-    public int index;
-    public int indexMax;
+    private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
+    private static int _index;
+    private static int _indexMax;
     
     // UI Elements
     public Image picture;
@@ -40,10 +40,10 @@ public class CatManager : MonoBehaviour
     void Start()
     {
         InitialiseCurrentCats(GameManager.instance.level);
-        index = 0;
-        indexMax = currentCats.Count;
-        if(indexMax > 0)
-            PrintCatInfos(currentCats[index%indexMax]);
+        _index = 0;
+        _indexMax = _currentCats.Count;
+        if(_indexMax > 0)
+            PrintCatInfos(_currentCats[_index%_indexMax]);
         else 
             SceneManager.LoadSceneAsync("Score screen");
     }
@@ -88,28 +88,28 @@ public class CatManager : MonoBehaviour
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level == 1)
-                        currentCats.Add(cat);
+                        _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level2:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <= 2)
-                        currentCats.Add(cat);
+                        _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level3:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <=3)
-                        currentCats.Add(cat);
+                        _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.LevelMax:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted)
-                        currentCats.Add(cat);
+                        _currentCats.Add(cat);
                 }
                 break;
             default:
@@ -119,19 +119,39 @@ public class CatManager : MonoBehaviour
     }
     private void NextCatButtonClicked()
     {
-        index++;
-        if(indexMax > 0)
-            PrintCatInfos(currentCats[index%indexMax]);
+        _index++;
+        if(_indexMax > 0)
+            PrintCatInfos(_currentCats[_index%_indexMax]);
         else 
             SceneManager.LoadSceneAsync("Score screen");
     }
 
     private void PreviousCatButtonClicked()
     {
-        index--;
-        if(indexMax > 0)
-            PrintCatInfos(currentCats[index%indexMax]);
+        _index--;
+        if(_indexMax > 0)
+            PrintCatInfos(_currentCats[_index%_indexMax]);
         else 
             SceneManager.LoadSceneAsync("Score screen");
+    }
+
+    public static List<CatsScriptableObject.Cat> GetCurrentCats()
+    {
+        return _currentCats;
+    }
+
+    public static int GetIndex()
+    {
+        return _index;
+    }
+
+    public static void SetIndex(int newIndex)
+    {
+        _index = newIndex;
+    }
+
+    public static int GetIndexMax()
+    {
+        return _indexMax;
     }
 }

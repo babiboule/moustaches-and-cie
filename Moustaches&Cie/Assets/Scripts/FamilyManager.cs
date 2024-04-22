@@ -1,33 +1,34 @@
 using ScriptableObjects;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FamilyManager : MonoBehaviour
 {
     // Prefabs that compose the unique face
-    private Sprite m_Hair;
-    private Sprite m_Skin;
-    private Sprite m_Eyes;
-    private Sprite m_Nose;
-    private Sprite m_Mouth;
-    private Sprite m_Eyebrows;
-    private Sprite m_Cloth;
-    private Sprite m_Accessories;
-    private Sprite m_Wrinkles;
+    private static Sprite _hairSprite;
+    private static Sprite _skinSprite;
+    private static Sprite _eyesSprite;
+    private static Sprite _noseSprite;
+    private static Sprite _mouthSprite;
+    private static Sprite _eyebrowsSprite;
+    private static Sprite _clothSprite;
+    private static Sprite _accessoriesSprite;
+    private static Sprite _wrinklesSprite;
     
     // Family information
-    private string m_Name;
-    private string m_Forename;
-    private int m_Age;
-    private string m_Job;
-    private int m_Income;
-    private int m_FreeTime;
-    private bool m_Child;
-    private bool m_Outdoor;
-    private bool m_Animals;
-    private string m_Comment;
-    private CatsScriptableObject.Cat m_Cat;
+    private static string _name;
+    private static string _forename;
+    private static int _age;
+    private static string _job;
+    private static int _income;
+    private static int _freeTime;
+    private static bool _child;
+    private static bool _outdoor;
+    private static bool _animals;
+    private static string _comment;
+    private static CatsScriptableObject.Cat _cat;
     
     // UI elements
     public TMP_Text nameTMP;
@@ -41,19 +42,45 @@ public class FamilyManager : MonoBehaviour
     public TMP_Text commentTMP;
     public TMP_Text catTMP;
     
-    [SerializeField] private Image hair;
-    [SerializeField] private Image skin;
-    [SerializeField] private Image eyes;
-    [SerializeField] private Image nose;
-    [SerializeField] private Image mouth;
-    [SerializeField] private Image eyebrows;
-    [SerializeField] private Image cloth;
-    [SerializeField] private Image accessories;
-    [SerializeField] private Image wrinkles;
+    private static TMP_Text _nameTMP;
+    private static TMP_Text _forenameTMP;
+    private static TMP_Text _ageTMP;
+    private static TMP_Text _jobTMP;
+    private static TMP_Text _incomeTMP;
+    private static TMP_Text _childTMP;
+    private static TMP_Text _outdoorTMP;
+    private static TMP_Text _animalsTMP;
+    private static TMP_Text _commentTMP;
+    private static TMP_Text _catTMP;
+    
+    public Image hair;
+    public Image skin;
+    public Image eyes;
+    public Image nose;
+    public Image mouth;
+    public Image eyebrows;
+    public Image cloth;
+    public Image accessories;
+    public Image wrinkles;
+    
+    private static Image _hair;
+    private static Image _skin;
+    private static Image _eyes;
+    private static Image _nose;
+    private static Image _mouth;
+    private static Image _eyebrows;
+    private static Image _cloth;
+    private static Image _accessories;
+    private static Image _wrinkles;
 
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
     public CatsScriptableObject cats;
+
+    private static FamilyPictureScriptableObject _familyPicture;
+    private static FamilyInfosScriptableObject _familyInfos;
+    private static CatsScriptableObject _cats;
+    
 
     public Canvas canvas;
     
@@ -61,7 +88,30 @@ public class FamilyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        _familyPicture = familyPicture;
+        _familyInfos = familyInfos;
+        _cats = cats;
+
+        _nameTMP = nameTMP;
+        _forenameTMP = forenameTMP;
+        _ageTMP = ageTMP;
+        _jobTMP = jobTMP;
+        _incomeTMP = incomeTMP;
+        _childTMP = childTMP;
+        _outdoorTMP = outdoorTMP;
+        _animalsTMP = animalsTMP;
+        _commentTMP = commentTMP;
+        _catTMP = catTMP;
+
+        _hair = hair;
+        _skin = skin;
+        _eyes = eyes;
+        _nose = nose;
+        _mouth = mouth;
+        _eyebrows = eyebrows;
+        _cloth = cloth;
+        _accessories = accessories;
+        _wrinkles = wrinkles;
     }
 
     // Update is called once per frame
@@ -82,145 +132,154 @@ public class FamilyManager : MonoBehaviour
             PrintFamilyPicture();
         }
     }
+
+    public static void GenerateFamily()
+    {
+        GenerateFamilyInformations();
+        GenerateFamilyPicture();
+        PrintFamilyInformation();
+        PrintFamilyPicture();
+    }
+    
     
     // Generate a face by picking random elements from the lists
-    public void GenerateFamilyPicture()
+    private static void GenerateFamilyPicture()
     {
-        m_Hair = familyPicture.listHairs[Random.Range(0, familyPicture.listHairs.Count)];
-        m_Skin = familyPicture.listSkins[Random.Range(0, familyPicture.listSkins.Count)];
-        m_Eyes = familyPicture.listEyes[Random.Range(0, familyPicture.listEyes.Count)];
-        m_Nose = familyPicture.listNoses[Random.Range(0, familyPicture.listNoses.Count)];
-        m_Mouth = familyPicture.listMouths[Random.Range(0, familyPicture.listMouths.Count)];
-        m_Eyebrows = familyPicture.listEyebrows[Random.Range(0, familyPicture.listEyebrows.Count)];
-        m_Cloth = familyPicture.listClothes[Random.Range(0, familyPicture.listClothes.Count)];
-        m_Accessories = familyPicture.listAccessories[Random.Range(0, familyPicture.listAccessories.Count)];
-        if (m_Age > 65)
-            m_Wrinkles = familyPicture.listWrinkles[1];
+        _hairSprite = _familyPicture.listHairs[Random.Range(0, _familyPicture.listHairs.Count)];
+        _skinSprite = _familyPicture.listSkins[Random.Range(0, _familyPicture.listSkins.Count)];
+        _eyesSprite = _familyPicture.listEyes[Random.Range(0, _familyPicture.listEyes.Count)];
+        _noseSprite = _familyPicture.listNoses[Random.Range(0, _familyPicture.listNoses.Count)];
+        _mouthSprite = _familyPicture.listMouths[Random.Range(0, _familyPicture.listMouths.Count)];
+        _eyebrowsSprite = _familyPicture.listEyebrows[Random.Range(0, _familyPicture.listEyebrows.Count)];
+        _clothSprite = _familyPicture.listClothes[Random.Range(0, _familyPicture.listClothes.Count)];
+        _accessoriesSprite = _familyPicture.listAccessories[Random.Range(0, _familyPicture.listAccessories.Count)];
+        if (_age > 65)
+            _wrinklesSprite = _familyPicture.listWrinkles[1];
         else 
-            m_Wrinkles = familyPicture.listWrinkles[0];
+            _wrinklesSprite = _familyPicture.listWrinkles[0];
     }
 
-    public void GenerateFamilyInformations()
+    private static void GenerateFamilyInformations()
     {
-        m_Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)];
-        m_Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)];
-        m_Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)];
-        m_Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
+        _name = _familyInfos.listNames[Random.Range(0, _familyInfos.listNames.Count)];
+        _forename = _familyInfos.listForenames[Random.Range(0, _familyInfos.listForenames.Count)];
+        _age = _familyInfos.listAges[Random.Range(0, _familyInfos.listAges.Count)];
+        _comment = _familyInfos.listComments[Random.Range(0, _familyInfos.listComments.Count)];
 
-        m_Outdoor = false;
-        m_Child = false;
-        m_Animals = false;
+        _outdoor = false;
+        _child = false;
+        _animals = false;
         
-        int i = Random.Range(0, cats.cats.Count);
-        m_Cat = cats.cats[i];
+        int i = Random.Range(0, _cats.cats.Count);
+        _cat = _cats.cats[i];
         
         // If -25 years old
-        if (m_Age < 25)
+        if (_age < 25)
         {
             int p = Random.Range(1, 101);
             
             // 75% chance of being a student
             if (p > 25)
             {
-                m_Job = "Etudiant.e";
-                m_Income = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
-                m_FreeTime = 1;
+                _job = "Etudiant.e";
+                _income = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
+                _freeTime = 1;
             }
             
             // Else they can have a child or an animal (but not both)
             else
             {
-                int index = Random.Range(0, familyInfos.listJobs.Count);
-                m_Job = familyInfos.listJobs[index].jobName;
-                m_Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-                m_FreeTime = familyInfos.listJobs[index].freeTime;
+                int index = Random.Range(0, _familyInfos.listJobs.Count);
+                _job = _familyInfos.listJobs[index].jobName;
+                _income = _familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
+                _freeTime = _familyInfos.listJobs[index].freeTime;
                 
                 int q = Random.Range(1, 101);
                 int r = Random.Range(1, 101);
                 int s = Random.Range(1, 101);
 
                 if (s > 80) // 20% chance of having a garden
-                    m_Outdoor = true;
+                    _outdoor = true;
                 
                 if (q > 80) // 20% chance of having a child
-                    m_Child = true;
+                    _child = true;
                 
                 else if (r > 40) // 60% chance of having an animal
-                    m_Animals = true;
+                    _animals = true;
             }
         }
         
         // If +65 years old, retired
-        else if (m_Age > 65)
+        else if (_age > 65)
         {
-            m_Job = "Retraité.e";
-            m_Income = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
-            m_FreeTime = 3;
+            _job = "Retraité.e";
+            _income = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
+            _freeTime = 3;
             
             int p = Random.Range(1, 101);
             int q = Random.Range(1, 101);
             
             if(p>30) // 70% chance of having a garden
-                m_Outdoor = true;
+                _outdoor = true;
             if (q > 80) // 20% chance of having an animal
-                m_Animals = true;
+                _animals = true;
         }
         else
         {
-            int index = Random.Range(0, familyInfos.listJobs.Count);
-            m_Job = familyInfos.listJobs[index].jobName;
-            m_Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-            m_FreeTime = familyInfos.listJobs[index].freeTime;
+            int index = Random.Range(0, _familyInfos.listJobs.Count);
+            _job = _familyInfos.listJobs[index].jobName;
+            _income = _familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
+            _freeTime = _familyInfos.listJobs[index].freeTime;
             
             int q = Random.Range(1, 101);
             int r = Random.Range(1, 101);
             int s = Random.Range(1, 101);
 
             if (s > 60) // 40% chance of having a garden
-                m_Outdoor = true;
+                _outdoor = true;
                 
             if (q > 70) // 30% chance of having a child
-                m_Child = true;
+                _child = true;
                 
             else if (r > 50) // 50% chance of having an animal
-                m_Animals = true;
+                _animals = true;
         }
     }
     
     // Print the face at the vector location in parameter
-    public void PrintFamilyPicture()
+    private static void PrintFamilyPicture()
     {
-        skin.sprite = m_Skin;
-        hair.sprite = m_Hair;
-        eyes.sprite = m_Eyes;
-        eyebrows.sprite = m_Eyebrows;
-        nose.sprite = m_Nose;
-        mouth.sprite = m_Mouth;
-        cloth.sprite = m_Cloth;
-        accessories.sprite = m_Accessories;
-        wrinkles.sprite = m_Wrinkles;
+        _skin.sprite = _skinSprite;
+        _hair.sprite = _hairSprite;
+        _eyes.sprite = _eyesSprite;
+        _eyebrows.sprite = _eyebrowsSprite;
+        _nose.sprite = _noseSprite;
+        _mouth.sprite = _mouthSprite;
+        _cloth.sprite = _clothSprite;
+        _accessories.sprite = _accessoriesSprite;
+        _wrinkles.sprite = _wrinklesSprite;
     }
 
-    public void PrintFamilyInformation()
+    private static void PrintFamilyInformation()
     {
-        nameTMP.text = "Nom : " + m_Name;
-        forenameTMP.text = "Prénom : " + m_Forename;
-        ageTMP.text = "Age : " + m_Age + " ans";
-        jobTMP.text = "Profession : " + m_Job;
-        incomeTMP.text =  "Revenus : " + m_Income + " €/mois";
-        if(m_Child)
-            childTMP.text = "Enfants en bas-âge : oui";
+        _nameTMP.text = "Nom : " + _name;
+        _forenameTMP.text = "Prénom : " + _forename;
+        _ageTMP.text = "Age : " + _age + " ans";
+        _jobTMP.text = "Profession : " + _job;
+        _incomeTMP.text =  "Revenus : " + _income + " €/mois";
+        if(_child)
+            _childTMP.text = "Enfants en bas-âge : oui";
         else
-            childTMP.text = "Enfants en bas-âge : non";
-        if(m_Animals)
-            animalsTMP.text = "Autres animaux : oui";
+            _childTMP.text = "Enfants en bas-âge : non";
+        if(_animals)
+            _animalsTMP.text = "Autres animaux : oui";
         else
-            animalsTMP.text = "Autres animaux : non";
-        if(m_Outdoor)
-            outdoorTMP.text = "Extérieur : oui";
+            _animalsTMP.text = "Autres animaux : non";
+        if(_outdoor)
+            _outdoorTMP.text = "Extérieur : oui";
         else 
-            outdoorTMP.text = "Extérieur : non";
-        commentTMP.text = "Commentaire : " + m_Comment;
-        catTMP.text = "Chat demandé : " + m_Cat.name;
+            _outdoorTMP.text = "Extérieur : non";
+        _commentTMP.text = "Commentaire : " + _comment;
+        _catTMP.text = "Chat demandé : " + _cat.name;
     }
 }
