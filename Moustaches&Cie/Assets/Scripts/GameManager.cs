@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     // Game States
     public enum GameState
     {
-        Title,
         Play,
         Pause
     }
@@ -16,9 +15,11 @@ public class GameManager : MonoBehaviour
     // Game Levels
     public enum GameLevel
     {
+        Title,
         Level1,
         Level2,
         Level3,
+        LevelMax,
         ScoreLevel
     }
     public GameLevel level;
@@ -33,7 +34,10 @@ public class GameManager : MonoBehaviour
         get
         {
             if (_instance == null)
+            {
                 Debug.LogError("Game Manager is NULL !");
+            }
+                
 
             return _instance;
         }
@@ -52,20 +56,6 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Play);
         UpdateGameLevel(GameLevel.Level1);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Pause or resume the game with Escape key
-        if (Input.GetKeyDown("escape"))
-        {
-            if (state == GameState.Pause)
-                UpdateGameState(GameState.Play);
-
-            else if (state == GameState.Play)
-                UpdateGameState(GameState.Pause);
-        }
-    }
     
     // Update the state of the Game
     public void UpdateGameState(GameState newState)
@@ -74,9 +64,6 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.Title:
-                HandleTitle();
-                break;
             case GameState.Play:
                 HandlePlay();
                 break;
@@ -96,6 +83,9 @@ public class GameManager : MonoBehaviour
 
         switch (newLevel)
         {
+            case GameLevel.Title:
+                HandleTitle();
+                break;
             case GameLevel.Level1:
                 HandleLevel1();
                 break;
@@ -104,6 +94,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameLevel.Level3:
                 HandleLevel3();
+                break;
+            case GameLevel.LevelMax:
+                HandleLevelMax();
                 break;
             case GameLevel.ScoreLevel:
                 HandleScoreLevel();
@@ -116,7 +109,7 @@ public class GameManager : MonoBehaviour
     // Handle the new States
     private void HandleTitle()
     {
-        SceneManager.LoadScene("Title screen");
+        SceneManager.LoadSceneAsync("Title screen");
     }
 
     private void HandlePlay()
@@ -132,21 +125,26 @@ public class GameManager : MonoBehaviour
     // Handle the new Levels
     private void HandleLevel1()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadSceneAsync("Level 1");
     }
 
     private void HandleLevel2()
     {
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadSceneAsync("Level 2");
     }
 
     private void HandleLevel3()
     {
-        SceneManager.LoadScene("Level 3");
+        SceneManager.LoadSceneAsync("Level 3");
+    }
+
+    private void HandleLevelMax()
+    {
+        SceneManager.LoadSceneAsync("Level Max");
     }
     
     private void HandleScoreLevel()
     {
-        SceneManager.LoadScene("Score screen");
+        SceneManager.LoadSceneAsync("Score screen");
     }
 }

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
     // Panels
-    [SerializeField] private GameObject pause_Panel;
-    [SerializeField] private GameObject options_Panel;
+    [FormerlySerializedAs("pause_Panel")] [SerializeField] private GameObject pausePanel;
+    [FormerlySerializedAs("options_Panel")] [SerializeField] private GameObject optionsPanel;
     
     // Settings components
     [SerializeField] private Button toPauseMenuButton;
@@ -28,8 +29,8 @@ public class SettingsManager : MonoBehaviour
 
     private void ToPauseMenuButtonClicked()
     {
-        options_Panel.SetActive(false);
-        pause_Panel.SetActive(true);
+        optionsPanel.SetActive(false);
+        pausePanel.SetActive(true);
     }
 
     private void ToGeneralSettingsButtonClicked()

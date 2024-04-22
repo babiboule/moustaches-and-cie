@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     // Panels
-    [SerializeField] private GameObject pause_Panel;
-    [SerializeField] private GameObject options_Panel;
+    [FormerlySerializedAs("pause_Panel")] [SerializeField] private GameObject pausePanel;
+    [FormerlySerializedAs("options_Panel")] [SerializeField] private GameObject optionsPanel;
     
     // Pause components
     [SerializeField] private Button playButton;
@@ -31,9 +32,22 @@ public class UIManager : MonoBehaviour
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
     }
 
+    private void Update()
+    {
+        // Pause or resume the game with Escape key
+        if (Input.GetKeyDown("escape"))
+        {
+            if (GameManager.instance.state == GameManager.GameState.Pause)
+                GameManager.instance.UpdateGameState(GameManager.GameState.Play);
+
+            else if (GameManager.instance.state == GameManager.GameState.Play)
+                GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
+        }
+    }
+
     private void GameManagerOnOnGameStateChanged(GameManager.GameState state)
     {
-        pause_Panel.SetActive(state == GameManager.GameState.Pause);
+        pausePanel.SetActive(state == GameManager.GameState.Pause);
     }
 
     private void PlayButtonClicked()
@@ -43,12 +57,12 @@ public class UIManager : MonoBehaviour
 
     private void OptionsButtonClicked()
     {
-        pause_Panel.SetActive(false);
-        options_Panel.SetActive(true);
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(true);
     }
     
     private void ToTitleButtonClicked()
     {
-        GameManager.instance.UpdateGameState(GameManager.GameState.Title);
+        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 }
