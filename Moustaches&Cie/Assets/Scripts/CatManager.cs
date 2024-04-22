@@ -37,15 +37,10 @@ public class CatManager : MonoBehaviour
     private static TMP_Text _natureTMP;
     private static TMP_Text _outdoorTMP;
     private static TMP_Text _animalsTMP;
-
-
-    private void Awake()
-    {
-
-    }
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _cats = cats;
         
@@ -59,13 +54,8 @@ public class CatManager : MonoBehaviour
         _outdoorTMP = outdoorTMP;
         _animalsTMP = animalsTMP;
         
-        InitialiseCurrentCats(GameManager.instance.level);
         _index = 0;
         _indexMax = _currentCats.Count;
-        if(_indexMax > 0)
-            PrintCatInfos(_currentCats[_index%_indexMax]);
-        else 
-            SceneManager.LoadSceneAsync("Score screen");
     }
 
     // Update is called once per frame

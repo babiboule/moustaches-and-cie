@@ -1836,6 +1836,112 @@ Transform:
   - {fileID: 1008953180}
   m_Father: {fileID: 1734977863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &384649864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384649868}
+  - component: {fileID: 384649865}
+  - component: {fileID: 384649867}
+  - component: {fileID: 384649866}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &384649865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384649864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57c00b0e9aba164fbded1c47751b779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
+  familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
+  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
+--- !u!114 &384649866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384649864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4702c145ee700645b5815703686dede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
+  picture: {fileID: 1688336775}
+  nameTMP: {fileID: 913794501}
+  ageTMP: {fileID: 2129798688}
+  raceTMP: {fileID: 1475391128}
+  sexTMP: {fileID: 1329282042}
+  sickTMP: {fileID: 1682276628}
+  natureTMP: {fileID: 1230968063}
+  outdoorTMP: {fileID: 825572558}
+  animalsTMP: {fileID: 1751875003}
+--- !u!114 &384649867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384649864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c4cded69cdf1f49b9643e1e1a6cf6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameTMP: {fileID: 1411856679}
+  forenameTMP: {fileID: 969690022}
+  ageTMP: {fileID: 322252647}
+  jobTMP: {fileID: 1172933472}
+  incomeTMP: {fileID: 232524640}
+  childTMP: {fileID: 1459590551}
+  outdoorTMP: {fileID: 792671909}
+  animalsTMP: {fileID: 375117018}
+  commentTMP: {fileID: 1656979297}
+  catTMP: {fileID: 102481021}
+  hair: {fileID: 1008953182}
+  skin: {fileID: 1547042452}
+  eyes: {fileID: 1148726004}
+  nose: {fileID: 1856280100}
+  mouth: {fileID: 1226455529}
+  eyebrows: {fileID: 1005454211}
+  cloth: {fileID: 1662226270}
+  accessories: {fileID: 1361086437}
+  wrinkles: {fileID: 1699450590}
+  familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
+  familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
+  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
+  canvas: {fileID: 734771192}
+--- !u!4 &384649868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384649864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1290.3782, y: 863.70496, z: -25.006351}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408408997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,73 +2723,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578313544}
   m_CullTransparentMesh: 1
---- !u!1 &605521808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 605521810}
-  - component: {fileID: 605521809}
-  m_Layer: 0
-  m_Name: FamilyInfoLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &605521809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605521808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c4cded69cdf1f49b9643e1e1a6cf6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameTMP: {fileID: 1411856679}
-  forenameTMP: {fileID: 969690022}
-  ageTMP: {fileID: 322252647}
-  jobTMP: {fileID: 1172933472}
-  incomeTMP: {fileID: 232524640}
-  childTMP: {fileID: 1459590551}
-  outdoorTMP: {fileID: 792671909}
-  animalsTMP: {fileID: 375117018}
-  commentTMP: {fileID: 1656979297}
-  catTMP: {fileID: 102481021}
-  hair: {fileID: 1008953182}
-  skin: {fileID: 1547042452}
-  eyes: {fileID: 1148726004}
-  nose: {fileID: 1856280100}
-  mouth: {fileID: 1226455529}
-  eyebrows: {fileID: 1005454211}
-  cloth: {fileID: 1662226270}
-  accessories: {fileID: 1361086437}
-  wrinkles: {fileID: 1699450590}
-  familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
-  familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
-  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
-  canvas: {fileID: 734771192}
---- !u!4 &605521810
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605521808}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 959.6, y: 539.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608305853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,60 +3616,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &795614993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 795614995}
-  - component: {fileID: 795614994}
-  m_Layer: 0
-  m_Name: CatInfosLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &795614994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795614993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4702c145ee700645b5815703686dede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
-  picture: {fileID: 1688336775}
-  nameTMP: {fileID: 913794501}
-  ageTMP: {fileID: 2129798688}
-  raceTMP: {fileID: 1475391128}
-  sexTMP: {fileID: 1329282042}
-  sickTMP: {fileID: 1682276628}
-  natureTMP: {fileID: 1230968063}
-  outdoorTMP: {fileID: 825572558}
-  animalsTMP: {fileID: 1751875003}
---- !u!4 &795614995
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795614993}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 986.26373, y: 501.10226, z: -1.167806}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797788032
 GameObject:
   m_ObjectHideFlags: 0
@@ -9394,8 +9379,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
-  - {fileID: 795614995}
+  - {fileID: 384649868}
   - {fileID: 734771193}
   - {fileID: 1484327714}
   - {fileID: 1574149626}
-  - {fileID: 605521810}

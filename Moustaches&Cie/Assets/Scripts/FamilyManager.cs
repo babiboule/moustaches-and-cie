@@ -1,35 +1,10 @@
 using ScriptableObjects;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FamilyManager : MonoBehaviour
 {
-    // Prefabs that compose the unique face
-    private static Sprite _hairSprite;
-    private static Sprite _skinSprite;
-    private static Sprite _eyesSprite;
-    private static Sprite _noseSprite;
-    private static Sprite _mouthSprite;
-    private static Sprite _eyebrowsSprite;
-    private static Sprite _clothSprite;
-    private static Sprite _accessoriesSprite;
-    private static Sprite _wrinklesSprite;
-    
-    // Family information
-    private static string _name;
-    private static string _forename;
-    private static int _age;
-    private static string _job;
-    private static int _income;
-    private static int _freeTime;
-    private static bool _child;
-    private static bool _outdoor;
-    private static bool _animals;
-    private static string _comment;
-    private static CatsScriptableObject.Cat _cat;
-    
     // UI elements
     public TMP_Text nameTMP;
     public TMP_Text forenameTMP;
@@ -72,26 +47,42 @@ public class FamilyManager : MonoBehaviour
     private static Image _cloth;
     private static Image _accessories;
     private static Image _wrinkles;
-
-    public FamilyPictureScriptableObject familyPicture;
-    public FamilyInfosScriptableObject familyInfos;
-    public CatsScriptableObject cats;
-
-    private static FamilyPictureScriptableObject _familyPicture;
-    private static FamilyInfosScriptableObject _familyInfos;
-    private static CatsScriptableObject _cats;
     
 
     public Canvas canvas;
-    
+
+    public struct Picture
+    {
+        public Sprite Hair;
+        public Sprite Skin;
+        public Sprite Eyes;
+        public Sprite Nose;
+        public Sprite Mouth;
+        public Sprite Eyebrows;
+        public Sprite Cloth;
+        public Sprite Accessories;
+        public Sprite Wrinkles;
+    }
+
+    public struct Family
+    {
+        public Picture Picture;
+        public string Name;
+        public string Forename;
+        public int Age;
+        public string JobName;
+        public int Income;
+        public int FreeTime;
+        public bool Child;
+        public bool Outdoor;
+        public bool Animals;
+        public string Comment;
+        public CatsScriptableObject.Cat Cat;
+    }
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        _familyPicture = familyPicture;
-        _familyInfos = familyInfos;
-        _cats = cats;
-
         _nameTMP = nameTMP;
         _forenameTMP = forenameTMP;
         _ageTMP = ageTMP;
@@ -104,7 +95,9 @@ public class FamilyManager : MonoBehaviour
         _catTMP = catTMP;
 
         _hair = hair;
+        _hair.sprite = hair.sprite;
         _skin = skin;
+        _skin.sprite = skin.sprite;
         _eyes = eyes;
         _nose = nose;
         _mouth = mouth;
@@ -114,172 +107,162 @@ public class FamilyManager : MonoBehaviour
         _wrinkles = wrinkles;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static Family GenerateFamily(FamilyPictureScriptableObject familyPicture, FamilyInfosScriptableObject familyInfos, CatsScriptableObject cats)
     {
-        if (Input.GetKeyDown("n"))
-        {
-            GenerateFamilyInformations();
-            GenerateFamilyPicture();
-            PrintFamilyInformation();
-            PrintFamilyPicture();
-        }
+        Family family = GenerateFamilyInformations(familyInfos, cats);
+        family.Picture = GenerateFamilyPicture(family, familyPicture);
+        PrintFamilyPicture(family);
+        PrintFamilyInformation(family);
         
-        
-        if (Input.GetKeyDown("f"))
-        {
-            GenerateFamilyPicture();
-            PrintFamilyPicture();
-        }
-    }
-
-    public static void GenerateFamily()
-    {
-        GenerateFamilyInformations();
-        GenerateFamilyPicture();
-        PrintFamilyInformation();
-        PrintFamilyPicture();
+        return family;
     }
     
-    
-    // Generate a face by picking random elements from the lists
-    private static void GenerateFamilyPicture()
-    {
-        _hairSprite = _familyPicture.listHairs[Random.Range(0, _familyPicture.listHairs.Count)];
-        _skinSprite = _familyPicture.listSkins[Random.Range(0, _familyPicture.listSkins.Count)];
-        _eyesSprite = _familyPicture.listEyes[Random.Range(0, _familyPicture.listEyes.Count)];
-        _noseSprite = _familyPicture.listNoses[Random.Range(0, _familyPicture.listNoses.Count)];
-        _mouthSprite = _familyPicture.listMouths[Random.Range(0, _familyPicture.listMouths.Count)];
-        _eyebrowsSprite = _familyPicture.listEyebrows[Random.Range(0, _familyPicture.listEyebrows.Count)];
-        _clothSprite = _familyPicture.listClothes[Random.Range(0, _familyPicture.listClothes.Count)];
-        _accessoriesSprite = _familyPicture.listAccessories[Random.Range(0, _familyPicture.listAccessories.Count)];
-        if (_age > 65)
-            _wrinklesSprite = _familyPicture.listWrinkles[1];
-        else 
-            _wrinklesSprite = _familyPicture.listWrinkles[0];
-    }
 
-    private static void GenerateFamilyInformations()
+    private static Family GenerateFamilyInformations(FamilyInfosScriptableObject familyInfos, CatsScriptableObject cats)
     {
-        _name = _familyInfos.listNames[Random.Range(0, _familyInfos.listNames.Count)];
-        _forename = _familyInfos.listForenames[Random.Range(0, _familyInfos.listForenames.Count)];
-        _age = _familyInfos.listAges[Random.Range(0, _familyInfos.listAges.Count)];
-        _comment = _familyInfos.listComments[Random.Range(0, _familyInfos.listComments.Count)];
+        Family family = new Family();
+        family.Picture = new Picture();
+        family.Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)];
+        family.Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)];
+        family.Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)];
+        family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
 
-        _outdoor = false;
-        _child = false;
-        _animals = false;
+        family.Outdoor = false;
+        family.Child = false;
+        family.Animals = false;
         
-        int i = Random.Range(0, _cats.cats.Count);
-        _cat = _cats.cats[i];
+        int i = Random.Range(0, cats.cats.Count);
+        family.Cat = cats.cats[i];
         
         // If -25 years old
-        if (_age < 25)
+        if (family.Age < 25)
         {
             int p = Random.Range(1, 101);
             
             // 75% chance of being a student
             if (p > 25)
             {
-                _job = "Etudiant.e";
-                _income = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
-                _freeTime = 1;
+                family.JobName = "Etudiant.e";
+                family.Income = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
+                family.FreeTime = 1;
             }
             
             // Else they can have a child or an animal (but not both)
             else
             {
-                int index = Random.Range(0, _familyInfos.listJobs.Count);
-                _job = _familyInfos.listJobs[index].jobName;
-                _income = _familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-                _freeTime = _familyInfos.listJobs[index].freeTime;
+                int index = Random.Range(0, familyInfos.listJobs.Count);
+                family.JobName = familyInfos.listJobs[index].jobName;
+                family.Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
+                family.FreeTime = familyInfos.listJobs[index].freeTime;
                 
                 int q = Random.Range(1, 101);
                 int r = Random.Range(1, 101);
                 int s = Random.Range(1, 101);
 
                 if (s > 80) // 20% chance of having a garden
-                    _outdoor = true;
+                    family.Outdoor = true;
                 
                 if (q > 80) // 20% chance of having a child
-                    _child = true;
+                    family.Child = true;
                 
                 else if (r > 40) // 60% chance of having an animal
-                    _animals = true;
+                    family.Animals = true;
             }
         }
         
         // If +65 years old, retired
-        else if (_age > 65)
+        else if (family.Age > 65)
         {
-            _job = "Retraité.e";
-            _income = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
-            _freeTime = 3;
+            family.JobName = "Retraité.e";
+            family.Income = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
+            family.FreeTime = 3;
             
             int p = Random.Range(1, 101);
             int q = Random.Range(1, 101);
             
             if(p>30) // 70% chance of having a garden
-                _outdoor = true;
+                family.Outdoor = true;
             if (q > 80) // 20% chance of having an animal
-                _animals = true;
+                family.Animals = true;
         }
         else
         {
-            int index = Random.Range(0, _familyInfos.listJobs.Count);
-            _job = _familyInfos.listJobs[index].jobName;
-            _income = _familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-            _freeTime = _familyInfos.listJobs[index].freeTime;
+            int index = Random.Range(0, familyInfos.listJobs.Count);
+            family.JobName = familyInfos.listJobs[index].jobName;
+            family.Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
+            family.FreeTime = familyInfos.listJobs[index].freeTime;
             
             int q = Random.Range(1, 101);
             int r = Random.Range(1, 101);
             int s = Random.Range(1, 101);
 
             if (s > 60) // 40% chance of having a garden
-                _outdoor = true;
+                family.Outdoor = true;
                 
             if (q > 70) // 30% chance of having a child
-                _child = true;
+                family.Child = true;
                 
             else if (r > 50) // 50% chance of having an animal
-                _animals = true;
+                family.Animals = true;
         }
+
+        return family;
     }
     
-    // Print the face at the vector location in parameter
-    private static void PrintFamilyPicture()
+    // Generate a face by picking random elements from the lists
+    private static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
     {
-        _skin.sprite = _skinSprite;
-        _hair.sprite = _hairSprite;
-        _eyes.sprite = _eyesSprite;
-        _eyebrows.sprite = _eyebrowsSprite;
-        _nose.sprite = _noseSprite;
-        _mouth.sprite = _mouthSprite;
-        _cloth.sprite = _clothSprite;
-        _accessories.sprite = _accessoriesSprite;
-        _wrinkles.sprite = _wrinklesSprite;
+        Picture picture = new Picture();
+
+        picture.Hair = familyPicture.listHairs[Random.Range(0, familyPicture.listHairs.Count)];
+        picture.Skin = familyPicture.listSkins[Random.Range(0, familyPicture.listSkins.Count)];
+        picture.Eyes = familyPicture.listEyes[Random.Range(0, familyPicture.listEyes.Count)];
+        picture.Nose = familyPicture.listNoses[Random.Range(0, familyPicture.listNoses.Count)];
+        picture.Mouth = familyPicture.listMouths[Random.Range(0, familyPicture.listMouths.Count)];
+        picture.Eyebrows = familyPicture.listEyebrows[Random.Range(0, familyPicture.listEyebrows.Count)];
+        picture.Cloth = familyPicture.listClothes[Random.Range(0, familyPicture.listClothes.Count)];
+        picture.Accessories = familyPicture.listAccessories[Random.Range(0, familyPicture.listAccessories.Count)];
+        if (family.Age > 65)
+            picture.Wrinkles = familyPicture.listWrinkles[1];
+        else 
+            picture.Wrinkles = familyPicture.listWrinkles[0];
+        return picture;
     }
 
-    private static void PrintFamilyInformation()
+    private static void PrintFamilyInformation(Family family)
     {
-        _nameTMP.text = "Nom : " + _name;
-        _forenameTMP.text = "Prénom : " + _forename;
-        _ageTMP.text = "Age : " + _age + " ans";
-        _jobTMP.text = "Profession : " + _job;
-        _incomeTMP.text =  "Revenus : " + _income + " €/mois";
-        if(_child)
+        _nameTMP.text = "Nom : " + family.Name;
+        _forenameTMP.text = "Prénom : " + family.Forename;
+        _ageTMP.text = "Age : " + family.Age + " ans";
+        _jobTMP.text = "Profession : " + family.JobName;
+        _incomeTMP.text =  "Revenus : " + family.Income + " €/mois";
+        if(family.Child)
             _childTMP.text = "Enfants en bas-âge : oui";
         else
             _childTMP.text = "Enfants en bas-âge : non";
-        if(_animals)
+        if(family.Animals)
             _animalsTMP.text = "Autres animaux : oui";
         else
             _animalsTMP.text = "Autres animaux : non";
-        if(_outdoor)
+        if(family.Outdoor)
             _outdoorTMP.text = "Extérieur : oui";
         else 
             _outdoorTMP.text = "Extérieur : non";
-        _commentTMP.text = "Commentaire : " + _comment;
-        _catTMP.text = "Chat demandé : " + _cat.name;
+        _commentTMP.text = "Commentaire : " + family.Comment;
+        _catTMP.text = "Chat demandé : " + family.Cat.name;
+    }
+    
+    // Print the face at the vector location in parameter
+    private static void PrintFamilyPicture(Family family)
+    {
+        _skin.sprite = family.Picture.Skin;
+        _hair.sprite = family.Picture.Hair;
+        _eyes.sprite = family.Picture.Eyes;
+        _eyebrows.sprite = family.Picture.Eyebrows;
+        _nose.sprite = family.Picture.Nose;
+        _mouth.sprite = family.Picture.Mouth;
+        _cloth.sprite = family.Picture.Cloth;
+        _accessories.sprite = family.Picture.Accessories;
+        _wrinkles.sprite = family.Picture.Wrinkles;
     }
 }
