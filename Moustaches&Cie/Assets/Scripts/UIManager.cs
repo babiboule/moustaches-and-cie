@@ -84,24 +84,28 @@ public class UIManager : MonoBehaviour
     
     private void NextCatButtonClicked()
     {
-        CatManager.NextIndex();
-        int indexMax = CatManager.GetIndexMax();
-        int index = CatManager.GetIndex();
-        
-        if(indexMax > 0)
-            CatManager.PrintCatInfos(CatManager.GetCurrentCats()[index%indexMax]);
+        DayManager.NextIndex();
+        int indexMax = DayManager.GetIndexMax();
+        int index = DayManager.GetIndex();
+
+        if (indexMax > 0)
+        {
+            Debug.Log("Index max : " + indexMax);
+            Debug.Log("Index : " + index);
+            CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
+        }
         else 
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }
 
     private void PreviousCatButtonClicked()
     {
-        CatManager.PreviousIndex();
-        int indexMax = CatManager.GetIndexMax();
-        int index = CatManager.GetIndex();
+        DayManager.PreviousIndex();
+        int indexMax = DayManager.GetIndexMax();
+        int index = DayManager.GetIndex();
         
         if(indexMax > 0)
-            CatManager.PrintCatInfos(CatManager.GetCurrentCats()[index%indexMax]);
+            CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         else 
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }

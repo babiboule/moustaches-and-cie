@@ -10,13 +10,6 @@ using UnityEngine.UI;
 
 public class CatManager : MonoBehaviour
 {
-    public CatsScriptableObject cats;
-    private static CatsScriptableObject _cats;
-
-    private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
-    private static int _index;
-    private static int _indexMax;
-    
     // UI Elements
     public Image picture;
     public TMP_Text nameTMP;
@@ -42,8 +35,6 @@ public class CatManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _cats = cats;
-        
         _picture = picture;
         _nameTMP = nameTMP;
         _ageTMP = ageTMP;
@@ -53,16 +44,8 @@ public class CatManager : MonoBehaviour
         _natureTMP = natureTMP;
         _outdoorTMP = outdoorTMP;
         _animalsTMP = animalsTMP;
-        
-        _index = 0;
-        _indexMax = _currentCats.Count;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public static void PrintCatInfos(CatsScriptableObject.Cat cat)
     {
@@ -86,67 +69,42 @@ public class CatManager : MonoBehaviour
             _animalsTMP.text = "OK animaux : non";
     }
 
-    public static void InitialiseCurrentCats(GameManager.GameLevel level)
+    public static void InitialiseCurrentCats(GameManager.GameLevel level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)
     {
         switch (level)
         {
             case GameManager.GameLevel.Level1:
-                foreach (CatsScriptableObject.Cat cat in _cats.cats)
+                foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level == 1)
-                        _currentCats.Add(cat);
+                        currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level2:
-                foreach (CatsScriptableObject.Cat cat in _cats.cats)
+                foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <= 2)
-                        _currentCats.Add(cat);
+                        currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level3:
-                foreach (CatsScriptableObject.Cat cat in _cats.cats)
+                foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <=3)
-                        _currentCats.Add(cat);
+                        currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.LevelMax:
-                foreach (CatsScriptableObject.Cat cat in _cats.cats)
+                foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted)
-                        _currentCats.Add(cat);
+                        currentCats.Add(cat);
                 }
                 break;
             default:
                 Debug.Log("TRYING TO INITALISE CAT BUT NOT ON A LEVEL");
                 break;
         }
-    }
-
-    public static List<CatsScriptableObject.Cat> GetCurrentCats()
-    {
-        return _currentCats;
-    }
-
-    public static int GetIndex()
-    {
-        return _index;
-    }
-    
-    public static int GetIndexMax()
-    {
-        return _indexMax;
-    }
-
-    public static void NextIndex()
-    {
-        _index++;
-    }
-    
-    public static void PreviousIndex()
-    {
-        _index--;
     }
 
 
