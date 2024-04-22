@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class CatManager : MonoBehaviour
 {
     public CatsScriptableObject cats;
+    private static CatsScriptableObject _cats;
 
     private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
     private static int _index;
@@ -26,9 +27,20 @@ public class CatManager : MonoBehaviour
     public TMP_Text natureTMP;
     public TMP_Text outdoorTMP;
     public TMP_Text animalsTMP;
-
     public Button nextCatButton;
     public Button previousCatButton;
+    
+    private static Image _picture;
+    private static TMP_Text _nameTMP;
+    private static TMP_Text _ageTMP;
+    private static TMP_Text _raceTMP;
+    private static TMP_Text _sexTMP;
+    private static TMP_Text _sickTMP;
+    private static TMP_Text _natureTMP;
+    private static TMP_Text _outdoorTMP;
+    private static TMP_Text _animalsTMP;
+    private static Button _nextCatButton;
+    private static Button _previousCatButton;
 
     private void Awake()
     {
@@ -39,6 +51,20 @@ public class CatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _cats = cats;
+        
+        _picture = picture;
+        _nameTMP = nameTMP;
+        _ageTMP = ageTMP;
+        _raceTMP = raceTMP;
+        _sexTMP = sexTMP;
+        _sickTMP = sickTMP;
+        _natureTMP = natureTMP;
+        _outdoorTMP = outdoorTMP;
+        _animalsTMP = animalsTMP;
+        _nextCatButton = nextCatButton;
+        _previousCatButton = previousCatButton;
+        
         InitialiseCurrentCats(GameManager.instance.level);
         _index = 0;
         _indexMax = _currentCats.Count;
@@ -51,62 +77,58 @@ public class CatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("n"))
-        {
-            PrintCatInfos(cats.cats[0]);
-        }
         
     }
 
-    public void PrintCatInfos(CatsScriptableObject.Cat cat)
+    public static void PrintCatInfos(CatsScriptableObject.Cat cat)
     {
-        Instantiate(cat.picture, picture.transform);
-        nameTMP.text = cat.name;
-        ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture);
-        raceTMP.text = "Race : " + cat.race;
-        sexTMP.text = "Sexe : " + cat.sex;
-        natureTMP.text = "Caractère : " + cat.nature;
+        Instantiate(cat.picture, _picture.transform);
+        _nameTMP.text = cat.name;
+        _ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture);
+        _raceTMP.text = "Race : " + cat.race;
+        _sexTMP.text = "Sexe : " + cat.sex;
+        _natureTMP.text = "Caractère : " + cat.nature;
         if(cat.sick)
-            sickTMP.text = "Malade : oui";
+            _sickTMP.text = "Malade : oui";
         else 
-            sickTMP.text = "Malade : non";
+            _sickTMP.text = "Malade : non";
         if(cat.outdoor)
-            outdoorTMP.text = "Besoin d'extérieur : oui";
+            _outdoorTMP.text = "Besoin d'extérieur : oui";
         else 
-            outdoorTMP.text = "Besoin d'extérieur : non";
+            _outdoorTMP.text = "Besoin d'extérieur : non";
         if(cat.animals)
-            animalsTMP.text = "OK animaux : oui";
+            _animalsTMP.text = "OK animaux : oui";
         else 
-            animalsTMP.text = "OK animaux : non";
+            _animalsTMP.text = "OK animaux : non";
     }
 
-    private void InitialiseCurrentCats(GameManager.GameLevel level)
+    private static void InitialiseCurrentCats(GameManager.GameLevel level)
     {
         switch (level)
         {
             case GameManager.GameLevel.Level1:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
+                foreach (CatsScriptableObject.Cat cat in _cats.cats)
                 {
                     if(!cat.adopted && cat.level == 1)
                         _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level2:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
+                foreach (CatsScriptableObject.Cat cat in _cats.cats)
                 {
                     if(!cat.adopted && cat.level <= 2)
                         _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.Level3:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
+                foreach (CatsScriptableObject.Cat cat in _cats.cats)
                 {
                     if(!cat.adopted && cat.level <=3)
                         _currentCats.Add(cat);
                 }
                 break;
             case GameManager.GameLevel.LevelMax:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
+                foreach (CatsScriptableObject.Cat cat in _cats.cats)
                 {
                     if(!cat.adopted)
                         _currentCats.Add(cat);
