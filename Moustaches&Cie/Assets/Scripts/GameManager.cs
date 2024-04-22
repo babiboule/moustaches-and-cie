@@ -48,13 +48,14 @@ public class GameManager : MonoBehaviour
         if (_instance == null)
             _instance = this;
         else Destroy(this.gameObject);
+        DontDestroyOnLoad(_instance);
     }
     
     // Start is called before the first frame update
     void Start()
     {
         UpdateGameState(GameState.Play);
-        UpdateGameLevel(GameLevel.Level1);
+        //UpdateGameLevel(GameLevel.Title);
     }
     
     // Update the state of the Game

@@ -1,20 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     // Panels
-    [FormerlySerializedAs("pause_Panel")] [SerializeField] private GameObject pausePanel;
-    [FormerlySerializedAs("options_Panel")] [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject optionsPanel;
     
     // Pause components
     [SerializeField] private Button playButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button toTitleButton;
+    
+    
     
     
     private void Awake()

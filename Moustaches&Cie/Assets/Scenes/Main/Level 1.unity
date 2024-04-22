@@ -2974,8 +2974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df45751db9db43a45a32646555741c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause_Panel: {fileID: 1381044717}
-  options_Panel: {fileID: 549011624}
+  pausePanel: {fileID: 1381044717}
+  optionsPanel: {fileID: 549011624}
   toPauseMenuButton: {fileID: 15003440}
   toGeneralSettingsButton: {fileID: 305885776}
   toGraphicsSettingsButton: {fileID: 165771236}
@@ -2992,8 +2992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12da6d7b9ee3c354392824f95e5bec37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause_Panel: {fileID: 1381044717}
-  options_Panel: {fileID: 549011624}
+  pausePanel: {fileID: 1381044717}
+  optionsPanel: {fileID: 549011624}
   playButton: {fileID: 821860573}
   optionsButton: {fileID: 1612395930}
   toTitleButton: {fileID: 48142832}
