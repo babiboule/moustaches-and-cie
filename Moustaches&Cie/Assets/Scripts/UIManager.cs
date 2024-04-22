@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +11,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject optionsPanel;
     
     // Pause components
+    [SerializeField] private Button pauseButton;
     [SerializeField] private Button playButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button toTitleButton;
     
-    
+
     
     
     private void Awake()
@@ -20,6 +24,7 @@ public class UIManager : MonoBehaviour
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
         
         // Pause Buttons Listeners
+        pauseButton.onClick.AddListener(PauseButtonClicked);
         playButton.onClick.AddListener(PlayButtonClicked);
         optionsButton.onClick.AddListener(OptionsButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
@@ -28,6 +33,11 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
+    }
+
+    private void Start()
+    {
+
     }
 
     private void Update()
@@ -48,8 +58,14 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(state == GameManager.GameState.Pause);
     }
 
+    private void PauseButtonClicked()
+    {
+        pauseButton.gameObject.SetActive(false);
+        GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
+    }
     private void PlayButtonClicked()
     {
+        pauseButton.gameObject.SetActive(true);
         GameManager.instance.UpdateGameState(GameManager.GameState.Play);
     }
 

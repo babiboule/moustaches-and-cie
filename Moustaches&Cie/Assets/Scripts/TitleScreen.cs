@@ -74,7 +74,7 @@ public class TitleScreen : MonoBehaviour
 
     private void ToDesktopButtonClicked()
     {
-        throw new NotImplementedException();
+        Application.Quit();
     }
 
     // Start is called before the first frame update
