@@ -13,12 +13,19 @@ namespace ScriptableObjects
             public int income;
             public int freeTime;
         }
+
+        [System.Serializable]
+        public struct Comment
+        {
+            public string commentText;
+            public bool problematic;
+        }
         
         // Lists of characteristics from a family
         public List<string> listNames;
         public List<string> listForenames;
         public List<int> listAges;
         public List<Job> listJobs;
-        public List<string> listComments;
+        public List<Comment> listComments;
     }
 }

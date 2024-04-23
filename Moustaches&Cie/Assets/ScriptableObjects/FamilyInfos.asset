@@ -32,6 +32,9 @@ MonoBehaviour:
     income: 1000
     freeTime: 3
   listComments:
-  - Je veux trop un chat !
-  - J'ai besoin d'un peu de compagnie...
-  - "J'aimerais offrir un chat \xE0 ma soeur"
+  - commentText: Je veux trop un chat
+    problematic: 0
+  - commentText: J'adore les petits chats hihi
+    problematic: 0
+  - commentText: "Je veux offrir un chat \xE0 ma soeur"
+    problematic: 1

@@ -76,7 +76,7 @@ public class FamilyManager : MonoBehaviour
         public bool Child;
         public bool Outdoor;
         public bool Animals;
-        public string Comment;
+        public FamilyInfosScriptableObject.Comment Comment;
         public CatsScriptableObject.Cat Cat;
     }
     
