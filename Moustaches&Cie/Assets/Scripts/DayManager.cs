@@ -17,6 +17,8 @@ public class DayManager : MonoBehaviour
     private int nFoldersMax;
     private int nFolder;
 
+    private List<LogicManager.Problem> problem;
+
     private GameManager.GameLevel m_Level;
     
     // Start is called before the first frame update
@@ -53,6 +55,7 @@ public class DayManager : MonoBehaviour
         _index = 0;
         _indexMax = GetIndexMax();
         CatManager.PrintCatInfos(_currentCats[0]);
+        
         
      
     }
