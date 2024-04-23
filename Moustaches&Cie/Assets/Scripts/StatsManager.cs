@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-
+    // Daily stats
+    public int GoodAdoptions;
+    public int BadAdoptions;
+    public List<LogicManager.Problem> ListProblems = new List<LogicManager.Problem>();
+    
+    // Adopted cats
     public static List<CatsScriptableObject.Cat> AdoptedCats = new List<CatsScriptableObject.Cat>();
+    
+    // General stats
+    public int level = 1;
     
     // Singleton
     private static StatsManager _instance;
@@ -18,7 +26,6 @@ public class StatsManager : MonoBehaviour
             {
                 Debug.LogError("Stats Manager is NULL !");
             }
-            
             return _instance;
         }
     }

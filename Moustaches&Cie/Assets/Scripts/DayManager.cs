@@ -39,6 +39,11 @@ public class DayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset Daily stats
+        StatsManager.instance.GoodAdoptions = 0;
+        StatsManager.instance.BadAdoptions = 0;
+        StatsManager.instance.ListProblems.Clear();
+        
         // Set the level of the day
         m_Level = GameManager.instance.level;
 
@@ -119,7 +124,12 @@ public class DayManager : MonoBehaviour
     {
         if (m_Problem.Exists)
         {
-            m_ListProblems.Add(m_Problem);
+            StatsManager.instance.ListProblems.Add(m_Problem);
+            StatsManager.instance.BadAdoptions++;
+        }
+        else
+        {
+            StatsManager.instance.GoodAdoptions++;
         }
         
         StatsManager.AdoptedCats.Add(m_Problem.Cat);
