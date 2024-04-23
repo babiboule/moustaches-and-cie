@@ -1870,6 +1870,9 @@ MonoBehaviour:
   familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
   familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
   cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
+  acceptStampButton: {fileID: 1841002795}
+  declineStampButton: {fileID: 1810868162}
+  nFolderTMP: {fileID: 525790256}
 --- !u!114 &384649866
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
@@ -9,18 +12,23 @@ public class DayManager : MonoBehaviour
     public FamilyPictureScriptableObject familyPicture;
     public FamilyInfosScriptableObject familyInfos;
     public CatsScriptableObject cats;
+
+    public Button acceptStampButton;
+    public Button declineStampButton;
+    public TMP_Text nFolderTMP;
     
     private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
     private static int _index;
     private static int _indexMax;
 
-    private int nFoldersMax;
-    private int nFolder;
+    private int m_NFoldersMax;
+    private int m_NFolder;
 
-    private List<LogicManager.Problem> problem;
+    private LogicManager.Problem m_Problem;
+    private List<LogicManager.Problem> m_ListProblems;
 
     private GameManager.GameLevel m_Level;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,21 +39,30 @@ public class DayManager : MonoBehaviour
         switch (m_Level)
         {
             case GameManager.GameLevel.Level1:
-                nFoldersMax = 5;
+                m_NFoldersMax = 5;
                 break;
             case GameManager.GameLevel.Level2:
-                nFoldersMax = 7;
+                m_NFoldersMax = 7;
                 break;
             case GameManager.GameLevel.Level3:
-                nFoldersMax = 8;
+                m_NFoldersMax = 8;
                 break;
             case GameManager.GameLevel.LevelMax:
-                nFoldersMax = 8;
+                m_NFoldersMax = 8;
                 break;
             default:
                 Debug.Log("NOT ON A LEVEL");
                 break;
         }
+        
+        m_NFolder = 1 ;
+        
+        NextFolder();
+    }
+
+    public void NextFolder()
+    {
+        nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
         
         // Generate and print the first family folder
         FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, cats);
@@ -56,15 +73,14 @@ public class DayManager : MonoBehaviour
         _indexMax = GetIndexMax();
         CatManager.PrintCatInfos(_currentCats[0]);
         
+        // Check the validity of the demand
+        m_Problem = LogicManager.CheckProblem(family, family.Cat);
         
-     
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        acceptStampButton.onClick.AddListener(AcceptStampButtonClicked);
+        declineStampButton.onClick.AddListener(DeclineStampButtonClicked);
         
     }
+    
     public static List<CatsScriptableObject.Cat> GetCurrentCats()
     {
         return _currentCats;
@@ -93,4 +109,50 @@ public class DayManager : MonoBehaviour
         if (_index < 0)
             _index = GetIndexMax();
     }
+    
+    private void AcceptStampButtonClicked()
+    {
+        acceptStampButton.onClick.RemoveListener(IDoNothingLol);
+        declineStampButton.onClick.RemoveListener(IDoNothingLol);
+        
+        if (m_Problem.Exists)
+        {
+            m_ListProblems.Add(m_Problem);
+        }
+        
+        m_Problem.Cat.adopted = true;
+
+        if (m_NFolder < m_NFoldersMax)
+        {
+            m_NFolder++;
+            NextFolder();
+        }
+        else
+        {
+            GameManager.instance.UpdateGameLevel(GameManager.GameLevel.ScoreLevel);
+        }
+    }
+
+    private void DeclineStampButtonClicked()
+    {
+        acceptStampButton.onClick.RemoveListener(IDoNothingLol);
+        declineStampButton.onClick.RemoveListener(IDoNothingLol);
+        
+        if (m_NFolder < m_NFoldersMax)
+        {
+            m_NFolder++;
+            NextFolder();
+        }
+        else
+        {
+            GameManager.instance.UpdateGameLevel(GameManager.GameLevel.ScoreLevel);
+        }
+    }
+
+    private void IDoNothingLol()
+    {
+        
+    }
+    
+    
 }

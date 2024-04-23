@@ -38,8 +38,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.LogError("Game Manager is NULL !");
             }
-                
-
+            
             return _instance;
         }
     }

@@ -90,8 +90,6 @@ public class UIManager : MonoBehaviour
 
         if (indexMax > 0)
         {
-            Debug.Log("Index max : " + indexMax);
-            Debug.Log("Index : " + index);
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         }
         else 

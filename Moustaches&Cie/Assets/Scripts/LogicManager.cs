@@ -41,27 +41,42 @@ public class LogicManager : MonoBehaviour
 
     public static Problem CheckProblem(FamilyManager.Family family, CatsScriptableObject.Cat cat)
     {
+        _family = family;
+        _cat = cat;
+        
         Problem problem = new Problem();
         problem.Exists = false;
         problem.Cat = _cat;
 
-        if (CheckAge(problem))
+        problem = CheckAge(problem);
+        if (problem.Exists)
             return problem;
-        if (CheckSick(problem))
+
+        problem = CheckSick(problem);
+        if (problem.Exists)
             return problem;
-        if (CheckNature(problem))
+
+        problem = CheckNature(problem);
+        if (problem.Exists)
             return problem;
-        if (CheckOutdoor(problem))
+
+        problem = CheckOutdoor(problem);
+        if (problem.Exists)
             return problem;
-        if (CheckAnimals(problem))
+
+        problem = CheckAnimals(problem);
+        if (problem.Exists)
             return problem;
-        if (CheckFamilyComment(problem))
+
+        problem = CheckFamilyComment(problem);
+        if (problem.Exists)
             return problem;
+
         
         return problem;
     }
 
-    private static bool CheckAge(Problem problem)
+    private static Problem CheckAge(Problem problem)
     {
         if (_cat.age < 1)
         {
@@ -71,27 +86,27 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Child;
-                return true;
+                return problem;
             }
             if (_family.Age > 90)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooOld;
-                return true;
+                return problem;
             }
             if (_family.FreeTime < 2)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
-                return true;
+                return problem;
             }
         }
-        return false;
+        return problem;
     }  
     
-    private static bool CheckSick(Problem problem)
+    private static Problem CheckSick(Problem problem)
     {
-        if (_cat.sick == true)
+        if (_cat.sick)
         {
             problem.PbCat = PbCat.Sick;
 
@@ -99,26 +114,26 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Child;
-                return true;
+                return problem;
             }
             if (_family.Income < 1500)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooPoor;
-                return true;
+                return problem;
             }
             if (_family.FreeTime < 2)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
-                return true;
+                return problem;
             }
         }
-        return false;
+        return problem;
     } 
     
         
-    private static bool CheckNature(Problem problem)
+    private static Problem CheckNature(Problem problem)
     {
         if (_cat.nature == CatsScriptableObject.Nature.Peureux)
         {
@@ -128,7 +143,7 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
-                return true;
+                return problem;
             }
         }
 
@@ -140,20 +155,20 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
-                return true;
+                return problem;
             }
             if (_family.Child)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Child;
-                return true;
+                return problem;
             }
         }
-        return false;
+        return problem;
     } 
     
         
-    private static bool CheckOutdoor(Problem problem)
+    private static Problem CheckOutdoor(Problem problem)
     {
         if (_cat.outdoor)
         {
@@ -163,14 +178,14 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.NoOutdoor;
-                return true;
+                return problem;
             }
         }
-        return false;
+        return problem;
     } 
     
         
-    private static bool CheckAnimals(Problem problem)
+    private static Problem CheckAnimals(Problem problem)
     {
         if (!_cat.animals)
         {
@@ -180,22 +195,22 @@ public class LogicManager : MonoBehaviour
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Animals;
-                return true;
+                return problem;
             }
         }
-        return false;
+        return problem;
     } 
     
         
-    private static bool CheckFamilyComment(Problem problem)
+    private static Problem CheckFamilyComment(Problem problem)
     {
         if (_family.Comment.problematic)
         {
             problem.Exists = true;
             problem.PbCat = PbCat.None;
             problem.PbFamily = PbFamily.Comment;
-            return true;
+            return problem;
         }
-        return false;
+        return problem;
     } 
 }
