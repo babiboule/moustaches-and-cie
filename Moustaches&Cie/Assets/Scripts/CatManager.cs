@@ -71,13 +71,31 @@ public class CatManager : MonoBehaviour
 
     public static void InitialiseCurrentCats(GameManager.GameLevel level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)
     {
+        bool adopted = false;
         switch (level)
         {
             case GameManager.GameLevel.Level1:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
-                    if(!cat.adopted && cat.level == 1)
-                        currentCats.Add(cat);
+                    adopted = false;
+                    if(cat.level == 1)
+                        if (StatsManager.AdoptedCats.Count > 0)
+                        {
+                            foreach (CatsScriptableObject.Cat adoptedCat in StatsManager.AdoptedCats)
+                            {
+                                if (adoptedCat.name == cat.name)
+                                {
+                                    adopted = true;
+                                }
+                            }
+
+                            if (!adopted)
+                            {
+                                currentCats.Add(cat);
+                            }
+                        }
+                        else currentCats.Add(cat);
+
                 }
                 break;
             case GameManager.GameLevel.Level2:

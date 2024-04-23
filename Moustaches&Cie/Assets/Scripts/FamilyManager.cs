@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -107,7 +108,7 @@ public class FamilyManager : MonoBehaviour
         _wrinkles = wrinkles;
     }
 
-    public static Family GenerateFamily(FamilyPictureScriptableObject familyPicture, FamilyInfosScriptableObject familyInfos, CatsScriptableObject cats)
+    public static Family GenerateFamily(FamilyPictureScriptableObject familyPicture, FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
     {
         Family family = GenerateFamilyInformations(familyInfos, cats);
         family.Picture = GenerateFamilyPicture(family, familyPicture);
@@ -118,7 +119,7 @@ public class FamilyManager : MonoBehaviour
     }
     
 
-    private static Family GenerateFamilyInformations(FamilyInfosScriptableObject familyInfos, CatsScriptableObject cats)
+    private static Family GenerateFamilyInformations(FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
     {
         Family family = new Family();
         family.Picture = new Picture();
@@ -131,8 +132,8 @@ public class FamilyManager : MonoBehaviour
         family.Child = false;
         family.Animals = false;
         
-        int i = Random.Range(0, cats.cats.Count);
-        family.Cat = cats.cats[i];
+        int i = Random.Range(0, cats.Count);
+        family.Cat = cats[i];
         
         // If -25 years old
         if (family.Age < 25)

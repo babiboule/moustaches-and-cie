@@ -25,9 +25,16 @@ public class DayManager : MonoBehaviour
     private int m_NFolder;
 
     private LogicManager.Problem m_Problem;
-    private List<LogicManager.Problem> m_ListProblems;
+    private List<LogicManager.Problem> m_ListProblems = new List<LogicManager.Problem>();
 
     private GameManager.GameLevel m_Level;
+
+
+    private void Awake()
+    {
+        acceptStampButton.onClick.AddListener(AcceptStampButtonClicked);
+        declineStampButton.onClick.AddListener(DeclineStampButtonClicked);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -64,21 +71,19 @@ public class DayManager : MonoBehaviour
     {
         nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
         
-        // Generate and print the first family folder
-        FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, cats);
-        
         // Get list of cats that are not adopted yet
+        _currentCats.Clear();
         CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
         _index = 0;
         _indexMax = GetIndexMax();
         CatManager.PrintCatInfos(_currentCats[0]);
+
+        // Generate and print the first family folder
+        FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
+        
         
         // Check the validity of the demand
         m_Problem = LogicManager.CheckProblem(family, family.Cat);
-        
-        acceptStampButton.onClick.AddListener(AcceptStampButtonClicked);
-        declineStampButton.onClick.AddListener(DeclineStampButtonClicked);
-        
     }
     
     public static List<CatsScriptableObject.Cat> GetCurrentCats()
@@ -112,15 +117,12 @@ public class DayManager : MonoBehaviour
     
     private void AcceptStampButtonClicked()
     {
-        acceptStampButton.onClick.RemoveListener(IDoNothingLol);
-        declineStampButton.onClick.RemoveListener(IDoNothingLol);
-        
         if (m_Problem.Exists)
         {
             m_ListProblems.Add(m_Problem);
         }
         
-        m_Problem.Cat.adopted = true;
+        StatsManager.AdoptedCats.Add(m_Problem.Cat);
 
         if (m_NFolder < m_NFoldersMax)
         {
@@ -135,9 +137,6 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
-        acceptStampButton.onClick.RemoveListener(IDoNothingLol);
-        declineStampButton.onClick.RemoveListener(IDoNothingLol);
-        
         if (m_NFolder < m_NFoldersMax)
         {
             m_NFolder++;
