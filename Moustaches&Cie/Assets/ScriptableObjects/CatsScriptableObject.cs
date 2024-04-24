@@ -22,6 +22,7 @@ namespace ScriptableObjects
         [System.Serializable] public struct Cat
         {
             public GameObject picture;
+            public GameObject reference;
             public string name;
             public float age;
             public string race;
