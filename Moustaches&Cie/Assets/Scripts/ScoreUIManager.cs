@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -40,9 +41,25 @@ public class ScoreUIManager : MonoBehaviour
         goodAdoptionTMP.text = "Chats correctement placés : " + m_GoodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
         detailsTMP.text = "Détails :";
+
+        List<string> adoptedTemp = new List<string>();
+        
         foreach (LogicManager.Problem problem in StatsManager.instance.ListProblems)
         {
             detailsTMP.text += "\n" + problem.Cat.name + " - " + problem.PbCat + " - " + problem.PbFamily;
+
+            foreach (string cat in StatsManager.instance.AdoptedCats)
+            {
+                if (cat == problem.Cat.name)
+                {
+                    adoptedTemp.Add(cat);
+                }
+            }
+        }
+
+        for (int i = 0; i < adoptedTemp.Count ; i++)
+        {
+            StatsManager.instance.AdoptedCats.Remove(adoptedTemp[i]);
         }
     }
     

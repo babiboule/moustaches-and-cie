@@ -134,15 +134,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString("Cat"+i, StatsManager.instance.AdoptedCats[i]);
         }
         
-        Debug.Log(PlayerPrefs.GetInt("AdoptedCats"));
-        Debug.Log(PlayerPrefs.GetString("Cat0"));
-        
         PlayerPrefs.Save();
-
-        Debug.Log(StatsManager.instance.AdoptedCats.Count);
-        Debug.Log(StatsManager.instance.AdoptedCats[0]);
-        Debug.Log(PlayerPrefs.GetInt("AdoptedCats"));
-        Debug.Log(PlayerPrefs.GetString("Cat0"));
     }
 
     public void LoadGame()
