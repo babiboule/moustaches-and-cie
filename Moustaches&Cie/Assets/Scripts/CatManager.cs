@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class CatManager : MonoBehaviour
 {
     // UI Elements
-    public Sprite picture;
+    public Image picture;
     public TMP_Text nameTMP;
     public TMP_Text ageTMP;
     public TMP_Text raceTMP;
@@ -21,7 +21,7 @@ public class CatManager : MonoBehaviour
     public TMP_Text outdoorTMP;
     public TMP_Text animalsTMP;
     
-    private static Sprite _picture;
+    private static Image _picture;
     private static TMP_Text _nameTMP;
     private static TMP_Text _ageTMP;
     private static TMP_Text _raceTMP;
@@ -49,7 +49,7 @@ public class CatManager : MonoBehaviour
 
     public static void PrintCatInfos(CatsScriptableObject.Cat cat)
     {
-        _picture = cat.picture;
+        _picture.sprite = cat.picture;
         _nameTMP.text = cat.name;
         _ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture);
         _raceTMP.text = "Race : " + cat.race;
