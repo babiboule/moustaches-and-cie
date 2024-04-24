@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
 
-        if (indexMax > 0)
+        if (indexMax >= 0)
         {
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         }
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
         
-        if(indexMax > 0)
+        if(indexMax >= 0)
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         else 
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
