@@ -13,36 +13,51 @@ MonoBehaviour:
   m_Name: CatsInfos
   m_EditorClassIdentifier: 
   cats:
-  - picture: {fileID: 819484656799485556, guid: b3f43a42767d2b6438fa7df5d85094df, type: 3}
-    name: Sakado
-    age: 0.8
-    race: "Tigr\xE9"
-    sex: 0
-    sick: 0
-    nature: 0
-    outdoor: 0
-    animals: 1
-    adopted: 0
-    level: 1
-  - picture: {fileID: 9172058833227377542, guid: a6fa5f7828acbaa45a32d86c044897d4, type: 3}
-    name: Bonnie
-    age: 4
-    race: Persan
-    sex: 1
-    sick: 1
-    nature: 1
-    outdoor: 0
-    animals: 0
-    adopted: 0
-    level: 1
-  - picture: {fileID: 562648148190522493, guid: cc261df397febde49b3e99e38bf17233, type: 3}
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 97401f696dbe9774f835ac3f460248df, type: 3}
     name: Barbouillasse
-    age: 8
+    age: 13
     race: ???
     sex: 0
     sick: 1
     nature: 2
     outdoor: 1
     animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
+    reference: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
+    name: Bonnie
+    age: 11
+    race: Persan
+    sex: 1
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 6bb16302978faed4d96732ca5648a9b1, type: 3}
+    reference: {fileID: 21300000, guid: 6bb16302978faed4d96732ca5648a9b1, type: 3}
+    name: Rucksack
+    age: 5
+    race: "Europ\xE9en"
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 989e52876e617d346804a02702f85602, type: 3}
+    reference: {fileID: 21300000, guid: 989e52876e617d346804a02702f85602, type: 3}
+    name: Calcifer
+    age: 0.5
+    race: "Europ\xE9en"
+    sex: 0
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 1
     adopted: 0
     level: 1
