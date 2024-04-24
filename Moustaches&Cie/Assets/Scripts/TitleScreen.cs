@@ -77,15 +77,4 @@ public class TitleScreen : MonoBehaviour
         Application.Quit();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        continueButton.gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

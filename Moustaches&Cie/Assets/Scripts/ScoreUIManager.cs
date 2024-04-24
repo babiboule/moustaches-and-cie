@@ -32,11 +32,18 @@ public class ScoreUIManager : MonoBehaviour
     {
         m_GoodAdoptions = StatsManager.instance.GoodAdoptions;
         m_BadAdoptions = StatsManager.instance.BadAdoptions;
+
+        goodAdoptionTMP.text = "Chats correctement placés : " + m_GoodAdoptions;
+        badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
+        detailsTMP.text = "Détails :";
+        foreach (LogicManager.Problem problem in StatsManager.instance.ListProblems)
+        {
+            detailsTMP.text += "\n" + problem.Cat.name + " - " + problem.PbCat + " - " + problem.PbFamily;
+        }
     }
     
     private void NextDayButtonClicked()
     {
-        Debug.Log("JE CLIQUE");
         switch (StatsManager.instance.level)
         {
             case 1:
@@ -60,7 +67,6 @@ public class ScoreUIManager : MonoBehaviour
 
     private void ToTitleButtonClicked()
     {
-        Debug.Log("LA AUSSI JE CLIQUE");
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 }
