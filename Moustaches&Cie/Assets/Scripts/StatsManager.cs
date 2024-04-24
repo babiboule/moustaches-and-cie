@@ -11,10 +11,11 @@ public class StatsManager : MonoBehaviour
     public List<LogicManager.Problem> ListProblems = new List<LogicManager.Problem>();
     
     // Adopted cats
-    public static List<CatsScriptableObject.Cat> AdoptedCats = new List<CatsScriptableObject.Cat>();
+    public List<string> AdoptedCats = new List<string>();
     
     // General stats
     public int level = 1;
+    public int exp = 0;
     
     // Singleton
     private static StatsManager _instance;

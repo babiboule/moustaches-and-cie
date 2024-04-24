@@ -12,6 +12,7 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private TMP_Text detailsTMP;
     [SerializeField] private TMP_Text levelTMP;
     [SerializeField] private Button nextDayButton;
+    [SerializeField] private Button saveButton;
     [SerializeField] private Button toTitleButton;
     
     // Daily stats
@@ -24,12 +25,15 @@ public class ScoreUIManager : MonoBehaviour
     private void Awake()
     {
         nextDayButton.onClick.AddListener(NextDayButtonClicked);
+        saveButton.onClick.AddListener(SaveButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        saveButton.interactable = true;
+        
         m_GoodAdoptions = StatsManager.instance.GoodAdoptions;
         m_BadAdoptions = StatsManager.instance.BadAdoptions;
 
@@ -63,6 +67,12 @@ public class ScoreUIManager : MonoBehaviour
                 break;
         }
         
+    }
+    
+    private void SaveButtonClicked()
+    {
+        GameManager.instance.SaveGame();
+        saveButton.interactable = false;
     }
 
     private void ToTitleButtonClicked()

@@ -33,16 +33,41 @@ public class TitleScreen : MonoBehaviour
         creditsButton.onClick.AddListener(CreditsButtonClicked);
         returnButton.onClick.AddListener(ReturnButtonClicked);
         toDesktopButton.onClick.AddListener(ToDesktopButtonClicked);
+
+        continueButton.interactable = false;
+        if (PlayerPrefs.GetInt("IsSave") == 1)
+        {
+            continueButton.interactable = true;
+        }
     }
 
     private void NewGameButtonClicked()
     {
+        GameManager.instance.ResetSave();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
     }
 
     private void ContinueButtonClicked()
     {
-        throw new NotImplementedException();
+        GameManager.instance.LoadGame();
+        switch (StatsManager.instance.level)
+       {
+           case 1:
+               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
+               break;
+           case 2:
+               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level2);
+               break;
+           case 3 :
+               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level3);
+               break;
+           case 4 :
+               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.LevelMax);
+               break;
+           default:
+               Debug.Log("LEVEL PROBLEM");
+               break;
+       }
     }
 
     private void OptionsButtonClicked()

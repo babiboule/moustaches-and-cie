@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,6 +110,62 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newLevel), newLevel, null);
         }
+    }
+    
+    public void ResetSave()
+    {
+        PlayerPrefs.SetInt("IsSave", 0);
+        PlayerPrefs.SetInt("Level", 1);
+        PlayerPrefs.SetInt("Exp", 0);
+        PlayerPrefs.SetInt("AdoptedCats", 0);
+        StatsManager.instance.AdoptedCats.Clear();
+        
+        PlayerPrefs.Save();
+    }
+
+    public void SaveGame()
+    {
+        PlayerPrefs.SetInt("IsSave", 1);
+        PlayerPrefs.SetInt("Level", StatsManager.instance.level);
+        PlayerPrefs.SetInt("Exp", StatsManager.instance.exp);
+        PlayerPrefs.SetInt("AdoptedCats", StatsManager.instance.AdoptedCats.Count);
+        for (int i = 0; i<StatsManager.instance.AdoptedCats.Count; i++)
+        {
+            PlayerPrefs.SetString("Cat"+i, StatsManager.instance.AdoptedCats[i]);
+        }
+        
+        Debug.Log(PlayerPrefs.GetInt("AdoptedCats"));
+        Debug.Log(PlayerPrefs.GetString("Cat0"));
+        
+        PlayerPrefs.Save();
+
+        Debug.Log(StatsManager.instance.AdoptedCats.Count);
+        Debug.Log(StatsManager.instance.AdoptedCats[0]);
+        Debug.Log(PlayerPrefs.GetInt("AdoptedCats"));
+        Debug.Log(PlayerPrefs.GetString("Cat0"));
+    }
+
+    public void LoadGame()
+    {
+        StatsManager.instance.level = PlayerPrefs.GetInt("Level", 1);
+        StatsManager.instance.exp = PlayerPrefs.GetInt("Exp", 0);
+        int nCats = PlayerPrefs.GetInt("AdoptedCats", 0);
+        StatsManager.instance.AdoptedCats.Clear();
+        for (int i = 0; i < nCats ; i++)
+        {
+            StatsManager.instance.AdoptedCats.Add(PlayerPrefs.GetString("Cat" + i));
+        }
+    }
+    
+    public void SavePrefs()
+    {
+        PlayerPrefs.SetInt("Level", StatsManager.instance.level);
+        PlayerPrefs.Save();
+    }
+ 
+    public void LoadPrefs()
+    {
+        int volume = PlayerPrefs.GetInt("Level", 1); 
     }
 
     // Handle the new States

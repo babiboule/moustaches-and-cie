@@ -132,7 +132,7 @@ public class DayManager : MonoBehaviour
             StatsManager.instance.GoodAdoptions++;
         }
         
-        StatsManager.AdoptedCats.Add(m_Problem.Cat);
+        StatsManager.instance.AdoptedCats.Add(m_Problem.Cat.name);
 
         if (m_NFolder < m_NFoldersMax)
         {
