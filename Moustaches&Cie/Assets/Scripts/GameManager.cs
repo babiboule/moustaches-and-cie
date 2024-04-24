@@ -168,11 +168,13 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlay()
     {
+        MusicManager.instance.SwitchBossaNova();
         Time.timeScale = 1.0f;
     }
 
     private void HandlePause()
     {
+        MusicManager.instance.SwitchBossaNova();
         Time.timeScale = 0.0f;
     }
 

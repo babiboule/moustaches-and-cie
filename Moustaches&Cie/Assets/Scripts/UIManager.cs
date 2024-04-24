@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     // Gameplay components
     [SerializeField] private Button nextCatButton;
     [SerializeField] private Button previousCatButton;
-
     
     
     private void Awake()
