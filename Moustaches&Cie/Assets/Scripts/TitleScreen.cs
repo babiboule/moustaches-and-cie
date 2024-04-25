@@ -1,17 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TitleScreen : MonoBehaviour
 {
+    ////////////////// UI Components ///////////////////
     // Panels 
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject extrasButtons;
     
-    // UI Components
+    // Buttons
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueButton;
     [SerializeField] private Button optionsButton;
@@ -21,6 +24,10 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private Button returnButton;
     [SerializeField] private Button toDesktopButton;
     
+    // Images
+    [SerializeField] private Image catPicture;
+
+    [SerializeField] private CatsScriptableObject Cat;
 
     private void Awake()
     {
@@ -39,6 +46,8 @@ public class TitleScreen : MonoBehaviour
         {
             continueButton.interactable = true;
         }
+
+        catPicture.sprite = Cat.cats[Random.Range(0, Cat.cats.Count)].picture;
     }
 
     private void NewGameButtonClicked()
