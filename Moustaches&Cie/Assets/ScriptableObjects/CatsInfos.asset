@@ -14,50 +14,122 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cats:
   - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    reference: {fileID: 21300000, guid: 97401f696dbe9774f835ac3f460248df, type: 3}
-    name: Barbouillasse
-    age: 13
-    race: ???
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Clyde
+    age: 0.5
+    race: "Tigr\xE9 brun"
     sex: 0
-    sick: 1
-    nature: 2
-    outdoor: 1
-    animals: 0
-    adopted: 0
-    level: 1
-  - picture: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
-    reference: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
-    name: Bonnie
-    age: 11
-    race: Persan
-    sex: 1
     sick: 0
-    nature: 2
-    outdoor: 1
+    nature: 0
+    outdoor: 0
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 6bb16302978faed4d96732ca5648a9b1, type: 3}
-    reference: {fileID: 21300000, guid: 6bb16302978faed4d96732ca5648a9b1, type: 3}
-    name: Rucksack
-    age: 5
-    race: "Europ\xE9en"
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Marty
+    age: 0.2
+    race: "Tigr\xE9 gris"
     sex: 0
     sick: 0
-    nature: 1
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Rucksack
+    age: 11
+    race: Bicolore roux et blanc
+    sex: 0
+    sick: 0
+    nature: 0
     outdoor: 1
     animals: 0
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 989e52876e617d346804a02702f85602, type: 3}
-    reference: {fileID: 21300000, guid: 989e52876e617d346804a02702f85602, type: 3}
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Calcifer
-    age: 0.5
-    race: "Europ\xE9en"
+    age: 8
+    race: Uni noir
+    sex: 0
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: "L\xE9o"
+    age: 9
+    race: "Tigr\xE9 brun"
     sex: 0
     sick: 1
     nature: 0
     outdoor: 0
     animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Pila
+    age: 3
+    race: Bicolore roux et blanc
+    sex: 0
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Bonnie
+    age: 5
+    race: "Tricolore tigr\xE9"
+    sex: 1
+    sick: 0
+    nature: 2
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Zelda
+    age: 4
+    race: "Tigr\xE9 brun/gris"
+    sex: 1
+    sick: 0
+    nature: 1
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Jack
+    age: 7
+    race: "Tigr\xE9 brun/gris"
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    name: Barbouillasse
+    age: 15
+    race: ???
+    sex: 1
+    sick: 1
+    nature: 2
+    outdoor: 1
+    animals: 0
     adopted: 0
     level: 1

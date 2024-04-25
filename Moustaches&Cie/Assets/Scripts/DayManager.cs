@@ -94,7 +94,7 @@ public class DayManager : MonoBehaviour
             list.Add(temp);
             tempList.Remove(temp);
         }
-
+        
         return list;
     }
 

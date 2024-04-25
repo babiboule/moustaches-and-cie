@@ -84,21 +84,76 @@ MonoBehaviour:
   - Sam
   - Swann
   - Tiphaine
-  listAges: 110000001500000018000000200000002600000029000000380000003d00000043000000470000005c000000
+  listAges: 1100000015000000180000001b0000001d000000200000002400000026000000290000003000000033000000380000003d0000004300000045000000470000005c000000
   listJobs:
   - jobName: "Infirmier.i\xE8re"
-    income: 1700
+    income: 1000
     freeTime: 1
-  - jobName: Professeur
+  - jobName: Professeur.e
+    income: 1200
+    freeTime: 2
+  - jobName: "Ing\xE9nieur.e"
     income: 2000
     freeTime: 2
-  - jobName: "Au ch\xF4mage"
-    income: 1000
+  - jobName: Au Chomage
+    income: 500
     freeTime: 3
+  - jobName: "Charpentier.\xE8re"
+    income: 1100
+    freeTime: 2
+  - jobName: "H\xF4te.sse de l'air"
+    income: 1200
+    freeTime: 1
+  - jobName: Militaire
+    income: 1200
+    freeTime: 1
+  - jobName: "Caissier.\xE8re"
+    income: 1000
+    freeTime: 2
+  - jobName: Chef d'entreprise
+    income: 1300
+    freeTime: 2
+  - jobName: Gestionnaire
+    income: 1200
+    freeTime: 2
+  - jobName: "Secr\xE9taire"
+    income: 1200
+    freeTime: 2
+  - jobName: Avocat.e
+    income: 1200
+    freeTime: 2
+  - jobName: Auto-Entrepreneur
+    income: 1200
+    freeTime: 2
+  - jobName: Manager.euse
+    income: 1200
+    freeTime: 2
   listComments:
-  - commentText: Je veux trop un chat
+  - commentText: J'aimerais beaucoup avoir un chat !
     problematic: 0
-  - commentText: J'adore les petits chats hihi
+  - commentText: J'ai besoin d'un peu de compagnie...
     problematic: 0
-  - commentText: "Je veux offrir un chat \xE0 ma soeur"
+  - commentText: "J'ai d\xE9j\xE0 eu un chat donc je saurai en prendre soin"
+    problematic: 0
+  - commentText: Les chats sont trop mignons !!
+    problematic: 0
+  - commentText: "J'aimerais bien me r\xE9incarner en chat"
+    problematic: 0
+  - commentText: "J'aime bien celui-l\xE0"
+    problematic: 0
+  - commentText: "J'ai beaucoup d'amour \xE0 revendre"
+    problematic: 0
+  - commentText: "J'ai trop envie de lui faire des c\xE2lins !!"
+    problematic: 0
+  - commentText: Je serai une famille parfaite pour lui :)
+    problematic: 0
+  - commentText: J'ai toujours voulu avoir un chat
+    problematic: 0
+  - commentText: Tout le monde veut devenir un cat
+    problematic: 0
+  - commentText: "J'aimerais offrir un chat \xE0 ma soeur pour son anniversaire"
+    problematic: 1
+  - commentText: Tous mes amis en ont un donc j'en veux un aussi !
+    problematic: 1
+  - commentText: "J'aime pas vraiment les chats, c'est pour impressionner ma ch\xE9rie"
     problematic: 1

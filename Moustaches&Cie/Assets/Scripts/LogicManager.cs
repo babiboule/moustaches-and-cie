@@ -131,7 +131,7 @@ public class LogicManager : MonoBehaviour
                 problem.PbFamily = PbFamily.Child;
                 return problem;
             }
-            if (_family.Income < 1500)
+            if (_family.Income < 1000)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooPoor;
