@@ -249,7 +249,7 @@ public class FamilyManager : MonoBehaviour
             _outdoorTMP.text = "Extérieur : oui";
         else 
             _outdoorTMP.text = "Extérieur : non";
-        _commentTMP.text = "Commentaire : " + family.Comment;
+        _commentTMP.text = "Commentaire : " + family.Comment.commentText;
         _catTMP.text = "Chat demandé : " + family.Cat.name;
     }
     

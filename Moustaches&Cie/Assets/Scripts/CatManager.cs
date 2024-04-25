@@ -79,9 +79,9 @@ public class CatManager : MonoBehaviour
                 {
                     adopted = false;
                     if(cat.level == 1)
-                        if (StatsManager.instance.AdoptedCats.Count > 0)
+                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
                         {
-                            foreach (String adoptedCat in StatsManager.instance.AdoptedCats)
+                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
                             {
                                 if (adoptedCat == cat.name)
                                 {

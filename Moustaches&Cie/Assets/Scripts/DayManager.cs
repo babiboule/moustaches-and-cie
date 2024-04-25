@@ -40,9 +40,7 @@ public class DayManager : MonoBehaviour
     void Start()
     {
         // Reset Daily stats
-        StatsManager.instance.GoodAdoptions = 0;
-        StatsManager.instance.BadAdoptions = 0;
-        StatsManager.instance.ListProblems.Clear();
+        StatsManager.instance.ResetDailyStats();
         
         // Set the level of the day
         m_Level = GameManager.instance.level;
@@ -124,15 +122,15 @@ public class DayManager : MonoBehaviour
     {
         if (m_Problem.Exists)
         {
-            StatsManager.instance.ListProblems.Add(m_Problem);
-            StatsManager.instance.BadAdoptions++;
+            StatsManager.instance.AddProblemToList(m_Problem);
+            StatsManager.instance.AddBadAdoptions();
         }
         else
         {
-            StatsManager.instance.GoodAdoptions++;
+            StatsManager.instance.AddGoodAdoptions();
         }
         
-        StatsManager.instance.AdoptedCats.Add(m_Problem.Cat.name);
+        StatsManager.instance.AddAdoptedCat(m_Problem.Cat.name);
 
         if (m_NFolder < m_NFoldersMax)
         {
@@ -147,6 +145,10 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
+        if (!m_Problem.Exists)
+        {
+            StatsManager.instance.AddBadDecline();
+        }
         if (m_NFolder < m_NFoldersMax)
         {
             m_NFolder++;

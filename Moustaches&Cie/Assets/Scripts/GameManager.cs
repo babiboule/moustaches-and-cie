@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", 1);
         PlayerPrefs.SetInt("Exp", 0);
         PlayerPrefs.SetInt("AdoptedCats", 0);
-        StatsManager.instance.AdoptedCats.Clear();
+        StatsManager.instance.ClearAdoptedCat();
         
         PlayerPrefs.Save();
     }
@@ -126,12 +126,12 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         PlayerPrefs.SetInt("IsSave", 1);
-        PlayerPrefs.SetInt("Level", StatsManager.instance.level);
-        PlayerPrefs.SetInt("Exp", StatsManager.instance.exp);
-        PlayerPrefs.SetInt("AdoptedCats", StatsManager.instance.AdoptedCats.Count);
-        for (int i = 0; i<StatsManager.instance.AdoptedCats.Count; i++)
+        PlayerPrefs.SetInt("Level", StatsManager.instance.GetLevel());
+        PlayerPrefs.SetInt("Exp", StatsManager.instance.GetExp());
+        PlayerPrefs.SetInt("AdoptedCats", StatsManager.instance.GetAdoptedCats().Count);
+        for (int i = 0; i<StatsManager.instance.GetAdoptedCats().Count; i++)
         {
-            PlayerPrefs.SetString("Cat"+i, StatsManager.instance.AdoptedCats[i]);
+            PlayerPrefs.SetString("Cat"+i, StatsManager.instance.GetAdoptedCats(i));
         }
         
         PlayerPrefs.Save();
@@ -139,25 +139,24 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
-        StatsManager.instance.level = PlayerPrefs.GetInt("Level", 1);
-        StatsManager.instance.exp = PlayerPrefs.GetInt("Exp", 0);
+        StatsManager.instance.SetLevel(PlayerPrefs.GetInt("Level", 1));
+        StatsManager.instance.SetExp(PlayerPrefs.GetInt("Exp", 0));
         int nCats = PlayerPrefs.GetInt("AdoptedCats", 0);
-        StatsManager.instance.AdoptedCats.Clear();
+        StatsManager.instance.ClearAdoptedCat();
         for (int i = 0; i < nCats ; i++)
         {
-            StatsManager.instance.AdoptedCats.Add(PlayerPrefs.GetString("Cat" + i));
+            StatsManager.instance.AddAdoptedCat(PlayerPrefs.GetString("Cat" + i));
         }
     }
     
     public void SavePrefs()
     {
-        PlayerPrefs.SetInt("Level", StatsManager.instance.level);
         PlayerPrefs.Save();
     }
  
     public void LoadPrefs()
     {
-        int volume = PlayerPrefs.GetInt("Level", 1); 
+
     }
 
     // Handle the new States

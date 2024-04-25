@@ -10,6 +10,7 @@ public class ScoreUIManager : MonoBehaviour
     // UI 
     [SerializeField] private TMP_Text goodAdoptionTMP;
     [SerializeField] private TMP_Text badAdoptionTMP;
+    [SerializeField] private TMP_Text badDeclineTMP;
     [SerializeField] private TMP_Text detailsTMP;
     [SerializeField] private TMP_Text levelTMP;
     [SerializeField] private Button nextDayButton;
@@ -19,6 +20,7 @@ public class ScoreUIManager : MonoBehaviour
     // Daily stats
     private int m_GoodAdoptions;
     private int m_BadAdoptions;
+    private int m_BadDecline;
     private string m_CatName;
     private string m_CatPb;
     private string m_FamilyPb;
@@ -35,20 +37,24 @@ public class ScoreUIManager : MonoBehaviour
     {
         saveButton.interactable = true;
         
-        m_GoodAdoptions = StatsManager.instance.GoodAdoptions;
-        m_BadAdoptions = StatsManager.instance.BadAdoptions;
+        m_GoodAdoptions = StatsManager.instance.GetGoodAdoptions();
+        m_BadAdoptions = StatsManager.instance.GetBadAdoptions();
+        m_BadDecline = StatsManager.instance.GetBadDecline();
 
         goodAdoptionTMP.text = "Chats correctement placés : " + m_GoodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
+        badDeclineTMP.text = "Dossiers valides refusés : " + m_BadDecline;
         detailsTMP.text = "Détails :";
+
+        levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
 
         List<string> adoptedTemp = new List<string>();
         
-        foreach (LogicManager.Problem problem in StatsManager.instance.ListProblems)
+        foreach (LogicManager.Problem problem in StatsManager.instance.GetListProblems())
         {
             detailsTMP.text += "\n" + problem.Cat.name + " - " + problem.PbCat + " - " + problem.PbFamily;
 
-            foreach (string cat in StatsManager.instance.AdoptedCats)
+            foreach (string cat in StatsManager.instance.GetAdoptedCats())
             {
                 if (cat == problem.Cat.name)
                 {
@@ -59,13 +65,13 @@ public class ScoreUIManager : MonoBehaviour
 
         for (int i = 0; i < adoptedTemp.Count ; i++)
         {
-            StatsManager.instance.AdoptedCats.Remove(adoptedTemp[i]);
+            StatsManager.instance.RemoveAdoptedCat(adoptedTemp[i]);
         }
     }
     
     private void NextDayButtonClicked()
     {
-        switch (StatsManager.instance.level)
+        switch (StatsManager.instance.GetLevel())
         {
             case 1:
                 GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);

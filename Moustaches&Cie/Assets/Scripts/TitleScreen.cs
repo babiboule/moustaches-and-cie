@@ -50,7 +50,7 @@ public class TitleScreen : MonoBehaviour
     private void ContinueButtonClicked()
     {
         GameManager.instance.LoadGame();
-        switch (StatsManager.instance.level)
+        switch (StatsManager.instance.GetLevel())
        {
            case 1:
                GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);

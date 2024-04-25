@@ -8,6 +8,7 @@ public class LogicManager : MonoBehaviour
     public enum PbFamily
     {
         TooOld,
+        TooYoung,
         TooPoor,
         TooBusy,
         Child,
@@ -47,8 +48,12 @@ public class LogicManager : MonoBehaviour
         Problem problem = new Problem();
         problem.Exists = false;
         problem.Cat = _cat;
-
-        problem = CheckAge(problem);
+        
+        problem = CheckFamilyAge(problem);
+        if (problem.Exists)
+            return problem;
+        
+        problem = CheckCatAge(problem);
         if (problem.Exists)
             return problem;
 
@@ -76,7 +81,19 @@ public class LogicManager : MonoBehaviour
         return problem;
     }
 
-    private static Problem CheckAge(Problem problem)
+    private static Problem CheckFamilyAge(Problem problem)
+    {
+        if (_family.Age < 18)
+        {
+            problem.Exists = true;
+            problem.PbCat = PbCat.None;
+            problem.PbFamily = PbFamily.TooYoung;
+        }
+
+        return problem;
+    }
+
+    private static Problem CheckCatAge(Problem problem)
     {
         if (_cat.age < 1)
         {
