@@ -100,6 +100,10 @@ public class DayManager : MonoBehaviour
 
     private void NextFolder()
     {
+        ////////////// DEBUG //////////////////
+        Debug.Log(m_ValidFolders[m_NFolder-1]);
+        
+        // Update n° folder text
         nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
         
         // Get list of cats that are not adopted yet
@@ -112,8 +116,40 @@ public class DayManager : MonoBehaviour
         // Generate Family
         FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
         
-        // Check the validity of the demand
+        // Check the validity of the first generated family
         m_Problem = LogicManager.CheckProblem(family, family.Cat);
+        // Generate a new family if it has to not be problematic but is
+        if (m_ValidFolders[m_NFolder - 1])
+            while (m_Problem.Exists)
+            {
+                family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
+                m_Problem = LogicManager.CheckProblem(family, family.Cat);
+            }
+        
+        // Add constraints until there is a conflict
+        FamilyManager.Family tempFamily = family;
+        LogicManager.Problem tempProblem = m_Problem;
+        while (!tempProblem.Exists)
+        {
+            tempFamily = FamilyManager.AddConstraint(tempFamily, familyInfos);
+            tempProblem = LogicManager.CheckProblem(tempFamily, tempFamily.Cat);
+            if (tempProblem.Exists)
+            {
+                if (!m_ValidFolders[m_NFolder - 1])
+                {
+                    m_Problem = tempProblem;
+                    family = tempFamily;
+                }
+            }
+            else
+            {
+                family = tempFamily;
+                m_Problem = tempProblem;
+            }
+        }
+        
+        // Print the family infos 
+        FamilyManager.PrintFamily(family);
     }
 
     public void OldNextFolder()
