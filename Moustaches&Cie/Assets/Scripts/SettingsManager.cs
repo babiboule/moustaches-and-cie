@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -10,37 +11,42 @@ public class SettingsManager : MonoBehaviour
     
     // Settings components
     [SerializeField] private Button quitOptionsButton;
-    [SerializeField] private Button toGeneralSettingsButton;
-    [SerializeField] private Button toGraphicsSettingsButton;
-    [SerializeField] private Button toAudioSettingsButton;
-    
+    [SerializeField] private Button saveOptionsButton;
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider sfxVolumeSlider;
+
+    public PointerEventData MusicVolume;
+    public PointerEventData SfxVolume;
 
     private void Awake()
     {
         // Settings Menu Buttons Listeners
         quitOptionsButton.onClick.AddListener(QuitOptionsButtonClicked);
-        toGeneralSettingsButton.onClick.AddListener(ToGeneralSettingsButtonClicked);
-        toGraphicsSettingsButton.onClick.AddListener(ToGraphicsSettingsButtonClicked);
-        toAudioSettingsButton.onClick.AddListener(ToAudioSettingsButtonClicked);
+        musicVolumeSlider.onValueChanged.AddListener(MusicVolumeChanged);
+        sfxVolumeSlider.onValueChanged.AddListener(SfxVolumeChanged);
+        saveOptionsButton.onClick.AddListener(SaveOptionsButtonClicked);
+
+    }
+
+    private void SaveOptionsButtonClicked()
+    {
+        GameManager.instance.SavePrefs();
+    }
+
+    private void MusicVolumeChanged(float vol)
+    {
+        StatsManager.instance.SetMusicVolume(vol);
+        MusicManager.instance.bossaMeowa.volume = vol;
+        MusicManager.instance.bossaMeowaBg.volume = vol;
+    }
+
+    private void SfxVolumeChanged(float vol)
+    {
+        StatsManager.instance.SetSfxVolume(vol);
     }
 
     private void QuitOptionsButtonClicked()
     {
         optionsPanel.SetActive(false);
-    }
-
-    private void ToGeneralSettingsButtonClicked()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ToGraphicsSettingsButtonClicked()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ToAudioSettingsButtonClicked()
-    {
-        throw new NotImplementedException();
     }
 }

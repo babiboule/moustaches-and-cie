@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class StatsManager : MonoBehaviour
     // General stats
     private int m_Level = 1;
     private int m_Exp;
+    private float m_MusicVolume;
+    private float m_SfxVolume;
     
     // Singleton
     private static StatsManager _instance;
@@ -36,6 +39,11 @@ public class StatsManager : MonoBehaviour
             _instance = this;
         else Destroy(this.gameObject);
         DontDestroyOnLoad(_instance);
+    }
+
+    private void Start()
+    {
+        GameManager.instance.LoadPrefs();
     }
 
     public void ResetDailyStats()
@@ -90,6 +98,16 @@ public class StatsManager : MonoBehaviour
     {
         return m_Level;
     }
+    
+    public float GetMusicVolume()
+    {
+        return m_MusicVolume;
+    }
+    
+    public float GetSfxVolume()
+    {
+        return m_SfxVolume;
+    }
 
     public void AddGoodAdoptions()
     {
@@ -130,4 +148,16 @@ public class StatsManager : MonoBehaviour
     {
         m_Exp = newExp;
     }
+
+    public void SetMusicVolume(float value)
+    {
+        m_MusicVolume = value;
+    }
+    
+    public void SetSfxVolume(float value)
+    {
+        m_MusicVolume = value;
+    }
+
+
 }

@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Play);
         UpdateGameLevel(GameLevel.Title);
     }
-    
+
     // Update the state of the Game
     public void UpdateGameState(GameState newState)
     {
@@ -149,12 +149,15 @@ public class GameManager : MonoBehaviour
     
     public void SavePrefs()
     {
+        PlayerPrefs.SetFloat("MusicVolume", StatsManager.instance.GetMusicVolume());
+        PlayerPrefs.SetFloat("SfxVolume", StatsManager.instance.GetSfxVolume());
         PlayerPrefs.Save();
     }
  
     public void LoadPrefs()
     {
-
+        StatsManager.instance.SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
+        StatsManager.instance.SetSfxVolume(PlayerPrefs.GetFloat("SfxVolume", 1));
     }
 
     // Handle the new States
