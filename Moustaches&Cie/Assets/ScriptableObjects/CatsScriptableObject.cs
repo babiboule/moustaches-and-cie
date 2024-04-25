@@ -24,7 +24,7 @@ namespace ScriptableObjects
             public Sprite reference;
             public string name;
             public float age;
-            public string race;
+            public string fur;
             public Sex sex;
             public bool sick;
             public Nature nature;

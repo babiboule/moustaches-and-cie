@@ -1888,7 +1888,7 @@ MonoBehaviour:
   picture: {fileID: 1688336775}
   nameTMP: {fileID: 913794501}
   ageTMP: {fileID: 2129798688}
-  raceTMP: {fileID: 1475391128}
+  furTMP: {fileID: 1475391128}
   sexTMP: {fileID: 1329282042}
   sickTMP: {fileID: 1682276628}
   natureTMP: {fileID: 1230968063}
@@ -6502,7 +6502,7 @@ GameObject:
   - component: {fileID: 1475391129}
   - component: {fileID: 1475391128}
   m_Layer: 5
-  m_Name: Race car
+  m_Name: Fur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Clyde
     age: 0.5
-    race: "Tigr\xE9 brun"
+    fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
     nature: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Marty
     age: 0.2
-    race: "Tigr\xE9 gris"
+    fur: "Tigr\xE9 gris"
     sex: 0
     sick: 0
     nature: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Rucksack
     age: 11
-    race: Bicolore roux et blanc
+    fur: Bicolore roux/blanc
     sex: 0
     sick: 0
     nature: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Calcifer
     age: 8
-    race: Uni noir
+    fur: Uni noir
     sex: 0
     sick: 1
     nature: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: "L\xE9o"
     age: 9
-    race: "Tigr\xE9 brun"
+    fur: "Tigr\xE9 brun"
     sex: 0
     sick: 1
     nature: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Pila
     age: 3
-    race: Bicolore roux et blanc
+    fur: Bicolore roux/blanc
     sex: 0
     sick: 0
     nature: 2
@@ -89,7 +89,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Bonnie
     age: 5
-    race: "Tricolore tigr\xE9"
+    fur: "Tricolore tigr\xE9"
     sex: 1
     sick: 0
     nature: 2
@@ -101,7 +101,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Zelda
     age: 4
-    race: "Tigr\xE9 brun/gris"
+    fur: "Tigr\xE9 brun/gris"
     sex: 1
     sick: 0
     nature: 1
@@ -113,7 +113,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Jack
     age: 7
-    race: "Tigr\xE9 brun/gris"
+    fur: "Tigr\xE9 brun/gris"
     sex: 0
     sick: 0
     nature: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
     name: Barbouillasse
     age: 15
-    race: ???
+    fur: ???
     sex: 1
     sick: 1
     nature: 2
