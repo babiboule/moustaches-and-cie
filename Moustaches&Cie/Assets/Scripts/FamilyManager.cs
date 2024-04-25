@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -219,100 +218,6 @@ public class FamilyManager : MonoBehaviour
         return family;
     }
     
-    
-    private static Family GenerateFamilyInformations(FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
-    {
-        Family family = new Family();
-        family.Picture = new Picture();
-        family.Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)];
-        family.Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)];
-        family.Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)];
-        family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
-
-        family.Outdoor = false;
-        family.Child = false;
-        family.Animals = false;
-        
-        int i = Random.Range(0, cats.Count);
-        family.Cat = cats[i];
-        
-        // If -25 years old
-        if (family.Age < 25)
-        {
-            int p = Random.Range(1, 101);
-            
-            // 75% chance of being a student
-            if (p > 25)
-            {
-                family.JobName = "Etudiant.e";
-                family.Income = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
-                family.FreeTime = 1;
-            }
-            
-            // Else they can have a child or an animal (but not both)
-            else
-            {
-                int index = Random.Range(0, familyInfos.listJobs.Count);
-                family.JobName = familyInfos.listJobs[index].jobName;
-                family.Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-                family.FreeTime = familyInfos.listJobs[index].freeTime;
-                
-                int q = Random.Range(1, 101);
-                int r = Random.Range(1, 101);
-                int s = Random.Range(1, 101);
-
-                if (s > 80) // 20% chance of having a garden
-                    family.Outdoor = true;
-                
-                if (q > 80) // 20% chance of having a child
-                    family.Child = true;
-                
-                else if (r > 40) // 60% chance of having an animal
-                    family.Animals = true;
-            }
-        }
-        
-        // If +65 years old, retired
-        else if (family.Age > 65)
-        {
-            family.JobName = "Retraité.e";
-            family.Income = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
-            family.FreeTime = 3;
-            
-            int p = Random.Range(1, 101);
-            int q = Random.Range(1, 101);
-            
-            if(p>30) // 70% chance of having a garden
-                family.Outdoor = true;
-            if (q > 80) // 20% chance of having an animal
-                family.Animals = true;
-        }
-        else
-        {
-            int index = Random.Range(0, familyInfos.listJobs.Count);
-            family.JobName = familyInfos.listJobs[index].jobName;
-            family.Income = familyInfos.listJobs[index].income + Random.Range(0, 6) * 50;
-            family.FreeTime = familyInfos.listJobs[index].freeTime;
-            
-            int q = Random.Range(1, 101);
-            int r = Random.Range(1, 101);
-            int s = Random.Range(1, 101);
-
-            if (s > 60) // 40% chance of having a garden
-                family.Outdoor = true;
-                
-            if (q > 70) // 30% chance of having a child
-                family.Child = true;
-                
-            else if (r > 50) // 50% chance of having an animal
-                family.Animals = true;
-        }
-
-        return family;
-    }
-    
-    
-    
     // Generate a face by picking random elements from the lists
     private static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
     {
@@ -339,7 +244,7 @@ public class FamilyManager : MonoBehaviour
         _forenameTMP.text = "Prénom : " + family.Forename;
         _ageTMP.text = "Age : " + family.Age + " ans";
         _jobTMP.text = "Profession : " + family.JobName;
-        _incomeTMP.text =  "Revenus : " + family.Income + " €/mois";
+        _incomeTMP.text =  "Reste à vivre : " + family.Income + " €/mois";
         if(family.Child)
             _childTMP.text = "Enfants en bas-âge : oui";
         else
