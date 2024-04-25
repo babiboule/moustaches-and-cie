@@ -20,11 +20,10 @@ public class DayManager : MonoBehaviour
 
     private int m_NFoldersMax;
     private int m_NFolder;
+    private List<bool> m_ValidFolders = new List<bool>();
 
     private LogicManager.Problem m_Problem;
-
     private GameManager.GameLevel m_Level;
-
 
     private void Awake()
     {
@@ -60,13 +59,64 @@ public class DayManager : MonoBehaviour
                 Debug.Log("NOT ON A LEVEL");
                 break;
         }
+
+        m_ValidFolders = SetValidFolders();
         
         m_NFolder = 1 ;
+        _index = 0 ;
         
         NextFolder();
     }
 
-    public void NextFolder()
+    private List<bool> SetValidFolders()
+    {
+        // Define the value of valid folders for the day
+        List<bool> tempList = new List<bool>();
+        List<bool> list = new List<bool>();
+        int nbValid = Random.Range(Mathf.FloorToInt(m_NFoldersMax / 2.0f), Mathf.FloorToInt(m_NFoldersMax / 2.0f)*2);
+        
+        // Set a temp list
+        for (int i = 0; i < m_NFoldersMax-nbValid; i++)
+        {
+            tempList.Add(false);
+        }
+        for (int i = 0; i < nbValid; i++)
+        {
+            tempList.Add(true);
+        }
+        
+
+        // Shuffle the list
+        while (tempList.Count > 0)
+        {
+            int rand = Random.Range(0, tempList.Count);
+            bool temp = tempList[rand];
+            list.Add(temp);
+            tempList.Remove(temp);
+        }
+
+        return list;
+    }
+
+    private void NextFolder()
+    {
+        nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
+        
+        // Get list of cats that are not adopted yet
+        _currentCats.Clear();
+        CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
+        
+        // Set the cat page on the last cat visited
+        CatManager.PrintCatInfos(_currentCats[_index]);
+        
+        // Generate Family
+        FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
+        
+        // Check the validity of the demand
+        m_Problem = LogicManager.CheckProblem(family, family.Cat);
+    }
+
+    public void OldNextFolder()
     {
         nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
         
@@ -79,7 +129,7 @@ public class DayManager : MonoBehaviour
 
         // Generate and print the first family folder
         FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
-        
+
         
         // Check the validity of the demand
         m_Problem = LogicManager.CheckProblem(family, family.Cat);
