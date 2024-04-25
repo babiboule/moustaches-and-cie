@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
@@ -19,13 +16,12 @@ public class DayManager : MonoBehaviour
     
     private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
     private static int _index;
-    private static int _indexMax;
+
 
     private int m_NFoldersMax;
     private int m_NFolder;
 
     private LogicManager.Problem m_Problem;
-    private List<LogicManager.Problem> m_ListProblems = new List<LogicManager.Problem>();
 
     private GameManager.GameLevel m_Level;
 
@@ -78,7 +74,7 @@ public class DayManager : MonoBehaviour
         _currentCats.Clear();
         CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
         _index = 0;
-        _indexMax = GetIndexMax();
+
         CatManager.PrintCatInfos(_currentCats[0]);
 
         // Generate and print the first family folder
@@ -159,11 +155,4 @@ public class DayManager : MonoBehaviour
             GameManager.instance.UpdateGameLevel(GameManager.GameLevel.ScoreLevel);
         }
     }
-
-    private void IDoNothingLol()
-    {
-        
-    }
-    
-    
 }

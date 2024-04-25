@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -179,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameOver()
     {
-        SceneManager.LoadSceneAsync("GameOver screen");
+        SceneManager.LoadSceneAsync("Game Over");
     }
     
     // Handle the new Levels

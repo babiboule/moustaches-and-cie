@@ -2260,7 +2260,7 @@ MonoBehaviour:
   returnButton: {fileID: 646331481}
   toDesktopButton: {fileID: 465786902}
   catPicture: {fileID: 199037633}
-  Cat: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
+  cat: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
 --- !u!114 &711121451
 MonoBehaviour:
   m_ObjectHideFlags: 0

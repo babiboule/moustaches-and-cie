@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +25,7 @@ public class TitleScreen : MonoBehaviour
     // Images
     [SerializeField] private Image catPicture;
 
-    [SerializeField] private CatsScriptableObject Cat;
+    [SerializeField] private CatsScriptableObject cat;
 
     private void Awake()
     {
@@ -47,7 +45,7 @@ public class TitleScreen : MonoBehaviour
             continueButton.interactable = true;
         }
 
-        catPicture.sprite = Cat.cats[Random.Range(0, Cat.cats.Count)].picture;
+        catPicture.sprite = cat.cats[Random.Range(0, cat.cats.Count)].picture;
     }
 
     private void NewGameButtonClicked()

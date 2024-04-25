@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class StatsManager : MonoBehaviour
 {
@@ -13,11 +10,11 @@ public class StatsManager : MonoBehaviour
     private List<LogicManager.Problem> m_ListProblems = new List<LogicManager.Problem>();
     
     // Adopted cats
-    private List<string> AdoptedCats = new List<string>();
+    private List<string> m_AdoptedCats = new List<string>();
     
     // General stats
-    private int level = 1;
-    private int exp = 0;
+    private int m_Level = 1;
+    private int m_Exp;
     
     // Singleton
     private static StatsManager _instance;
@@ -51,7 +48,7 @@ public class StatsManager : MonoBehaviour
 
     public void ClearAdoptedCat()
     {
-        AdoptedCats.Clear();
+        m_AdoptedCats.Clear();
     }
 
     public int GetGoodAdoptions()
@@ -76,22 +73,22 @@ public class StatsManager : MonoBehaviour
 
     public List<string> GetAdoptedCats()
     {
-        return AdoptedCats;
+        return m_AdoptedCats;
     }
     
     public string GetAdoptedCats(int i)
     {
-        return AdoptedCats[i];
+        return m_AdoptedCats[i];
     }
 
     public int GetExp()
     {
-        return exp;
+        return m_Exp;
     }
     
     public int GetLevel()
     {
-        return level;
+        return m_Level;
     }
 
     public void AddGoodAdoptions()
@@ -116,21 +113,21 @@ public class StatsManager : MonoBehaviour
 
     public void AddAdoptedCat(string catName)
     {
-        AdoptedCats.Add(catName);
+        m_AdoptedCats.Add(catName);
     }
     
     public void RemoveAdoptedCat(string catName)
     {
-        AdoptedCats.Remove(catName);
+        m_AdoptedCats.Remove(catName);
     }
 
     public void SetLevel(int newLevel)
     {
-        level = newLevel;
+        m_Level = newLevel;
     }
 
     public void SetExp(int newExp)
     {
-        exp = newExp;
+        m_Exp = newExp;
     }
 }

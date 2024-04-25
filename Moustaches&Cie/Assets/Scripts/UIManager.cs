@@ -37,11 +37,6 @@ public class UIManager : MonoBehaviour
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         // Pause or resume the game with Escape key
