@@ -75,7 +75,7 @@ MonoBehaviour:
     level: 1
   - picture: {fileID: 21300000, guid: 656940c541c3efc4782623bf92e97cf7, type: 3}
     reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    name: Pila
+    name: Pilat
     age: 3
     fur: Bicolore roux/blanc
     sex: 0
