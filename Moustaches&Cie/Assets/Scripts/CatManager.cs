@@ -49,7 +49,14 @@ public class CatManager : MonoBehaviour
     {
         _picture.sprite = cat.picture;
         _nameTMP.text = cat.name;
-        _ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture);
+        if (cat.age<1)
+        {
+            _ageTMP.text = "Age : " + (cat.age*10+2).ToString(CultureInfo.InvariantCulture) + " mois";
+        }
+        else
+        {
+            _ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture) + " ans";
+        }
         _furTMP.text = "Pelage : " + cat.fur;
         _sexTMP.text = "Sexe : " + cat.sex;
         _natureTMP.text = "Caractère : " + cat.nature;
