@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -50,7 +51,63 @@ public class ScoreUIManager : MonoBehaviour
         
         foreach (LogicManager.Problem problem in StatsManager.instance.GetListProblems())
         {
-            detailsTMP.text += "\n" + problem.Cat.name + " - " + problem.PbCat + " - " + problem.PbFamily;
+            detailsTMP.text += "\n" + problem.Cat.name;
+
+            switch (problem.PbCat)
+            {
+                case LogicManager.PbCat.Kitten:
+                    detailsTMP.text += " - chaton";
+                    break;
+                case LogicManager.PbCat.Sick:
+                    detailsTMP.text += " - malade";
+                    break;
+                case LogicManager.PbCat.Shy:
+                    detailsTMP.text += " - peureux.se";
+                    break;
+                case LogicManager.PbCat.Agressive:
+                    detailsTMP.text += " - agressif.ve";
+                    break;
+                case LogicManager.PbCat.Outdoor:
+                    detailsTMP.text += " - besoin d'extérieur";
+                    break;
+                case LogicManager.PbCat.Animals:
+                    detailsTMP.text += " - pas ok animaux";
+                    break;
+                case LogicManager.PbCat.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            switch (problem.PbFamily)
+            {
+                case LogicManager.PbFamily.TooOld:
+                    detailsTMP.text += " - trop vieux.ieille";
+                    break;
+                case LogicManager.PbFamily.TooYoung:
+                    detailsTMP.text += " - mineur.e";
+                    break;
+                case LogicManager.PbFamily.TooPoor:
+                    detailsTMP.text += " - trop peu d'argent";
+                    break;
+                case LogicManager.PbFamily.TooBusy:
+                    detailsTMP.text += " - trop occupé.e";
+                    break;
+                case LogicManager.PbFamily.Child:
+                    detailsTMP.text += " - a un enfant";
+                    break;
+                case LogicManager.PbFamily.NoOutdoor:
+                    detailsTMP.text += " - pas d'extérieur";
+                    break;
+                case LogicManager.PbFamily.Animals:
+                    detailsTMP.text += " - a un animal";
+                    break;
+                case LogicManager.PbFamily.Comment:
+                    detailsTMP.text += " - commentaire pas ok";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             foreach (string cat in StatsManager.instance.GetAdoptedCats())
             {
