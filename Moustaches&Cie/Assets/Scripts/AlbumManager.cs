@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -30,6 +28,9 @@ public class AlbumManager : MonoBehaviour
     // Scriptable object
     public CatsScriptableObject cats;
 
+    private int m_IndexL;
+    private int m_IndexR;
+
     private void Awake()
     {
         quitButton.onClick.AddListener(QuitButtonClicked);
@@ -39,43 +40,13 @@ public class AlbumManager : MonoBehaviour
 
     private void Start()
     {
-        // Print first cat
-        catNameL.text = cats.cats[0].name;
-        if (StatsManager.instance.GetLevel() == cats.cats[0].level)
-        {
-            drawingL.sprite = cats.cats[0].picture;
-        }
-        else
-        {
-            drawingL.sprite = defaultImage;
-        }
-        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[0].name))
-        {
-            pictureL.sprite = cats.cats[0].reference;
-        }
-        else
-        {
-            pictureL.sprite = defaultImage;
-        }
+        m_IndexL = 0;
+        m_IndexR = 1;
         
+        // Print first cat
+        PrintLeftCat();
         // Print second cat
-        catNameR.text = cats.cats[1].name;
-        if (StatsManager.instance.GetLevel() == cats.cats[1].level)
-        {
-            drawingR.sprite = cats.cats[1].picture;
-        }
-        else
-        {
-            drawingR.sprite = defaultImage;
-        }
-        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[1].name))
-        {
-            pictureR.sprite = cats.cats[1].reference;
-        }
-        else
-        {
-            pictureR.sprite = defaultImage;
-        }
+        PrintRightCat();
     }
 
     private void Update()
@@ -88,16 +59,75 @@ public class AlbumManager : MonoBehaviour
 
     private void NextButtonClicked()
     {
-        throw new NotImplementedException();
+        m_IndexL = (m_IndexL + 2) % cats.cats.Count;
+        m_IndexR = (m_IndexR + 2) % cats.cats.Count;
+        PrintLeftCat();
+        PrintRightCat();
     }
 
     private void PreviousButtonClicked()
     {
-        throw new NotImplementedException();
+        m_IndexL = (m_IndexL - 2) % cats.cats.Count;
+        m_IndexR = (m_IndexR - 2) % cats.cats.Count;
+        if (m_IndexL < 0)
+        {
+            m_IndexL = cats.cats.Count - 2;
+        }
+        if (m_IndexR < 1)
+        {
+            m_IndexR = cats.cats.Count - 1;
+        }
+        PrintLeftCat();
+        PrintRightCat();
     }
 
     private void QuitButtonClicked()
     {
         albumPanel.SetActive(false);
+    }
+
+    private void PrintLeftCat()
+    {
+        if (StatsManager.instance.GetLevel() == cats.cats[m_IndexL].level)
+        {
+            catNameL.text = cats.cats[m_IndexL].name;
+            drawingL.sprite = cats.cats[m_IndexL].picture;
+        }
+        else
+        {
+            catNameL.text = "???";
+            drawingL.sprite = defaultImage;
+        }
+        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[m_IndexL].name))
+        {
+            pictureL.sprite = cats.cats[m_IndexL].reference;
+        }
+        else
+        {
+            pictureL.sprite = defaultImage;
+        }
+    }
+
+    private void PrintRightCat()
+    {
+        if (StatsManager.instance.GetLevel() == cats.cats[m_IndexR].level)
+        {
+            catNameR.text = cats.cats[m_IndexR].name;
+            drawingR.sprite = cats.cats[m_IndexR].picture;
+        }
+        else
+        {
+            catNameR.text = "???";
+            drawingR.sprite = defaultImage;
+        }
+
+        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[m_IndexR].name))
+        {
+            pictureR.sprite = cats.cats[m_IndexR].reference;
+        }
+        else
+        {
+            pictureR.sprite = defaultImage;
+        }
     }
 }
