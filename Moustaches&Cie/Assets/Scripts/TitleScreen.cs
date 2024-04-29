@@ -93,6 +93,7 @@ public class TitleScreen : MonoBehaviour
     private void AlbumButtonClicked()
     {
         albumPanel.SetActive(true);
+        MusicManager.instance.SwitchBossaNova(1);
     }
 
     private void CreditsButtonClicked()

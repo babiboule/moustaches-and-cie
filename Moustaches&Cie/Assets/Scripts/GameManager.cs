@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -172,48 +171,48 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlay()
     {
-        MusicManager.instance.SwitchBossaNova();
+        MusicManager.instance.SwitchBossaNova(0);
     }
 
     private void HandlePause()
     {
-        MusicManager.instance.SwitchBossaNova();
+        MusicManager.instance.SwitchBossaNova(1);
     }
 
     private void HandleGameOver()
-    {
+    {MusicManager.instance.SwitchBossaNova(1);
         SceneManager.LoadSceneAsync("Game Over");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
     
     // Handle the new Levels
     private void HandleLevel1()
-    {
+    {MusicManager.instance.SwitchBossaNova(0);
         SceneManager.LoadSceneAsync("Level 1");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
 
     private void HandleLevel2()
-    {
+    {MusicManager.instance.SwitchBossaNova(0);
         SceneManager.LoadSceneAsync("Level 2");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
 
     private void HandleLevel3()
-    {
+    {MusicManager.instance.SwitchBossaNova(0);
         SceneManager.LoadSceneAsync("Level 3");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
 
     private void HandleLevelMax()
-    {
+    {MusicManager.instance.SwitchBossaNova(0);
         SceneManager.LoadSceneAsync("Level Max");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
     
     private void HandleScoreLevel()
-    {
+    {MusicManager.instance.SwitchBossaNova(1);
         SceneManager.LoadSceneAsync("Score screen");
-        MusicManager.instance.SwitchBossaNova();
+        
     }
 }

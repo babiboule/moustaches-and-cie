@@ -28,17 +28,18 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(_instance);
     }
 
-    public void SwitchBossaNova()
+    public void SwitchBossaNova(int index)
     {
-        if (bossaMeowa.mute)
+        switch (index)
         {
-            bossaMeowa.mute = false;
-            bossaMeowaBg.mute = true;
-        }
-        else
-        {
-            bossaMeowa.mute = true;
-            bossaMeowaBg.mute = false;
+            case 0:
+                bossaMeowa.mute = false;
+                bossaMeowaBg.mute = true;
+                break;
+            case 1:
+                bossaMeowa.mute = true;
+                bossaMeowaBg.mute = false;
+                break;
         }
     }
 }

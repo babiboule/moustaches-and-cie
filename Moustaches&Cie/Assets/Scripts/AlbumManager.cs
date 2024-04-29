@@ -84,6 +84,7 @@ public class AlbumManager : MonoBehaviour
     private void QuitButtonClicked()
     {
         albumPanel.SetActive(false);
+        MusicManager.instance.SwitchBossaNova(0);
     }
 
     private void PrintLeftCat()
