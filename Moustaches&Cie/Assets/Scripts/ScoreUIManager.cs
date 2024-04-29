@@ -34,18 +34,21 @@ public class ScoreUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        StatsManager.instance.AddDate();
         saveButton.interactable = true;
         
         m_GoodAdoptions = StatsManager.instance.GetGoodAdoptions();
         m_BadAdoptions = StatsManager.instance.GetBadAdoptions();
         m_BadDecline = StatsManager.instance.GetBadDecline();
-
+        
         goodAdoptionTMP.text = "Chats correctement placés : " + m_GoodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
         badDeclineTMP.text = "Dossiers valides refusés : " + m_BadDecline;
         detailsTMP.text = "Détails :";
 
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
+        
 
         List<string> adoptedTemp = new List<string>();
         
@@ -126,25 +129,32 @@ public class ScoreUIManager : MonoBehaviour
     
     private void NextDayButtonClicked()
     {
-        switch (StatsManager.instance.GetLevel())
+        if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)
         {
-            case 1:
-                GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
-                break;
-            case 2:
-                GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level2);
-                break;
-            case 3 :
-                GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level3);
-                break;
-            case 4 :
-                GameManager.instance.UpdateGameLevel(GameManager.GameLevel.LevelMax);
-                break;
-            default:
-                Debug.Log("LEVEL PROBLEM");
-                break;
+            GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
         }
-        
+        else
+        {
+            switch (StatsManager.instance.GetLevel())
+            {
+                case 1:
+                    GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
+                    break;
+                case 2:
+                    GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level2);
+                    break;
+                case 3:
+                    GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level3);
+                    break;
+                case 4:
+                    GameManager.instance.UpdateGameLevel(GameManager.GameLevel.LevelMax);
+                    break;
+                default:
+                    Debug.Log("LEVEL PROBLEM");
+                    break;
+            }
+        }
+
     }
     
     private void SaveButtonClicked()

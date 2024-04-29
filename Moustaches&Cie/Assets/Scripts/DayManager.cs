@@ -13,6 +13,7 @@ public class DayManager : MonoBehaviour
     public Button acceptStampButton;
     public Button declineStampButton;
     public TMP_Text nFolderTMP;
+    public TMP_Text dayTMP;
     
     private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
     private static int _index;
@@ -37,8 +38,9 @@ public class DayManager : MonoBehaviour
         // Reset Daily stats
         StatsManager.instance.ResetDailyStats();
         
-        // Set the level of the day
+        // Set the level and the day
         m_Level = GameManager.instance.level;
+        dayTMP.text = "Jour " + StatsManager.instance.GetDate() + "/" + StatsManager.instance.dayMax;
 
         // Set the number of folders depending of the level
         switch (m_Level)
@@ -104,7 +106,7 @@ public class DayManager : MonoBehaviour
         Debug.Log(m_ValidFolders[m_NFolder-1]);
         
         // Update n° folder text
-        nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
+        nFolderTMP.text = "Dossier n°" + m_NFolder + " / " + m_NFoldersMax; 
         
         // Get list of cats that are not adopted yet
         _currentCats.Clear();

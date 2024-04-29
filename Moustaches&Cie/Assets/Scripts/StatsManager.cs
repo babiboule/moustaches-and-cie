@@ -1,9 +1,11 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
+    // Debug settings
+    public int dayMax;
+    
     // Daily stats
     private int m_GoodAdoptions;
     private int m_BadAdoptions;
@@ -16,6 +18,9 @@ public class StatsManager : MonoBehaviour
     // General stats
     private int m_Level = 1;
     private int m_Exp;
+    private int m_Date = 1;
+    
+    // Settings
     private float m_MusicVolume;
     private float m_SfxVolume;
     
@@ -98,6 +103,11 @@ public class StatsManager : MonoBehaviour
     {
         return m_Level;
     }
+
+    public int GetDate()
+    {
+        return m_Date;
+    }
     
     public float GetMusicVolume()
     {
@@ -147,6 +157,16 @@ public class StatsManager : MonoBehaviour
     public void SetExp(int newExp)
     {
         m_Exp = newExp;
+    }
+    
+    public void SetDate(int newDate)
+    {
+        m_Date = newDate;
+    }
+    
+    public void AddDate()
+    {
+        m_Date ++;
     }
 
     public void SetMusicVolume(float value)

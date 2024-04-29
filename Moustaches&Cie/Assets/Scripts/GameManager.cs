@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", 1);
         PlayerPrefs.SetInt("Exp", 0);
         PlayerPrefs.SetInt("AdoptedCats", 0);
+        PlayerPrefs.SetInt("Date", 1);
         StatsManager.instance.ClearAdoptedCat();
         
         PlayerPrefs.Save();
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", StatsManager.instance.GetLevel());
         PlayerPrefs.SetInt("Exp", StatsManager.instance.GetExp());
         PlayerPrefs.SetInt("AdoptedCats", StatsManager.instance.GetAdoptedCats().Count);
+        PlayerPrefs.SetInt("Date", StatsManager.instance.GetDate());
         for (int i = 0; i<StatsManager.instance.GetAdoptedCats().Count; i++)
         {
             PlayerPrefs.SetString("Cat"+i, StatsManager.instance.GetAdoptedCats(i));
@@ -140,6 +143,7 @@ public class GameManager : MonoBehaviour
         StatsManager.instance.SetLevel(PlayerPrefs.GetInt("Level", 1));
         StatsManager.instance.SetExp(PlayerPrefs.GetInt("Exp", 0));
         int nCats = PlayerPrefs.GetInt("AdoptedCats", 0);
+        StatsManager.instance.SetDate(PlayerPrefs.GetInt("Date", 1));
         StatsManager.instance.ClearAdoptedCat();
         for (int i = 0; i < nCats ; i++)
         {
@@ -169,43 +173,47 @@ public class GameManager : MonoBehaviour
     private void HandlePlay()
     {
         MusicManager.instance.SwitchBossaNova();
-        Time.timeScale = 1.0f;
     }
 
     private void HandlePause()
     {
         MusicManager.instance.SwitchBossaNova();
-        Time.timeScale = 0.0f;
     }
 
     private void HandleGameOver()
     {
         SceneManager.LoadSceneAsync("Game Over");
+        MusicManager.instance.SwitchBossaNova();
     }
     
     // Handle the new Levels
     private void HandleLevel1()
     {
         SceneManager.LoadSceneAsync("Level 1");
+        MusicManager.instance.SwitchBossaNova();
     }
 
     private void HandleLevel2()
     {
         SceneManager.LoadSceneAsync("Level 2");
+        MusicManager.instance.SwitchBossaNova();
     }
 
     private void HandleLevel3()
     {
         SceneManager.LoadSceneAsync("Level 3");
+        MusicManager.instance.SwitchBossaNova();
     }
 
     private void HandleLevelMax()
     {
         SceneManager.LoadSceneAsync("Level Max");
+        MusicManager.instance.SwitchBossaNova();
     }
     
     private void HandleScoreLevel()
     {
         SceneManager.LoadSceneAsync("Score screen");
+        MusicManager.instance.SwitchBossaNova();
     }
 }
