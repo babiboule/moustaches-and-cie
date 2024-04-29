@@ -360,15 +360,15 @@ RectTransform:
   m_GameObject: {fileID: 20322175}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.6991277}
-  m_LocalScale: {x: 1.2739997, y: 1.2739997, z: 1.2739999}
+  m_LocalScale: {x: 1.2739996, y: 0.86372864, z: 1.2739999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2044647993}
-  m_Father: {fileID: 1085348051}
+  m_Father: {fileID: 2062797123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -629, y: 0}
+  m_AnchoredPosition: {x: -458.98273, y: 0.000061035156}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &20322177
@@ -1150,7 +1150,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 388652808}
   m_OnClick:
     m_PersistentCalls:
@@ -2672,6 +2672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 232479738}
+  albumPanel: {fileID: 1085348050}
   mainButtons: {fileID: 1677104523}
   extrasButtons: {fileID: 920151578}
   newGameButton: {fileID: 894136594}
@@ -3868,14 +3869,14 @@ GameObject:
   - component: {fileID: 1085348051}
   - component: {fileID: 1085348054}
   - component: {fileID: 1085348053}
-  - component: {fileID: 1085348052}
+  - component: {fileID: 1085348055}
   m_Layer: 5
   m_Name: AlbumPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1085348051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3890,8 +3891,6 @@ RectTransform:
   m_Children:
   - {fileID: 2071821657}
   - {fileID: 2062797123}
-  - {fileID: 1653214851}
-  - {fileID: 20322176}
   m_Father: {fileID: 711121454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3899,23 +3898,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1085348052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085348050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df45751db9db43a45a32646555741c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optionsPanel: {fileID: 1085348050}
-  quitOptionsButton: {fileID: 1163852082}
-  saveOptionsButton: {fileID: 0}
-  musicVolumeSlider: {fileID: 0}
-  sfxVolumeSlider: {fileID: 0}
 --- !u!114 &1085348053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3954,6 +3936,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085348050}
   m_CullTransparentMesh: 1
+--- !u!114 &1085348055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085348050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571876cdabb3ffd49b9ad16a24f0adba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  albumPanel: {fileID: 1085348050}
+  quitButton: {fileID: 1163852082}
+  previousButton: {fileID: 20322177}
+  nextButton: {fileID: 1653214852}
+  defaultImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  drawingL: {fileID: 601962164}
+  pictureL: {fileID: 1591110656}
+  drawingR: {fileID: 196009116}
+  pictureR: {fileID: 2550552}
+  catNameL: {fileID: 1763656594}
+  catNameR: {fileID: 1789058123}
+  cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
 --- !u!1 &1163852080
 GameObject:
   m_ObjectHideFlags: 0
@@ -5477,15 +5483,15 @@ RectTransform:
   m_GameObject: {fileID: 1653214850}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.6991277}
-  m_LocalScale: {x: 1.2739997, y: 1.2739997, z: 1.2739999}
+  m_LocalScale: {x: 1.2739996, y: 0.86372864, z: 1.2739999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 485030935}
-  m_Father: {fileID: 1085348051}
+  m_Father: {fileID: 2062797123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 727, y: 0}
+  m_AnchoredPosition: {x: 460.33917, y: 0.000061035156}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653214852
@@ -6571,9 +6577,11 @@ RectTransform:
   m_LocalScale: {x: 1.475, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1163852081}
   - {fileID: 719643515}
   - {fileID: 363038202}
+  - {fileID: 1163852081}
+  - {fileID: 1653214851}
+  - {fileID: 20322176}
   m_Father: {fileID: 1085348051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

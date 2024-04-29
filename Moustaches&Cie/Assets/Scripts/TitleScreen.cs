@@ -9,8 +9,10 @@ public class TitleScreen : MonoBehaviour
     ////////////////// UI Components ///////////////////
     // Panels 
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject albumPanel;
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject extrasButtons;
+    
     
     // Buttons
     [SerializeField] private Button newGameButton;
@@ -90,7 +92,7 @@ public class TitleScreen : MonoBehaviour
     
     private void AlbumButtonClicked()
     {
-        throw new NotImplementedException();
+        albumPanel.SetActive(true);
     }
 
     private void CreditsButtonClicked()
