@@ -468,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 54165898}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 103.28, y: 58.004, z: -1.0371}
+  m_LocalPosition: {x: 177, y: 58.004, z: -1.0371}
   m_LocalScale: {x: 0.700269, y: 0.700269, z: 0.700269}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1901,8 +1901,8 @@ MonoBehaviour:
   familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
   familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
   cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
-  acceptStampButton: {fileID: 0}
-  declineStampButton: {fileID: 0}
+  acceptStampButton: {fileID: 1432309549}
+  declineStampButton: {fileID: 510319048}
   nFolderTMP: {fileID: 1570632608}
   dayTMP: {fileID: 1520789179}
 --- !u!114 &384649866
@@ -5816,7 +5816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1328300928
 Transform:
   m_ObjectHideFlags: 0
