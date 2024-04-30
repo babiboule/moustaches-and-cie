@@ -25,7 +25,6 @@ public class SettingsManager : MonoBehaviour
         musicVolumeSlider.onValueChanged.AddListener(MusicVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(SfxVolumeChanged);
         saveOptionsButton.onClick.AddListener(SaveOptionsButtonClicked);
-
     }
 
     private void SaveOptionsButtonClicked()
