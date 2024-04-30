@@ -212,6 +212,7 @@ public class DayManager : MonoBehaviour
         else
         {
             StatsManager.instance.AddGoodAdoptions();
+            StatsManager.instance.AddAlbumCat(m_Problem.Cat.name);
         }
         
         StatsManager.instance.AddAdoptedCat(m_Problem.Cat.name);

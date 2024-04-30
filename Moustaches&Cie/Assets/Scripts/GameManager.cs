@@ -133,6 +133,10 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetString("Cat"+i, StatsManager.instance.GetAdoptedCats(i));
         }
+        for (int i = 0; i<StatsManager.instance.GetAlbumCats().Count; i++)
+        {
+            PlayerPrefs.SetString("CatAlbum"+i, StatsManager.instance.GetAlbumCats(i));
+        }
         
         PlayerPrefs.Save();
     }
@@ -147,6 +151,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < nCats ; i++)
         {
             StatsManager.instance.AddAdoptedCat(PlayerPrefs.GetString("Cat" + i));
+        }
+        for (int i = 0; i<StatsManager.instance.GetAlbumCats().Count; i++)
+        {
+            StatsManager.instance.AddAlbumCat(PlayerPrefs.GetString("CatAlbum"+i));
         }
     }
     

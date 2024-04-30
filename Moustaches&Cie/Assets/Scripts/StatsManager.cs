@@ -14,6 +14,7 @@ public class StatsManager : MonoBehaviour
     
     // Adopted cats
     private List<string> m_AdoptedCats = new List<string>();
+    private List<string> m_AlbumCats = new List<string>();
     
     // General stats
     private int m_Level = 1;
@@ -93,6 +94,16 @@ public class StatsManager : MonoBehaviour
     {
         return m_AdoptedCats[i];
     }
+    
+    public List<string> GetAlbumCats()
+    {
+        return m_AlbumCats;
+    }
+    
+    public string GetAlbumCats(int i)
+    {
+        return m_AlbumCats[i];
+    }
 
     public int GetExp()
     {
@@ -147,6 +158,11 @@ public class StatsManager : MonoBehaviour
     public void RemoveAdoptedCat(string catName)
     {
         m_AdoptedCats.Remove(catName);
+    }
+    
+    public void AddAlbumCat(string catName)
+    {
+        m_AlbumCats.Add(catName);
     }
 
     public void SetLevel(int newLevel)

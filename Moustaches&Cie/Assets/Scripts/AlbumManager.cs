@@ -99,7 +99,7 @@ public class AlbumManager : MonoBehaviour
             catNameL.text = "???";
             drawingL.sprite = defaultImage;
         }
-        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[m_IndexL].name))
+        if (StatsManager.instance.GetAlbumCats().Contains(cats.cats[m_IndexL].name))
         {
             pictureL.sprite = cats.cats[m_IndexL].reference;
         }
@@ -122,7 +122,7 @@ public class AlbumManager : MonoBehaviour
             drawingR.sprite = defaultImage;
         }
 
-        if (StatsManager.instance.GetAdoptedCats().Contains(cats.cats[m_IndexR].name))
+        if (StatsManager.instance.GetAlbumCats().Contains(cats.cats[m_IndexR].name))
         {
             pictureR.sprite = cats.cats[m_IndexR].reference;
         }
