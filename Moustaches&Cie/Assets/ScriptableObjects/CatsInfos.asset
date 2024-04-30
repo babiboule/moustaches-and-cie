@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cats:
   - picture: {fileID: 21300000, guid: 9e0d9b3022ee39341bb2df2814dc363f, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 8f171cf86ceb0104abb865873a77551f, type: 3}
     name: Clyde
     age: 0.5
     fur: "Tigr\xE9 brun"
@@ -26,7 +26,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 741391ff5f706be4c9fd2e9afb69ded2, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 805e0d9c6fc7ad34aae4e983723ec9c0, type: 3}
     name: Marty
     age: 0.2
     fur: "Tigr\xE9 gris"
@@ -38,7 +38,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 72473b92ffd565b42895473955765805, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: a6acd3932fb237e4abf72aa1a3066a96, type: 3}
     name: Rucksack
     age: 11
     fur: Bicolore roux/blanc
@@ -50,7 +50,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 989e52876e617d346804a02702f85602, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: c9583c32b9d28b84fbbb629c87efd859, type: 3}
     name: Calcifer
     age: 8
     fur: Uni noir
@@ -62,7 +62,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: fb5a248f3a164df45950fff8fed2a03a, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 209a8547f258b5c449fbd0ceb92ca6b8, type: 3}
     name: "L\xE9o"
     age: 9
     fur: "Tigr\xE9 brun"
@@ -74,7 +74,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 656940c541c3efc4782623bf92e97cf7, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: ce1a62c54f23f7d42a1351117aa306c7, type: 3}
     name: Pilat
     age: 3
     fur: Bicolore roux/blanc
@@ -86,7 +86,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 62cd2c99d8356c849ac3382d5bb33b3c, type: 3}
     name: Bonnie
     age: 5
     fur: "Tricolore tigr\xE9"
@@ -98,7 +98,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: ed316d8dbd618024f8671464bdb66ca3, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 2c2455ce856a7b44b9489680d2eaf39c, type: 3}
     name: Zelda
     age: 4
     fur: "Tigr\xE9 brun/gris"
@@ -110,7 +110,7 @@ MonoBehaviour:
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: ae377c5571b4b5f4783ded4d8408c3ac, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: 1ba9539dbf0c5004a83dedcbb4b3ede3, type: 3}
     name: Jack
     age: 7
     fur: "Tigr\xE9 brun/gris"

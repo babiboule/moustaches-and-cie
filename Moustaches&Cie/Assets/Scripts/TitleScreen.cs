@@ -13,7 +13,6 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject extrasButtons;
     
-    
     // Buttons
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueButton;
@@ -25,7 +24,8 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private Button toDesktopButton;
     
     // Images
-    [SerializeField] private Image catPicture;
+    [SerializeField] private Image catPicture1;
+    [SerializeField] private Image catPicture2;
 
     [SerializeField] private CatsScriptableObject cat;
 
@@ -46,8 +46,18 @@ public class TitleScreen : MonoBehaviour
         {
             continueButton.interactable = true;
         }
+    }
 
-        catPicture.sprite = cat.cats[Random.Range(0, cat.cats.Count)].picture;
+    private void Start()
+    {
+        int index = Random.Range(0, cat.cats.Count);
+        catPicture1.sprite = cat.cats[index].picture;
+        int index2 = Random.Range(0, cat.cats.Count);
+        while (index2==index)
+        {
+            index2 = Random.Range(0, cat.cats.Count);
+        }
+        catPicture2.sprite = cat.cats[index2].picture;
     }
 
     private void NewGameButtonClicked()
