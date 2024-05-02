@@ -67,6 +67,12 @@ public class DayManager : MonoBehaviour
         m_NFolder = 1 ;
         _index = 0 ;
         
+        // Get list of cats that are not adopted yet
+        _currentCats.Clear();
+        CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
+        // Set the first cat page
+        CatManager.PrintCatInfos(_currentCats[0]);
+        
         NextFolder();
     }
 
@@ -112,9 +118,6 @@ public class DayManager : MonoBehaviour
         _currentCats.Clear();
         CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
         
-        // Set the cat page on the last cat visited
-        CatManager.PrintCatInfos(_currentCats[_index]);
-        
         // Generate Family
         FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
         
@@ -150,6 +153,12 @@ public class DayManager : MonoBehaviour
             }
         }
         
+        // Set the cat page on the cat before the one adopted
+        if (_index >= _currentCats.Count)
+            SetIndex(GetIndexMax());
+            
+        CatManager.PrintCatInfos(_currentCats[_index]);
+        
         // Print the family infos 
         FamilyManager.PrintFamily(family);
     }
@@ -181,6 +190,11 @@ public class DayManager : MonoBehaviour
     public static int GetIndex()
     {
         return _index;
+    }
+
+    public static void SetIndex(int i)
+    {
+        _index = i;
     }
     
     public static int GetIndexMax()
