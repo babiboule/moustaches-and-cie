@@ -820,7 +820,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00bb15c361da2040aa2350047403bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayMax: 3
+  dayMax: 10
+  upExp: 50
+  upLvl1: 300
+  upLvl2: 600
+  upLvl3: 800
 --- !u!4 &1499203357
 Transform:
   m_ObjectHideFlags: 0

@@ -47,9 +47,36 @@ public class ScoreUIManager : MonoBehaviour
         badDeclineTMP.text = "Dossiers valides refusés : " + m_BadDecline;
         detailsTMP.text = "Détails :";
 
+        UpExp();
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
         
+        PrintProblems();
+        
+        ///////////       DEBUG         ////////////////////////////////
+        Debug.Log(StatsManager.instance.GetLevel());
+        Debug.Log(StatsManager.instance.GetExp());
+    }
 
+    private void UpExp()
+    {
+        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*m_GoodAdoptions);
+        var exp = StatsManager.instance.GetExp();
+        if (exp >= StatsManager.instance.upLvl3)
+        {
+            StatsManager.instance.SetLevel(4);
+        }
+        else if (exp >= StatsManager.instance.upLvl2)
+        {
+            StatsManager.instance.SetLevel(3);
+        }
+        else if (exp >= StatsManager.instance.upLvl1)
+        {
+            StatsManager.instance.SetLevel(2);
+        }
+    }
+    
+    private void PrintProblems()
+    {
         List<string> adoptedTemp = new List<string>();
         
         foreach (LogicManager.Problem problem in StatsManager.instance.GetListProblems())
