@@ -218,6 +218,8 @@ public class DayManager : MonoBehaviour
     
     private void AcceptStampButtonClicked()
     {
+        ProblemsSelector.ResetCircles();
+        
         if (m_Problem.Exists)
         {
             StatsManager.instance.AddProblemToList(m_Problem);
@@ -245,6 +247,8 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
+        ProblemsSelector.ResetCircles();
+        
         if (!m_Problem.Exists)
         {
             StatsManager.instance.AddBadDecline();
