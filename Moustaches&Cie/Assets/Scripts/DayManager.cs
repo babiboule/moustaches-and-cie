@@ -10,8 +10,10 @@ public class DayManager : MonoBehaviour
     public FamilyInfosScriptableObject familyInfos;
     public CatsScriptableObject cats;
 
-    public Button acceptStampButton;
-    public Button declineStampButton;
+    [SerializeField] private Button acceptStampButton;
+    [SerializeField] private Button declineStampButton;
+    private static Button _acceptStampButton;
+    private static Button _declineStampButton;
     public TMP_Text nFolderTMP;
     public TMP_Text dayTMP;
     
@@ -30,6 +32,9 @@ public class DayManager : MonoBehaviour
     {
         acceptStampButton.onClick.AddListener(AcceptStampButtonClicked);
         declineStampButton.onClick.AddListener(DeclineStampButtonClicked);
+
+        _acceptStampButton = acceptStampButton;
+        _declineStampButton = declineStampButton;
     }
 
     // Start is called before the first frame update
@@ -72,6 +77,8 @@ public class DayManager : MonoBehaviour
         CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
         // Set the first cat page
         CatManager.PrintCatInfos(_currentCats[0]);
+        
+        SetDeclineButtonActive(false);
         
         NextFolder();
     }
@@ -219,6 +226,8 @@ public class DayManager : MonoBehaviour
     private void AcceptStampButtonClicked()
     {
         ProblemsSelector.ResetCircles();
+        SetAcceptButtonActive(true);
+        SetDeclineButtonActive(false);
         
         if (m_Problem.Exists)
         {
@@ -248,6 +257,8 @@ public class DayManager : MonoBehaviour
     private void DeclineStampButtonClicked()
     {
         ProblemsSelector.ResetCircles();
+        SetAcceptButtonActive(true);
+        SetDeclineButtonActive(false);
         
         if (!m_Problem.Exists)
         {
@@ -262,5 +273,15 @@ public class DayManager : MonoBehaviour
         {
             GameManager.instance.UpdateGameLevel(GameManager.GameLevel.ScoreLevel);
         }
+    }
+
+    public static void SetAcceptButtonActive(bool a)
+    {
+        _acceptStampButton.interactable = a;
+    }
+    
+    public static void SetDeclineButtonActive(bool a)
+    {
+        _declineStampButton.interactable = a;
     }
 }

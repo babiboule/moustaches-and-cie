@@ -62,9 +62,18 @@ public class ProblemsSelector : MonoBehaviour
         _commentCircle.SetActive(false);
     }
 
+    public static bool IsSelected()
+    {
+        return _ageCircle.activeSelf || _jobCircle.activeSelf || _incomeCircle.activeSelf || _childCircle.activeSelf ||
+               _outdoorCircle.activeSelf || _animalsCircle.activeSelf || _commentCircle.activeSelf;
+    }
+
     private void AgeButtonClicked()
     {
-        _ageCircle.SetActive(true);
+        _ageCircle.SetActive(!_ageCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_ageCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_ageCircle.activeSelf);
+        
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -76,7 +85,11 @@ public class ProblemsSelector : MonoBehaviour
     private void JobButtonClicked()
     {
         _ageCircle.SetActive(false);
-        _jobCircle.SetActive(true);
+        
+        _jobCircle.SetActive(!_jobCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_jobCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_jobCircle.activeSelf);
+        
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
         _outdoorCircle.SetActive(false);
@@ -88,7 +101,11 @@ public class ProblemsSelector : MonoBehaviour
     {
         _ageCircle.SetActive(false);
         _jobCircle.SetActive(false);
-        _incomeCircle.SetActive(true);
+        
+        _incomeCircle.SetActive(!_incomeCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_incomeCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_incomeCircle.activeSelf);
+        
         _childCircle.SetActive(false);
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
@@ -100,7 +117,11 @@ public class ProblemsSelector : MonoBehaviour
         _ageCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
-        _childCircle.SetActive(true);
+         
+        _childCircle.SetActive(!_childCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_childCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_childCircle.activeSelf);
+        
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
@@ -112,7 +133,11 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(true);
+        
+        _outdoorCircle.SetActive(!_outdoorCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_outdoorCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_outdoorCircle.activeSelf);
+        
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
     }
@@ -124,7 +149,11 @@ public class ProblemsSelector : MonoBehaviour
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
         _outdoorCircle.SetActive(false);
-        _animalsCircle.SetActive(true);
+        
+        _animalsCircle.SetActive(!_animalsCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_animalsCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_animalsCircle.activeSelf);
+        
         _commentCircle.SetActive(false);
     }
 
@@ -136,7 +165,10 @@ public class ProblemsSelector : MonoBehaviour
         _childCircle.SetActive(false);
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
-        _commentCircle.SetActive(true);
+       
+        _commentCircle.SetActive(!_commentCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_commentCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_commentCircle.activeSelf);
     }
 
     // Start is called before the first frame update
