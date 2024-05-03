@@ -45,7 +45,7 @@ public class DayManager : MonoBehaviour
         
         // Set the level and the day
         m_Level = GameManager.instance.level;
-        dayTMP.text = "Jour " + StatsManager.instance.GetDate() + "/" + StatsManager.instance.dayMax;
+        dayTMP.text = StatsManager.instance.GetDate() + "/" + StatsManager.instance.dayMax;
 
         // Set the number of folders depending of the level
         switch (m_Level)
@@ -78,7 +78,8 @@ public class DayManager : MonoBehaviour
         // Set the first cat page
         CatManager.PrintCatInfos(_currentCats[0]);
         
-        SetDeclineButtonActive(false);
+        if(StatsManager.instance.GetLevel()>1)
+            SetDeclineButtonActive(false);
         
         NextFolder();
     }
@@ -225,10 +226,13 @@ public class DayManager : MonoBehaviour
     
     private void AcceptStampButtonClicked()
     {
-        ProblemsSelector.ResetCircles();
-        SetAcceptButtonActive(true);
-        SetDeclineButtonActive(false);
-        
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            ProblemsSelector.ResetCircles();
+            SetAcceptButtonActive(true);
+            SetDeclineButtonActive(false);
+        }
+
         if (m_Problem.Exists)
         {
             StatsManager.instance.AddProblemToList(m_Problem);
@@ -256,10 +260,13 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
-        ProblemsSelector.ResetCircles();
-        SetAcceptButtonActive(true);
-        SetDeclineButtonActive(false);
-        
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            ProblemsSelector.ResetCircles();
+            SetAcceptButtonActive(true);
+            SetDeclineButtonActive(false);
+        }
+
         if (!m_Problem.Exists)
         {
             StatsManager.instance.AddBadDecline();
@@ -281,7 +288,7 @@ public class DayManager : MonoBehaviour
     }
     
     public static void SetDeclineButtonActive(bool a)
-    {
+    { 
         _declineStampButton.interactable = a;
     }
 }

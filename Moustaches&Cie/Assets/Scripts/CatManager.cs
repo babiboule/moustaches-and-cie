@@ -51,27 +51,27 @@ public class CatManager : MonoBehaviour
         _nameTMP.text = cat.name;
         if (cat.age<1)
         {
-            _ageTMP.text = "Age : " + (cat.age*10+2).ToString(CultureInfo.InvariantCulture) + " mois";
+            _ageTMP.text = (cat.age*10+2).ToString(CultureInfo.InvariantCulture) + " mois";
         }
         else
         {
-            _ageTMP.text = "Age : " + cat.age.ToString(CultureInfo.InvariantCulture) + " ans";
+            _ageTMP.text = cat.age.ToString(CultureInfo.InvariantCulture) + " ans";
         }
-        _furTMP.text = "Pelage : " + cat.fur;
-        _sexTMP.text = "Sexe : " + cat.sex;
-        _natureTMP.text = "Caractère : " + cat.nature;
+        _furTMP.text = cat.fur;
+        _sexTMP.text = cat.sex.ToString();
+        _natureTMP.text = cat.nature.ToString();
         if(cat.sick)
-            _sickTMP.text = "Malade : oui";
+            _sickTMP.text = "Oui";
         else 
-            _sickTMP.text = "Malade : non";
+            _sickTMP.text = "Non";
         if(cat.outdoor)
-            _outdoorTMP.text = "Besoin d'extérieur : oui";
+            _outdoorTMP.text = "Oui";
         else 
-            _outdoorTMP.text = "Besoin d'extérieur : non";
+            _outdoorTMP.text = "Non";
         if(cat.animals)
-            _animalsTMP.text = "OK animaux : oui";
+            _animalsTMP.text = "Oui";
         else 
-            _animalsTMP.text = "OK animaux : non";
+            _animalsTMP.text = "Non";
     }
 
     public static void InitialiseCurrentCats(GameManager.GameLevel level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)

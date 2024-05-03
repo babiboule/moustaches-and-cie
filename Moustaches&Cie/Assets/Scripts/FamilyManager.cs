@@ -240,25 +240,25 @@ public class FamilyManager : MonoBehaviour
 
     private static void PrintFamilyInformation(Family family)
     {
-        _nameTMP.text = "Nom : " + family.Name;
-        _forenameTMP.text = "Prénom : " + family.Forename;
-        _ageTMP.text = "Age : " + family.Age + " ans";
-        _jobTMP.text = "Profession : " + family.JobName;
-        _incomeTMP.text =  "Reste à vivre : " + family.Income + " €/mois";
+        _nameTMP.text = family.Name;
+        _forenameTMP.text = family.Forename;
+        _ageTMP.text = family.Age + " ans";
+        _jobTMP.text = family.JobName;
+        _incomeTMP.text =  family.Income + " €/mois";
         if(family.Child)
-            _childTMP.text = "Enfants en bas-âge : oui";
+            _childTMP.text = "Oui";
         else
-            _childTMP.text = "Enfants en bas-âge : non";
+            _childTMP.text = "Non";
         if(family.Animals)
-            _animalsTMP.text = "Autres animaux : oui";
+            _animalsTMP.text = "Oui";
         else
-            _animalsTMP.text = "Autres animaux : non";
+            _animalsTMP.text = "Non";
         if(family.Outdoor)
-            _outdoorTMP.text = "Extérieur : oui";
+            _outdoorTMP.text = "Oui";
         else 
-            _outdoorTMP.text = "Extérieur : non";
-        _commentTMP.text = "Commentaire : " + family.Comment.commentText;
-        _catTMP.text = "Chat demandé : " + family.Cat.name;
+            _outdoorTMP.text = "Non";
+        _commentTMP.text = family.Comment.commentText;
+        _catTMP.text = family.Cat.name;
     }
     
     // Print the face at the vector location in parameter
