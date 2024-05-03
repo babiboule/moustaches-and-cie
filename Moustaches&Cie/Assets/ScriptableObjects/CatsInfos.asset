@@ -13,10 +13,34 @@ MonoBehaviour:
   m_Name: CatsInfos
   m_EditorClassIdentifier: 
   cats:
-  - picture: {fileID: 21300000, guid: 9e0d9b3022ee39341bb2df2814dc363f, type: 3}
-    reference: {fileID: 21300000, guid: 8f171cf86ceb0104abb865873a77551f, type: 3}
-    name: Clyde
-    age: 0.5
+  - picture: {fileID: 21300000, guid: eb238e6122f1e574bba2f8cd61ad04d3, type: 3}
+    reference: {fileID: 21300000, guid: eb238e6122f1e574bba2f8cd61ad04d3, type: 3}
+    name: Owli
+    age: 6
+    fur: Calico
+    sex: 1
+    sick: 0
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: ef29823ed0f99a348af93e4ae4b176fd, type: 3}
+    reference: {fileID: 21300000, guid: ef29823ed0f99a348af93e4ae4b176fd, type: 3}
+    name: Bulle
+    age: 4
+    fur: "Tigr\xE9 gris"
+    sex: 1
+    sick: 0
+    nature: 1
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 76c00b0669497ec44ac03baff2c1a875, type: 3}
+    reference: {fileID: 21300000, guid: 76c00b0669497ec44ac03baff2c1a875, type: 3}
+    name: Jumbo
+    age: 0.8
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
@@ -25,23 +49,83 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 741391ff5f706be4c9fd2e9afb69ded2, type: 3}
-    reference: {fileID: 21300000, guid: 805e0d9c6fc7ad34aae4e983723ec9c0, type: 3}
-    name: Marty
-    age: 0.2
-    fur: "Tigr\xE9 gris"
+  - picture: {fileID: 21300000, guid: 3524cd5f46ac30a48b740d96c7535605, type: 3}
+    reference: {fileID: 21300000, guid: 3524cd5f46ac30a48b740d96c7535605, type: 3}
+    name: "Ga\xEFa"
+    age: 7
+    fur: "Tigr\xE9 brun"
+    sex: 1
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 881aa9a13cc2e9345a71c030698dbfc0, type: 3}
+    reference: {fileID: 21300000, guid: 881aa9a13cc2e9345a71c030698dbfc0, type: 3}
+    name: Lucifer
+    age: 9
+    fur: Gris
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: ec5dc0337bb165f428f1b37e3ddb5cfa, type: 3}
+    reference: {fileID: 21300000, guid: ec5dc0337bb165f428f1b37e3ddb5cfa, type: 3}
+    name: Arya
+    age: 4
+    fur: "Tigr\xE9"
+    sex: 1
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 71aa3d4e5660ccf4eb936a74aab724cf, type: 3}
+    reference: {fileID: 21300000, guid: 71aa3d4e5660ccf4eb936a74aab724cf, type: 3}
+    name: Sureau
+    age: 0.1
+    fur: "Tachet\xE9"
     sex: 0
     sick: 0
     nature: 0
     outdoor: 0
-    animals: 0
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: a905fe005b0b6ed4684e32d25e989774, type: 3}
+    reference: {fileID: 21300000, guid: a905fe005b0b6ed4684e32d25e989774, type: 3}
+    name: Naouss
+    age: 16
+    fur: Calico
+    sex: 1
+    sick: 0
+    nature: 0
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: cb5f4ad07c846a44b8861c67b3cb4ef4, type: 3}
+    reference: {fileID: 21300000, guid: cb5f4ad07c846a44b8861c67b3cb4ef4, type: 3}
+    name: Saly
+    age: 3
+    fur: "Tigr\xE9 gris"
+    sex: 1
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 1
     adopted: 0
     level: 1
   - picture: {fileID: 21300000, guid: 72473b92ffd565b42895473955765805, type: 3}
     reference: {fileID: 21300000, guid: a6acd3932fb237e4abf72aa1a3066a96, type: 3}
     name: Rucksack
     age: 11
-    fur: Bicolore roux/blanc
+    fur: Roux et blanc
     sex: 0
     sick: 0
     nature: 0
@@ -53,7 +137,7 @@ MonoBehaviour:
     reference: {fileID: 21300000, guid: c9583c32b9d28b84fbbb629c87efd859, type: 3}
     name: Calcifer
     age: 8
-    fur: Uni noir
+    fur: Noir
     sex: 0
     sick: 1
     nature: 0
@@ -67,62 +151,326 @@ MonoBehaviour:
     age: 9
     fur: "Tigr\xE9 brun"
     sex: 0
-    sick: 1
-    nature: 0
-    outdoor: 0
-    animals: 1
-    adopted: 0
-    level: 1
-  - picture: {fileID: 21300000, guid: 656940c541c3efc4782623bf92e97cf7, type: 3}
-    reference: {fileID: 21300000, guid: ce1a62c54f23f7d42a1351117aa306c7, type: 3}
-    name: Pilat
-    age: 3
-    fur: Bicolore roux/blanc
-    sex: 0
     sick: 0
     nature: 2
     outdoor: 1
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
-    reference: {fileID: 21300000, guid: 62cd2c99d8356c849ac3382d5bb33b3c, type: 3}
-    name: Bonnie
+  - picture: {fileID: 21300000, guid: d9680e1f39860804d9c7a4057c8b5e3c, type: 3}
+    reference: {fileID: 21300000, guid: d9680e1f39860804d9c7a4057c8b5e3c, type: 3}
+    name: Moka
+    age: 0.7
+    fur: Noir
+    sex: 0
+    sick: 0
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 1
+  - picture: {fileID: 21300000, guid: 741391ff5f706be4c9fd2e9afb69ded2, type: 3}
+    reference: {fileID: 21300000, guid: 805e0d9c6fc7ad34aae4e983723ec9c0, type: 3}
+    name: Marty
+    age: 0.2
+    fur: "Tigr\xE9 gris"
+    sex: 0
+    sick: 0
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: a9dd9dfc77322bc42af9a2d7036e3830, type: 3}
+    reference: {fileID: 21300000, guid: a9dd9dfc77322bc42af9a2d7036e3830, type: 3}
+    name: Nana
+    age: 0.9
+    fur: Tabby
+    sex: 1
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 67d88d20c9659f945b5476a08cc5f700, type: 3}
+    reference: {fileID: 21300000, guid: 67d88d20c9659f945b5476a08cc5f700, type: 3}
+    name: Kyrios
+    age: 10
+    fur: Blanc et noir
+    sex: 0
+    sick: 1
+    nature: 2
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 9e0d9b3022ee39341bb2df2814dc363f, type: 3}
+    reference: {fileID: 21300000, guid: 8f171cf86ceb0104abb865873a77551f, type: 3}
+    name: Clyde
+    age: 0.6
+    fur: "Tigr\xE9 brun"
+    sex: 0
+    sick: 0
+    nature: 0
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 6cf4a47e53c0da44893e08983e9aa4a1, type: 3}
+    reference: {fileID: 21300000, guid: 6cf4a47e53c0da44893e08983e9aa4a1, type: 3}
+    name: Yamada
     age: 5
-    fur: "Tricolore tigr\xE9"
+    fur: Noir
+    sex: 1
+    sick: 0
+    nature: 0
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: a5537d1013d6eff4d9c427cd029db71f, type: 3}
+    reference: {fileID: 21300000, guid: a5537d1013d6eff4d9c427cd029db71f, type: 3}
+    name: Malo
+    age: 6
+    fur: "Tachet\xE9"
+    sex: 1
+    sick: 1
+    nature: 0
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 1382660ee9f26424484f888ed6692344, type: 3}
+    reference: {fileID: 21300000, guid: 1382660ee9f26424484f888ed6692344, type: 3}
+    name: Gnocchi
+    age: 7
+    fur: Roux
     sex: 1
     sick: 0
     nature: 2
-    outdoor: 0
-    animals: 0
+    outdoor: 1
+    animals: 1
     adopted: 0
-    level: 1
-  - picture: {fileID: 21300000, guid: ed316d8dbd618024f8671464bdb66ca3, type: 3}
-    reference: {fileID: 21300000, guid: 2c2455ce856a7b44b9489680d2eaf39c, type: 3}
-    name: Zelda
-    age: 4
-    fur: "Tigr\xE9 brun/gris"
+    level: 2
+  - picture: {fileID: 21300000, guid: 92272f1ca8f4390419018edc176b5ded, type: 3}
+    reference: {fileID: 21300000, guid: 92272f1ca8f4390419018edc176b5ded, type: 3}
+    name: Alpha
+    age: 0.9
+    fur: Noir et blanc
+    sex: 0
+    sick: 0
+    nature: 2
+    outdoor: 0
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: cc5c0075051677243815bae7312a3059, type: 3}
+    reference: {fileID: 21300000, guid: cc5c0075051677243815bae7312a3059, type: 3}
+    name: Clafoutis
+    age: 15
+    fur: Calico
     sex: 1
     sick: 0
-    nature: 1
-    outdoor: 0
+    nature: 0
+    outdoor: 1
     animals: 0
     adopted: 0
-    level: 1
-  - picture: {fileID: 21300000, guid: ae377c5571b4b5f4783ded4d8408c3ac, type: 3}
-    reference: {fileID: 21300000, guid: 1ba9539dbf0c5004a83dedcbb4b3ede3, type: 3}
-    name: Jack
-    age: 7
-    fur: "Tigr\xE9 brun/gris"
-    sex: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 31c0e97f5463db64588fc2d212d7c7ea, type: 3}
+    reference: {fileID: 21300000, guid: 31c0e97f5463db64588fc2d212d7c7ea, type: 3}
+    name: Yumi
+    age: 0.8
+    fur: Blanc gris
+    sex: 1
     sick: 0
     nature: 1
     outdoor: 0
     animals: 1
     adopted: 0
-    level: 1
+    level: 2
+  - picture: {fileID: 21300000, guid: d246231ebf6bce042876a63df005ceec, type: 3}
+    reference: {fileID: 21300000, guid: d246231ebf6bce042876a63df005ceec, type: 3}
+    name: Pipou
+    age: 2
+    fur: "Tigr\xE9 brun"
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: b7bd834b020dc414fb28a045a30a4649, type: 3}
+    reference: {fileID: 21300000, guid: b7bd834b020dc414fb28a045a30a4649, type: 3}
+    name: Kira
+    age: 4
+    fur: Blanc et noir
+    sex: 1
+    sick: 1
+    nature: 0
+    outdoor: 0
+    animals: 0
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 656940c541c3efc4782623bf92e97cf7, type: 3}
+    reference: {fileID: 21300000, guid: ce1a62c54f23f7d42a1351117aa306c7, type: 3}
+    name: Pilat
+    age: 3
+    fur: "Tigr\xE9 roux"
+    sex: 0
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 2
+  - picture: {fileID: 21300000, guid: 25251161cbead2c4988a8b2644b232d1, type: 3}
+    reference: {fileID: 21300000, guid: 25251161cbead2c4988a8b2644b232d1, type: 3}
+    name: Nini
+    age: 8
+    fur: Siamois
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: edb253cd28265364da4f36e4698e8b5f, type: 3}
+    reference: {fileID: 21300000, guid: edb253cd28265364da4f36e4698e8b5f, type: 3}
+    name: Ficelle
+    age: 12
+    fur: Noir et blanc
+    sex: 1
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: ae377c5571b4b5f4783ded4d8408c3ac, type: 3}
+    reference: {fileID: 21300000, guid: 1ba9539dbf0c5004a83dedcbb4b3ede3, type: 3}
+    name: Jack
+    age: 7
+    fur: "Tigr\xE9 gris"
+    sex: 0
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: c65594612bf661f4d8857f6b7861b109, type: 3}
+    reference: {fileID: 21300000, guid: c65594612bf661f4d8857f6b7861b109, type: 3}
+    name: Canelle
+    age: 14
+    fur: "Tigr\xE9 gris"
+    sex: 1
+    sick: 1
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: fae54a83e2133ae4f9ba28357d5be8b9, type: 3}
+    reference: {fileID: 21300000, guid: fae54a83e2133ae4f9ba28357d5be8b9, type: 3}
+    name: "R\xE9glisse"
+    age: 9
+    fur: Noir
+    sex: 1
+    sick: 1
+    nature: 2
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 95fd3d1779f4d7a41ad1440b807238f7, type: 3}
+    reference: {fileID: 21300000, guid: 95fd3d1779f4d7a41ad1440b807238f7, type: 3}
+    name: Potiron
+    age: 3
+    fur: "Tigr\xE9 blanc"
+    sex: 0
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 66add78684470874bb60e8fc84d6d37f, type: 3}
+    reference: {fileID: 21300000, guid: 66add78684470874bb60e8fc84d6d37f, type: 3}
+    name: "Oc\xE9an"
+    age: 10
+    fur: Noir et blanc
+    sex: 0
+    sick: 1
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 21288d61af182314bbd04b086e53a7e3, type: 3}
+    reference: {fileID: 21300000, guid: 21288d61af182314bbd04b086e53a7e3, type: 3}
+    name: Hestia
+    age: 3
+    fur: "Tigr\xE9 blanc"
+    sex: 1
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 1ec72db796dc92a429f2516a6ef8dc3e, type: 3}
+    reference: {fileID: 21300000, guid: 1ec72db796dc92a429f2516a6ef8dc3e, type: 3}
+    name: "Th\xE9odor"
+    age: 2
+    fur: Roux
+    sex: 0
+    sick: 1
+    nature: 1
+    outdoor: 1
+    animals: 1
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 06f5e6e56cd5f7243bc7515492746da3, type: 3}
+    reference: {fileID: 21300000, guid: 06f5e6e56cd5f7243bc7515492746da3, type: 3}
+    name: Murtaza
+    age: 11
+    fur: "Blanc tachet\xE9"
+    sex: 1
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: ed316d8dbd618024f8671464bdb66ca3, type: 3}
+    reference: {fileID: 21300000, guid: 2c2455ce856a7b44b9489680d2eaf39c, type: 3}
+    name: Zelda
+    age: 4
+    fur: "Tigr\xE9 brun"
+    sex: 1
+    sick: 0
+    nature: 1
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: 659705b169ee12f48a132f03994ba902, type: 3}
+    reference: {fileID: 21300000, guid: 62cd2c99d8356c849ac3382d5bb33b3c, type: 3}
+    name: Bonnie
+    age: 10
+    fur: "Tigr\xE9 tricolore"
+    sex: 1
+    sick: 0
+    nature: 2
+    outdoor: 1
+    animals: 0
+    adopted: 0
+    level: 3
   - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
+    reference: {fileID: 21300000, guid: e38b968791ebc9c44bdd1a63f5917ebf, type: 3}
     name: Barbouillasse
     age: 15
     fur: ???
@@ -132,28 +480,4 @@ MonoBehaviour:
     outdoor: 1
     animals: 0
     adopted: 0
-    level: 1
-  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    name: None
-    age: 15
-    fur: ???
-    sex: 1
-    sick: 1
-    nature: 2
-    outdoor: 1
-    animals: 0
-    adopted: 0
-    level: 2
-  - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    reference: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
-    name: None2
-    age: 15
-    fur: ???
-    sex: 1
-    sick: 1
-    nature: 2
-    outdoor: 1
-    animals: 0
-    adopted: 0
-    level: 2
+    level: 4
