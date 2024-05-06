@@ -17,6 +17,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button nextCatButton;
     [SerializeField] private Button previousCatButton;
     
+    // Medals
+    [SerializeField] private GameObject bronzeMedal;
+    [SerializeField] private GameObject silverMedal;
+    [SerializeField] private GameObject goldMedal;
     
     private void Awake()
     {
@@ -30,6 +34,10 @@ public class UIManager : MonoBehaviour
         
         nextCatButton.onClick.AddListener(NextCatButtonClicked);
         previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
+        
+        bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
+        silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
+        goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
     }
 
     private void OnDestroy()
