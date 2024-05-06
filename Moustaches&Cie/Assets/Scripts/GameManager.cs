@@ -17,10 +17,7 @@ public class GameManager : MonoBehaviour
     public enum GameLevel
     {
         Title,
-        Level1,
-        Level2,
-        Level3,
-        LevelMax,
+        Level,
         ScoreLevel
     }
     public GameLevel level;
@@ -90,17 +87,8 @@ public class GameManager : MonoBehaviour
             case GameLevel.Title:
                 HandleTitle();
                 break;
-            case GameLevel.Level1:
-                HandleLevel1();
-                break;
-            case GameLevel.Level2:
-                HandleLevel2();
-                break;
-            case GameLevel.Level3:
-                HandleLevel3();
-                break;
-            case GameLevel.LevelMax:
-                HandleLevelMax();
+            case GameLevel.Level:
+                HandleLevel();
                 break;
             case GameLevel.ScoreLevel:
                 HandleScoreLevel();
@@ -195,27 +183,9 @@ public class GameManager : MonoBehaviour
     }
     
     // Handle the new Levels
-    private void HandleLevel1()
+    private void HandleLevel()
     {MusicManager.instance.SwitchBossaNova(0);
-        SceneManager.LoadSceneAsync("Level 1");
-        
-    }
-
-    private void HandleLevel2()
-    {MusicManager.instance.SwitchBossaNova(0);
-        SceneManager.LoadSceneAsync("Level 2");
-        
-    }
-
-    private void HandleLevel3()
-    {MusicManager.instance.SwitchBossaNova(0);
-        SceneManager.LoadSceneAsync("Level 3");
-        
-    }
-
-    private void HandleLevelMax()
-    {MusicManager.instance.SwitchBossaNova(0);
-        SceneManager.LoadSceneAsync("Level Max");
+        SceneManager.LoadSceneAsync("Level");
         
     }
     

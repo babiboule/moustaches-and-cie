@@ -26,7 +26,7 @@ public class DayManager : MonoBehaviour
     private List<bool> m_ValidFolders = new List<bool>();
 
     private LogicManager.Problem m_Problem;
-    private GameManager.GameLevel m_Level;
+    private int m_Level;
 
     private void Awake()
     {
@@ -44,22 +44,22 @@ public class DayManager : MonoBehaviour
         StatsManager.instance.ResetDailyStats();
         
         // Set the level and the day
-        m_Level = GameManager.instance.level;
+        m_Level = StatsManager.instance.GetLevel();
         dayTMP.text = StatsManager.instance.GetDate() + "/" + StatsManager.instance.dayMax;
 
         // Set the number of folders depending of the level
         switch (m_Level)
         {
-            case GameManager.GameLevel.Level1:
+            case 1:
                 m_NFoldersMax = 5;
                 break;
-            case GameManager.GameLevel.Level2:
+            case 2:
                 m_NFoldersMax = 7;
                 break;
-            case GameManager.GameLevel.Level3:
+            case 3:
                 m_NFoldersMax = 8;
                 break;
-            case GameManager.GameLevel.LevelMax:
+            case 4:
                 m_NFoldersMax = 8;
                 break;
             default:

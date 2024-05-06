@@ -63,30 +63,13 @@ public class TitleScreen : MonoBehaviour
     private void NewGameButtonClicked()
     {
         GameManager.instance.ResetSave();
-        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
+        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
     }
 
     private void ContinueButtonClicked()
     {
         GameManager.instance.LoadGame();
-        switch (StatsManager.instance.GetLevel())
-       {
-           case 1:
-               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level1);
-               break;
-           case 2:
-               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level2);
-               break;
-           case 3 :
-               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level3);
-               break;
-           case 4 :
-               GameManager.instance.UpdateGameLevel(GameManager.GameLevel.LevelMax);
-               break;
-           default:
-               Debug.Log("LEVEL PROBLEM");
-               break;
-       }
+        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
     }
 
     private void OptionsButtonClicked()

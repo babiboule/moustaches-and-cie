@@ -74,11 +74,11 @@ public class CatManager : MonoBehaviour
             _animalsTMP.text = "Non";
     }
 
-    public static void InitialiseCurrentCats(GameManager.GameLevel level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)
+    public static void InitialiseCurrentCats(int level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)
     {
         switch (level)
         {
-            case GameManager.GameLevel.Level1:
+            case 1:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     var adopted = false;
@@ -101,21 +101,21 @@ public class CatManager : MonoBehaviour
                         else currentCats.Add(cat);
                 }
                 break;
-            case GameManager.GameLevel.Level2:
+            case 2:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <= 2)
                         currentCats.Add(cat);
                 }
                 break;
-            case GameManager.GameLevel.Level3:
+            case 3:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted && cat.level <=3)
                         currentCats.Add(cat);
                 }
                 break;
-            case GameManager.GameLevel.LevelMax:
+            case 4:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
                     if(!cat.adopted)
