@@ -49,6 +49,25 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle = outdoorCircle;
         _animalsCircle = animalsCircle;
         _commentCircle = commentCircle;
+
+        ageButton.interactable = false;
+        jobButton.interactable = false;
+        incomeButton.interactable = false;
+        childButton.interactable = false;
+        outdoorButton.interactable = false;
+        animalsButton.interactable = false;
+        commentButton.interactable = false;
+        
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            ageButton.interactable = true;
+            jobButton.interactable = true;
+            incomeButton.interactable = true;
+            childButton.interactable = true;
+            outdoorButton.interactable = true;
+            animalsButton.interactable = true;
+            commentButton.interactable = true;
+        }
     }
 
     public static void ResetCircles()

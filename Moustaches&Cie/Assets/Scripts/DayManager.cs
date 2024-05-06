@@ -170,25 +170,6 @@ public class DayManager : MonoBehaviour
         // Print the family infos 
         FamilyManager.PrintFamily(family);
     }
-
-    public void OldNextFolder()
-    {
-        nFolderTMP.text = m_NFolder + " / " + m_NFoldersMax; 
-        
-        // Get list of cats that are not adopted yet
-        _currentCats.Clear();
-        CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
-        _index = 0;
-
-        CatManager.PrintCatInfos(_currentCats[0]);
-
-        // Generate and print the first family folder
-        FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
-
-        
-        // Check the validity of the demand
-        m_Problem = LogicManager.CheckProblem(family, family.Cat);
-    }
     
     public static List<CatsScriptableObject.Cat> GetCurrentCats()
     {
