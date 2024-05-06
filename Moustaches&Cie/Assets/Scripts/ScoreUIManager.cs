@@ -13,9 +13,10 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private TMP_Text detailsTMP;
     [SerializeField] private TMP_Text levelTMP;
     [SerializeField] private TMP_Text upExpTMP;
+    [SerializeField] private TMP_Text totalExpTMP;
     [SerializeField] private Button nextDayButton;
     [SerializeField] private Button toTitleButton;
-    
+    [SerializeField] private Image xpBar;
     
     // Daily stats
     private int m_GoodAdoptions;
@@ -55,6 +56,23 @@ public class ScoreUIManager : MonoBehaviour
         upExpTMP.text = "+ " + StatsManager.instance.upExp * m_GoodAdoptions + " exp";
 
         UpExp();
+        
+        switch (StatsManager.instance.GetLevel())
+        {
+            case 1:
+                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl1;
+                break;
+            case 2:
+                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl2;
+                break;
+            case 3:
+                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl3;
+                break;
+            default:
+                totalExpTMP.text = "Exp Max !";
+                break;
+        }
+
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
         
         PrintProblems();
@@ -69,19 +87,33 @@ public class ScoreUIManager : MonoBehaviour
     private void UpExp()
     {
         StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*m_GoodAdoptions);
-        var exp = StatsManager.instance.GetExp();
+        float exp = StatsManager.instance.GetExp();
         if (exp >= StatsManager.instance.upLvl3)
         {
             StatsManager.instance.SetLevel(4);
+            xpBar.fillAmount = 1;
         }
         else if (exp >= StatsManager.instance.upLvl2)
         {
             StatsManager.instance.SetLevel(3);
+            xpBar.fillAmount = (exp - StatsManager.instance.upLvl2) / StatsManager.instance.upLvl3;
+            Debug.Log("xp"+xpBar.fillAmount);
         }
         else if (exp >= StatsManager.instance.upLvl1)
         {
             StatsManager.instance.SetLevel(2);
+            xpBar.fillAmount = (exp - StatsManager.instance.upLvl1) / StatsManager.instance.upLvl2;
+            Debug.Log("xp"+xpBar.fillAmount);
         }
+        else
+        {
+            xpBar.fillAmount = exp / StatsManager.instance.upLvl1;
+            Debug.Log("exp" + exp);
+            Debug.Log("uplvl" + StatsManager.instance.upLvl1);
+            
+            Debug.Log("xp"+xpBar.fillAmount);
+        }
+
     }
     
     private void PrintProblems()
