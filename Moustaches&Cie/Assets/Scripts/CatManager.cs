@@ -104,22 +104,70 @@ public class CatManager : MonoBehaviour
             case 2:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
+                    var adopted = false;
                     if(!cat.adopted && cat.level <= 2)
-                        currentCats.Add(cat);
+                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
+                        {
+                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
+                            {
+                                if (adoptedCat == cat.name)
+                                {
+                                    adopted = true;
+                                }
+                            }
+
+                            if (!adopted)
+                            {
+                                currentCats.Add(cat);
+                            }
+                        }
+                        else currentCats.Add(cat);
                 }
                 break;
             case 3:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
+                    var adopted = false;
                     if(!cat.adopted && cat.level <=3)
-                        currentCats.Add(cat);
+                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
+                        {
+                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
+                            {
+                                if (adoptedCat == cat.name)
+                                {
+                                    adopted = true;
+                                }
+                            }
+
+                            if (!adopted)
+                            {
+                                currentCats.Add(cat);
+                            }
+                        }
+                        else currentCats.Add(cat);
                 }
                 break;
             case 4:
                 foreach (CatsScriptableObject.Cat cat in cats.cats)
                 {
+                    var adopted = false;
                     if(!cat.adopted)
-                        currentCats.Add(cat);
+                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
+                        {
+                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
+                            {
+                                if (adoptedCat == cat.name)
+                                {
+                                    adopted = true;
+                                }
+                            }
+
+                            if (!adopted)
+                            {
+                                currentCats.Add(cat);
+                            }
+                        }
+                        else currentCats.Add(cat);
                 }
                 break;
             default:

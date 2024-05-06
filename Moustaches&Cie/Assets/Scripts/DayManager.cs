@@ -246,9 +246,11 @@ public class DayManager : MonoBehaviour
             ProblemsSelector.ResetCircles();
             SetAcceptButtonActive(true);
             SetDeclineButtonActive(false);
+            if(!ProblemsSelector.CheckProblemSelected(m_Problem))
+                StatsManager.instance.AddBadDecline();
         }
 
-        if (!m_Problem.Exists)
+        if (!m_Problem.Exists && StatsManager.instance.GetLevel() <= 1)
         {
             StatsManager.instance.AddBadDecline();
         }

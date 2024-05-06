@@ -12,8 +12,10 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private TMP_Text badDeclineTMP;
     [SerializeField] private TMP_Text detailsTMP;
     [SerializeField] private TMP_Text levelTMP;
+    [SerializeField] private TMP_Text upExpTMP;
     [SerializeField] private Button nextDayButton;
     [SerializeField] private Button toTitleButton;
+    
     
     // Daily stats
     private int m_GoodAdoptions;
@@ -38,10 +40,19 @@ public class ScoreUIManager : MonoBehaviour
         m_BadAdoptions = StatsManager.instance.GetBadAdoptions();
         m_BadDecline = StatsManager.instance.GetBadDecline();
         
-        goodAdoptionTMP.text = "Chats correctement placés : " + m_GoodAdoptions;
+        goodAdoptionTMP.text = "Chats bien placés : " + m_GoodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
-        badDeclineTMP.text = "Dossiers valides refusés : " + m_BadDecline;
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            badDeclineTMP.text = "Mauvaises justifications : " + m_BadDecline;
+        }
+        else
+        {
+            badDeclineTMP.text = "Bons dossiers refusés : " + m_BadDecline;
+        }
+
         detailsTMP.text = "Détails :";
+        upExpTMP.text = "+ " + StatsManager.instance.upExp * m_GoodAdoptions + " exp";
 
         UpExp();
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();

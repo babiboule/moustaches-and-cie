@@ -81,6 +81,32 @@ public class ProblemsSelector : MonoBehaviour
         _commentCircle.SetActive(false);
     }
 
+    public static bool CheckProblemSelected(LogicManager.Problem problem)
+    {
+        if (!problem.Exists)
+            return false;
+        switch (problem.PbFamily)
+        {
+            case LogicManager.PbFamily.TooOld:
+                return _ageCircle.activeSelf;
+            case LogicManager.PbFamily.TooYoung:
+                return _ageCircle.activeSelf;
+            case LogicManager.PbFamily.TooPoor:
+                return _incomeCircle.activeSelf;
+            case LogicManager.PbFamily.TooBusy:
+                return _jobCircle.activeSelf;
+            case LogicManager.PbFamily.Child:
+                return _childCircle.activeSelf;
+            case LogicManager.PbFamily.NoOutdoor:
+                return _outdoorCircle.activeSelf;
+            case LogicManager.PbFamily.Animals:
+                return _animalsCircle.activeSelf;
+            case LogicManager.PbFamily.Comment:
+                return _commentCircle.activeSelf;
+        }
+        return false;
+    }
+
     public static bool IsSelected()
     {
         return _ageCircle.activeSelf || _jobCircle.activeSelf || _incomeCircle.activeSelf || _childCircle.activeSelf ||
