@@ -96,22 +96,16 @@ public class ScoreUIManager : MonoBehaviour
         else if (exp >= StatsManager.instance.upLvl2)
         {
             StatsManager.instance.SetLevel(3);
-            xpBar.fillAmount = (exp - StatsManager.instance.upLvl2) / StatsManager.instance.upLvl3;
-            Debug.Log("xp"+xpBar.fillAmount);
+            xpBar.fillAmount = (exp - StatsManager.instance.upLvl2) / (StatsManager.instance.upLvl3-StatsManager.instance.upLvl2);
         }
         else if (exp >= StatsManager.instance.upLvl1)
         {
             StatsManager.instance.SetLevel(2);
-            xpBar.fillAmount = (exp - StatsManager.instance.upLvl1) / StatsManager.instance.upLvl2;
-            Debug.Log("xp"+xpBar.fillAmount);
+            xpBar.fillAmount = (exp - StatsManager.instance.upLvl1) / (StatsManager.instance.upLvl2-StatsManager.instance.upLvl1);
         }
         else
         {
             xpBar.fillAmount = exp / StatsManager.instance.upLvl1;
-            Debug.Log("exp" + exp);
-            Debug.Log("uplvl" + StatsManager.instance.upLvl1);
-            
-            Debug.Log("xp"+xpBar.fillAmount);
         }
 
     }

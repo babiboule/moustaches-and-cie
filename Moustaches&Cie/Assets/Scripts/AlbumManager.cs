@@ -89,7 +89,7 @@ public class AlbumManager : MonoBehaviour
 
     private void PrintLeftCat()
     {
-        if (StatsManager.instance.GetLevel() == cats.cats[m_IndexL].level)
+        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[m_IndexL].level)
         {
             catNameL.text = cats.cats[m_IndexL].name;
             drawingL.sprite = cats.cats[m_IndexL].picture;
@@ -111,7 +111,7 @@ public class AlbumManager : MonoBehaviour
 
     private void PrintRightCat()
     {
-        if (StatsManager.instance.GetLevel() == cats.cats[m_IndexR].level)
+        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[m_IndexR].level)
         {
             catNameR.text = cats.cats[m_IndexR].name;
             drawingR.sprite = cats.cats[m_IndexR].picture;

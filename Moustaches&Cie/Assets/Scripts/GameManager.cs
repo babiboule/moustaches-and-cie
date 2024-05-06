@@ -126,6 +126,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString("CatAlbum"+i, StatsManager.instance.GetAlbumCats(i));
         }
         
+        if(PlayerPrefs.GetInt("MaxLevel") < StatsManager.instance.GetLevel())
+            PlayerPrefs.SetInt("MaxLevel", StatsManager.instance.GetLevel());
+        
         PlayerPrefs.Save();
     }
 
