@@ -11,7 +11,6 @@ namespace ScriptableObjects
         [System.Serializable] public struct Job
         {
             public string jobName;
-            public int budget;
             public int freeTime;
         }
         

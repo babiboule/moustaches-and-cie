@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     // Gameplay components
     [SerializeField] private Button nextCatButton;
     [SerializeField] private Button previousCatButton;
+    [SerializeField] private Button postItButton;
+    [SerializeField] private GameObject postIt;
+    [SerializeField] private GameObject postItBack;
+    
     
     // Medals
     [SerializeField] private GameObject bronzeMedal;
@@ -34,6 +38,7 @@ public class UIManager : MonoBehaviour
         
         nextCatButton.onClick.AddListener(NextCatButtonClicked);
         previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
+        postItButton.onClick.AddListener(PostItButtonClicked);
         
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
@@ -89,7 +94,20 @@ public class UIManager : MonoBehaviour
         DayManager.NextIndex();
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
-
+        
+        if (DayManager.GetCurrentCats()[index].name != DayManager.GetCurrentFamily().Cat.name)
+        {
+            postIt.SetActive(false);
+            postItBack.SetActive(true);
+            postItButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            postIt.SetActive(true);
+            postItBack.SetActive(false);
+            postItButton.gameObject.SetActive(false);
+        }
+        
         if (indexMax >= 0)
         {
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
@@ -103,10 +121,39 @@ public class UIManager : MonoBehaviour
         DayManager.PreviousIndex();
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
-        
+
+        if (DayManager.GetCurrentCats()[index].name != DayManager.GetCurrentFamily().Cat.name)
+        {
+            postIt.SetActive(false);
+            postItBack.SetActive(true);
+            postItButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            postIt.SetActive(true);
+            postItBack.SetActive(false);
+            postItButton.gameObject.SetActive(false);
+        }
+
         if(indexMax >= 0)
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         else 
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
+    }
+    
+    private void PostItButtonClicked()
+    {
+        for (var i = 0 ; i < DayManager.GetCurrentCats().Count; i++)
+        {
+            if (DayManager.GetCurrentCats()[i].name == DayManager.GetCurrentFamily().Cat.name)
+            {
+                DayManager.SetIndex(i);
+                CatManager.PrintCatInfos(DayManager.GetCurrentCats()[i]);
+                postIt.SetActive(true);
+                postItBack.SetActive(false);
+                postItButton.gameObject.SetActive(false);
+                return;
+            }
+        }
     }
 }

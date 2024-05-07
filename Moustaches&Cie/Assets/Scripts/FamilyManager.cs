@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class FamilyManager : MonoBehaviour
     private static TMP_Text _budgetTMP;
     private static TMP_Text _childTMP;
     private static TMP_Text _outdoorTMP;
-    private static TMP_Text _animalsTMP;
+    private static TMP_Text _catsTMP;
     private static TMP_Text _commentTMP;
     private static TMP_Text _catTMP;
     
@@ -81,7 +82,7 @@ public class FamilyManager : MonoBehaviour
         public int FreeTime;
         public bool Child;
         public FamilyInfosScriptableObject.Outdoor Outdoor;
-        public bool Animals;
+        [FormerlySerializedAs("Animals")] public bool Cats;
         public FamilyInfosScriptableObject.Comment Comment;
         public CatsScriptableObject.Cat Cat;
     }
@@ -97,7 +98,7 @@ public class FamilyManager : MonoBehaviour
         _budgetTMP = budgetTMP;
         _childTMP = childTMP;
         _outdoorTMP = outdoorTMP;
-        _animalsTMP = animalsTMP;
+        _catsTMP = animalsTMP;
         _commentTMP = commentTMP;
         _catTMP = catTMP;
 
@@ -135,28 +136,17 @@ public class FamilyManager : MonoBehaviour
         family.Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)];
         family.Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)];
         family.Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)];
-        family.Home = familyInfos.listHomes[Random.Range(0, familyInfos.listHomes.Count)];
-        family.Car = false;
-        if (Random.Range(1, 101) < 50)
-        {
-            family.Car = true;
-        }
+        family.Home = familyInfos.listHomes[0]; // Strasbourg 67
+        family.Car = true;
         family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
         while (family.Comment.problematic)
         {
             family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
         }
-
-        family.Outdoor = Random.Range(0, 3) switch
-        {
-            0 => FamilyInfosScriptableObject.Outdoor.Aucun,
-            1 => FamilyInfosScriptableObject.Outdoor.Fermé,
-            2 => FamilyInfosScriptableObject.Outdoor.Ouvert,
-            _ => family.Outdoor
-        };
-
+        family.Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé;
+        family.Budget = 300;
         family.Child = false;
-        family.Animals = false;
+        family.Cats = false;
         
         int i = Random.Range(0, cats.Count);
         family.Cat = cats[i];
@@ -179,7 +169,6 @@ public class FamilyManager : MonoBehaviour
             {
                 int index = Random.Range(0, familyInfos.listJobs.Count);
                 family.JobName = familyInfos.listJobs[index].jobName;
-                family.Budget = familyInfos.listJobs[index].budget + Random.Range(0, 6) * 50;
                 family.FreeTime = familyInfos.listJobs[index].freeTime;
             }
         }
@@ -188,7 +177,6 @@ public class FamilyManager : MonoBehaviour
         else if (family.Age > 65)
         {
             family.JobName = "Retraité.e";
-            family.Budget = 1200 + Random.Range(0, 15) * 50; // Between 1200 and 1900€ per month
             family.FreeTime = 3;
         }
         
@@ -197,7 +185,6 @@ public class FamilyManager : MonoBehaviour
         {
             int index = Random.Range(0, familyInfos.listJobs.Count);
             family.JobName = familyInfos.listJobs[index].jobName;
-            family.Budget = familyInfos.listJobs[index].budget + Random.Range(0, 6) * 50;
             family.FreeTime = familyInfos.listJobs[index].freeTime;
         }
         return family;
@@ -214,11 +201,11 @@ public class FamilyManager : MonoBehaviour
                 else
                     family.Child = true;
                 break;
-            case 2: // Add an animal
-                if (family.Animals)
+            case 2: // Add a cat
+                if (family.Cats)
                     AddConstraint(family, familyInfos);
                 else
-                    family.Animals = true;
+                    family.Cats = true;
                 break;
             case 3: // Change the comment
                 while (!family.Comment.problematic)
@@ -226,6 +213,16 @@ public class FamilyManager : MonoBehaviour
                     family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
                 }
                 break;
+            case 4: // Change home
+                family.Home = familyInfos.listHomes[Random.Range(0, familyInfos.listHomes.Count)];
+                family.Car = true;
+                if (family.Home.city != "Strasbourg")
+                {
+                    if (Random.Range(1, 101) > 50)
+                        family.Car = false;
+                }
+                break;
+       
         }
         
         return family;
@@ -263,10 +260,10 @@ public class FamilyManager : MonoBehaviour
             _childTMP.text = "Oui";
         else
             _childTMP.text = "Non";
-        if(family.Animals)
-            _animalsTMP.text = "Oui";
+        if(family.Cats)
+            _catsTMP.text = "Oui";
         else
-            _animalsTMP.text = "Non";
+            _catsTMP.text = "Non";
         _outdoorTMP.text = family.Outdoor.ToString();
         _commentTMP.text = family.Comment.commentText;
         _catTMP.text = family.Cat.name;

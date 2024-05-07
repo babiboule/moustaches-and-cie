@@ -20,13 +20,14 @@ public class DayManager : MonoBehaviour
     private static List<CatsScriptableObject.Cat> _currentCats = new List<CatsScriptableObject.Cat>();
     private static int _index;
 
-
     private int m_NFoldersMax;
     private int m_NFolder;
     private List<bool> m_ValidFolders = new List<bool>();
 
     private LogicManager.Problem m_Problem;
     private int m_Level;
+
+    private static FamilyManager.Family _family;
 
     private void Awake()
     {
@@ -127,20 +128,20 @@ public class DayManager : MonoBehaviour
         CatManager.InitialiseCurrentCats(m_Level, cats, _currentCats);
         
         // Generate Family
-        FamilyManager.Family family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
+        _family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
         
         // Check the validity of the first generated family
-        m_Problem = LogicManager.CheckProblem(family, family.Cat);
+        m_Problem = LogicManager.CheckProblem(_family, _family.Cat);
         // Generate a new family if it has to not be problematic but is
         if (m_ValidFolders[m_NFolder - 1])
             while (m_Problem.Exists)
             {
-                family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
-                m_Problem = LogicManager.CheckProblem(family, family.Cat);
+                _family = FamilyManager.GenerateFamily(familyPicture, familyInfos, _currentCats);
+                m_Problem = LogicManager.CheckProblem(_family, _family.Cat);
             }
         
         // Add constraints until there is a conflict
-        FamilyManager.Family tempFamily = family;
+        FamilyManager.Family tempFamily = _family;
         LogicManager.Problem tempProblem = m_Problem;
         while (!tempProblem.Exists)
         {
@@ -151,24 +152,23 @@ public class DayManager : MonoBehaviour
                 if (!m_ValidFolders[m_NFolder - 1])
                 {
                     m_Problem = tempProblem;
-                    family = tempFamily;
+                    _family = tempFamily;
                 }
             }
             else
             {
-                family = tempFamily;
+                _family = tempFamily;
                 m_Problem = tempProblem;
             }
         }
         
-        // Set the cat page on the cat before the one adopted
-        if (_index >= _currentCats.Count)
-            SetIndex(GetIndexMax());
+        // Set the cat page on the cat asked
+        SetIndex(GetCurrentCatIndex());
             
         CatManager.PrintCatInfos(_currentCats[_index]);
         
         // Print the family infos 
-        FamilyManager.PrintFamily(family);
+        FamilyManager.PrintFamily(_family);
     }
     
     public static List<CatsScriptableObject.Cat> GetCurrentCats()
@@ -189,6 +189,17 @@ public class DayManager : MonoBehaviour
     public static int GetIndexMax()
     {
         return _currentCats.Count - 1;
+    }
+
+    private static int GetCurrentCatIndex()
+    {
+        for (var i = 0; i < _currentCats.Count; i++)
+        {
+            if (_currentCats[i].name == _family.Cat.name)
+                return i;
+        }
+
+        return 0;
     }
 
     public static void NextIndex()
@@ -273,5 +284,10 @@ public class DayManager : MonoBehaviour
     public static void SetDeclineButtonActive(bool a)
     { 
         _declineStampButton.interactable = a;
+    }
+
+    public static FamilyManager.Family GetCurrentFamily()
+    {
+        return _family;
     }
 }

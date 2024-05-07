@@ -146,7 +146,7 @@ public class LogicManager : MonoBehaviour
                 problem.PbFamily = PbFamily.Child;
                 return problem;
             }
-            if (_family.FreeTime <= 2 && !_family.Animals)
+            if (_family.FreeTime <= 2 && !_family.Cats)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
@@ -162,7 +162,7 @@ public class LogicManager : MonoBehaviour
         {
             problem.PbCat = PbCat.Sick;
 
-            if (_family.Animals)
+            if (_family.Cats)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Animals;
@@ -218,7 +218,6 @@ public class LogicManager : MonoBehaviour
                 return problem;
             }
         }
-        
         return problem;
     }
         
@@ -228,7 +227,7 @@ public class LogicManager : MonoBehaviour
         {
             problem.PbCat = PbCat.Lover;
             
-            if (_family.FreeTime < 2 && !_family.Animals)
+            if (_family.FreeTime < 2 && !_family.Cats)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
@@ -275,7 +274,7 @@ public class LogicManager : MonoBehaviour
         
     private static Problem CheckAnimals(Problem problem)
     {
-        if (_family.Animals)
+        if (_family.Cats)
         {
             if (_cat.animals == CatsScriptableObject.Animals.Non)
             {
