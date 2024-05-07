@@ -8,9 +8,10 @@ namespace ScriptableObjects
     {
         public enum Nature
         {
-            Jovial,
+            Amical,
+            Indépendant,
             Peureux,
-            Agressif
+            Collant
         }
 
         public enum Sex
@@ -18,6 +19,22 @@ namespace ScriptableObjects
             M,
             F
         }
+
+        public enum Sick
+        {
+            Aucune,
+            Coriza,
+            FIV,
+            PIF
+        }
+
+        public enum Animals
+        {
+            Ok,
+            Non,
+            Besoin
+        }
+        
         [System.Serializable] public struct Cat
         {
             public Sprite picture;
@@ -26,10 +43,11 @@ namespace ScriptableObjects
             public float age;
             public string fur;
             public Sex sex;
-            public bool sick;
+            public Sick sick;
+            public bool disability;
             public Nature nature;
             public bool outdoor;
-            public bool animals;
+            public Animals animals;
             public bool adopted;
             public int level;
         }

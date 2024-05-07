@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ScriptableObjects
 {
@@ -10,8 +11,21 @@ namespace ScriptableObjects
         [System.Serializable] public struct Job
         {
             public string jobName;
-            public int income;
+            public int budget;
             public int freeTime;
+        }
+        
+        [System.Serializable] public struct Home
+        {
+            public string city;
+            public int department;
+        }
+        
+        [System.Serializable] public enum Outdoor
+        {
+            Aucun,
+            Ouvert,
+            Fermé
         }
 
         [System.Serializable]
@@ -25,6 +39,7 @@ namespace ScriptableObjects
         public List<string> listNames;
         public List<string> listForenames;
         public List<int> listAges;
+        public List<Home> listHomes;
         public List<Job> listJobs;
         public List<Comment> listComments;
     }

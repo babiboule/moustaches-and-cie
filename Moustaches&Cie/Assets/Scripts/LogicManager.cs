@@ -7,11 +7,16 @@ public class LogicManager : MonoBehaviour
     {
         TooOld,
         TooYoung,
+        TooFar,
+        NoCar,
         TooPoor,
         TooBusy,
         Child,
         NoOutdoor,
+        OpenOutdoor,
+        Outdoor,
         Animals,
+        NoAnimals,
         Comment
     }
     
@@ -19,10 +24,12 @@ public class LogicManager : MonoBehaviour
     {
         Kitten,
         Sick,
+        Disable,
         Shy,
-        Agressive,
+        Lover,
         Outdoor,
-        Animals,
+        NoOkAnimals,
+        NeedAnimals,
         None
     }
     
@@ -51,11 +58,19 @@ public class LogicManager : MonoBehaviour
         if (problem.Exists)
             return problem;
         
+        problem = CheckFamilyHome(problem);
+        if (problem.Exists)
+            return problem;
+        
         problem = CheckCatAge(problem);
         if (problem.Exists)
             return problem;
 
         problem = CheckSick(problem);
+        if (problem.Exists)
+            return problem;
+        
+        problem = CheckDisability(problem);
         if (problem.Exists)
             return problem;
 
@@ -88,6 +103,34 @@ public class LogicManager : MonoBehaviour
             problem.PbFamily = PbFamily.TooYoung;
         }
 
+        if (_family.Age > 70)
+        {
+            problem.Exists = true;
+            problem.PbCat = PbCat.None;
+            problem.PbFamily = PbFamily.TooOld;
+        }
+
+        return problem;
+    }
+
+    private static Problem CheckFamilyHome(Problem problem)
+    {
+        if (_family.Home.department != 67)
+        {
+            problem.Exists = true;
+            problem.PbCat = PbCat.None;
+            problem.PbFamily = PbFamily.TooFar;
+        }
+        else if (_family.Home.city != "Strasbourg")
+        {
+            if (!_family.Car)
+            {
+                problem.Exists = true;
+                problem.PbCat = PbCat.None;
+                problem.PbFamily = PbFamily.NoCar;
+            }
+        }
+
         return problem;
     }
 
@@ -103,13 +146,7 @@ public class LogicManager : MonoBehaviour
                 problem.PbFamily = PbFamily.Child;
                 return problem;
             }
-            if (_family.Age > 90)
-            {
-                problem.Exists = true;
-                problem.PbFamily = PbFamily.TooOld;
-                return problem;
-            }
-            if (_family.FreeTime < 2)
+            if (_family.FreeTime <= 2 && !_family.Animals)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
@@ -121,55 +158,92 @@ public class LogicManager : MonoBehaviour
     
     private static Problem CheckSick(Problem problem)
     {
-        if (_cat.sick)
+        if (_cat.sick != CatsScriptableObject.Sick.Aucune)
         {
             problem.PbCat = PbCat.Sick;
 
-            if (_family.Child)
+            if (_family.Animals)
             {
                 problem.Exists = true;
-                problem.PbFamily = PbFamily.Child;
+                problem.PbFamily = PbFamily.Animals;
                 return problem;
             }
-            if (_family.Income < 1000)
+            if (_family.Outdoor == FamilyInfosScriptableObject.Outdoor.Ouvert)
             {
                 problem.Exists = true;
-                problem.PbFamily = PbFamily.TooPoor;
+                problem.PbFamily = PbFamily.OpenOutdoor;
                 return problem;
             }
-            if (_family.FreeTime < 2)
+
+            switch (_cat.sick)
+            {
+                case CatsScriptableObject.Sick.Coriza:
+                    if (_family.Budget < 80)
+                    {
+                        problem.Exists = true;
+                        problem.PbFamily = PbFamily.TooPoor;
+                        return problem;
+                    }
+                    break;
+                case CatsScriptableObject.Sick.FIV :
+                    if (_family.Budget < 120)
+                    {
+                        problem.Exists = true;
+                        problem.PbFamily = PbFamily.TooPoor;
+                        return problem;
+                    }
+                    break;
+                case CatsScriptableObject.Sick.PIF :
+                    if (_family.Budget < 220)
+                    {
+                        problem.Exists = true;
+                        problem.PbFamily = PbFamily.TooPoor;
+                        return problem;
+                    }
+                    break;
+            }
+        }
+        return problem;
+    }
+
+    private static Problem CheckDisability(Problem problem)
+    {
+        if (_cat.disability)
+        {
+            if (_family.Outdoor != FamilyInfosScriptableObject.Outdoor.Aucun)
+            {
+                problem.Exists = true;
+                problem.PbFamily = PbFamily.Outdoor;
+                problem.PbCat = PbCat.Disable;
+                return problem;
+            }
+        }
+        
+        return problem;
+    }
+        
+    private static Problem CheckNature(Problem problem)
+    {
+        if (_cat.nature == CatsScriptableObject.Nature.Collant)
+        {
+            problem.PbCat = PbCat.Lover;
+            
+            if (_family.FreeTime < 2 && !_family.Animals)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;
                 return problem;
             }
         }
-        return problem;
-    } 
-    
-        
-    private static Problem CheckNature(Problem problem)
-    {
+
         if (_cat.nature == CatsScriptableObject.Nature.Peureux)
         {
             problem.PbCat = PbCat.Shy;
             
-            if (_family.FreeTime < 2)
+            if (_family.Outdoor == FamilyInfosScriptableObject.Outdoor.Ouvert)
             {
                 problem.Exists = true;
-                problem.PbFamily = PbFamily.TooBusy;
-                return problem;
-            }
-        }
-
-        if (_cat.nature == CatsScriptableObject.Nature.Agressif)
-        {
-            problem.PbCat = PbCat.Agressive;
-            
-            if (_family.FreeTime < 2)
-            {
-                problem.Exists = true;
-                problem.PbFamily = PbFamily.TooBusy;
+                problem.PbFamily = PbFamily.OpenOutdoor;
                 return problem;
             }
             if (_family.Child)
@@ -181,7 +255,6 @@ public class LogicManager : MonoBehaviour
         }
         return problem;
     } 
-    
         
     private static Problem CheckOutdoor(Problem problem)
     {
@@ -189,7 +262,7 @@ public class LogicManager : MonoBehaviour
         {
             problem.PbCat = PbCat.Outdoor;
 
-            if (!_family.Outdoor)
+            if (_family.Outdoor == FamilyInfosScriptableObject.Outdoor.Aucun)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.NoOutdoor;
@@ -202,14 +275,23 @@ public class LogicManager : MonoBehaviour
         
     private static Problem CheckAnimals(Problem problem)
     {
-        if (!_cat.animals)
+        if (_family.Animals)
         {
-            problem.PbCat = PbCat.Animals;
-
-            if (_family.Animals)
+            if (_cat.animals == CatsScriptableObject.Animals.Non)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Animals;
+                problem.PbCat = PbCat.NoOkAnimals;
+                return problem;
+            }
+        }
+        else
+        {
+            if (_cat.animals == CatsScriptableObject.Animals.Besoin)
+            {
+                problem.Exists = true;
+                problem.PbFamily = PbFamily.NoAnimals;
+                problem.PbCat = PbCat.NeedAnimals;
                 return problem;
             }
         }

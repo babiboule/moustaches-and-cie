@@ -78,10 +78,6 @@ public class ScoreUIManager : MonoBehaviour
         PrintProblems();
         
         GameManager.instance.SaveGame();
-        
-        ///////////       DEBUG         ////////////////////////////////
-        Debug.Log(StatsManager.instance.GetLevel());
-        Debug.Log(StatsManager.instance.GetExp());
     }
 
     private void UpExp()
@@ -118,61 +114,37 @@ public class ScoreUIManager : MonoBehaviour
         {
             detailsTMP.text += "\n" + problem.Cat.name;
 
-            switch (problem.PbCat)
+            detailsTMP.text += problem.PbCat switch
             {
-                case LogicManager.PbCat.Kitten:
-                    detailsTMP.text += " - chaton";
-                    break;
-                case LogicManager.PbCat.Sick:
-                    detailsTMP.text += " - malade";
-                    break;
-                case LogicManager.PbCat.Shy:
-                    detailsTMP.text += " - peureux.se";
-                    break;
-                case LogicManager.PbCat.Agressive:
-                    detailsTMP.text += " - agressif.ve";
-                    break;
-                case LogicManager.PbCat.Outdoor:
-                    detailsTMP.text += " - besoin d'extérieur";
-                    break;
-                case LogicManager.PbCat.Animals:
-                    detailsTMP.text += " - pas ok animaux";
-                    break;
-                case LogicManager.PbCat.None:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                LogicManager.PbCat.Kitten => " - chaton",
+                LogicManager.PbCat.Sick => " - malade",
+                LogicManager.PbCat.Shy => " - peureux.se",
+                LogicManager.PbCat.Lover => " - pot de colle",
+                LogicManager.PbCat.Outdoor => " - besoin d'extérieur",
+                LogicManager.PbCat.NoOkAnimals => " - pas ok chats",
+                LogicManager.PbCat.Disable => " - handicap",
+                LogicManager.PbCat.NeedAnimals => " - besoin d'un autre chat",
+                LogicManager.PbCat.None => "",
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
-            switch (problem.PbFamily)
+            detailsTMP.text += problem.PbFamily switch
             {
-                case LogicManager.PbFamily.TooOld:
-                    detailsTMP.text += " - trop vieux.ieille";
-                    break;
-                case LogicManager.PbFamily.TooYoung:
-                    detailsTMP.text += " - mineur.e";
-                    break;
-                case LogicManager.PbFamily.TooPoor:
-                    detailsTMP.text += " - trop peu d'argent";
-                    break;
-                case LogicManager.PbFamily.TooBusy:
-                    detailsTMP.text += " - trop occupé.e";
-                    break;
-                case LogicManager.PbFamily.Child:
-                    detailsTMP.text += " - a un enfant";
-                    break;
-                case LogicManager.PbFamily.NoOutdoor:
-                    detailsTMP.text += " - pas d'extérieur";
-                    break;
-                case LogicManager.PbFamily.Animals:
-                    detailsTMP.text += " - a un animal";
-                    break;
-                case LogicManager.PbFamily.Comment:
-                    detailsTMP.text += " - commentaire pas ok";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                LogicManager.PbFamily.TooOld => " - trop vieux.ieille",
+                LogicManager.PbFamily.TooYoung => " - mineur.e",
+                LogicManager.PbFamily.TooPoor => " - budget trop faible",
+                LogicManager.PbFamily.TooBusy => " - trop occupé.e",
+                LogicManager.PbFamily.Child => " - a un enfant",
+                LogicManager.PbFamily.NoOutdoor => " - pas d'extérieur",
+                LogicManager.PbFamily.Animals => " - a un autre chat",
+                LogicManager.PbFamily.Comment => " - commentaire pas ok",
+                LogicManager.PbFamily.TooFar => " - pas dans le Bas-Rhin",
+                LogicManager.PbFamily.NoCar => " - pas de voiture",
+                LogicManager.PbFamily.OpenOutdoor => " - extérieur pas sécurisé",
+                LogicManager.PbFamily.Outdoor => " - pas d'extérieur",
+                LogicManager.PbFamily.NoAnimals => " - pas d'autre chat",
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
             foreach (string cat in StatsManager.instance.GetAdoptedCats())
             {
@@ -183,13 +155,13 @@ public class ScoreUIManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < adoptedTemp.Count ; i++)
+        foreach (var t in adoptedTemp)
         {
-            StatsManager.instance.RemoveAdoptedCat(adoptedTemp[i]);
+            StatsManager.instance.RemoveAdoptedCat(t);
         }
     }
     
-    private void NextDayButtonClicked()
+    private static void NextDayButtonClicked()
     {
         if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)
         {
@@ -202,7 +174,7 @@ public class ScoreUIManager : MonoBehaviour
 
     }
 
-    private void ToTitleButtonClicked()
+    private static void ToTitleButtonClicked()
     {
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }

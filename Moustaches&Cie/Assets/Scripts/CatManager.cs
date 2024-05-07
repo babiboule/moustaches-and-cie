@@ -15,6 +15,7 @@ public class CatManager : MonoBehaviour
     public TMP_Text furTMP;
     public TMP_Text sexTMP;
     public TMP_Text sickTMP;
+    public TMP_Text disabilityTMP;
     public TMP_Text natureTMP;
     public TMP_Text outdoorTMP;
     public TMP_Text animalsTMP;
@@ -25,6 +26,7 @@ public class CatManager : MonoBehaviour
     private static TMP_Text _furTMP;
     private static TMP_Text _sexTMP;
     private static TMP_Text _sickTMP;
+    private static TMP_Text _disabilityTMP;
     private static TMP_Text _natureTMP;
     private static TMP_Text _outdoorTMP;
     private static TMP_Text _animalsTMP;
@@ -39,6 +41,7 @@ public class CatManager : MonoBehaviour
         _furTMP = furTMP;
         _sexTMP = sexTMP;
         _sickTMP = sickTMP;
+        _disabilityTMP = disabilityTMP;
         _natureTMP = natureTMP;
         _outdoorTMP = outdoorTMP;
         _animalsTMP = animalsTMP;
@@ -60,18 +63,16 @@ public class CatManager : MonoBehaviour
         _furTMP.text = cat.fur;
         _sexTMP.text = cat.sex.ToString();
         _natureTMP.text = cat.nature.ToString();
-        if(cat.sick)
-            _sickTMP.text = "Oui";
-        else 
-            _sickTMP.text = "Non";
+        _sickTMP.text = cat.sick.ToString();
+        if (cat.disability)
+            _disabilityTMP.text = "Oui";
+        else
+            _disabilityTMP.text = "Non";
         if(cat.outdoor)
             _outdoorTMP.text = "Oui";
         else 
             _outdoorTMP.text = "Non";
-        if(cat.animals)
-            _animalsTMP.text = "Oui";
-        else 
-            _animalsTMP.text = "Non";
+        _animalsTMP.text = cat.animals.ToString();
     }
 
     public static void InitialiseCurrentCats(int level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)

@@ -8,6 +8,7 @@ public class ProblemsSelector : MonoBehaviour
 {
     // Buttons
     [SerializeField] private Button ageButton;
+    [SerializeField] private Button homeButton;
     [SerializeField] private Button jobButton;
     [SerializeField] private Button incomeButton;
     [SerializeField] private Button childButton;
@@ -17,6 +18,7 @@ public class ProblemsSelector : MonoBehaviour
     
     // Images
     [SerializeField] private GameObject ageCircle;
+    [SerializeField] private GameObject homeCircle;
     [SerializeField] private GameObject jobCircle;
     [SerializeField] private GameObject incomeCircle;
     [SerializeField] private GameObject childCircle;
@@ -25,6 +27,7 @@ public class ProblemsSelector : MonoBehaviour
     [SerializeField] private GameObject commentCircle;
     
     private static GameObject _ageCircle;
+    private static GameObject _homeCircle;
     private static GameObject _jobCircle;
     private static GameObject _incomeCircle;
     private static GameObject _childCircle;
@@ -35,6 +38,7 @@ public class ProblemsSelector : MonoBehaviour
     private void Awake()
     {
         ageButton.onClick.AddListener(AgeButtonClicked);
+        homeButton.onClick.AddListener(HomeButtonClicked);
         jobButton.onClick.AddListener(JobButtonClicked);
         incomeButton.onClick.AddListener(IncomeButtonClicked);
         childButton.onClick.AddListener(ChildButtonClicked);
@@ -43,6 +47,7 @@ public class ProblemsSelector : MonoBehaviour
         commentButton.onClick.AddListener(CommentButtonClicked);
         
         _ageCircle = ageCircle;
+        _homeCircle = homeCircle;
         _jobCircle = jobCircle;
         _incomeCircle = incomeCircle;
         _childCircle = childCircle;
@@ -51,6 +56,7 @@ public class ProblemsSelector : MonoBehaviour
         _commentCircle = commentCircle;
 
         ageButton.interactable = false;
+        homeButton.interactable = false;
         jobButton.interactable = false;
         incomeButton.interactable = false;
         childButton.interactable = false;
@@ -61,6 +67,7 @@ public class ProblemsSelector : MonoBehaviour
         if (StatsManager.instance.GetLevel() > 1)
         {
             ageButton.interactable = true;
+            homeButton.interactable = true;
             jobButton.interactable = true;
             incomeButton.interactable = true;
             childButton.interactable = true;
@@ -73,6 +80,7 @@ public class ProblemsSelector : MonoBehaviour
     public static void ResetCircles()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -85,26 +93,18 @@ public class ProblemsSelector : MonoBehaviour
     {
         if (!problem.Exists)
             return false;
-        switch (problem.PbFamily)
+        return problem.PbFamily switch
         {
-            case LogicManager.PbFamily.TooOld:
-                return _ageCircle.activeSelf;
-            case LogicManager.PbFamily.TooYoung:
-                return _ageCircle.activeSelf;
-            case LogicManager.PbFamily.TooPoor:
-                return _incomeCircle.activeSelf;
-            case LogicManager.PbFamily.TooBusy:
-                return _jobCircle.activeSelf;
-            case LogicManager.PbFamily.Child:
-                return _childCircle.activeSelf;
-            case LogicManager.PbFamily.NoOutdoor:
-                return _outdoorCircle.activeSelf;
-            case LogicManager.PbFamily.Animals:
-                return _animalsCircle.activeSelf;
-            case LogicManager.PbFamily.Comment:
-                return _commentCircle.activeSelf;
-        }
-        return false;
+            LogicManager.PbFamily.TooOld => _ageCircle.activeSelf,
+            LogicManager.PbFamily.TooYoung => _ageCircle.activeSelf,
+            LogicManager.PbFamily.TooPoor => _incomeCircle.activeSelf,
+            LogicManager.PbFamily.TooBusy => _jobCircle.activeSelf,
+            LogicManager.PbFamily.Child => _childCircle.activeSelf,
+            LogicManager.PbFamily.NoOutdoor => _outdoorCircle.activeSelf,
+            LogicManager.PbFamily.Animals => _animalsCircle.activeSelf,
+            LogicManager.PbFamily.Comment => _commentCircle.activeSelf,
+            _ => false
+        };
     }
 
     public static bool IsSelected()
@@ -119,6 +119,23 @@ public class ProblemsSelector : MonoBehaviour
         DayManager.SetAcceptButtonActive(!_ageCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_ageCircle.activeSelf);
         
+        _homeCircle.SetActive(false);
+        _jobCircle.SetActive(false);
+        _incomeCircle.SetActive(false);
+        _childCircle.SetActive(false);
+        _outdoorCircle.SetActive(false);
+        _animalsCircle.SetActive(false);
+        _commentCircle.SetActive(false);
+    }
+    
+    private static void HomeButtonClicked()
+    {
+        _ageCircle.SetActive(false);
+        
+        _homeCircle.SetActive(!_homeCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!_homeCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(_homeCircle.activeSelf);
+        
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -130,6 +147,7 @@ public class ProblemsSelector : MonoBehaviour
     private void JobButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         
         _jobCircle.SetActive(!_jobCircle.activeSelf);
         DayManager.SetAcceptButtonActive(!_jobCircle.activeSelf);
@@ -145,6 +163,7 @@ public class ProblemsSelector : MonoBehaviour
     private void IncomeButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         
         _incomeCircle.SetActive(!_incomeCircle.activeSelf);
@@ -160,9 +179,10 @@ public class ProblemsSelector : MonoBehaviour
     private void ChildButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
-         
+        
         _childCircle.SetActive(!_childCircle.activeSelf);
         DayManager.SetAcceptButtonActive(!_childCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_childCircle.activeSelf);
@@ -175,6 +195,7 @@ public class ProblemsSelector : MonoBehaviour
     private void OutdoorButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -190,6 +211,7 @@ public class ProblemsSelector : MonoBehaviour
     private void AnimalsButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -205,6 +227,7 @@ public class ProblemsSelector : MonoBehaviour
     private void CommentButtonClicked()
     {
         _ageCircle.SetActive(false);
+        _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
@@ -215,16 +238,5 @@ public class ProblemsSelector : MonoBehaviour
         DayManager.SetAcceptButtonActive(!_commentCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_commentCircle.activeSelf);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

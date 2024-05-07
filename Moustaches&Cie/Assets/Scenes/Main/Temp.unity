@@ -648,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 67934192}
   m_Layer: 0
-  m_Name: Income
+  m_Name: Budget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2732,7 +2732,7 @@ GameObject:
   - component: {fileID: 404436435}
   - component: {fileID: 404436434}
   m_Layer: 5
-  m_Name: IncomeTitle
+  m_Name: BudgetTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3562,7 +3562,7 @@ GameObject:
   - component: {fileID: 544188890}
   - component: {fileID: 544188889}
   m_Layer: 5
-  m_Name: IncomeVar
+  m_Name: BudgetVar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6029,7 +6029,7 @@ GameObject:
   - component: {fileID: 822183783}
   - component: {fileID: 822183782}
   m_Layer: 5
-  m_Name: HandicapVar
+  m_Name: DisabilityVar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6163,7 +6163,7 @@ GameObject:
   - component: {fileID: 839814967}
   - component: {fileID: 839814966}
   m_Layer: 5
-  m_Name: IncomeCircle
+  m_Name: BudgetCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9125,7 +9125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1186501049}
   m_Layer: 0
-  m_Name: Handicap
+  m_Name: Disability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9983,7 +9983,7 @@ GameObject:
   - component: {fileID: 1370649206}
   - component: {fileID: 1370649205}
   m_Layer: 5
-  m_Name: HandicapTitle
+  m_Name: DisabilityTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11581,6 +11581,7 @@ MonoBehaviour:
   furTMP: {fileID: 393243727}
   sexTMP: {fileID: 1673044877}
   sickTMP: {fileID: 938439003}
+  disabilityTMP: {fileID: 822183782}
   natureTMP: {fileID: 1401121754}
   outdoorTMP: {fileID: 895291398}
   animalsTMP: {fileID: 586434643}
@@ -11599,8 +11600,9 @@ MonoBehaviour:
   nameTMP: {fileID: 2107435144}
   forenameTMP: {fileID: 984997228}
   ageTMP: {fileID: 276954828}
+  homeTMP: {fileID: 1886726548}
   jobTMP: {fileID: 484017836}
-  incomeTMP: {fileID: 544188889}
+  budgetTMP: {fileID: 544188889}
   childTMP: {fileID: 1227730266}
   outdoorTMP: {fileID: 966424151}
   animalsTMP: {fileID: 1033626082}
@@ -13391,7 +13393,7 @@ GameObject:
   - component: {fileID: 1849406604}
   - component: {fileID: 1849406603}
   m_Layer: 5
-  m_Name: IncomeButton
+  m_Name: BudgetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

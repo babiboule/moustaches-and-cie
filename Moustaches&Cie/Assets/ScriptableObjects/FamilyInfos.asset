@@ -85,6 +85,17 @@ MonoBehaviour:
   - Swann
   - Tiphaine
   listAges: 1100000014000000150000001600000018000000190000001a0000001b0000001d0000001f0000002000000021000000240000002500000026000000290000003000000033000000380000003c000000450000004a0000005b000000
+  listHomes:
+  - city: Strasbourg
+    department: 67
+  - city: Haguenau
+    department: 67
+  - city: Saverne
+    department: 67
+  - city: Vendenheim
+    department: 68
+  - city: Nancy
+    department: 54
   listJobs:
   - jobName: "Infirmier.i\xE8re"
     income: 1000
