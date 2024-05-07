@@ -164,7 +164,6 @@ public class DayManager : MonoBehaviour
         
         // Set the cat page on the cat asked
         SetIndex(GetCurrentCatIndex());
-            
         CatManager.PrintCatInfos(_currentCats[_index]);
         
         // Print the family infos 
@@ -198,7 +197,6 @@ public class DayManager : MonoBehaviour
             if (_currentCats[i].name == _family.Cat.name)
                 return i;
         }
-
         return 0;
     }
 

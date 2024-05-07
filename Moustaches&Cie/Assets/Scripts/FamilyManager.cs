@@ -222,7 +222,22 @@ public class FamilyManager : MonoBehaviour
                         family.Car = false;
                 }
                 break;
-       
+            case 5 : // Reduce budget
+                if (family.Budget <= 20)
+                    AddConstraint(family, familyInfos);
+                else
+                    family.Budget -= Random.Range(3, 14) * 20;
+                break;
+            case 6 : // Change outdoor conditions
+                var i = Random.Range(0, 3);
+                family.Outdoor = i switch
+                {
+                    0 => FamilyInfosScriptableObject.Outdoor.Aucun,
+                    1 => FamilyInfosScriptableObject.Outdoor.Fermé,
+                    2 => FamilyInfosScriptableObject.Outdoor.Ouvert,
+                    _ => FamilyInfosScriptableObject.Outdoor.Fermé
+                };
+                break;
         }
         
         return family;
