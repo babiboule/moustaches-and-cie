@@ -20,6 +20,7 @@ MonoBehaviour:
     fur: Calico
     sex: 1
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 1
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 0
     animals: 1
@@ -44,6 +46,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 1
@@ -56,6 +59,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 1
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 1
@@ -68,6 +72,7 @@ MonoBehaviour:
     fur: Gris
     sex: 0
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 0
     animals: 1
@@ -80,6 +85,7 @@ MonoBehaviour:
     fur: "Tigr\xE9"
     sex: 1
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -92,6 +98,7 @@ MonoBehaviour:
     fur: "Tachet\xE9"
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 1
@@ -104,6 +111,7 @@ MonoBehaviour:
     fur: Calico
     sex: 1
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 1
@@ -116,6 +124,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 1
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 1
@@ -128,6 +137,7 @@ MonoBehaviour:
     fur: Roux et blanc
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 0
@@ -140,6 +150,7 @@ MonoBehaviour:
     fur: Noir
     sex: 0
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 0
@@ -152,6 +163,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -164,6 +176,7 @@ MonoBehaviour:
     fur: Noir
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 0
@@ -176,6 +189,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 0
@@ -188,6 +202,7 @@ MonoBehaviour:
     fur: Tabby
     sex: 1
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 1
@@ -200,6 +215,7 @@ MonoBehaviour:
     fur: Blanc et noir
     sex: 0
     sick: 1
+    disability: 0
     nature: 2
     outdoor: 0
     animals: 1
@@ -212,6 +228,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 1
@@ -224,6 +241,7 @@ MonoBehaviour:
     fur: Noir
     sex: 1
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 0
@@ -236,6 +254,7 @@ MonoBehaviour:
     fur: "Tachet\xE9"
     sex: 1
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 1
@@ -248,6 +267,7 @@ MonoBehaviour:
     fur: Roux
     sex: 1
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -260,6 +280,7 @@ MonoBehaviour:
     fur: Noir et blanc
     sex: 0
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 0
     animals: 1
@@ -272,6 +293,7 @@ MonoBehaviour:
     fur: Calico
     sex: 1
     sick: 0
+    disability: 0
     nature: 0
     outdoor: 1
     animals: 0
@@ -284,6 +306,7 @@ MonoBehaviour:
     fur: Blanc gris
     sex: 1
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 0
     animals: 1
@@ -296,6 +319,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 0
     animals: 0
@@ -308,6 +332,7 @@ MonoBehaviour:
     fur: Blanc et noir
     sex: 1
     sick: 1
+    disability: 0
     nature: 0
     outdoor: 0
     animals: 0
@@ -320,6 +345,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 roux"
     sex: 0
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -332,6 +358,7 @@ MonoBehaviour:
     fur: Siamois
     sex: 0
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -344,6 +371,7 @@ MonoBehaviour:
     fur: Noir et blanc
     sex: 1
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -356,6 +384,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 0
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -368,6 +397,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 1
     sick: 1
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -380,6 +410,7 @@ MonoBehaviour:
     fur: Noir
     sex: 1
     sick: 1
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 1
@@ -392,6 +423,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 blanc"
     sex: 0
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -404,6 +436,7 @@ MonoBehaviour:
     fur: Noir et blanc
     sex: 0
     sick: 1
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -416,6 +449,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 blanc"
     sex: 1
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -428,6 +462,7 @@ MonoBehaviour:
     fur: Roux
     sex: 0
     sick: 1
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 1
@@ -440,6 +475,7 @@ MonoBehaviour:
     fur: "Blanc tachet\xE9"
     sex: 1
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 0
@@ -452,6 +488,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 1
     sick: 0
+    disability: 0
     nature: 1
     outdoor: 1
     animals: 0
@@ -464,6 +501,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 tricolore"
     sex: 1
     sick: 0
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 0
@@ -476,6 +514,7 @@ MonoBehaviour:
     fur: ???
     sex: 1
     sick: 1
+    disability: 0
     nature: 2
     outdoor: 1
     animals: 0
