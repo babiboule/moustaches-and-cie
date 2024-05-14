@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -36,7 +37,7 @@ public class TutoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        deskPanel.SetActive(DialogueController.GetIndex() > 3 && DialogueController.GetIndex() < 20);
+        deskPanel.SetActive(DialogueController.GetIndex() > 3 && DialogueController.GetIndex() < 18);
         
         familyCircle.SetActive(DialogueController.GetIndex() == 5);
         catCircle.SetActive(DialogueController.GetIndex() == 6);
@@ -45,10 +46,11 @@ public class TutoManager : MonoBehaviour
         stampCircle.SetActive(DialogueController.GetIndex() == 9);
         yesButton.gameObject.SetActive(DialogueController.GetIndex() == 18);
         noButton.gameObject.SetActive(DialogueController.GetIndex() == 18);
+        DialogueController.SetWaitInput(DialogueController.GetIndex() == 18);
 
-        if (DialogueController.GetIndex() == 18)
+        if (DialogueController.GetIndex() == 20)
         {
-            DialogueController.SetWaitInput(true);
+            SceneManager.LoadScene("Level");
         }
     }
 

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public enum GameLevel
     {
         Title,
+        Colleague,
         Level,
         ScoreLevel
     }
@@ -86,6 +87,9 @@ public class GameManager : MonoBehaviour
         {
             case GameLevel.Title:
                 HandleTitle();
+                break;
+            case GameLevel.Colleague:
+                HandleColleague();
                 break;
             case GameLevel.Level:
                 HandleLevel();
@@ -164,6 +168,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Handle the new States
+    private void HandleColleague()
+    {
+        SceneManager.LoadSceneAsync("Colleague");
+    }
     private void HandleTitle()
     {
         SceneManager.LoadSceneAsync("Title screen");

@@ -163,7 +163,8 @@ public class DayManager : MonoBehaviour
         }
         
         // Set the cat page on the cat asked
-        SetIndex(GetCurrentCatIndex());
+        //SetIndex(GetCurrentCatIndex());
+        UIManager.SwitchPostIt();
         CatManager.PrintCatInfos(_currentCats[_index]);
         
         // Print the family infos 
@@ -216,6 +217,8 @@ public class DayManager : MonoBehaviour
     
     private void AcceptStampButtonClicked()
     {
+        UIManager.SwitchPostIt();
+        
         if (StatsManager.instance.GetLevel() > 1)
         {
             ProblemsSelector.ResetCircles();
@@ -250,6 +253,8 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
+        UIManager.SwitchPostIt();
+        
         if (StatsManager.instance.GetLevel() > 1)
         {
             ProblemsSelector.ResetCircles();

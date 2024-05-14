@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button postItButton;
     [SerializeField] private GameObject postIt;
     [SerializeField] private GameObject postItBack;
+    private static GameObject _postIt;
+    private static GameObject _postItBack;
     
     
     // Medals
@@ -43,6 +45,9 @@ public class UIManager : MonoBehaviour
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
+
+        _postIt = postIt;
+        _postItBack = postItBack;
     }
 
     private void OnDestroy()
@@ -151,9 +156,23 @@ public class UIManager : MonoBehaviour
                 CatManager.PrintCatInfos(DayManager.GetCurrentCats()[i]);
                 postIt.SetActive(true);
                 postItBack.SetActive(false);
-                postItButton.gameObject.SetActive(false);
+                //postItButton.gameObject.SetActive(false);
                 return;
             }
         }
+    }
+
+    public static void SwitchPostIt()
+    {
+            if (DayManager.GetCurrentCats()[DayManager.GetIndex()].name == DayManager.GetCurrentFamily().Cat.name)
+            {
+                _postIt.SetActive(true);
+                _postItBack.SetActive(false);
+            }
+            else
+            {
+                _postIt.SetActive(false);
+                _postItBack.SetActive(true);
+            }
     }
 }
