@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CatsInfos
   m_EditorClassIdentifier: 
   cats:
-  - picture: {fileID: 21300000, guid: eb238e6122f1e574bba2f8cd61ad04d3, type: 3}
+  - picture: {fileID: 21300000, guid: 5320edf07445e83419a7ae7a1857c50f, type: 3}
     reference: {fileID: 21300000, guid: eb238e6122f1e574bba2f8cd61ad04d3, type: 3}
     name: Owli
     age: 6
@@ -65,7 +65,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 881aa9a13cc2e9345a71c030698dbfc0, type: 3}
+  - picture: {fileID: 21300000, guid: aa3725f610a0be64bac437043585a5b9, type: 3}
     reference: {fileID: 21300000, guid: 881aa9a13cc2e9345a71c030698dbfc0, type: 3}
     name: Lucifer
     age: 9
@@ -273,7 +273,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 2
-  - picture: {fileID: 21300000, guid: 92272f1ca8f4390419018edc176b5ded, type: 3}
+  - picture: {fileID: 21300000, guid: 6044911dfb9ee694f837e845a6ca6d24, type: 3}
     reference: {fileID: 21300000, guid: 92272f1ca8f4390419018edc176b5ded, type: 3}
     name: Alpha
     age: 0.9
@@ -299,7 +299,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 2
-  - picture: {fileID: 21300000, guid: 31c0e97f5463db64588fc2d212d7c7ea, type: 3}
+  - picture: {fileID: 21300000, guid: b342c23ee922fca418c78bef8fe7cc03, type: 3}
     reference: {fileID: 21300000, guid: 31c0e97f5463db64588fc2d212d7c7ea, type: 3}
     name: Yumi
     age: 0.8
@@ -364,7 +364,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: edb253cd28265364da4f36e4698e8b5f, type: 3}
+  - picture: {fileID: 21300000, guid: dbd4fe581f3f4e14da25b53bbc5d628d, type: 3}
     reference: {fileID: 21300000, guid: edb253cd28265364da4f36e4698e8b5f, type: 3}
     name: Ficelle
     age: 12
@@ -403,7 +403,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: fae54a83e2133ae4f9ba28357d5be8b9, type: 3}
+  - picture: {fileID: 21300000, guid: 80be4f139f9ac72438fb9bfdf240f014, type: 3}
     reference: {fileID: 21300000, guid: fae54a83e2133ae4f9ba28357d5be8b9, type: 3}
     name: "R\xE9glisse"
     age: 9
@@ -468,7 +468,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: 06f5e6e56cd5f7243bc7515492746da3, type: 3}
+  - picture: {fileID: 21300000, guid: e284c1c919d97cf40b23c35006659afd, type: 3}
     reference: {fileID: 21300000, guid: 06f5e6e56cd5f7243bc7515492746da3, type: 3}
     name: Murtaza
     age: 11
