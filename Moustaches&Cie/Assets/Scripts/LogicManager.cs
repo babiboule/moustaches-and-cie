@@ -121,6 +121,7 @@ public class LogicManager : MonoBehaviour
             problem.PbCat = PbCat.None;
             problem.PbFamily = PbFamily.TooFar;
         }
+        /*
         else if (_family.Home.city != "Strasbourg")
         {
             if (!_family.Car)
@@ -130,7 +131,7 @@ public class LogicManager : MonoBehaviour
                 problem.PbFamily = PbFamily.NoCar;
             }
         }
-
+        */
         return problem;
     }
 
@@ -276,7 +277,7 @@ public class LogicManager : MonoBehaviour
     {
         if (_family.Cats)
         {
-            if (_cat.animals == CatsScriptableObject.Animals.Non)
+            if (!_cat.animals)
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.Animals;
@@ -284,16 +285,7 @@ public class LogicManager : MonoBehaviour
                 return problem;
             }
         }
-        else
-        {
-            if (_cat.animals == CatsScriptableObject.Animals.Besoin)
-            {
-                problem.Exists = true;
-                problem.PbFamily = PbFamily.NoAnimals;
-                problem.PbCat = PbCat.NeedAnimals;
-                return problem;
-            }
-        }
+
         return problem;
     } 
     

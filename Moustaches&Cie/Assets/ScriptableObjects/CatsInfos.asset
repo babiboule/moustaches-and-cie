@@ -20,7 +20,7 @@ MonoBehaviour:
     fur: Calico
     sex: 1
     sick: 0
-    disability: 0
+    disability: 1
     nature: 0
     outdoor: 0
     animals: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 0
     animals: 1
     adopted: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 0
+    nature: 3
     outdoor: 0
     animals: 1
     adopted: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     age: 7
     fur: "Tigr\xE9 brun"
     sex: 1
-    sick: 1
+    sick: 2
     disability: 0
     nature: 0
     outdoor: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 0
     animals: 1
     adopted: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 1
     adopted: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 0
+    nature: 3
     outdoor: 0
     animals: 1
     adopted: 0
@@ -111,9 +111,9 @@ MonoBehaviour:
     fur: Calico
     sex: 1
     sick: 0
-    disability: 0
+    disability: 1
     nature: 0
-    outdoor: 1
+    outdoor: 0
     animals: 1
     adopted: 0
     level: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 1
     adopted: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
     fur: "Tigr\xE9 gris"
     sex: 0
     sick: 0
-    disability: 0
+    disability: 1
     nature: 0
     outdoor: 0
     animals: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
     age: 0.9
     fur: Tabby
     sex: 1
-    sick: 1
+    sick: 2
     disability: 0
     nature: 0
     outdoor: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
     age: 10
     fur: Blanc et noir
     sex: 0
-    sick: 1
+    sick: 2
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 0
     animals: 1
     adopted: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 0
+    nature: 3
     outdoor: 1
     animals: 1
     adopted: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
     age: 6
     fur: "Tachet\xE9"
     sex: 1
-    sick: 1
+    sick: 3
     disability: 0
     nature: 0
     outdoor: 1
@@ -268,7 +268,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 1
     adopted: 0
@@ -280,8 +280,8 @@ MonoBehaviour:
     fur: Noir et blanc
     sex: 0
     sick: 0
-    disability: 0
-    nature: 2
+    disability: 1
+    nature: 1
     outdoor: 0
     animals: 1
     adopted: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 1
+    nature: 3
     outdoor: 0
     animals: 1
     adopted: 0
@@ -319,8 +319,8 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 0
     sick: 0
-    disability: 0
-    nature: 1
+    disability: 1
+    nature: 2
     outdoor: 0
     animals: 0
     adopted: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
     age: 4
     fur: Blanc et noir
     sex: 1
-    sick: 1
+    sick: 2
     disability: 0
     nature: 0
     outdoor: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 1
     adopted: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 1
     animals: 0
     adopted: 0
@@ -371,9 +371,9 @@ MonoBehaviour:
     fur: Noir et blanc
     sex: 1
     sick: 0
-    disability: 0
-    nature: 1
-    outdoor: 1
+    disability: 1
+    nature: 2
+    outdoor: 0
     animals: 0
     adopted: 0
     level: 3
@@ -385,7 +385,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 2
+    nature: 3
     outdoor: 1
     animals: 1
     adopted: 0
@@ -396,11 +396,11 @@ MonoBehaviour:
     age: 14
     fur: "Tigr\xE9 gris"
     sex: 1
-    sick: 1
+    sick: 3
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 1
-    animals: 0
+    animals: 1
     adopted: 0
     level: 3
   - picture: {fileID: 21300000, guid: fae54a83e2133ae4f9ba28357d5be8b9, type: 3}
@@ -409,10 +409,10 @@ MonoBehaviour:
     age: 9
     fur: Noir
     sex: 1
-    sick: 1
-    disability: 0
-    nature: 2
-    outdoor: 1
+    sick: 3
+    disability: 1
+    nature: 1
+    outdoor: 0
     animals: 1
     adopted: 0
     level: 3
@@ -424,7 +424,7 @@ MonoBehaviour:
     sex: 0
     sick: 0
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 1
     animals: 0
     adopted: 0
@@ -435,9 +435,9 @@ MonoBehaviour:
     age: 10
     fur: Noir et blanc
     sex: 0
-    sick: 1
+    sick: 3
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 1
     animals: 0
     adopted: 0
@@ -449,9 +449,9 @@ MonoBehaviour:
     fur: "Tigr\xE9 blanc"
     sex: 1
     sick: 0
-    disability: 0
-    nature: 1
-    outdoor: 1
+    disability: 1
+    nature: 2
+    outdoor: 0
     animals: 0
     adopted: 0
     level: 3
@@ -463,7 +463,7 @@ MonoBehaviour:
     sex: 0
     sick: 1
     disability: 0
-    nature: 1
+    nature: 2
     outdoor: 1
     animals: 1
     adopted: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 0
     adopted: 0
@@ -488,9 +488,9 @@ MonoBehaviour:
     fur: "Tigr\xE9 brun"
     sex: 1
     sick: 0
-    disability: 0
-    nature: 1
-    outdoor: 1
+    disability: 1
+    nature: 2
+    outdoor: 0
     animals: 0
     adopted: 0
     level: 3
@@ -502,7 +502,7 @@ MonoBehaviour:
     sex: 1
     sick: 0
     disability: 0
-    nature: 2
+    nature: 1
     outdoor: 1
     animals: 0
     adopted: 0
@@ -513,9 +513,9 @@ MonoBehaviour:
     age: 15
     fur: ???
     sex: 1
-    sick: 1
-    disability: 0
-    nature: 2
+    sick: 3
+    disability: 1
+    nature: 3
     outdoor: 1
     animals: 0
     adopted: 0

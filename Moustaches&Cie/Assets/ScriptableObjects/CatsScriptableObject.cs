@@ -27,13 +27,6 @@ namespace ScriptableObjects
             FIV,
             PIF
         }
-
-        public enum Animals
-        {
-            Ok,
-            Non,
-            Besoin
-        }
         
         [System.Serializable] public struct Cat
         {
@@ -47,7 +40,7 @@ namespace ScriptableObjects
             public bool disability;
             public Nature nature;
             public bool outdoor;
-            public Animals animals;
+            public bool animals;
             public bool adopted;
             public int level;
         }

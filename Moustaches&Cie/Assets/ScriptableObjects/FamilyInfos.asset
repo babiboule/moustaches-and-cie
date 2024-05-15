@@ -90,54 +90,60 @@ MonoBehaviour:
     department: 67
   - city: Haguenau
     department: 67
-  - city: Saverne
+  - city: "S\xE9lestat"
     department: 67
-  - city: Vendenheim
-    department: 68
+  - city: Schiltigheim
+    department: 67
+  - city: Barr
+    department: 67
+  - city: Lembach
+    department: 67
+  - city: Bischeim
+    department: 67
+  - city: Bischwiller
+    department: 67
+  - city: Brumath
+    department: 67
+  - city: Lingolsheim
+    department: 67
+  - city: Molsheim
+    department: 67
+  - city: Obernai
+    department: 67
   - city: Nancy
     department: 54
+  - city: Belfort
+    department: 39
+  - city: "Montb\xE9liard"
+    department: 25
   listJobs:
   - jobName: "Infirmier.i\xE8re"
-    income: 1000
     freeTime: 1
   - jobName: Professeur.e
-    income: 1200
     freeTime: 2
   - jobName: "Ing\xE9nieur.e"
-    income: 2000
     freeTime: 2
   - jobName: Au Chomage
-    income: 500
     freeTime: 3
   - jobName: "Charpentier.\xE8re"
-    income: 1100
     freeTime: 2
   - jobName: "H\xF4te.sse de l'air"
-    income: 1200
     freeTime: 1
   - jobName: Militaire
-    income: 1200
     freeTime: 1
   - jobName: "Caissier.\xE8re"
-    income: 1000
     freeTime: 2
   - jobName: Chef d'entreprise
-    income: 1300
     freeTime: 2
   - jobName: Gestionnaire
-    income: 1200
     freeTime: 2
   - jobName: "Secr\xE9taire"
-    income: 1200
     freeTime: 2
   - jobName: Avocat.e
-    income: 1200
     freeTime: 2
   - jobName: Auto-Entrepreneur
-    income: 1200
     freeTime: 2
   - jobName: Manager.euse
-    income: 1200
     freeTime: 2
   listComments:
   - commentText: J'aimerais beaucoup avoir un chat !
