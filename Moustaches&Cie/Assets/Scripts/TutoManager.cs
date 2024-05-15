@@ -28,6 +28,11 @@ public class TutoManager : MonoBehaviour
         noButton.onClick.AddListener(NoButtonClicked);
     }
 
+    private void SkipButtonClicked()
+    {
+        StartCoroutine(Skip());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +59,11 @@ public class TutoManager : MonoBehaviour
         }
     }
 
-    private void SkipButtonClicked()
+    private IEnumerator Skip()
     {
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
         DialogueController.SetIndexTo(19);
     }
 

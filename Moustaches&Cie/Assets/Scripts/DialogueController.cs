@@ -13,7 +13,7 @@ public class DialogueController : MonoBehaviour
     private static string[] _sentences;
     
     private static int m_Index;
-    private bool _isWriting;
+    private static bool _isWriting;
     private static bool _waitInput;
     private Coroutine _co;
     [SerializeField] private float textSpeed = .1f;
@@ -89,6 +89,11 @@ public class DialogueController : MonoBehaviour
     public static void SetWaitInput(bool a)
     {
         _waitInput = a;
+    }
+
+    public static bool GetIsWriting()
+    {
+        return _isWriting;
     }
     
 }
