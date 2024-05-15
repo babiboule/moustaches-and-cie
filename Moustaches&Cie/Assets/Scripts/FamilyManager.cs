@@ -160,7 +160,6 @@ public class FamilyManager : MonoBehaviour
             if (p > 25)
             {
                 family.JobName = "Etudiant.e";
-                family.Budget = 400 + Random.Range(0,7)*50; // Between 400 and 600€ per month
                 family.FreeTime = 1;
             }
             
