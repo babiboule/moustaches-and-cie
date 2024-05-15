@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
     // Panels
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject memoPage1;
+    [SerializeField] private GameObject memoPage2;
     
     // Pause components
     [SerializeField] private Button pauseButton;
@@ -14,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button toTitleButton;
     
     // Gameplay components
+    [SerializeField] private Button nextMemoButton;
+    [SerializeField] private Button previousMemoButton;
     [SerializeField] private Button nextCatButton;
     [SerializeField] private Button previousCatButton;
     [SerializeField] private Button postItButton;
@@ -21,6 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject postItBack;
     private static GameObject _postIt;
     private static GameObject _postItBack;
+    
     
     
     // Medals
@@ -38,6 +43,8 @@ public class UIManager : MonoBehaviour
         optionsButton.onClick.AddListener(OptionsButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
         
+        nextMemoButton.onClick.AddListener(MemoButtonClicked);
+        previousMemoButton.onClick.AddListener(MemoButtonClicked);
         nextCatButton.onClick.AddListener(NextCatButtonClicked);
         previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
         postItButton.onClick.AddListener(PostItButtonClicked);
@@ -92,6 +99,12 @@ public class UIManager : MonoBehaviour
     private void ToTitleButtonClicked()
     {
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
+    }
+
+    private void MemoButtonClicked()
+    {
+        memoPage1.SetActive(memoPage2.activeSelf);
+        memoPage2.SetActive(!memoPage1.activeSelf);
     }
     
     private void NextCatButtonClicked()
