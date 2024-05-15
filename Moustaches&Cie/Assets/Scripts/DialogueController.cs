@@ -27,6 +27,7 @@ public class DialogueController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Index = 0;
         dialogueTMP.text = "";
         _co = StartCoroutine(WriteSentence());
     }

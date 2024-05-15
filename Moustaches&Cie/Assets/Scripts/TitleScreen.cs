@@ -63,6 +63,7 @@ public class TitleScreen : MonoBehaviour
     private void NewGameButtonClicked()
     {
         GameManager.instance.ResetSave();
+        GameManager.instance.LoadGame();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Colleague);
     }
 

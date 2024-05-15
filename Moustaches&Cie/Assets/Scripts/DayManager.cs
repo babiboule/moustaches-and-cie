@@ -163,7 +163,7 @@ public class DayManager : MonoBehaviour
         }
         
         // Set the cat page on the cat asked
-        //SetIndex(GetCurrentCatIndex());
+        PreviousIndex();
         UIManager.SwitchPostIt();
         CatManager.PrintCatInfos(_currentCats[_index]);
         
