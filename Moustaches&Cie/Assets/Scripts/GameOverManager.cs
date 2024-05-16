@@ -6,6 +6,8 @@ public class GameOverManager : MonoBehaviour
     // UI
     public Button toTitleButton;
 
+    [SerializeField] private AudioClip buttonSfx;
+
     private void Awake()
     {
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
@@ -15,7 +17,7 @@ public class GameOverManager : MonoBehaviour
 
     private void ToTitleButtonClicked()
     {
-        
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.UpdateGameState(GameManager.GameState.Play);
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }

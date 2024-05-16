@@ -19,6 +19,9 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private Button skipButton;
     [SerializeField] private Button yesButton;
     [SerializeField] private Button noButton;
+    
+    //Sfx
+    [SerializeField] private AudioClip buttonSfx;
 
 
     private void Awake()
@@ -30,6 +33,7 @@ public class TutoManager : MonoBehaviour
 
     private void SkipButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         StartCoroutine(Skip());
     }
 
@@ -69,12 +73,14 @@ public class TutoManager : MonoBehaviour
 
     private void YesButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         DialogueController.SetIndexTo(19);
         DialogueController.SetWaitInput(false);
     }
 
     private void NoButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         DialogueController.SetIndexTo(4);
         DialogueController.SetWaitInput(false);
     }

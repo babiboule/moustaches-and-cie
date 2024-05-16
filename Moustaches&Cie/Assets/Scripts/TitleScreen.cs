@@ -28,6 +28,9 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private Image catPicture2;
 
     [SerializeField] private CatsScriptableObject cat;
+    
+    // Sfx
+    [SerializeField] private AudioClip buttonSfx;
 
     private void Awake()
     {
@@ -62,6 +65,7 @@ public class TitleScreen : MonoBehaviour
 
     private void NewGameButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.ResetSave();
         GameManager.instance.LoadGame();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Colleague);
@@ -69,40 +73,47 @@ public class TitleScreen : MonoBehaviour
 
     private void ContinueButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.LoadGame();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
     }
 
     private void OptionsButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         optionsPanel.SetActive(true);
     }
     
     private void ExtrasButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         extrasButtons.gameObject.SetActive(true);
         mainButtons.gameObject.SetActive(false);
     }
     
     private void AlbumButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         albumPanel.SetActive(true);
         MusicManager.instance.SwitchBossaNova(1);
     }
 
     private void CreditsButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         throw new NotImplementedException();
     }
 
     private void ReturnButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         extrasButtons.gameObject.SetActive(false);
         mainButtons.gameObject.SetActive(true);
     }
 
     private void ToDesktopButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         Application.Quit();
     }
 

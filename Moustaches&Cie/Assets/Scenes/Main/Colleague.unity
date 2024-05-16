@@ -1379,6 +1379,7 @@ MonoBehaviour:
   skipButton: {fileID: 706962760}
   yesButton: {fileID: 202121615}
   noButton: {fileID: 123455725}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
 --- !u!1 &514124779
 GameObject:
   m_ObjectHideFlags: 0
@@ -4592,6 +4593,7 @@ MonoBehaviour:
   saveOptionsButton: {fileID: 1165891977}
   musicVolumeSlider: {fileID: 1552329949}
   sfxVolumeSlider: {fileID: 763971618}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
 --- !u!114 &1815916005
 MonoBehaviour:
   m_ObjectHideFlags: 0

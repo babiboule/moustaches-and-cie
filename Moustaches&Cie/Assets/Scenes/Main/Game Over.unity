@@ -722,6 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toTitleButton: {fileID: 1912784648}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
 --- !u!1 &1734862477
 GameObject:
   m_ObjectHideFlags: 0

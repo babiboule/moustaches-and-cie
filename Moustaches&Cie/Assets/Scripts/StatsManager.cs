@@ -26,8 +26,8 @@ public class StatsManager : MonoBehaviour
     private int m_Date = 1;
     
     // Settings
-    private float m_MusicVolume;
-    private float m_SfxVolume;
+    private float m_MusicVolume = 1;
+    private float m_SfxVolume = 1;
     
     // Singleton
     private static StatsManager _instance;

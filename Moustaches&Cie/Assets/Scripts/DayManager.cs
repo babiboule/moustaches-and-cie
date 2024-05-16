@@ -28,6 +28,12 @@ public class DayManager : MonoBehaviour
     private int m_Level;
 
     private static FamilyManager.Family _family;
+    
+    // Sfx
+    [SerializeField] private AudioClip stampSfx;
+    [SerializeField] private AudioClip goodSfx;
+    [SerializeField] private AudioClip badSfx;
+    
 
     private void Awake()
     {
@@ -217,6 +223,7 @@ public class DayManager : MonoBehaviour
     
     private void AcceptStampButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(stampSfx);
         UIManager.SwitchPostIt();
         
         if (StatsManager.instance.GetLevel() > 1)
@@ -230,12 +237,14 @@ public class DayManager : MonoBehaviour
         {
             StatsManager.instance.AddProblemToList(m_Problem);
             StatsManager.instance.AddBadAdoptions();
+            SfxManager.instance.PlaySfxClip(badSfx);
         }
         else
         {
             StatsManager.instance.AddGoodAdoptions();
             if(!StatsManager.instance.GetAlbumCats().Contains(m_Problem.Cat.name))
                 StatsManager.instance.AddAlbumCat(m_Problem.Cat.name);
+            SfxManager.instance.PlaySfxClip(goodSfx);
         }
         
         StatsManager.instance.AddAdoptedCat(m_Problem.Cat.name);
@@ -253,6 +262,7 @@ public class DayManager : MonoBehaviour
 
     private void DeclineStampButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(stampSfx);
         UIManager.SwitchPostIt();
         
         if (StatsManager.instance.GetLevel() > 1)
@@ -267,6 +277,11 @@ public class DayManager : MonoBehaviour
         if (!m_Problem.Exists && StatsManager.instance.GetLevel() <= 1)
         {
             StatsManager.instance.AddBadDecline();
+            SfxManager.instance.PlaySfxClip(badSfx);
+        }
+        else
+        {
+            SfxManager.instance.PlaySfxClip(goodSfx);
         }
         if (m_NFolder < m_NFoldersMax)
         {

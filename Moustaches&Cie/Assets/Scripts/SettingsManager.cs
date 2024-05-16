@@ -14,9 +14,12 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Button saveOptionsButton;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
-
+    
     public PointerEventData MusicVolume;
     public PointerEventData SfxVolume;
+    
+    //Sfx
+    [SerializeField] private AudioClip buttonSfx;
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class SettingsManager : MonoBehaviour
 
     private void SaveOptionsButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.SavePrefs();
     }
 
@@ -46,6 +50,7 @@ public class SettingsManager : MonoBehaviour
 
     private void QuitOptionsButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         optionsPanel.SetActive(false);
     }
 }

@@ -640,6 +640,11 @@ MonoBehaviour:
   nextDayButton: {fileID: 846741237}
   toTitleButton: {fileID: 211073363}
   xpBar: {fileID: 978442134}
+  dayEndSfx: {fileID: 8300000, guid: ab6f9b0b95e76d543ab7986dde5a9620, type: 3}
+  typewriterSfx: {fileID: 8300000, guid: 16807a65dc393b94a8ae519d434cb35a, type: 3}
+  expUpSfx: {fileID: 8300000, guid: 36e93b8547621974cbfac149b327e5b2, type: 3}
+  lvlUpSfx: {fileID: 8300000, guid: 2c1d4670b8b011341b20cf49b722ff9f, type: 3}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
 --- !u!1 &344910296
 GameObject:
   m_ObjectHideFlags: 0

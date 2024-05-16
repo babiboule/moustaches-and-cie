@@ -34,6 +34,9 @@ public class ProblemsSelector : MonoBehaviour
     private static GameObject _outdoorCircle;
     private static GameObject _animalsCircle;
     private static GameObject _commentCircle;
+    
+    // Sfx
+    [SerializeField] private AudioClip circleSfx;
 
     private void Awake()
     {
@@ -126,9 +129,11 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
     
-    private static void HomeButtonClicked()
+    private void HomeButtonClicked()
     {
         _ageCircle.SetActive(false);
         
@@ -142,6 +147,8 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void JobButtonClicked()
@@ -158,6 +165,8 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void IncomeButtonClicked()
@@ -174,6 +183,8 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void ChildButtonClicked()
@@ -190,6 +201,8 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void OutdoorButtonClicked()
@@ -206,6 +219,8 @@ public class ProblemsSelector : MonoBehaviour
         
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void AnimalsButtonClicked()
@@ -222,6 +237,8 @@ public class ProblemsSelector : MonoBehaviour
         DayManager.SetDeclineButtonActive(_animalsCircle.activeSelf);
         
         _commentCircle.SetActive(false);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
 
     private void CommentButtonClicked()
@@ -237,6 +254,8 @@ public class ProblemsSelector : MonoBehaviour
         _commentCircle.SetActive(!_commentCircle.activeSelf);
         DayManager.SetAcceptButtonActive(!_commentCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_commentCircle.activeSelf);
+        
+        SfxManager.instance.PlaySfxClip(circleSfx);
     }
     
 }

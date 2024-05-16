@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreUIManager : MonoBehaviour
@@ -25,6 +26,13 @@ public class ScoreUIManager : MonoBehaviour
     private string m_CatName;
     private string m_CatPb;
     private string m_FamilyPb;
+    
+    // Sfx
+    [SerializeField] private AudioClip dayEndSfx;
+    [SerializeField] private AudioClip typewriterSfx;
+    [SerializeField] private AudioClip expUpSfx;
+    [SerializeField] private AudioClip lvlUpSfx;
+    [SerializeField] private AudioClip buttonSfx;
 
     private void Awake()
     {
@@ -35,6 +43,7 @@ public class ScoreUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SfxManager.instance.PlaySfxClip(dayEndSfx);
         StatsManager.instance.AddDate();
         
         m_GoodAdoptions = StatsManager.instance.GetGoodAdoptions();
@@ -161,8 +170,9 @@ public class ScoreUIManager : MonoBehaviour
         }
     }
     
-    private static void NextDayButtonClicked()
+    private void NextDayButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)
         {
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
@@ -171,11 +181,11 @@ public class ScoreUIManager : MonoBehaviour
         {
             GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
         }
-
     }
 
-    private static void ToTitleButtonClicked()
+    private void ToTitleButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 }

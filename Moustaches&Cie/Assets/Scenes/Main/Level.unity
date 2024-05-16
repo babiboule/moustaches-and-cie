@@ -4101,6 +4101,7 @@ MonoBehaviour:
   outdoorCircle: {fileID: 1081015646}
   animalsCircle: {fileID: 682607896}
   commentCircle: {fileID: 30912302}
+  circleSfx: {fileID: 8300000, guid: 019c33337a6009046933bb4cc774ee88, type: 3}
 --- !u!114 &444122865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4175,6 +4176,9 @@ MonoBehaviour:
   declineStampButton: {fileID: 321734316}
   nFolderTMP: {fileID: 696012335}
   dayTMP: {fileID: 1726385320}
+  stampSfx: {fileID: 8300000, guid: 0879ffedb6a8cab46a0a0670ad2ead57, type: 3}
+  goodSfx: {fileID: 8300000, guid: fc1c80c2642aed44e966745eff4aee34, type: 3}
+  badSfx: {fileID: 8300000, guid: 1021a48a740b83a478840f83765b14bf, type: 3}
 --- !u!4 &444122868
 Transform:
   m_ObjectHideFlags: 0
@@ -16044,6 +16048,7 @@ MonoBehaviour:
   saveOptionsButton: {fileID: 961177663}
   musicVolumeSlider: {fileID: 1198587623}
   sfxVolumeSlider: {fileID: 1917784123}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
 --- !u!114 &1824284162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17218,6 +17223,8 @@ MonoBehaviour:
   bronzeMedal: {fileID: 1566646562}
   silverMedal: {fileID: 415174339}
   goldMedal: {fileID: 1443260188}
+  buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
+  pagingSfx: {fileID: 8300000, guid: 239498e1dec2ab448bc60658d78ef31f, type: 3}
 --- !u!114 &2024396083
 MonoBehaviour:
   m_ObjectHideFlags: 0

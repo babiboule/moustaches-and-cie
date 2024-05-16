@@ -27,6 +27,10 @@ public class AlbumManager : MonoBehaviour
     
     // Scriptable object
     public CatsScriptableObject cats;
+    
+    // Sfx
+    [SerializeField] private AudioClip buttonSfx;
+    [SerializeField] private AudioClip pagingSfx;
 
     private int m_IndexL;
     private int m_IndexR;
@@ -59,6 +63,7 @@ public class AlbumManager : MonoBehaviour
 
     private void NextButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         m_IndexL = (m_IndexL + 2) % cats.cats.Count;
         m_IndexR = (m_IndexR + 2) % cats.cats.Count;
         PrintLeftCat();
@@ -67,6 +72,7 @@ public class AlbumManager : MonoBehaviour
 
     private void PreviousButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         m_IndexL = (m_IndexL - 2) % cats.cats.Count;
         m_IndexR = (m_IndexR - 2) % cats.cats.Count;
         if (m_IndexL < 0)
@@ -83,6 +89,7 @@ public class AlbumManager : MonoBehaviour
 
     private void QuitButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         albumPanel.SetActive(false);
         MusicManager.instance.SwitchBossaNova(0);
     }

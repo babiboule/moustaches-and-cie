@@ -26,12 +26,14 @@ public class UIManager : MonoBehaviour
     private static GameObject _postIt;
     private static GameObject _postItBack;
     
-    
-    
     // Medals
     [SerializeField] private GameObject bronzeMedal;
     [SerializeField] private GameObject silverMedal;
     [SerializeField] private GameObject goldMedal;
+    
+    // Sfx
+    [SerializeField] private AudioClip buttonSfx;
+    [SerializeField] private AudioClip pagingSfx;
     
     private void Awake()
     {
@@ -82,33 +84,39 @@ public class UIManager : MonoBehaviour
 
     private void PauseButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         pauseButton.gameObject.SetActive(false);
         GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
     }
     private void PlayButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         pauseButton.gameObject.SetActive(true);
         GameManager.instance.UpdateGameState(GameManager.GameState.Play);
     }
 
     private void OptionsButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         optionsPanel.SetActive(true);
     }
     
     private void ToTitleButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 
     private void MemoButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         memoPage1.SetActive(memoPage2.activeSelf);
         memoPage2.SetActive(!memoPage1.activeSelf);
     }
     
     private void NextCatButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         DayManager.NextIndex();
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
@@ -136,6 +144,7 @@ public class UIManager : MonoBehaviour
 
     private void PreviousCatButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         DayManager.PreviousIndex();
         int indexMax = DayManager.GetIndexMax();
         int index = DayManager.GetIndex();
@@ -161,6 +170,7 @@ public class UIManager : MonoBehaviour
     
     private void PostItButtonClicked()
     {
+        SfxManager.instance.PlaySfxClip(pagingSfx);
         for (var i = 0 ; i < DayManager.GetCurrentCats().Count; i++)
         {
             if (DayManager.GetCurrentCats()[i].name == DayManager.GetCurrentFamily().Cat.name)
