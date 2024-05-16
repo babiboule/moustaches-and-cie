@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: TeamRoquette
   productName: Moustaches&Cie
-  defaultCursor: {fileID: 2800000, guid: d6c1963bf89bb00419f542f15b74ad7a, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -156,7 +156,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.Moustaches-Cie
+    Standalone: com.TeamRoquette.Moustaches-Cie
   buildNumber:
     Standalone: 0
     VisionOS: 0
