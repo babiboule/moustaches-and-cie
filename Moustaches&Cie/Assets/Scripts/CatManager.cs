@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using ScriptableObjects;
@@ -9,17 +8,18 @@ using UnityEngine.UI;
 public class CatManager : MonoBehaviour
 {
     // UI Elements
-    public Image picture;
-    public TMP_Text nameTMP;
-    public TMP_Text ageTMP;
-    public TMP_Text furTMP;
-    public TMP_Text sexTMP;
-    public TMP_Text sickTMP;
-    public TMP_Text disabilityTMP;
-    public TMP_Text natureTMP;
-    public TMP_Text outdoorTMP;
-    public TMP_Text animalsTMP;
+    [SerializeField] private Image picture;
+    [SerializeField] private TMP_Text nameTMP;
+    [SerializeField] private TMP_Text ageTMP;
+    [SerializeField] private TMP_Text furTMP;
+    [SerializeField] private TMP_Text sexTMP;
+    [SerializeField] private TMP_Text sickTMP;
+    [SerializeField] private TMP_Text disabilityTMP;
+    [SerializeField] private TMP_Text natureTMP;
+    [SerializeField] private TMP_Text outdoorTMP;
+    [SerializeField] private TMP_Text animalsTMP;
     
+    // Private static correspondences 
     private static Image _picture;
     private static TMP_Text _nameTMP;
     private static TMP_Text _ageTMP;
@@ -35,6 +35,7 @@ public class CatManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Match the correspondences
         _picture = picture;
         _nameTMP = nameTMP;
         _ageTMP = ageTMP;
@@ -48,134 +49,52 @@ public class CatManager : MonoBehaviour
     }
     
 
+    // Print the current cat informations on the screen
     public static void PrintCatInfos(CatsScriptableObject.Cat cat)
     {
         _picture.sprite = cat.picture;
         _nameTMP.text = cat.name;
+        
+        /* print cats age in month if it's under 1 year (+2 to make it between 2 and 11 month)
+                                                            ex : 0.8y = 10 month */
         if (cat.age<1)
-        {
             _ageTMP.text = (cat.age*10+2).ToString(CultureInfo.InvariantCulture) + " mois";
-        }
         else
-        {
             _ageTMP.text = cat.age.ToString(CultureInfo.InvariantCulture) + " ans";
-        }
+        
         _furTMP.text = cat.fur;
         _sexTMP.text = cat.sex.ToString();
         _natureTMP.text = cat.nature.ToString();
         _sickTMP.text = cat.sick.ToString();
-        if (cat.disability)
-            _disabilityTMP.text = "Oui";
-        else
-            _disabilityTMP.text = "Non";
-        if(cat.outdoor)
-            _outdoorTMP.text = "Oui";
-        else 
-            _outdoorTMP.text = "Non";
-        _animalsTMP.text = cat.animals.ToString();
+        _disabilityTMP.text = cat.disability ? "Oui" : "Non";
+        _outdoorTMP.text = cat.outdoor ? "Oui" : "Non";
+        _animalsTMP.text = cat.animals ? "Oui" : "Non";
     }
 
+    /*
+     * Set the current list of cats available, depending on the level and the cats already adopted
+     * param level : level of the stage
+     * param cats : scriptable objects where all the cats are stocked
+     * param currentCats : the list which will contains the current cats
+     */
     public static void InitialiseCurrentCats(int level, CatsScriptableObject cats, List<CatsScriptableObject.Cat> currentCats)
     {
-        switch (level)
+        foreach (var cat in cats.cats)
         {
-            case 1:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
+            var adopted = false;
+            if(cat.level == level)
+                if (StatsManager.instance.GetAdoptedCats().Count > 0)
                 {
-                    var adopted = false;
-                    if(cat.level == 1)
-                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
-                        {
-                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
-                            {
-                                if (adoptedCat == cat.name)
-                                {
-                                    adopted = true;
-                                }
-                            }
+                    foreach (var adoptedCat in StatsManager.instance.GetAdoptedCats())
+                    {
+                        if (adoptedCat == cat.name)
+                            adopted = true;
+                    }
 
-                            if (!adopted)
-                            {
-                                currentCats.Add(cat);
-                            }
-                        }
-                        else currentCats.Add(cat);
+                    if (!adopted)
+                        currentCats.Add(cat);
                 }
-                break;
-            case 2:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
-                {
-                    var adopted = false;
-                    if(!cat.adopted && cat.level <= 2)
-                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
-                        {
-                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
-                            {
-                                if (adoptedCat == cat.name)
-                                {
-                                    adopted = true;
-                                }
-                            }
-
-                            if (!adopted)
-                            {
-                                currentCats.Add(cat);
-                            }
-                        }
-                        else currentCats.Add(cat);
-                }
-                break;
-            case 3:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
-                {
-                    var adopted = false;
-                    if(!cat.adopted && cat.level <=3)
-                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
-                        {
-                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
-                            {
-                                if (adoptedCat == cat.name)
-                                {
-                                    adopted = true;
-                                }
-                            }
-
-                            if (!adopted)
-                            {
-                                currentCats.Add(cat);
-                            }
-                        }
-                        else currentCats.Add(cat);
-                }
-                break;
-            case 4:
-                foreach (CatsScriptableObject.Cat cat in cats.cats)
-                {
-                    var adopted = false;
-                    if(!cat.adopted)
-                        if (StatsManager.instance.GetAdoptedCats().Count > 0)
-                        {
-                            foreach (String adoptedCat in StatsManager.instance.GetAdoptedCats())
-                            {
-                                if (adoptedCat == cat.name)
-                                {
-                                    adopted = true;
-                                }
-                            }
-
-                            if (!adopted)
-                            {
-                                currentCats.Add(cat);
-                            }
-                        }
-                        else currentCats.Add(cat);
-                }
-                break;
-            default:
-                Debug.Log("TRYING TO INITALISE CAT BUT NOT ON A LEVEL");
-                break;
+                else currentCats.Add(cat);
         }
     }
-
-
 }

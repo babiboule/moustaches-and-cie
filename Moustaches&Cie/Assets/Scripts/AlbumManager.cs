@@ -1,42 +1,44 @@
-using System;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* Manage the cat album when it is active */
 public class AlbumManager : MonoBehaviour
 {
     // Panel
-    public GameObject albumPanel;
+    [SerializeField] private GameObject albumPanel;
     
     // Buttons
-    public Button quitButton;
-    public Button previousButton;
-    public Button nextButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private Button previousButton;
+    [SerializeField] private Button nextButton;
     
     // Images
-    public Sprite defaultImage;
-    public Image drawingL;
-    public Image pictureL;
-    public Image drawingR;
-    public Image pictureR;
+    [SerializeField] private Sprite defaultImage;
+    [SerializeField] private Image drawingL;
+    [SerializeField] private Image pictureL;
+    [SerializeField] private Image drawingR;
+    [SerializeField] private Image pictureR;
     
     // TMP_Text
-    public TMP_Text catNameL;
-    public TMP_Text catNameR;
+    [SerializeField] private TMP_Text catNameL;
+    [SerializeField] private TMP_Text catNameR;
     
     // Scriptable object
-    public CatsScriptableObject cats;
+    [SerializeField] private CatsScriptableObject cats;
     
     // Sfx
     [SerializeField] private AudioClip buttonSfx;
     [SerializeField] private AudioClip pagingSfx;
 
-    private int m_IndexL;
-    private int m_IndexR;
+    // Private variables
+    private int _indexL;
+    private int _indexR;
 
     private void Awake()
     {
+        // Set listeners on buttons
         quitButton.onClick.AddListener(QuitButtonClicked);
         previousButton.onClick.AddListener(PreviousButtonClicked);
         nextButton.onClick.AddListener(NextButtonClicked);
@@ -44,8 +46,9 @@ public class AlbumManager : MonoBehaviour
 
     private void Start()
     {
-        m_IndexL = 0;
-        m_IndexR = 1;
+        // Set the first pages
+        _indexL = 0;
+        _indexR = 1;
         
         // Print first cat
         PrintLeftCat();
@@ -55,73 +58,85 @@ public class AlbumManager : MonoBehaviour
 
     private void Update()
     {
+        // Can quit the panel with "escape"
         if (Input.GetKeyDown("escape"))
         {
             albumPanel.SetActive(false);
         }
     }
-
+    
+    /* Print the next pages when right arrow clicked
+     * (loop at the start if at the end)
+     */
     private void NextButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
-        m_IndexL = (m_IndexL + 2) % cats.cats.Count;
-        m_IndexR = (m_IndexR + 2) % cats.cats.Count;
+        
+        _indexL = (_indexL + 2) % cats.cats.Count;
+        _indexR = (_indexR + 2) % cats.cats.Count;
         PrintLeftCat();
         PrintRightCat();
     }
 
+    /* Print the previous pages when left arrow clicked
+     * (loop at the end if at the start)
+     */
     private void PreviousButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
-        m_IndexL = (m_IndexL - 2) % cats.cats.Count;
-        m_IndexR = (m_IndexR - 2) % cats.cats.Count;
-        if (m_IndexL < 0)
-        {
-            m_IndexL = cats.cats.Count - 2;
-        }
-        if (m_IndexR < 1)
-        {
-            m_IndexR = cats.cats.Count - 1;
-        }
+        
+        _indexL = (_indexL - 2) % cats.cats.Count;
+        _indexR = (_indexR - 2) % cats.cats.Count;
+        if (_indexL < 0)
+            _indexL = cats.cats.Count - 2;
+        if (_indexR < 1)
+            _indexR = cats.cats.Count - 1;
         PrintLeftCat();
         PrintRightCat();
     }
 
+    /* Close the panel */
     private void QuitButtonClicked()
     {
+        // Play sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        // Switch music fx
+        MusicManager.instance.BgBossaNova(false);
+        
         albumPanel.SetActive(false);
-        MusicManager.instance.SwitchBossaNova(0);
     }
 
+    /* Print the current cat on the left page */
     private void PrintLeftCat()
     {
-        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[m_IndexL].level)
+        /* Check the max level reached by the player (all runs together)
+         to print the name and the drawing only if the cat has been encountered at least once */
+        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[_indexL].level)
         {
-            catNameL.text = cats.cats[m_IndexL].name;
-            drawingL.sprite = cats.cats[m_IndexL].picture;
+            catNameL.text = cats.cats[_indexL].name;
+            drawingL.sprite = cats.cats[_indexL].picture;
         }
         else
         {
             catNameL.text = "???";
             drawingL.sprite = defaultImage;
         }
-        if (StatsManager.instance.GetAlbumCats().Contains(cats.cats[m_IndexL].name))
-        {
-            pictureL.sprite = cats.cats[m_IndexL].reference;
-        }
-        else
-        {
-            pictureL.sprite = defaultImage;
-        }
+        
+        // Print the reference picture if the cat has been placed in a good family
+        pictureL.sprite = StatsManager.instance.GetAlbumCats().Contains(cats.cats[_indexL].name) ? cats.cats[_indexL].reference : defaultImage;
     }
 
+    /* Print the current cat on the right page */
     private void PrintRightCat()
     {
-        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[m_IndexR].level)
+        /* Check the max level reached by the player (all runs together)
+         to print the name and the drawing only if the cat has been encountered at least once */
+        if (PlayerPrefs.GetInt("MaxLevel") >= cats.cats[_indexR].level)
         {
-            catNameR.text = cats.cats[m_IndexR].name;
-            drawingR.sprite = cats.cats[m_IndexR].picture;
+            catNameR.text = cats.cats[_indexR].name;
+            drawingR.sprite = cats.cats[_indexR].picture;
         }
         else
         {
@@ -129,13 +144,7 @@ public class AlbumManager : MonoBehaviour
             drawingR.sprite = defaultImage;
         }
 
-        if (StatsManager.instance.GetAlbumCats().Contains(cats.cats[m_IndexR].name))
-        {
-            pictureR.sprite = cats.cats[m_IndexR].reference;
-        }
-        else
-        {
-            pictureR.sprite = defaultImage;
-        }
+        // Print the reference picture if the cat has been placed in a good family
+        pictureR.sprite = StatsManager.instance.GetAlbumCats().Contains(cats.cats[_indexR].name) ? cats.cats[_indexR].reference : defaultImage;
     }
 }
