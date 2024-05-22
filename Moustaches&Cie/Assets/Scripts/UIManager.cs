@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
         previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
         postItButton.onClick.AddListener(PostItButtonClicked);
         
+        // Active medals depending on the level
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
@@ -61,7 +62,7 @@ public class UIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
+        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged; //Unsubscribe to the OnStateChange event
     }
 
     private void Update()
@@ -76,64 +77,97 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
         }
     }
-
+    
+    /*
+     * Active the pause panel if the game state changed to Pause
+     */
     private void GameManagerOnOnGameStateChanged(GameManager.GameState state)
     {
         pausePanel.SetActive(state == GameManager.GameState.Pause);
     }
 
+    /*
+     * Pause the game and display the pause menu
+     */
     private void PauseButtonClicked()
-    {
+    {   // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         pauseButton.gameObject.SetActive(false);
         GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
     }
+    
+    /*
+     * Resume the game
+     */
     private void PlayButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         pauseButton.gameObject.SetActive(true);
         GameManager.instance.UpdateGameState(GameManager.GameState.Play);
     }
 
+    /*
+     * Go to the options
+     */
     private void OptionsButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         optionsPanel.SetActive(true);
     }
     
+    /*
+     * Go to the title screen
+     */
     private void ToTitleButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 
+    /*
+     * Switch the memo page
+     */
     private void MemoButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
+        
         memoPage1.SetActive(memoPage2.activeSelf);
         memoPage2.SetActive(!memoPage1.activeSelf);
     }
     
+    /*
+     * Print the next cat
+     */
     private void NextCatButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
-        DayManager.NextIndex();
-        int indexMax = DayManager.GetIndexMax();
-        int index = DayManager.GetIndex();
         
+        DayManager.NextIndex();
+        var indexMax = DayManager.GetIndexMax();
+        var index = DayManager.GetIndex();
+        
+        // Set post-it in front if the printed cat is the one asked by the family
         if (DayManager.GetCurrentCats()[index].name != DayManager.GetCurrentFamily().Cat.name)
         {
-            postIt.SetActive(false);
-            postItBack.SetActive(true);
+            SwitchPostIt();
             postItButton.gameObject.SetActive(true);
         }
         else
         {
-            postIt.SetActive(true);
-            postItBack.SetActive(false);
+            SwitchPostIt();
             postItButton.gameObject.SetActive(false);
         }
         
+        // End of the game if no cat left
         if (indexMax >= 0)
         {
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
@@ -142,44 +176,52 @@ public class UIManager : MonoBehaviour
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }
 
+    /*
+     * Print the previous cat
+     */
     private void PreviousCatButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
+        
         DayManager.PreviousIndex();
-        int indexMax = DayManager.GetIndexMax();
-        int index = DayManager.GetIndex();
+        var indexMax = DayManager.GetIndexMax();
+        var index = DayManager.GetIndex();
 
+        // Set post-it in front if the printed cat is the one asked by the family
         if (DayManager.GetCurrentCats()[index].name != DayManager.GetCurrentFamily().Cat.name)
         {
-            postIt.SetActive(false);
-            postItBack.SetActive(true);
+            SwitchPostIt();
             postItButton.gameObject.SetActive(true);
         }
         else
         {
-            postIt.SetActive(true);
-            postItBack.SetActive(false);
+            SwitchPostIt();
             postItButton.gameObject.SetActive(false);
         }
 
+        // End of the game if no cat left
         if(indexMax >= 0)
             CatManager.PrintCatInfos(DayManager.GetCurrentCats()[index]);
         else 
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }
     
+    /*
+     * Set the current cat to the one asked by the family
+     */
     private void PostItButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
+        
         for (var i = 0 ; i < DayManager.GetCurrentCats().Count; i++)
         {
             if (DayManager.GetCurrentCats()[i].name == DayManager.GetCurrentFamily().Cat.name)
             {
                 DayManager.SetIndex(i);
                 CatManager.PrintCatInfos(DayManager.GetCurrentCats()[i]);
-                postIt.SetActive(true);
-                postItBack.SetActive(false);
-                //postItButton.gameObject.SetActive(false);
+                SwitchPostIt();
                 return;
             }
         }
@@ -187,15 +229,15 @@ public class UIManager : MonoBehaviour
 
     public static void SwitchPostIt()
     {
-            if (DayManager.GetCurrentCats()[DayManager.GetIndex()].name == DayManager.GetCurrentFamily().Cat.name)
-            {
-                _postIt.SetActive(true);
-                _postItBack.SetActive(false);
-            }
-            else
-            {
-                _postIt.SetActive(false);
-                _postItBack.SetActive(true);
-            }
+        if (DayManager.GetCurrentCats()[DayManager.GetIndex()].name == DayManager.GetCurrentFamily().Cat.name)
+        {
+            _postIt.SetActive(true);
+            _postItBack.SetActive(false);
+        }
+        else
+        {
+            _postIt.SetActive(false);
+            _postItBack.SetActive(true);
+        }
     }
 }

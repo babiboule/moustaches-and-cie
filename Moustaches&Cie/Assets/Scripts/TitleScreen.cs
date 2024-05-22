@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class TitleScreen : MonoBehaviour
 {
-    ////////////////// UI Components ///////////////////
+    /***************** UI Components *****************/
+    
     // Panels 
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject albumPanel;
@@ -27,6 +28,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private Image catPicture1;
     [SerializeField] private Image catPicture2;
 
+    // Scriptable Object
     [SerializeField] private CatsScriptableObject cat;
     
     // Sfx
@@ -44,18 +46,16 @@ public class TitleScreen : MonoBehaviour
         returnButton.onClick.AddListener(ReturnButtonClicked);
         toDesktopButton.onClick.AddListener(ToDesktopButtonClicked);
 
-        continueButton.interactable = false;
-        if (PlayerPrefs.GetInt("IsSave") == 1)
-        {
-            continueButton.interactable = true;
-        }
+        // Active continue button if there is a save
+        continueButton.interactable = PlayerPrefs.GetInt("IsSave") == 1;
     }
 
     private void Start()
     {
-        int index = Random.Range(0, cat.cats.Count);
+        // Set random pictures of cats in the bg
+        var index = Random.Range(0, cat.cats.Count);
         catPicture1.sprite = cat.cats[index].picture;
-        int index2 = Random.Range(0, cat.cats.Count);
+        var index2 = Random.Range(0, cat.cats.Count);
         while (index2==index)
         {
             index2 = Random.Range(0, cat.cats.Count);
@@ -63,58 +63,101 @@ public class TitleScreen : MonoBehaviour
         catPicture2.sprite = cat.cats[index2].picture;
     }
 
+    /*
+     * Start a new game
+     */
     private void NewGameButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
+        // Reset stats and load the colleague scene
         GameManager.instance.ResetSave();
         GameManager.instance.LoadGame();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Colleague);
     }
 
+    /*
+     * Continue the game
+     */
     private void ContinueButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
+        // Load the stats and load the level scene
         GameManager.instance.LoadGame();
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
     }
 
+    /*
+     * Print options panel
+     */
     private void OptionsButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         optionsPanel.SetActive(true);
     }
     
+    /*
+     * Set extra buttons and hide the main ones
+     */
     private void ExtrasButtonClicked()
     {
+        // Sfx 
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         extrasButtons.gameObject.SetActive(true);
         mainButtons.gameObject.SetActive(false);
     }
     
+    /*
+     * Print the album panel
+     */
     private void AlbumButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        // Add sfx on the music
+        MusicManager.instance.BgBossaNova(true);
+        
         albumPanel.SetActive(true);
-        MusicManager.instance.SwitchBossaNova(1);
     }
 
+    /*
+     * Print credits
+     */
     private void CreditsButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
+        // TODO : IMPLEMENT CREDITS
         throw new NotImplementedException();
     }
 
+    /*
+     * Active the main buttons and hide the extra ones
+     */
     private void ReturnButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         extrasButtons.gameObject.SetActive(false);
         mainButtons.gameObject.SetActive(true);
     }
 
+    /*
+     * Quit the application
+     */
     private void ToDesktopButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         Application.Quit();
     }
-
 }

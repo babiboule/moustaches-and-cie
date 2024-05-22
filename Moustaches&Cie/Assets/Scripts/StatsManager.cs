@@ -11,23 +11,23 @@ public class StatsManager : MonoBehaviour
     public int upLvl3;
     
     // Daily stats
-    private int m_GoodAdoptions;
-    private int m_BadAdoptions;
-    private int m_BadDecline;
-    private List<LogicManager.Problem> m_ListProblems = new List<LogicManager.Problem>();
+    private int _goodAdoptions;
+    private int _badAdoptions;
+    private int _badDecline;
+    private readonly List<LogicManager.Problem> _listProblems = new();
     
     // Adopted cats
-    private List<string> m_AdoptedCats = new List<string>();
-    private List<string> m_AlbumCats = new List<string>();
+    private readonly List<string> _adoptedCats = new();
+    private readonly List<string> _albumCats = new();
     
     // General stats
-    private int m_Level = 1;
-    private int m_Exp;
-    private int m_Date = 1;
+    private int _level = 1;
+    private int _exp;
+    private int _date = 1;
     
     // Settings
-    private float m_MusicVolume = 1;
-    private float m_SfxVolume = 1;
+    private float _musicVolume = 1;
+    private float _sfxVolume = 1;
     
     // Singleton
     private static StatsManager _instance;
@@ -35,7 +35,7 @@ public class StatsManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
+            if (_instance is null)
             {
                 Debug.LogError("Stats Manager is NULL !");
             }
@@ -53,150 +53,159 @@ public class StatsManager : MonoBehaviour
 
     private void Start()
     {
+        // Load the player prefs
         GameManager.instance.LoadPrefs();
     }
 
+    /*
+     * Reset the default stats of the day
+     */
     public void ResetDailyStats()
     {
-        m_GoodAdoptions = 0;
-        m_BadAdoptions = 0;
-        m_BadDecline = 0;
-        m_ListProblems.Clear();
+        _goodAdoptions = 0;
+        _badAdoptions = 0;
+        _badDecline = 0;
+        _listProblems.Clear();
     }
 
+    /*
+     * Clear the list of adopted cats
+     */
     public void ClearAdoptedCat()
     {
-        m_AdoptedCats.Clear();
+        _adoptedCats.Clear();
     }
 
+    /***************** Getters and Setters *****************/
+    
     public int GetGoodAdoptions()
     {
-        return m_GoodAdoptions;
+        return _goodAdoptions;
     }
-    
+
     public int GetBadAdoptions()
     {
-        return m_BadAdoptions;
+        return _badAdoptions;
     }
 
     public int GetBadDecline()
     {
-        return m_BadDecline;
+        return _badDecline;
     }
-
+    
     public List<LogicManager.Problem> GetListProblems()
     {
-        return m_ListProblems;
+        return _listProblems;
     }
 
     public List<string> GetAdoptedCats()
     {
-        return m_AdoptedCats;
+        return _adoptedCats;
     }
     
     public string GetAdoptedCats(int i)
     {
-        return m_AdoptedCats[i];
+        return _adoptedCats[i];
     }
     
     public List<string> GetAlbumCats()
     {
-        return m_AlbumCats;
+        return _albumCats;
     }
-    
+
     public string GetAlbumCats(int i)
     {
-        return m_AlbumCats[i];
+        return _albumCats[i];
     }
 
     public int GetExp()
     {
-        return m_Exp;
-    }
-    
-    public int GetLevel()
-    {
-        return m_Level;
+        return _exp;
     }
 
+    public int GetLevel()
+    {
+        return _level;
+    }
+    
     public int GetDate()
     {
-        return m_Date;
+        return _date;
     }
     
     public float GetMusicVolume()
     {
-        return m_MusicVolume;
+        return _musicVolume;
     }
     
     public float GetSfxVolume()
     {
-        return m_SfxVolume;
-    }
-
-    public void AddGoodAdoptions()
-    {
-        m_GoodAdoptions++;
+        return _sfxVolume;
     }
     
+    public void AddGoodAdoptions()
+    {
+        _goodAdoptions++;
+    }
+
     public void AddBadAdoptions()
     {
-        m_BadAdoptions++;
+        _badAdoptions++;
     }
     
     public void AddBadDecline()
     {
-        m_BadDecline++;
+        _badDecline++;
     }
-
+    
     public void AddProblemToList(LogicManager.Problem problem)
     {
-        m_ListProblems.Add(problem);
+        _listProblems.Add(problem);
     }
 
     public void AddAdoptedCat(string catName)
     {
-        m_AdoptedCats.Add(catName);
+        _adoptedCats.Add(catName);
     }
     
     public void RemoveAdoptedCat(string catName)
     {
-        m_AdoptedCats.Remove(catName);
+        _adoptedCats.Remove(catName);
     }
     
     public void AddAlbumCat(string catName)
     {
-        m_AlbumCats.Add(catName);
+        _albumCats.Add(catName);
     }
 
     public void SetLevel(int newLevel)
     {
-        m_Level = newLevel;
+        _level = newLevel;
     }
 
     public void SetExp(int newExp)
     {
-        m_Exp = newExp;
+        _exp = newExp;
     }
     
     public void SetDate(int newDate)
     {
-        m_Date = newDate;
+        _date = newDate;
     }
     
     public void AddDate()
     {
-        m_Date ++;
+        _date ++;
     }
 
     public void SetMusicVolume(float value)
     {
-        m_MusicVolume = value;
+        _musicVolume = value;
     }
     
     public void SetSfxVolume(float value)
     {
-        m_MusicVolume = value;
+        _sfxVolume = value;
     }
 
 

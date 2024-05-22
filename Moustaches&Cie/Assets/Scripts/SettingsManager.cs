@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -15,8 +14,9 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
     
-    public PointerEventData MusicVolume;
-    public PointerEventData SfxVolume;
+    // Sliders
+    private PointerEventData _musicVolume;
+    private PointerEventData _sfxVolume;
     
     //Sfx
     [SerializeField] private AudioClip buttonSfx;
@@ -30,12 +30,18 @@ public class SettingsManager : MonoBehaviour
         saveOptionsButton.onClick.AddListener(SaveOptionsButtonClicked);
     }
 
+    /*
+     * Save the current options
+     */
     private void SaveOptionsButtonClicked()
     {
         SfxManager.instance.PlaySfxClip(buttonSfx);
         GameManager.instance.SavePrefs();
     }
 
+    /*
+     * Change the music volume depending on the slider
+     */
     private void MusicVolumeChanged(float vol)
     {
         StatsManager.instance.SetMusicVolume(vol);
@@ -43,14 +49,22 @@ public class SettingsManager : MonoBehaviour
         MusicManager.instance.bossaMeowaBg.volume = vol;
     }
 
+    /*
+     * Change the sfx volume depending on the slider
+     */
     private void SfxVolumeChanged(float vol)
     {
         StatsManager.instance.SetSfxVolume(vol);
     }
 
+    /*
+     * Close options panel
+     */
     private void QuitOptionsButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
         optionsPanel.SetActive(false);
     }
 }

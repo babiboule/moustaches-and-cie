@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreUIManager : MonoBehaviour
@@ -20,12 +19,12 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private Image xpBar;
     
     // Daily stats
-    private int m_GoodAdoptions;
-    private int m_BadAdoptions;
-    private int m_BadDecline;
-    private string m_CatName;
-    private string m_CatPb;
-    private string m_FamilyPb;
+    private int _goodAdoptions;
+    private int _badAdoptions;
+    private int _badDecline;
+    private string _catName;
+    private string _catPb;
+    private string _familyPb;
     
     // Sfx
     [SerializeField] private AudioClip dayEndSfx;
@@ -36,6 +35,7 @@ public class ScoreUIManager : MonoBehaviour
 
     private void Awake()
     {
+        // Add listeners on buttons
         nextDayButton.onClick.AddListener(NextDayButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
     }
@@ -43,56 +43,57 @@ public class ScoreUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(dayEndSfx);
+        
+        // Increment the day
         StatsManager.instance.AddDate();
         
-        m_GoodAdoptions = StatsManager.instance.GetGoodAdoptions();
-        m_BadAdoptions = StatsManager.instance.GetBadAdoptions();
-        m_BadDecline = StatsManager.instance.GetBadDecline();
+        // Get the stats of the day
+        _goodAdoptions = StatsManager.instance.GetGoodAdoptions();
+        _badAdoptions = StatsManager.instance.GetBadAdoptions();
+        _badDecline = StatsManager.instance.GetBadDecline();
         
-        goodAdoptionTMP.text = "Chats bien placés : " + m_GoodAdoptions;
-        badAdoptionTMP.text = "Chats mal placés : " + m_BadAdoptions;
-        if (StatsManager.instance.GetLevel() > 1)
-        {
-            badDeclineTMP.text = "Mauvaises justifications : " + m_BadDecline;
-        }
-        else
-        {
-            badDeclineTMP.text = "Bons dossiers refusés : " + m_BadDecline;
-        }
+        // Print the stats of the day
+        goodAdoptionTMP.text = "Chats bien placés : " + _goodAdoptions;
+        badAdoptionTMP.text = "Chats mal placés : " + _badAdoptions;
+        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvaises justifications : " : "Bons dossiers refusés : ";
+        badDeclineTMP.text += _badDecline;
 
         detailsTMP.text = "Détails :";
-        upExpTMP.text = "+ " + StatsManager.instance.upExp * m_GoodAdoptions + " exp";
+        upExpTMP.text = "+ " + StatsManager.instance.upExp * _goodAdoptions + " exp";
 
+        // Update the gained exp
         UpExp();
         
-        switch (StatsManager.instance.GetLevel())
+        // Set the xp text
+        totalExpTMP.text = StatsManager.instance.GetLevel() switch
         {
-            case 1:
-                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl1;
-                break;
-            case 2:
-                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl2;
-                break;
-            case 3:
-                totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl3;
-                break;
-            default:
-                totalExpTMP.text = "Exp Max !";
-                break;
-        }
-
+            1 => StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl1,
+            2 => StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl2,
+            3 => StatsManager.instance.GetExp() + " / " + StatsManager.instance.upLvl3,
+            _ => "Exp Max !"
+        };
+        
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
         
+        // Print the detailed problems
         PrintProblems();
         
+        // Save the game
         GameManager.instance.SaveGame();
     }
 
+    /*
+     * Add exp points depending on the good adoptions made on the day
+     */
     private void UpExp()
     {
-        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*m_GoodAdoptions);
+        // Set xp
+        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*_goodAdoptions);
         float exp = StatsManager.instance.GetExp();
+        
+        // Switch level if enough xp and fill the xp bar
         if (exp >= StatsManager.instance.upLvl3)
         {
             StatsManager.instance.SetLevel(4);
@@ -115,11 +116,15 @@ public class ScoreUIManager : MonoBehaviour
 
     }
     
+    /*
+     * Print the details of the cat adopted by bad families
+     */
     private void PrintProblems()
     {
-        List<string> adoptedTemp = new List<string>();
+        var adoptedTemp = new List<string>();
         
-        foreach (LogicManager.Problem problem in StatsManager.instance.GetListProblems())
+        // For each problem, print the cat name, the cat problem and the family problem
+        foreach (var problem in StatsManager.instance.GetListProblems())
         {
             detailsTMP.text += "\n" + problem.Cat.name;
 
@@ -154,38 +159,47 @@ public class ScoreUIManager : MonoBehaviour
                 LogicManager.PbFamily.NoAnimals => " - pas d'autre chat",
                 _ => throw new ArgumentOutOfRangeException()
             };
-
-            foreach (string cat in StatsManager.instance.GetAdoptedCats())
+            
+            foreach (var cat in StatsManager.instance.GetAdoptedCats())
             {
                 if (cat == problem.Cat.name)
-                {
                     adoptedTemp.Add(cat);
-                }
+                
             }
         }
 
+        // If the cat has been adopted by a bad family, it is not adopted anymore and come back in the current cats
         foreach (var t in adoptedTemp)
         {
             StatsManager.instance.RemoveAdoptedCat(t);
         }
     }
     
+    /*
+     * Go to the next day when the button is clicked
+     */
     private void NextDayButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
+        // End the game if it was the last day, else go on next day 
         if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)
-        {
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
-        }
+        
         else
-        {
             GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
-        }
     }
 
+    /*
+     * Go to title screen when the button is clicked
+     */
     private void ToTitleButtonClicked()
     {
+        // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+        
+        // Switch the game level to the title screen
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 }

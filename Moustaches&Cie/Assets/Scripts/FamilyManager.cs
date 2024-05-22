@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FamilyManager : MonoBehaviour
@@ -33,6 +31,7 @@ public class FamilyManager : MonoBehaviour
     private static TMP_Text _commentTMP;
     private static TMP_Text _catTMP;
     
+    // Profile picture
     public Image hair;
     public Image skin;
     public Image eyes;
@@ -52,10 +51,8 @@ public class FamilyManager : MonoBehaviour
     private static Image _cloth;
     private static Image _accessories;
     private static Image _wrinkles;
-    
 
-    public Canvas canvas;
-
+    // Struct to form a picture with different face elements
     public struct Picture
     {
         public Sprite Hair;
@@ -69,6 +66,7 @@ public class FamilyManager : MonoBehaviour
         public Sprite Wrinkles;
     }
 
+    // Struct to create a family with different informations
     public struct Family
     {
         public Picture Picture;
@@ -82,7 +80,7 @@ public class FamilyManager : MonoBehaviour
         public int FreeTime;
         public bool Child;
         public FamilyInfosScriptableObject.Outdoor Outdoor;
-        [FormerlySerializedAs("Animals")] public bool Cats;
+        public bool Cats;
         public FamilyInfosScriptableObject.Comment Comment;
         public CatsScriptableObject.Cat Cat;
     }
@@ -90,6 +88,7 @@ public class FamilyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Assign correspondences
         _nameTMP = nameTMP;
         _forenameTMP = forenameTMP;
         _ageTMP = ageTMP;
@@ -115,6 +114,12 @@ public class FamilyManager : MonoBehaviour
         _wrinkles = wrinkles;
     }
 
+    /*
+     * Generate and return a neutral family with a random picture
+     * Param familyPicture : Scriptable object with all the sprites for the picture
+     * Param familyInfos : Scriptable object with all the different informations to generate
+     * Param cats : list of the cats currently available to the adoption
+     */
     public static Family GenerateFamily(FamilyPictureScriptableObject familyPicture, FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
     {
         Family family = GenerateFamilyNeutralInformations(familyInfos, cats);
@@ -123,75 +128,100 @@ public class FamilyManager : MonoBehaviour
         return family;
     }
 
+    /*
+     * Print the Param family picture and infos
+     */
     public static void PrintFamily(Family family)
     {
         PrintFamilyPicture(family);
         PrintFamilyInformation(family);   
     }
     
+    /*
+     * Generate and return a family with neutral informations (can adopt any cat)
+     * Param familyInfos : Scriptable object with all the different informations to generate
+     * Param cats : list of the cats currently available to the adoption
+     */
     private static Family GenerateFamilyNeutralInformations(FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
     {
-        Family family = new Family();
-        family.Picture = new Picture();
-        family.Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)];
-        family.Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)];
-        family.Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)];
-        family.Home = familyInfos.listHomes[0]; // Strasbourg 67
-        family.Car = true;
-        family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
+        // Set random name, forename and age, then set default values
+        Family family = new()
+        {
+            Picture = new Picture(),
+            Name = familyInfos.listNames[Random.Range(0, familyInfos.listNames.Count)],
+            Forename = familyInfos.listForenames[Random.Range(0, familyInfos.listForenames.Count)],
+            Age = familyInfos.listAges[Random.Range(0, familyInfos.listAges.Count)],
+            Home = familyInfos.listHomes[0], // Strasbourg 67
+            Car = true,
+            Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)],
+            Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé,
+            Budget = 300,
+            Child = false,
+            Cats = false
+        };
+
+        // Regenerate a comment until it is not problematic
         while (family.Comment.problematic)
         {
             family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
         }
-        family.Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé;
-        family.Budget = 300;
-        family.Child = false;
-        family.Cats = false;
         
-        int i = Random.Range(0, cats.Count);
+        // Assign a random available cat
+        var i = Random.Range(0, cats.Count);
         family.Cat = cats[i];
-        
-        // If -25 years old
-        if (family.Age < 25)
+
+        // Assign a job depending on the age 
+        switch (family.Age)
         {
-            int p = Random.Range(1, 101);
-            
-            // 75% chance of being a student
-            if (p > 25)
+            // If -25 years old
+            case < 25:
             {
-                family.JobName = "Etudiant.e";
-                family.FreeTime = 1;
+                var p = Random.Range(1, 101);
+            
+                // 75% chance of being a student
+                if (p > 25)
+                {
+                    family.JobName = "Etudiant.e";
+                    family.FreeTime = 1;
+                }
+            
+                // Else they have a random job
+                else
+                {
+                    var index = Random.Range(0, familyInfos.listJobs.Count);
+                    family.JobName = familyInfos.listJobs[index].jobName;
+                    family.FreeTime = familyInfos.listJobs[index].freeTime;
+                }
+
+                break;
             }
+            
+            // If +65 years old, retired
+            case > 65:
+                family.JobName = "Retraité.e";
+                family.FreeTime = 3;
+                break;
             
             // Else they have a random job
-            else
+            default:
             {
-                int index = Random.Range(0, familyInfos.listJobs.Count);
+                var index = Random.Range(0, familyInfos.listJobs.Count);
                 family.JobName = familyInfos.listJobs[index].jobName;
                 family.FreeTime = familyInfos.listJobs[index].freeTime;
+                break;
             }
-        }
-        
-        // If +65 years old, retired
-        else if (family.Age > 65)
-        {
-            family.JobName = "Retraité.e";
-            family.FreeTime = 3;
-        }
-        
-        // Else they have a random job
-        else
-        {
-            int index = Random.Range(0, familyInfos.listJobs.Count);
-            family.JobName = familyInfos.listJobs[index].jobName;
-            family.FreeTime = familyInfos.listJobs[index].freeTime;
         }
         return family;
     }
 
+    /*
+     * Create a constraint to a Family and return it
+     * Param family : Family to add a constraint on
+     * Param familyInfos : Scriptable object with all the different informations to generate
+     */
     public static Family AddConstraint(Family family, FamilyInfosScriptableObject familyInfos)
     {
-        int constraint = Random.Range(1, 4);
+        var constraint = Random.Range(1, 7);
         switch (constraint)
         {
             case 1: // Add a child
@@ -242,26 +272,33 @@ public class FamilyManager : MonoBehaviour
         return family;
     }
     
-    // Generate a face by picking random elements from the lists
+    /*
+     * Generate and return a face by picking random elements from the lists
+     * Param family : Family to set the picture on (for age)
+     * Param familyPicture : Scriptable object to pick random elements from
+     */
     private static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
     {
-        Picture picture = new Picture();
+        Picture picture = new()
+        {
+            Hair = familyPicture.listHairs[Random.Range(0, familyPicture.listHairs.Count)],
+            Skin = familyPicture.listSkins[Random.Range(0, familyPicture.listSkins.Count)],
+            Eyes = familyPicture.listEyes[Random.Range(0, familyPicture.listEyes.Count)],
+            Nose = familyPicture.listNoses[Random.Range(0, familyPicture.listNoses.Count)],
+            Mouth = familyPicture.listMouths[Random.Range(0, familyPicture.listMouths.Count)],
+            Eyebrows = familyPicture.listEyebrows[Random.Range(0, familyPicture.listEyebrows.Count)],
+            Cloth = familyPicture.listClothes[Random.Range(0, familyPicture.listClothes.Count)],
+            Accessories = familyPicture.listAccessories[Random.Range(0, familyPicture.listAccessories.Count)],
+            // Add wirnkles if the person is retired
+            Wrinkles = family.Age > 65 ? familyPicture.listWrinkles[1] : familyPicture.listWrinkles[0]
+        };
 
-        picture.Hair = familyPicture.listHairs[Random.Range(0, familyPicture.listHairs.Count)];
-        picture.Skin = familyPicture.listSkins[Random.Range(0, familyPicture.listSkins.Count)];
-        picture.Eyes = familyPicture.listEyes[Random.Range(0, familyPicture.listEyes.Count)];
-        picture.Nose = familyPicture.listNoses[Random.Range(0, familyPicture.listNoses.Count)];
-        picture.Mouth = familyPicture.listMouths[Random.Range(0, familyPicture.listMouths.Count)];
-        picture.Eyebrows = familyPicture.listEyebrows[Random.Range(0, familyPicture.listEyebrows.Count)];
-        picture.Cloth = familyPicture.listClothes[Random.Range(0, familyPicture.listClothes.Count)];
-        picture.Accessories = familyPicture.listAccessories[Random.Range(0, familyPicture.listAccessories.Count)];
-        if (family.Age > 65)
-            picture.Wrinkles = familyPicture.listWrinkles[1];
-        else 
-            picture.Wrinkles = familyPicture.listWrinkles[0];
         return picture;
     }
 
+    /*
+     * Print the Param family informations
+     */
     private static void PrintFamilyInformation(Family family)
     {
         _nameTMP.text = family.Name;
@@ -270,20 +307,16 @@ public class FamilyManager : MonoBehaviour
         _homeTMP.text = family.Home.city + " (" + family.Home.department + ")";
         _jobTMP.text = family.JobName;
         _budgetTMP.text =  family.Budget + " €/mois";
-        if(family.Child)
-            _childTMP.text = "Oui";
-        else
-            _childTMP.text = "Non";
-        if(family.Cats)
-            _catsTMP.text = "Oui";
-        else
-            _catsTMP.text = "Non";
+        _childTMP.text = family.Child ? "Oui" : "Non";
+        _catsTMP.text = family.Cats ? "Oui" : "Non";
         _outdoorTMP.text = family.Outdoor.ToString();
         _commentTMP.text = family.Comment.commentText;
         _catTMP.text = family.Cat.name;
     }
     
-    // Print the face at the vector location in parameter
+    /*
+     * Print the Param family picture
+     */
     private static void PrintFamilyPicture(Family family)
     {
         _skin.sprite = family.Picture.Skin;

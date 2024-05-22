@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +37,7 @@ public class ProblemsSelector : MonoBehaviour
 
     private void Awake()
     {
+        // Add listeners on buttons
         ageButton.onClick.AddListener(AgeButtonClicked);
         homeButton.onClick.AddListener(HomeButtonClicked);
         jobButton.onClick.AddListener(JobButtonClicked);
@@ -49,6 +47,7 @@ public class ProblemsSelector : MonoBehaviour
         animalsButton.onClick.AddListener(AnimalsButtonClicked);
         commentButton.onClick.AddListener(CommentButtonClicked);
         
+        // Assign correspondences
         _ageCircle = ageCircle;
         _homeCircle = homeCircle;
         _jobCircle = jobCircle;
@@ -57,16 +56,8 @@ public class ProblemsSelector : MonoBehaviour
         _outdoorCircle = outdoorCircle;
         _animalsCircle = animalsCircle;
         _commentCircle = commentCircle;
-
-        ageButton.interactable = false;
-        homeButton.interactable = false;
-        jobButton.interactable = false;
-        incomeButton.interactable = false;
-        childButton.interactable = false;
-        outdoorButton.interactable = false;
-        animalsButton.interactable = false;
-        commentButton.interactable = false;
         
+        // Set the circle interaction ON if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)
         {
             ageButton.interactable = true;
@@ -78,8 +69,22 @@ public class ProblemsSelector : MonoBehaviour
             animalsButton.interactable = true;
             commentButton.interactable = true;
         }
+        else
+        {
+            ageButton.interactable = false;
+            homeButton.interactable = false;
+            jobButton.interactable = false;
+            incomeButton.interactable = false;
+            childButton.interactable = false;
+            outdoorButton.interactable = false;
+            animalsButton.interactable = false;
+            commentButton.interactable = false;
+        }
     }
 
+    /*
+     * Disable all the circles on the screen
+     */
     public static void ResetCircles()
     {
         _ageCircle.SetActive(false);
@@ -92,8 +97,12 @@ public class ProblemsSelector : MonoBehaviour
         _commentCircle.SetActive(false);
     }
 
+    /*
+     * Check if the selected information is the reason of the Param problem and return true if it is
+     */
     public static bool CheckProblemSelected(LogicManager.Problem problem)
     {
+        // If there is no problem, this method shouldn't be called (so it's a bad answer)
         if (!problem.Exists)
             return false;
         return problem.PbFamily switch
@@ -110,12 +119,7 @@ public class ProblemsSelector : MonoBehaviour
         };
     }
 
-    public static bool IsSelected()
-    {
-        return _ageCircle.activeSelf || _jobCircle.activeSelf || _incomeCircle.activeSelf || _childCircle.activeSelf ||
-               _outdoorCircle.activeSelf || _animalsCircle.activeSelf || _commentCircle.activeSelf;
-    }
-
+    /****************** Select/Deselect the information and deselect all the others ******************/
     private void AgeButtonClicked()
     {
         _ageCircle.SetActive(!_ageCircle.activeSelf);

@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
+    // UI
     [SerializeField] private TMP_Text dialogueTMP;
-
     [SerializeField] private string[] sentences;
     private static TMP_Text _dialogueTMP;
+    
+    // List
     private static string[] _sentences;
     
-    private static int m_Index;
+    // Private variables
+    private static int _index;
+    private readonly float _textSpeed = .03f;
     private static bool _isWriting;
     private static bool _waitInput;
     private Coroutine _co;
-    [SerializeField] private float textSpeed = .1f;
+
 
     private void Awake()
     {
@@ -27,33 +29,42 @@ public class DialogueController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Index = 0;
+        _index = 0;
         dialogueTMP.text = "";
+        
+        // Write the first sentence of the dialogue
         _co = StartCoroutine(WriteSentence());
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Next sentence when left mouse button clicked
         if (Input.GetButtonDown("Fire1") && !_waitInput)
         {
+            // If the sentence is fully printed, go to next sentence
             if(!_isWriting)
             {
-                m_Index++;
+                _index++;
                 NextSentence();
             }
+            // Else stop the coroutine and print the entire current sentence
             else
             {
                 StopCoroutine(_co);
                 _isWriting = false;
-                dialogueTMP.text = sentences[m_Index];
+                dialogueTMP.text = sentences[_index];
             }
         }
     }
 
+    /*
+     * Go to the next sentence and print it
+     */
     private void NextSentence()
     {
-        if (m_Index < sentences.Length)
+        // Clean the current sentence and print the next one if it exists
+        if (_index < sentences.Length)
         {
             dialogueTMP.text = "";
             _co = StartCoroutine(WriteSentence());
@@ -64,33 +75,53 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    /*
+     * CoRoutine to write the sentences char by char at _textSpeed
+     */
     private IEnumerator WriteSentence()
     {
+        // Start writing
         _isWriting = true;
-        foreach (var car in sentences[m_Index].ToCharArray())
+        
+        // Print a char and wait for _textSpeed seconds before printing the next one
+        foreach (var car in sentences[_index].ToCharArray())
         {
             dialogueTMP.text += car;
-            yield return new WaitForSeconds(textSpeed);
+            yield return new WaitForSeconds(_textSpeed);
         }
+        
+        // Finish writing
         _isWriting = false;
     }
 
+    /*
+     * Set the current index to Param i
+     */
     public static void SetIndexTo(int i)
     {
-        m_Index = i;
+        _index = i;
         _dialogueTMP.text = _sentences[i];
     }
 
+    /*
+     * Return the current index
+     */
     public static int GetIndex()
     {
-        return m_Index;
+        return _index;
     }
 
+    /*
+     * Set the waitInput bool to Param a
+     */
     public static void SetWaitInput(bool a)
     {
         _waitInput = a;
     }
 
+    /*
+     * Return the isWriting bool
+     */
     public static bool GetIsWriting()
     {
         return _isWriting;

@@ -50,13 +50,15 @@ public class GameManager : MonoBehaviour
     }
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         UpdateGameState(GameState.Play);
         UpdateGameLevel(GameLevel.Title);
     }
 
-    // Update the state of the Game
+    /*
+     * Update the Param newState of the Game
+     */
     public void UpdateGameState(GameState newState)
     {
         state = newState;
@@ -75,10 +77,12 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
-        OnGameStateChanged?.Invoke(newState);
+        OnGameStateChanged?.Invoke(newState); // Invoke event if something has subscribed to it
     }
 
-    // Update the Level of the game
+    /*
+     * Update the Param newLevel of the game
+     */
     public void UpdateGameLevel(GameLevel newLevel)
     {
         level = newLevel;
@@ -102,6 +106,9 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    /*
+     * Reset the game stats from the PlayerPrefs doc
+     */
     public void ResetSave()
     {
         PlayerPrefs.SetInt("IsSave", 0);
@@ -114,6 +121,9 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /*
+     * Save the current stats into the PlayerPrefs doc
+     */
     public void SaveGame()
     {
         PlayerPrefs.SetInt("IsSave", 1);
@@ -136,6 +146,9 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /*
+     * Load the last saved stats from the PlayerPrefs doc
+     */
     public void LoadGame()
     {
         StatsManager.instance.SetLevel(PlayerPrefs.GetInt("Level", 1));
@@ -154,6 +167,9 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    /*
+     * Save the player prefs into the PlayerPrefs doc
+     */
     public void SavePrefs()
     {
         PlayerPrefs.SetFloat("MusicVolume", StatsManager.instance.GetMusicVolume());
@@ -161,48 +177,63 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
  
+    /*
+     * Load the saved player prefs from the PlayerPrefs doc
+     */
     public void LoadPrefs()
     {
         StatsManager.instance.SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
         StatsManager.instance.SetSfxVolume(PlayerPrefs.GetFloat("SfxVolume", 1));
     }
 
-    // Handle the new States
+    
+  /**********************  Handle the changing states  **********************/
+  
     private void HandleColleague()
     {
+        // Load the colleague scene
         SceneManager.LoadSceneAsync("Colleague");
     }
     private void HandleTitle()
     {
+        // Load the title screen scene
         SceneManager.LoadSceneAsync("Title screen");
     }
 
     private void HandlePlay()
     {
-        MusicManager.instance.SwitchBossaNova(0);
+        // Remove the fx from the music
+        MusicManager.instance.BgBossaNova(false);
     }
 
     private void HandlePause()
     {
-        MusicManager.instance.SwitchBossaNova(1);
+        // Add the fx on the music
+        MusicManager.instance.BgBossaNova(true);
     }
 
     private void HandleGameOver()
-    {MusicManager.instance.SwitchBossaNova(1);
+    {
+        // Add the fx on the music
+        MusicManager.instance.BgBossaNova(true);
+        // Load the game over scene
         SceneManager.LoadSceneAsync("Game Over");
-        
     }
     
     // Handle the new Levels
     private void HandleLevel()
-    {MusicManager.instance.SwitchBossaNova(0);
+    {
+        // Remove the fx on the music
+        MusicManager.instance.BgBossaNova(false);
+        // Load the level scene
         SceneManager.LoadSceneAsync("Level");
-        
     }
     
     private void HandleScoreLevel()
-    {MusicManager.instance.SwitchBossaNova(1);
+    {
+        // Add the fx on the music
+        MusicManager.instance.BgBossaNova(true);
+        // Load the score screen scene
         SceneManager.LoadSceneAsync("Score screen");
-        
     }
 }

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SfxManager : MonoBehaviour
 {
+    // AudioSource
     [SerializeField] private AudioSource sfxObject;
     
     // Singleton
@@ -29,16 +28,22 @@ public class SfxManager : MonoBehaviour
         DontDestroyOnLoad(_instance);
     }
 
+    /*
+     * Play the Param audioClip
+     */
     public void PlaySfxClip(AudioClip audioClip)
     {
-        AudioSource audioSource = Instantiate(sfxObject);
+        // Instantiate an sfx audioSource
+        var audioSource = Instantiate(sfxObject);
         DontDestroyOnLoad(audioSource.gameObject);
+        
+        // Set the clip on the audioSource
         audioSource.clip = audioClip;
         audioSource.volume = StatsManager.instance.GetSfxVolume();
+        
+        // Play the clip and destroy the source at the end
         audioSource.Play();
-        float clipLength = audioSource.clip.length;
+        var clipLength = audioSource.clip.length;
         Destroy(audioSource.gameObject, clipLength);
     }
-    
-    
 }

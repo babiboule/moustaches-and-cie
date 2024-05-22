@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    // Musics
     public AudioSource bossaMeowa;
     public AudioSource bossaMeowaBg;
 
@@ -11,7 +12,7 @@ public class MusicManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
+            if (_instance is null)
             {
                 Debug.LogError("Game Manager is NULL !");
             }
@@ -28,18 +29,12 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(_instance);
     }
 
-    public void SwitchBossaNova(int index)
+    /*
+     * Switch the music to the version with fx if Param a = true
+     */
+    public void BgBossaNova(bool a)
     {
-        switch (index)
-        {
-            case 0:
-                bossaMeowa.mute = false;
-                bossaMeowaBg.mute = true;
-                break;
-            case 1:
-                bossaMeowa.mute = true;
-                bossaMeowaBg.mute = false;
-                break;
-        }
+        bossaMeowa.mute = a;
+        bossaMeowaBg.mute = !a;
     }
 }
