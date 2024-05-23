@@ -1133,9 +1133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayMax: 10
   upExp: 50
-  upLvl1: 400
-  upLvl2: 900
-  upLvl3: 1500
+  upLvl1: 200
+  upLvl2: 400
+  upLvl3: 800
 --- !u!4 &1499203357
 Transform:
   m_ObjectHideFlags: 0

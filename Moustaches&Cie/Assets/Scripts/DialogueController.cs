@@ -14,7 +14,7 @@ public class DialogueController : MonoBehaviour
     
     // Private variables
     private static int _index;
-    private readonly float _textSpeed = .03f;
+    private static readonly float TextSpeed = .03f;
     private static bool _isWriting;
     private static bool _waitInput;
     private Coroutine _co;
@@ -87,11 +87,20 @@ public class DialogueController : MonoBehaviour
         foreach (var car in sentences[_index].ToCharArray())
         {
             dialogueTMP.text += car;
-            yield return new WaitForSeconds(_textSpeed);
+            yield return new WaitForSeconds(TextSpeed);
         }
         
         // Finish writing
         _isWriting = false;
+    }
+
+    public static IEnumerator WriteSentence(string str, TMP_Text tmp)
+    {
+        foreach (var car in str.ToCharArray())
+        {
+            tmp.text += car;
+            yield return new WaitForSeconds(TextSpeed);
+        }
     }
 
     /*

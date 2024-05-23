@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +34,10 @@ public class ProblemsSelector : MonoBehaviour
     private static GameObject _outdoorCircle;
     private static GameObject _animalsCircle;
     private static GameObject _commentCircle;
+    
+    // Dialog
+    [SerializeField] private GameObject dialogBox;
+    [SerializeField] private TMP_Text dialogTMP;
     
     // Sfx
     [SerializeField] private AudioClip circleSfx;
@@ -135,31 +141,21 @@ public class ProblemsSelector : MonoBehaviour
         {
             if (family.Age < 70)
             {
-                Debug.Log("Pourquoi j'aurais besoin d'un garant ?...");
+                StartCoroutine(WriteDialog("Pourquoi j'aurais besoin d'un garant ?..."));
             }
             else
             {
-                if (family.Guarantor)
-                {
-                    Debug.Log("Oui, je possède un garant.");
-                }
-                else
-                {
-                    Debug.Log("Non je n'ai pas de garant, pourquoi ?");
-                }
+                StartCoroutine(family.Guarantor
+                    ? WriteDialog("Oui, je possède un garant.")
+                    : WriteDialog("Non, je n'ai pas de garant, pourquoi ?"));
             }
         }
 
         if (_homeCircle.activeSelf)
         {
-            if (family.Car)
-            {
-                Debug.Log("Oui, je possède une voiture.");
-            }
-            else
-            {
-                Debug.Log("Non je n'ai pas de voiture...");
-            }
+            StartCoroutine(family.Car
+                ? WriteDialog("Oui, je possède une voiture.")
+                : WriteDialog("Non je n'ai pas de voiture..."));
         }
 
         if (_jobCircle.activeSelf)
@@ -167,17 +163,33 @@ public class ProblemsSelector : MonoBehaviour
             switch (family.FreeTime)
             {
                 case 1:
-                    Debug.Log("Non je n'ai pas la possibilité d'exercer mon métier en télétravail");
+                    StartCoroutine(WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
                     break;
                 case 2:
-                    Debug.Log("Oui je peux facilement éxercer mon métier en télétravail");
+                    StartCoroutine(WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
                     break;
                 case 3:
-                    Debug.Log("C'est une vraie question ou c'est une blague ?...");
+                    StartCoroutine(WriteDialog("Euuuh... C'est une blague ?"));
                     break;
             }
         }
         
+    }
+
+    private IEnumerator WriteDialog(string str)
+    {
+        dialogTMP.text = "";
+        dialogBox.SetActive(true);
+        yield return DialogueController.WriteSentence(str, dialogTMP);
+        yield return CloseDialogBox();
+    }
+    private IEnumerator CloseDialogBox()
+    {
+        while (!Input.GetButtonDown("Fire1"))
+        {
+            yield return null;
+        }
+        dialogBox.SetActive(false);
     }
 
     /****************** Select/Deselect the information and deselect all the others ******************/
