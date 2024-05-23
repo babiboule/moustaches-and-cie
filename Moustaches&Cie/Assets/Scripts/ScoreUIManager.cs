@@ -21,6 +21,7 @@ public class ScoreUIManager : MonoBehaviour
     // Daily stats
     private int _goodAdoptions;
     private int _badAdoptions;
+    private int _goodDecline;
     private int _badDecline;
     private string _catName;
     private string _catPb;
@@ -52,6 +53,7 @@ public class ScoreUIManager : MonoBehaviour
         // Get the stats of the day
         _goodAdoptions = StatsManager.instance.GetGoodAdoptions();
         _badAdoptions = StatsManager.instance.GetBadAdoptions();
+        _goodDecline = StatsManager.instance.GetGoodDecline();
         _badDecline = StatsManager.instance.GetBadDecline();
         
         // Print the stats of the day
@@ -90,7 +92,7 @@ public class ScoreUIManager : MonoBehaviour
     private void UpExp()
     {
         // Set xp
-        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*_goodAdoptions);
+        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*_goodAdoptions+StatsManager.instance.upExp/2*_goodDecline);
         float exp = StatsManager.instance.GetExp();
         
         // Switch level if enough xp and fill the xp bar

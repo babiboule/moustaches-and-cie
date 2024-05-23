@@ -115,9 +115,13 @@ public class LogicManager : MonoBehaviour
             problem.PbFamily = PbFamily.TooYoung;
         }
 
-        // Can't be over 70yo
-        if (_family.Age > 70)
+        // Can't be over 70yo 
+        if (_family.Age >= 70)
         {
+            // If over 70yo and has a guarantor, it's ok
+            if (StatsManager.instance.GetLevel() > 2 && _family.Guarantor)
+                return problem;
+            
             problem.Exists = true;
             problem.PbCat = PbCat.None;
             problem.PbFamily = PbFamily.TooOld;
@@ -138,8 +142,9 @@ public class LogicManager : MonoBehaviour
             problem.PbCat = PbCat.None;
             problem.PbFamily = PbFamily.TooFar;
         }
-        /*
-        else if (_family.Home.city != "Strasbourg")
+        
+        // If out of Strasbourg, must have a car
+        else if (_family.Home.city != "Strasbourg" && StatsManager.instance.GetLevel() > 2)
         {
             if (!_family.Car)
             {
@@ -148,7 +153,7 @@ public class LogicManager : MonoBehaviour
                 problem.PbFamily = PbFamily.NoCar;
             }
         }
-        */
+        
         return problem;
     }
 
@@ -170,7 +175,7 @@ public class LogicManager : MonoBehaviour
                 return problem;
             }
             // Must have freetime or another cat
-            if (_family is { FreeTime: <= 2, Cats: false })
+            if (_family is { FreeTime: < 2, Cats: false })
             {
                 problem.Exists = true;
                 problem.PbFamily = PbFamily.TooBusy;

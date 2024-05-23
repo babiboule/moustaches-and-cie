@@ -315,6 +315,7 @@ public class DayManager : MonoBehaviour
         }
         else
         {
+            StatsManager.instance.AddGoodDecline();
             SfxManager.instance.PlaySfxClip(goodSfx);
         }
         

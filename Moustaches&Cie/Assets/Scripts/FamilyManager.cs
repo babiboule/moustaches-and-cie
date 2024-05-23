@@ -73,6 +73,7 @@ public class FamilyManager : MonoBehaviour
         public string Name;
         public string Forename;
         public int Age;
+        public bool Guarantor;
         public FamilyInfosScriptableObject.Home Home;
         public bool Car;
         public string JobName;
@@ -157,7 +158,8 @@ public class FamilyManager : MonoBehaviour
             Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé,
             Budget = 300,
             Child = false,
-            Cats = false
+            Cats = false,
+            Guarantor = true
         };
 
         // Regenerate a comment until it is not problematic
@@ -221,7 +223,8 @@ public class FamilyManager : MonoBehaviour
      */
     public static Family AddConstraint(Family family, FamilyInfosScriptableObject familyInfos)
     {
-        var constraint = Random.Range(1, 7);
+        var constraint = Random.Range(1, StatsManager.instance.GetLevel()<3 ? 7 : 10);
+        
         switch (constraint)
         {
             case 1: // Add a child
@@ -230,33 +233,32 @@ public class FamilyManager : MonoBehaviour
                 else
                     family.Child = true;
                 break;
+            
             case 2: // Add a cat
                 if (family.Cats)
                     AddConstraint(family, familyInfos);
                 else
                     family.Cats = true;
                 break;
+            
             case 3: // Change the comment
                 while (!family.Comment.problematic)
                 {
                     family.Comment = familyInfos.listComments[Random.Range(0, familyInfos.listComments.Count)];
                 }
                 break;
+            
             case 4: // Change home
                 family.Home = familyInfos.listHomes[Random.Range(0, familyInfos.listHomes.Count)];
-                family.Car = true;
-                if (family.Home.city != "Strasbourg")
-                {
-                    if (Random.Range(1, 101) > 50)
-                        family.Car = false;
-                }
                 break;
+            
             case 5 : // Reduce budget
                 if (family.Budget <= 20)
                     AddConstraint(family, familyInfos);
                 else
                     family.Budget -= Random.Range(3, 14) * 20;
                 break;
+            
             case 6 : // Change outdoor conditions
                 var i = Random.Range(0, 3);
                 family.Outdoor = i switch
@@ -267,8 +269,30 @@ public class FamilyManager : MonoBehaviour
                     _ => FamilyInfosScriptableObject.Outdoor.Fermé
                 };
                 break;
+            
+            /*************** Level 3 and more *******************/
+            
+            case 7 : // Remove Teleworking if possible
+                if (family.FreeTime is 1 or 3)
+                    AddConstraint(family, familyInfos);
+                else
+                    family.FreeTime = 1;
+                break;
+            
+            case 8 : // Remove Guarantor
+                if (!family.Guarantor)
+                    AddConstraint(family, familyInfos);
+                else
+                    family.Guarantor = false;
+                break;
+            
+            case 9 : //Remove car
+                if (!family.Car)
+                    AddConstraint(family, familyInfos);
+                else
+                    family.Car = false;
+                break;
         }
-        
         return family;
     }
     

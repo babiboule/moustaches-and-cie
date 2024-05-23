@@ -126,13 +126,13 @@ MonoBehaviour:
   - jobName: Au Chomage
     freeTime: 3
   - jobName: "Charpentier.\xE8re"
-    freeTime: 2
+    freeTime: 1
   - jobName: "H\xF4te.sse de l'air"
     freeTime: 1
   - jobName: Militaire
     freeTime: 1
   - jobName: "Caissier.\xE8re"
-    freeTime: 2
+    freeTime: 1
   - jobName: Chef d'entreprise
     freeTime: 2
   - jobName: Gestionnaire
@@ -144,6 +144,8 @@ MonoBehaviour:
   - jobName: Auto-Entrepreneur
     freeTime: 2
   - jobName: Manager.euse
+    freeTime: 2
+  - jobName: Notaire
     freeTime: 2
   listComments:
   - commentText: J'aimerais beaucoup avoir un chat !

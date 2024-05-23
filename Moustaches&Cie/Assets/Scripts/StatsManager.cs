@@ -13,6 +13,7 @@ public class StatsManager : MonoBehaviour
     // Daily stats
     private int _goodAdoptions;
     private int _badAdoptions;
+    private int _goodDecline;
     private int _badDecline;
     private readonly List<LogicManager.Problem> _listProblems = new();
     
@@ -88,6 +89,11 @@ public class StatsManager : MonoBehaviour
         return _badAdoptions;
     }
 
+    public int GetGoodDecline()
+    {
+        return _goodDecline;
+    }
+
     public int GetBadDecline()
     {
         return _badDecline;
@@ -151,6 +157,11 @@ public class StatsManager : MonoBehaviour
     public void AddBadAdoptions()
     {
         _badAdoptions++;
+    }
+
+    public void AddGoodDecline()
+    {
+        _goodDecline++;
     }
     
     public void AddBadDecline()

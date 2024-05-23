@@ -12,6 +12,7 @@ public class ProblemsSelector : MonoBehaviour
     [SerializeField] private Button outdoorButton;
     [SerializeField] private Button animalsButton;
     [SerializeField] private Button commentButton;
+    [SerializeField] private Button phoneButton;
     
     // Images
     [SerializeField] private GameObject ageCircle;
@@ -46,6 +47,7 @@ public class ProblemsSelector : MonoBehaviour
         outdoorButton.onClick.AddListener(OutdoorButtonClicked);
         animalsButton.onClick.AddListener(AnimalsButtonClicked);
         commentButton.onClick.AddListener(CommentButtonClicked);
+        phoneButton.onClick.AddListener(PhoneButtonClicked);
         
         // Assign correspondences
         _ageCircle = ageCircle;
@@ -80,6 +82,10 @@ public class ProblemsSelector : MonoBehaviour
             animalsButton.interactable = false;
             commentButton.interactable = false;
         }
+        
+        // Set the phone button ON if on level 3 or more
+        phoneButton.gameObject.SetActive(StatsManager.instance.GetLevel() > 2);
+        phoneButton.interactable = false;
     }
 
     /*
@@ -115,13 +121,72 @@ public class ProblemsSelector : MonoBehaviour
             LogicManager.PbFamily.NoOutdoor => _outdoorCircle.activeSelf,
             LogicManager.PbFamily.Animals => _animalsCircle.activeSelf,
             LogicManager.PbFamily.Comment => _commentCircle.activeSelf,
+            LogicManager.PbFamily.NoCar => _homeCircle.activeSelf,
+            LogicManager.PbFamily.TooFar => _homeCircle.activeSelf,
             _ => false
         };
+    }
+
+    private void PhoneButtonClicked()
+    {
+        var family = DayManager.GetCurrentFamily();
+        
+        if (_ageCircle.activeSelf)
+        {
+            if (family.Age < 70)
+            {
+                Debug.Log("Pourquoi j'aurais besoin d'un garant ?...");
+            }
+            else
+            {
+                if (family.Guarantor)
+                {
+                    Debug.Log("Oui, je possède un garant.");
+                }
+                else
+                {
+                    Debug.Log("Non je n'ai pas de garant, pourquoi ?");
+                }
+            }
+        }
+
+        if (_homeCircle.activeSelf)
+        {
+            if (family.Car)
+            {
+                Debug.Log("Oui, je possède une voiture.");
+            }
+            else
+            {
+                Debug.Log("Non je n'ai pas de voiture...");
+            }
+        }
+
+        if (_jobCircle.activeSelf)
+        {
+            switch (family.FreeTime)
+            {
+                case 1:
+                    Debug.Log("Non je n'ai pas la possibilité d'exercer mon métier en télétravail");
+                    break;
+                case 2:
+                    Debug.Log("Oui je peux facilement éxercer mon métier en télétravail");
+                    break;
+                case 3:
+                    Debug.Log("C'est une vraie question ou c'est une blague ?...");
+                    break;
+            }
+        }
+        
     }
 
     /****************** Select/Deselect the information and deselect all the others ******************/
     private void AgeButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = !_ageCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+
+        // Circles
         _ageCircle.SetActive(!_ageCircle.activeSelf);
         DayManager.SetAcceptButtonActive(!_ageCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_ageCircle.activeSelf);
@@ -139,6 +204,10 @@ public class ProblemsSelector : MonoBehaviour
     
     private void HomeButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = !_homeCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+        
+        // Circles
         _ageCircle.SetActive(false);
         
         _homeCircle.SetActive(!_homeCircle.activeSelf);
@@ -157,6 +226,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void JobButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = !_jobCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         
@@ -175,6 +248,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void IncomeButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = false;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
@@ -193,6 +270,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void ChildButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = false;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
@@ -211,6 +292,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void OutdoorButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = false;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
@@ -229,6 +314,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void AnimalsButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = false;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);
@@ -247,6 +336,10 @@ public class ProblemsSelector : MonoBehaviour
 
     private void CommentButtonClicked()
     {
+        // Phone button
+        phoneButton.interactable = false;
+        
+        // Circles
         _ageCircle.SetActive(false);
         _homeCircle.SetActive(false);
         _jobCircle.SetActive(false);

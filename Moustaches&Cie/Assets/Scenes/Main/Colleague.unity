@@ -1372,7 +1372,6 @@ MonoBehaviour:
   - T'as tout compris ?
   - Cool, je te laisse alors. Je repasserai parfois pour voir comment tu t'en sors
     !
-  textSpeed: 0.03
 --- !u!4 &497316864
 Transform:
   m_ObjectHideFlags: 0
