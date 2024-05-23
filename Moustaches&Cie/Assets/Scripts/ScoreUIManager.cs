@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreUIManager : MonoBehaviour
@@ -9,10 +10,12 @@ public class ScoreUIManager : MonoBehaviour
     // UI 
     [SerializeField] private TMP_Text goodAdoptionTMP;
     [SerializeField] private TMP_Text badAdoptionTMP;
+    [SerializeField] private TMP_Text goodDeclineTMP;
     [SerializeField] private TMP_Text badDeclineTMP;
     [SerializeField] private TMP_Text detailsTMP;
     [SerializeField] private TMP_Text levelTMP;
-    [SerializeField] private TMP_Text upExpTMP;
+    [SerializeField] private TMP_Text upExpGoodAdoptionTMP;
+    [SerializeField] private TMP_Text upExpGoodDeclineTMP;
     [SerializeField] private TMP_Text totalExpTMP;
     [SerializeField] private Button nextDayButton;
     [SerializeField] private Button toTitleButton;
@@ -59,11 +62,12 @@ public class ScoreUIManager : MonoBehaviour
         // Print the stats of the day
         goodAdoptionTMP.text = "Chats bien placés : " + _goodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + _badAdoptions;
-        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvaises justifications : " : "Bons dossiers refusés : ";
-        badDeclineTMP.text += _badDecline;
+        goodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Refus bien justifiés : " + _goodDecline: "";
+        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvaises justifications : " + _badDecline : "Bons dossiers refusés : " + _badDecline;
 
-        detailsTMP.text = "Détails :";
-        upExpTMP.text = "+ " + StatsManager.instance.upExp * _goodAdoptions + " exp";
+        detailsTMP.text = "Détails : \n";
+        upExpGoodAdoptionTMP.text = "+ " + StatsManager.instance.upExp * _goodAdoptions + " exp";
+        upExpGoodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "+ " + StatsManager.instance.upExp / 2 * _goodDecline + " exp" : "";
 
         // Update the gained exp
         UpExp();
@@ -132,14 +136,14 @@ public class ScoreUIManager : MonoBehaviour
 
             detailsTMP.text += problem.PbCat switch
             {
-                LogicManager.PbCat.Kitten => " - chaton",
-                LogicManager.PbCat.Sick => " - malade",
-                LogicManager.PbCat.Shy => " - peureux.se",
-                LogicManager.PbCat.Lover => " - pot de colle",
-                LogicManager.PbCat.Outdoor => " - besoin d'extérieur",
-                LogicManager.PbCat.NoOkAnimals => " - pas ok chats",
-                LogicManager.PbCat.Disable => " - handicap",
-                LogicManager.PbCat.NeedAnimals => " - besoin d'un autre chat",
+                LogicManager.PbCat.Kitten => " : chaton",
+                LogicManager.PbCat.Sick => " : malade",
+                LogicManager.PbCat.Shy => " : peureux.se",
+                LogicManager.PbCat.Lover => " : pot de colle",
+                LogicManager.PbCat.Outdoor => " : besoin d'extérieur",
+                LogicManager.PbCat.NoOkAnimals => " : pas ok chats",
+                LogicManager.PbCat.Disable => " : handicap",
+                LogicManager.PbCat.NeedAnimals => " : besoin d'un autre chat",
                 LogicManager.PbCat.None => "",
                 _ => throw new ArgumentOutOfRangeException()
             };
@@ -156,8 +160,8 @@ public class ScoreUIManager : MonoBehaviour
                 LogicManager.PbFamily.Comment => " - commentaire pas ok",
                 LogicManager.PbFamily.TooFar => " - pas dans le Bas-Rhin",
                 LogicManager.PbFamily.NoCar => " - pas de voiture",
-                LogicManager.PbFamily.OpenOutdoor => " - extérieur pas sécurisé",
-                LogicManager.PbFamily.Outdoor => " - pas d'extérieur",
+                LogicManager.PbFamily.OpenOutdoor => " - extérieur ouvert",
+                LogicManager.PbFamily.Outdoor => " - a un extérieur",
                 LogicManager.PbFamily.NoAnimals => " - pas d'autre chat",
                 _ => throw new ArgumentOutOfRangeException()
             };
