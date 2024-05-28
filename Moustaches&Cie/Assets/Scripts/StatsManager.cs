@@ -23,8 +23,10 @@ public class StatsManager : MonoBehaviour
     
     // General stats
     private int _level = 1;
-    private int _exp;
+    private int _exp = 0;
     private int _date = 1;
+    private int _tutoLvl = 1;
+    private bool _tuto = true;
     
     // Settings
     private float _musicVolume = 1;
@@ -148,6 +150,16 @@ public class StatsManager : MonoBehaviour
     {
         return _sfxVolume;
     }
+
+    public bool GetTuto()
+    {
+        return _tuto;
+    }
+
+    public int GetTutoLvl()
+    {
+        return _tutoLvl;
+    }
     
     public void AddGoodAdoptions()
     {
@@ -217,6 +229,16 @@ public class StatsManager : MonoBehaviour
     public void SetSfxVolume(float value)
     {
         _sfxVolume = value;
+    }
+
+    public void SetTuto(bool a)
+    {
+        _tuto = a;
+    }
+
+    public void SetTutoLevel(int i)
+    {
+        _tutoLvl = i;
     }
 
 

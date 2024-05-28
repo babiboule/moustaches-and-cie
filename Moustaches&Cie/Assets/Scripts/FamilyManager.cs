@@ -123,7 +123,7 @@ public class FamilyManager : MonoBehaviour
      */
     public static Family GenerateFamily(FamilyPictureScriptableObject familyPicture, FamilyInfosScriptableObject familyInfos, List<CatsScriptableObject.Cat> cats)
     {
-        Family family = GenerateFamilyNeutralInformations(familyInfos, cats);
+        var family = GenerateFamilyNeutralInformations(familyInfos, cats);
         family.Picture = GenerateFamilyPicture(family, familyPicture);
         
         return family;
@@ -301,7 +301,7 @@ public class FamilyManager : MonoBehaviour
      * Param family : Family to set the picture on (for age)
      * Param familyPicture : Scriptable object to pick random elements from
      */
-    private static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
+    public static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
     {
         Picture picture = new()
         {
@@ -341,7 +341,7 @@ public class FamilyManager : MonoBehaviour
     /*
      * Print the Param family picture
      */
-    private static void PrintFamilyPicture(Family family)
+    public static void PrintFamilyPicture(Family family)
     {
         _skin.sprite = family.Picture.Skin;
         _hair.sprite = family.Picture.Hair;

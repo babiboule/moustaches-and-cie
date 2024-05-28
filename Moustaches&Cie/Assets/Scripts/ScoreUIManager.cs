@@ -108,11 +108,21 @@ public class ScoreUIManager : MonoBehaviour
         else if (exp >= StatsManager.instance.upLvl2)
         {
             StatsManager.instance.SetLevel(3);
+            if(StatsManager.instance.GetTutoLvl() == 2)
+            {
+                StatsManager.instance.SetTuto(true);
+                StatsManager.instance.SetTutoLevel(3);
+            }
             xpBar.fillAmount = (exp - StatsManager.instance.upLvl2) / (StatsManager.instance.upLvl3-StatsManager.instance.upLvl2);
         }
         else if (exp >= StatsManager.instance.upLvl1)
         {
             StatsManager.instance.SetLevel(2);
+            if(StatsManager.instance.GetTutoLvl() == 1)
+            {
+                StatsManager.instance.SetTuto(true);
+                StatsManager.instance.SetTutoLevel(2);
+            }
             xpBar.fillAmount = (exp - StatsManager.instance.upLvl1) / (StatsManager.instance.upLvl2-StatsManager.instance.upLvl1);
         }
         else

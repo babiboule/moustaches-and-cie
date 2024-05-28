@@ -141,21 +141,21 @@ public class ProblemsSelector : MonoBehaviour
         {
             if (family.Age < 70)
             {
-                StartCoroutine(WriteDialog("Pourquoi j'aurais besoin d'un garant ?..."));
+                StartCoroutine(DialogueController.WriteDialog("Pourquoi j'aurais besoin d'un garant ?..."));
             }
             else
             {
                 StartCoroutine(family.Guarantor
-                    ? WriteDialog("Oui, je possède un garant.")
-                    : WriteDialog("Non, je n'ai pas de garant, pourquoi ?"));
+                    ? DialogueController.WriteDialog("Oui, je possède un garant.")
+                    : DialogueController.WriteDialog("Non, je n'ai pas de garant, pourquoi ?"));
             }
         }
 
         if (_homeCircle.activeSelf)
         {
             StartCoroutine(family.Car
-                ? WriteDialog("Oui, je possède une voiture.")
-                : WriteDialog("Non je n'ai pas de voiture..."));
+                ? DialogueController.WriteDialog("Oui, je possède une voiture.")
+                : DialogueController.WriteDialog("Non je n'ai pas de voiture..."));
         }
 
         if (_jobCircle.activeSelf)
@@ -163,34 +163,20 @@ public class ProblemsSelector : MonoBehaviour
             switch (family.FreeTime)
             {
                 case 1:
-                    StartCoroutine(WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
+                    StartCoroutine(DialogueController.WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
                     break;
                 case 2:
-                    StartCoroutine(WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
+                    StartCoroutine(DialogueController.WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
                     break;
                 case 3:
-                    StartCoroutine(WriteDialog("Euuuh... C'est une blague ?"));
+                    StartCoroutine(DialogueController.WriteDialog("Euuuh... C'est une blague ?"));
                     break;
             }
         }
         
     }
 
-    private IEnumerator WriteDialog(string str)
-    {
-        dialogTMP.text = "";
-        dialogBox.SetActive(true);
-        yield return DialogueController.WriteSentence(str, dialogTMP);
-        yield return CloseDialogBox();
-    }
-    private IEnumerator CloseDialogBox()
-    {
-        while (!Input.GetButtonDown("Fire1"))
-        {
-            yield return null;
-        }
-        dialogBox.SetActive(false);
-    }
+
 
     /****************** Select/Deselect the information and deselect all the others ******************/
     private void AgeButtonClicked()

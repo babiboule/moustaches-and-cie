@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
@@ -36,6 +37,8 @@ public class DayManager : MonoBehaviour
     [SerializeField] private AudioClip goodSfx;
     [SerializeField] private AudioClip badSfx;
     
+    // Coroutine
+    private IEnumerator _coTuto;
 
     private void Awake()
     {
@@ -94,7 +97,19 @@ public class DayManager : MonoBehaviour
         if(StatsManager.instance.GetLevel()>1)
             SetDeclineButtonActive(false);
         
-        // Launch the first folder
+        // Launch the tuto if needed
+        if(StatsManager.instance.GetTuto() || StatsManager.instance.GetDate() == 1)
+        {
+            _coTuto = Tutorial();
+            StartCoroutine(_coTuto);
+        }
+    }
+
+    private IEnumerator Tutorial()
+    {
+        TutoManager.instance.LaunchTuto(StatsManager.instance.GetTutoLvl());
+        while(StatsManager.instance.GetTuto())
+            yield return null;
         NextFolder();
     }
 
@@ -241,6 +256,11 @@ public class DayManager : MonoBehaviour
      */
     private void AcceptStampButtonClicked()
     {
+        if (StatsManager.instance.GetTuto())
+        {
+            StartCoroutine(DialogueController.WriteDialog("Non, celui-là c'est pour valider le dossier..."));
+            return;
+        }
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
         
@@ -291,6 +311,12 @@ public class DayManager : MonoBehaviour
      */
     private void DeclineStampButtonClicked()
     {
+        if (StatsManager.instance.GetTuto())
+        {
+            StartCoroutine(TutoManager.SetDeclineStampClicked());
+            return;
+        }
+        
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
         
@@ -343,7 +369,7 @@ public class DayManager : MonoBehaviour
      * Set the decline button to Param a
      */
     public static void SetDeclineButtonActive(bool a)
-    { 
+    {
         _declineStampButton.interactable = a;
     }
 

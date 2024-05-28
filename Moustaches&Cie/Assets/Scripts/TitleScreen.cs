@@ -74,7 +74,7 @@ public class TitleScreen : MonoBehaviour
         // Reset stats and load the colleague scene
         GameManager.instance.ResetSave();
         GameManager.instance.LoadGame();
-        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Colleague);
+        GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);
     }
 
     /*
