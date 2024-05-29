@@ -15,7 +15,6 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject familyPanel;
     [SerializeField] private GameObject catsPanel;
     [SerializeField] private GameObject memoPanel;
-    [SerializeField] private GameObject postItPanel;
     [SerializeField] private GameObject stampPanel;
 
     // Variables
@@ -47,7 +46,7 @@ public class TutoManager : MonoBehaviour
     
     private void Awake()
     {
-        if (_instance == null)
+        if (_instance is null)
             _instance = this;
         else Destroy(this.gameObject);
         DontDestroyOnLoad(_instance);
@@ -137,7 +136,6 @@ public class TutoManager : MonoBehaviour
         familyPanel.SetActive(false);
         catsPanel.SetActive(false);
         memoPanel.SetActive(false);
-        postItPanel.SetActive(false);
         stampPanel.SetActive(false);
         
         while (StatsManager.instance.GetTuto())
@@ -155,27 +153,28 @@ public class TutoManager : MonoBehaviour
             StartCoroutine(DialogueController.WriteDialog(tuto1Str[4]));
             while (DialogueController.GetIsWriting())
                 yield return null;
-            familyPanel.SetActive(true);
             
+            // Print family folder and continue
+            familyPanel.SetActive(true);
             StartCoroutine(DialogueController.WriteDialog(tuto1Str[5]));
             while (DialogueController.GetIsWriting())
                 yield return null;
-            catsPanel.SetActive(true);
             
+            // Print cats folder and continue
+            catsPanel.SetActive(true);
             StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,9)]));
             while (DialogueController.GetIsWriting())
                 yield return null;
-            catsArrows.SetActive(true);
             
-            // Wait for good cat to be printed
+            // Wait for good cat to be selected
+            catsArrows.SetActive(true);
             while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
             {
                 yield return null;
             }
             
             // Continue 
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(9,11)]));
-            postItPanel.SetActive(true);
+            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(9, 11)]));
             while (DialogueController.GetIsWriting())
             {
                 yield return null;

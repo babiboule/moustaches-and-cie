@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StatsManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class StatsManager : MonoBehaviour
     public int upLvl1;
     public int upLvl2;
     public int upLvl3;
+    public bool tuto = true;
     
     // Daily stats
     private int _goodAdoptions;
@@ -26,7 +28,7 @@ public class StatsManager : MonoBehaviour
     private int _exp = 0;
     private int _date = 1;
     private int _tutoLvl = 1;
-    private bool _tuto = true;
+    
     
     // Settings
     private float _musicVolume = 1;
@@ -153,7 +155,7 @@ public class StatsManager : MonoBehaviour
 
     public bool GetTuto()
     {
-        return _tuto;
+        return tuto;
     }
 
     public int GetTutoLvl()
@@ -233,7 +235,7 @@ public class StatsManager : MonoBehaviour
 
     public void SetTuto(bool a)
     {
-        _tuto = a;
+        tuto = a;
     }
 
     public void SetTutoLevel(int i)
