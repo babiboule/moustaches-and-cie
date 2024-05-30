@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject catsPanel;
     [SerializeField] private GameObject memoPanel;
     [SerializeField] private GameObject stampPanel;
+    
+    // Button
+    [SerializeField] private Button skipButton;
 
     // Variables
     [SerializeField] private FamilyPictureScriptableObject familyPicture;
@@ -29,6 +33,8 @@ public class TutoManager : MonoBehaviour
     private int _index;
     private static bool _declineStamp;
     
+    // Coroutines
+    private Coroutine _tutoCo;
 
     // Singleton
     private static TutoManager _instance;
@@ -46,10 +52,13 @@ public class TutoManager : MonoBehaviour
     
     private void Awake()
     {
-        if (_instance is null)
+        if (_instance == null)
             _instance = this;
-        else Destroy(this.gameObject);
+        else Destroy(gameObject);
         DontDestroyOnLoad(_instance);
+
+        skipButton.onClick.AddListener(SkipButtonClicked);
+        skipButton.gameObject.SetActive(StatsManager.instance.GetTuto());
     }
 
     /*
@@ -66,24 +75,36 @@ public class TutoManager : MonoBehaviour
      */
     private IEnumerator Skip()
     {
+        // Wait for the last line to print
         while (DialogueController.GetIsWriting())
             yield return null;
-    }
-
-    /*
-     * Launch the game
-     */
-    private void YesButtonClicked()
-    {
-        DialogueController.SetWaitInput(false);
-    }
-
-    /*
-     * Restart the tuto
-     */
-    private void NoButtonClicked()
-    {
-        DialogueController.SetWaitInput(false);
+        
+        // Stop coroutine and end the tuto
+        StopCoroutine(_tutoCo);
+        colleaguePanel.SetActive(true);
+        switch (StatsManager.instance.GetTutoLvl())
+        {
+            case 1:
+                StartCoroutine(DialogueController.WriteDialog(tuto1Str[18]));
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        catsArrows.SetActive(true);
+        memoArrows.SetActive(true);
+        familyPanel.SetActive(true);
+        catsPanel.SetActive(true);
+        memoPanel.SetActive(true);
+        stampPanel.SetActive(true);
+        colleaguePanel.SetActive(false);
+        skipButton.gameObject.SetActive(false);
+        StatsManager.instance.SetTuto(false);
     }
 
     /*
@@ -91,21 +112,14 @@ public class TutoManager : MonoBehaviour
      */
     public void LaunchTuto(int i)
     {
-        Debug.Log("Je lance le tuto n°" + i);
-        
-        // Reset the bool and launch the good tutorial
-        switch (i)
+        // Launch the good tutorial
+        _tutoCo = i switch
         {
-            case 1:
-                StartCoroutine(Tuto1());
-                break;
-            case 2:
-                StartCoroutine(Tuto2());
-                break;
-            case 3:
-                StartCoroutine(Tuto3());
-                break;
-        }
+            1 => StartCoroutine(Tuto1()),
+            2 => StartCoroutine(Tuto2()),
+            3 => StartCoroutine(Tuto3()),
+            _ => _tutoCo
+        };
     }
 
     private IEnumerator Tuto1()
@@ -138,92 +152,108 @@ public class TutoManager : MonoBehaviour
         memoPanel.SetActive(false);
         stampPanel.SetActive(false);
         
-        while (StatsManager.instance.GetTuto())
-        {
-            // Start of the tutorial
-            colleaguePanel.SetActive(true);
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
-            while (DialogueController.GetIsWriting())
-            {
-                yield return null;
-            }
-            
-            // Desk view
-            colleaguePanel.SetActive(false);
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[4]));
-            while (DialogueController.GetIsWriting())
-                yield return null;
-            
-            // Print family folder and continue
-            familyPanel.SetActive(true);
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[5]));
-            while (DialogueController.GetIsWriting())
-                yield return null;
-            
-            // Print cats folder and continue
-            catsPanel.SetActive(true);
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,9)]));
-            while (DialogueController.GetIsWriting())
-                yield return null;
-            
-            // Wait for good cat to be selected
-            catsArrows.SetActive(true);
-            while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
-            {
-                yield return null;
-            }
-            
-            // Continue 
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(9, 11)]));
-            while (DialogueController.GetIsWriting())
-            {
-                yield return null;
-            }
-            memoPanel.SetActive(true);
-            
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
-            while (DialogueController.GetIsWriting())
-            {
-                yield return null;
-            }
-            memoArrows.SetActive(true);
-            while(!memoPage2.activeSelf)
-            {
-                yield return null;
-            }
-            
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(14,17)]));
-            while (DialogueController.GetIsWriting())
-            {
-                yield return null;
-            }
-            stampPanel.SetActive(true);
 
-            // Wait for good stamp
-            while (!_declineStamp)
-            {
-                yield return null;
-            }
-            
-            // Continue
-            colleaguePanel.SetActive(true);
-            StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
-            while (DialogueController.GetIsWriting())
-            {
-                yield return null;
-            }
-            
-            // End of the tutorial
-            colleaguePanel.SetActive(false);
-            StatsManager.instance.SetTuto(false);
-        
+        // Start of the tutorial
+        colleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
+        while (DialogueController.GetIsWriting())
             yield return null;
-        }
+        
+            
+        // Desk view
+        colleaguePanel.SetActive(false);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[4]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // Print family folder and continue
+        familyPanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[5]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // Print cats folder and continue
+        catsPanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,9)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // Wait for good cat to be selected
+        catsArrows.SetActive(true);
+        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
+            yield return null;
+        
+            
+        // Continue 
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(9, 11)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        memoPanel.SetActive(true);
+            
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        memoArrows.SetActive(true);
+        while(!memoPage2.activeSelf)
+            yield return null;
+            
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(14,17)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        stampPanel.SetActive(true);
+
+        // Wait for good stamp
+        while (!_declineStamp)
+            yield return null;
+        
+        // Continue
+        colleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // End of the tutorial
+        colleaguePanel.SetActive(false);
+        StatsManager.instance.SetTuto(false);
     }
 
     private IEnumerator Tuto2()
     {
-        yield return null;
+        _family = new FamilyManager.Family()
+        {
+            Name = "TUTO",
+            Forename = "Titouan",
+            Age = 32,
+            Budget = 150,
+            Car = true,
+            Cat = cats.cats.Last(),
+            Cats = true,
+            Child = false,
+            Comment = familyInfos.listComments[0],
+            FreeTime = 2,
+            Home = familyInfos.listHomes[0],
+            Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé,
+            Guarantor = true,
+            JobName = "Testeur"
+        };
+        _family.Picture = FamilyManager.GenerateFamilyPicture(_family, familyPicture);
+        FamilyManager.PrintFamily(_family);
+        
+        // Start of the tutorial
+        colleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Desk view
+        colleaguePanel.SetActive(false);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(4,6)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
     }
     
     private IEnumerator Tuto3()

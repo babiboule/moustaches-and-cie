@@ -240,4 +240,6 @@ public class UIManager : MonoBehaviour
             _postItBack.SetActive(true);
         }
     }
+    
+    
 }

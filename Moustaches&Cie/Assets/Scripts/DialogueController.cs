@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class DialogueController : MonoBehaviour
     // Private variables
     private const float TextSpeed = .03f;
     private static bool _isWriting;
+    private static bool _skipClic;
     private static bool _waitInput;
     private Coroutine _co;
 
@@ -25,7 +27,15 @@ public class DialogueController : MonoBehaviour
         dialogueTMP.text = "";
         dialogBox.SetActive(false);
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && _isWriting && !_waitInput)
+        {
+            _skipClic = true;
+        }
+    }
+
     public static IEnumerator WriteDialog(string str)
     {
         _dialogTMP.text = "";
@@ -35,12 +45,20 @@ public class DialogueController : MonoBehaviour
         {
             _dialogTMP.text += car;
             yield return new WaitForSeconds(TextSpeed);
+            if(_skipClic)
+            {
+                SkipWriting(str);
+                break;
+            }
         }
-        
+
+        _waitInput = true;
         while (!Input.GetButtonDown("Fire1"))
         {
             yield return null;
         }
+
+        _waitInput = false;
 
         _isWriting = false;
         yield return CloseDialogBox();
@@ -55,19 +73,35 @@ public class DialogueController : MonoBehaviour
             _dialogTMP.text = "";
             foreach (var car in str.ToCharArray())
             {
-                
                 _dialogTMP.text += car;
                 yield return new WaitForSeconds(TextSpeed);
+                if (_skipClic)
+                {
+                    SkipWriting(str);
+                    break;
+                }
             }
 
+            _waitInput = true;
             while (!Input.GetButtonDown("Fire1"))
             {
                 yield return null;
             }
+
+            _waitInput = false;
         }
+        
+        _waitInput = true;
+        while (!Input.GetButtonDown("Fire1"))
+        {
+            yield return null;
+        }
+
+        _waitInput = false;
         _isWriting = false;
         yield return CloseDialogBox();
     }
+   
     private static IEnumerator CloseDialogBox()
     {
         while (!Input.GetButtonDown("Fire1"))
@@ -77,12 +111,10 @@ public class DialogueController : MonoBehaviour
         _dialogBox.SetActive(false);
     }
 
-    /*
-     * Set the waitInput bool to Param a
-     */
-    public static void SetWaitInput(bool a)
+    private static void SkipWriting(string str)
     {
-        _waitInput = a;
+        _dialogTMP.text = str;
+        _skipClic = false;
     }
 
     /*

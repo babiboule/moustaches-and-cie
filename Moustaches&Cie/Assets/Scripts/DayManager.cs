@@ -38,7 +38,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private AudioClip badSfx;
     
     // Coroutine
-    private IEnumerator _coTuto;
+    private Coroutine _coTuto;
 
     private void Awake()
     {
@@ -100,8 +100,7 @@ public class DayManager : MonoBehaviour
         // Launch the tuto if needed
         if(StatsManager.instance.GetTuto() || StatsManager.instance.GetDate() == 1)
         {
-            _coTuto = Tutorial();
-            StartCoroutine(_coTuto);
+            _coTuto = StartCoroutine(Tutorial());
         }
     }
 
@@ -110,6 +109,7 @@ public class DayManager : MonoBehaviour
         TutoManager.instance.LaunchTuto(StatsManager.instance.GetTutoLvl());
         while(StatsManager.instance.GetTuto())
             yield return null;
+        StopCoroutine(_coTuto);
         NextFolder();
     }
 
