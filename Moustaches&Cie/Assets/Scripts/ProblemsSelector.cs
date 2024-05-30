@@ -31,9 +31,10 @@ public class ProblemsSelector : MonoBehaviour
     private static GameObject _jobCircle;
     private static GameObject _incomeCircle;
     private static GameObject _childCircle;
-    private static GameObject _outdoorCircle;
+    public static GameObject OutdoorCircle;
     private static GameObject _animalsCircle;
     private static GameObject _commentCircle;
+    
     
     // Dialog
     [SerializeField] private GameObject dialogBox;
@@ -61,7 +62,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle = jobCircle;
         _incomeCircle = incomeCircle;
         _childCircle = childCircle;
-        _outdoorCircle = outdoorCircle;
+        OutdoorCircle = outdoorCircle;
         _animalsCircle = animalsCircle;
         _commentCircle = commentCircle;
         
@@ -104,7 +105,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
     }
@@ -124,7 +125,7 @@ public class ProblemsSelector : MonoBehaviour
             LogicManager.PbFamily.TooPoor => _incomeCircle.activeSelf,
             LogicManager.PbFamily.TooBusy => _jobCircle.activeSelf,
             LogicManager.PbFamily.Child => _childCircle.activeSelf,
-            LogicManager.PbFamily.NoOutdoor => _outdoorCircle.activeSelf,
+            LogicManager.PbFamily.NoOutdoor => OutdoorCircle.activeSelf,
             LogicManager.PbFamily.Animals => _animalsCircle.activeSelf,
             LogicManager.PbFamily.Comment => _commentCircle.activeSelf,
             LogicManager.PbFamily.NoCar => _homeCircle.activeSelf,
@@ -193,7 +194,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
         
@@ -215,7 +216,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
         
@@ -237,7 +238,7 @@ public class ProblemsSelector : MonoBehaviour
         
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
         
@@ -259,7 +260,7 @@ public class ProblemsSelector : MonoBehaviour
         DayManager.SetDeclineButtonActive(_incomeCircle.activeSelf);
         
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
         
@@ -281,7 +282,7 @@ public class ProblemsSelector : MonoBehaviour
         DayManager.SetAcceptButtonActive(!_childCircle.activeSelf);
         DayManager.SetDeclineButtonActive(_childCircle.activeSelf);
         
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
         
@@ -300,9 +301,9 @@ public class ProblemsSelector : MonoBehaviour
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
         
-        _outdoorCircle.SetActive(!_outdoorCircle.activeSelf);
-        DayManager.SetAcceptButtonActive(!_outdoorCircle.activeSelf);
-        DayManager.SetDeclineButtonActive(_outdoorCircle.activeSelf);
+        OutdoorCircle.SetActive(!OutdoorCircle.activeSelf);
+        DayManager.SetAcceptButtonActive(!OutdoorCircle.activeSelf);
+        DayManager.SetDeclineButtonActive(OutdoorCircle.activeSelf);
         
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
@@ -321,7 +322,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         
         _animalsCircle.SetActive(!_animalsCircle.activeSelf);
         DayManager.SetAcceptButtonActive(!_animalsCircle.activeSelf);
@@ -343,7 +344,7 @@ public class ProblemsSelector : MonoBehaviour
         _jobCircle.SetActive(false);
         _incomeCircle.SetActive(false);
         _childCircle.SetActive(false);
-        _outdoorCircle.SetActive(false);
+        OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
        
         _commentCircle.SetActive(!_commentCircle.activeSelf);

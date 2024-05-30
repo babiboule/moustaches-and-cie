@@ -9,17 +9,7 @@ public class TutoManager : MonoBehaviour
 {
     // UI
     // Panel
-    [SerializeField] private GameObject colleaguePanel;
-    [SerializeField] private GameObject catsArrows;
-    [SerializeField] private GameObject memoArrows;
-    [SerializeField] private GameObject memoPage2;
-    [SerializeField] private GameObject familyPanel;
-    [SerializeField] private GameObject catsPanel;
-    [SerializeField] private GameObject memoPanel;
-    [SerializeField] private GameObject stampPanel;
-    
     // Button
-    [SerializeField] private Button skipButton;
 
     // Variables
     [SerializeField] private FamilyPictureScriptableObject familyPicture;
@@ -56,9 +46,6 @@ public class TutoManager : MonoBehaviour
             _instance = this;
         else Destroy(gameObject);
         DontDestroyOnLoad(_instance);
-
-        skipButton.onClick.AddListener(SkipButtonClicked);
-        skipButton.gameObject.SetActive(StatsManager.instance.GetTuto());
     }
 
     /*
@@ -81,7 +68,7 @@ public class TutoManager : MonoBehaviour
         
         // Stop coroutine and end the tuto
         StopCoroutine(_tutoCo);
-        colleaguePanel.SetActive(true);
+        UIManager.ColleaguePanel.SetActive(true);
         switch (StatsManager.instance.GetTutoLvl())
         {
             case 1:
@@ -96,14 +83,14 @@ public class TutoManager : MonoBehaviour
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        catsArrows.SetActive(true);
-        memoArrows.SetActive(true);
-        familyPanel.SetActive(true);
-        catsPanel.SetActive(true);
-        memoPanel.SetActive(true);
-        stampPanel.SetActive(true);
-        colleaguePanel.SetActive(false);
-        skipButton.gameObject.SetActive(false);
+        UIManager.CatsArrows.SetActive(true);
+        UIManager.MemoArrows.SetActive(true);
+        UIManager.FamilyPanel.SetActive(true);
+        UIManager.CatsPanel.SetActive(true);
+        UIManager.MemoPanel.SetActive(true);
+        UIManager.StampPanel.SetActive(true);
+        UIManager.ColleaguePanel.SetActive(false);
+        UIManager.SkipButton.gameObject.SetActive(false);
         StatsManager.instance.SetTuto(false);
     }
 
@@ -112,6 +99,9 @@ public class TutoManager : MonoBehaviour
      */
     public void LaunchTuto(int i)
     {
+        UIManager.SkipButton.onClick.AddListener(SkipButtonClicked);
+        UIManager.SkipButton.gameObject.SetActive(true);
+        
         // Launch the good tutorial
         _tutoCo = i switch
         {
@@ -145,41 +135,41 @@ public class TutoManager : MonoBehaviour
         FamilyManager.PrintFamily(_family);
 
         
-        catsArrows.SetActive(false);
-        memoArrows.SetActive(false);
-        familyPanel.SetActive(false);
-        catsPanel.SetActive(false);
-        memoPanel.SetActive(false);
-        stampPanel.SetActive(false);
+        UIManager.CatsArrows.SetActive(false);
+        UIManager.MemoArrows.SetActive(false);
+        UIManager.FamilyPanel.SetActive(false);
+        UIManager.CatsPanel.SetActive(false);
+        UIManager.MemoPanel.SetActive(false);
+        UIManager.StampPanel.SetActive(false);
         
 
         // Start of the tutorial
-        colleaguePanel.SetActive(true);
+        UIManager.ColleaguePanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
             
         // Desk view
-        colleaguePanel.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[4]));
         while (DialogueController.GetIsWriting())
             yield return null;
             
         // Print family folder and continue
-        familyPanel.SetActive(true);
+        UIManager.FamilyPanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[5]));
         while (DialogueController.GetIsWriting())
             yield return null;
             
         // Print cats folder and continue
-        catsPanel.SetActive(true);
+        UIManager.CatsPanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,9)]));
         while (DialogueController.GetIsWriting())
             yield return null;
             
         // Wait for good cat to be selected
-        catsArrows.SetActive(true);
+        UIManager.CatsArrows.SetActive(true);
         while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
             yield return null;
         
@@ -189,34 +179,35 @@ public class TutoManager : MonoBehaviour
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        memoPanel.SetActive(true);
+        UIManager.MemoPanel.SetActive(true);
             
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        memoArrows.SetActive(true);
-        while(!memoPage2.activeSelf)
+        UIManager.MemoArrows.SetActive(true);
+        while(!UIManager.MemoPage2.activeSelf)
             yield return null;
             
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(14,17)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        stampPanel.SetActive(true);
+        UIManager.StampPanel.SetActive(true);
 
         // Wait for good stamp
         while (!_declineStamp)
             yield return null;
         
         // Continue
-        colleaguePanel.SetActive(true);
+        UIManager.ColleaguePanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
         while (DialogueController.GetIsWriting())
             yield return null;
             
         // End of the tutorial
-        colleaguePanel.SetActive(false);
+        UIManager.SkipButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
         StatsManager.instance.SetTuto(false);
     }
 
@@ -225,17 +216,17 @@ public class TutoManager : MonoBehaviour
         _family = new FamilyManager.Family()
         {
             Name = "TUTO",
-            Forename = "Titouan",
-            Age = 32,
-            Budget = 150,
+            Forename = "Fabrice",
+            Age = 27,
+            Budget = 170,
             Car = true,
-            Cat = cats.cats.Last(),
-            Cats = true,
-            Child = false,
-            Comment = familyInfos.listComments[0],
+            Cat = DayManager.GetCurrentCats().Last(),
+            Cats = false,
+            Child = true,
+            Comment = familyInfos.listComments[1],
             FreeTime = 2,
             Home = familyInfos.listHomes[0],
-            Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé,
+            Outdoor = FamilyInfosScriptableObject.Outdoor.Aucun,
             Guarantor = true,
             JobName = "Testeur"
         };
@@ -243,17 +234,65 @@ public class TutoManager : MonoBehaviour
         FamilyManager.PrintFamily(_family);
         
         // Start of the tutorial
-        colleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
+        UIManager.StampPanel.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(0,4)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         // Desk view
-        colleaguePanel.SetActive(false);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(4,6)]));
+        UIManager.ColleaguePanel.SetActive(false);
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,6)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
+        // Wait for the good cat
+        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
+            yield return null;
+        
+        // Continue
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(6,9)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Wait for the good circle
+        while (!ProblemsSelector.OutdoorCircle.activeSelf)
+            yield return null;
+        
+        // Continue
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(9,13)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Wait for good stamp
+        UIManager.StampPanel.SetActive(true);
+        while (!_declineStamp)
+            yield return null;
+
+        // Different dialog depending on the circle
+        UIManager.ColleaguePanel.SetActive(true);
+        if (ProblemsSelector.OutdoorCircle.activeSelf)
+        {
+            StartCoroutine(DialogueController.WriteDialog(tuto2Str[13]));
+            while (DialogueController.GetIsWriting())
+                yield return null;
+        }
+        else
+        {
+            StartCoroutine(DialogueController.WriteDialog(tuto2Str[14]));
+            while (DialogueController.GetIsWriting())
+                yield return null;
+        }
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(15,17)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // End of the tutorial
+        ProblemsSelector.ResetCircles();
+        UIManager.SkipButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
+        StatsManager.instance.SetTuto(false);
     }
     
     private IEnumerator Tuto3()

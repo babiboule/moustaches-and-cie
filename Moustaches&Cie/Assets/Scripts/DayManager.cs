@@ -97,10 +97,14 @@ public class DayManager : MonoBehaviour
         if(StatsManager.instance.GetLevel()>1)
             SetDeclineButtonActive(false);
         
-        // Launch the tuto if needed
+        // Launch the tuto if needed or print the first folder of the day
         if(StatsManager.instance.GetTuto() || StatsManager.instance.GetDate() == 1)
         {
             _coTuto = StartCoroutine(Tutorial());
+        }
+        else
+        {
+            NextFolder();
         }
     }
 
@@ -258,8 +262,18 @@ public class DayManager : MonoBehaviour
     {
         if (StatsManager.instance.GetTuto())
         {
-            StartCoroutine(DialogueController.WriteDialog("Non, celui-là c'est pour valider le dossier..."));
-            return;
+            switch (StatsManager.instance.GetTutoLvl())
+            {
+                case 1:
+                    StartCoroutine(DialogueController.WriteDialog("Non, celui-là c'est pour valider le dossier..."));
+                    return;
+                case 2:
+                    StartCoroutine(DialogueController.WriteDialog("Tu dois refuser le dossier, pas le valider..."));
+                    return;
+                case 3:
+                    StartCoroutine(DialogueController.WriteDialog("Tu dois refuser le dossier, pas le valider..."));
+                    return;
+            }
         }
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);

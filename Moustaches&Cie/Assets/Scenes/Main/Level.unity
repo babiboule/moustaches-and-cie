@@ -8405,7 +8405,6 @@ MonoBehaviour:
   pausePanel: {fileID: 217490084}
   optionsPanel: {fileID: 1824284160}
   memoPage1: {fileID: 546714752}
-  memoPage2: {fileID: 1061634774}
   pauseButton: {fileID: 591902791}
   playButton: {fileID: 1811358793}
   optionsButton: {fileID: 1618806102}
@@ -8422,6 +8421,15 @@ MonoBehaviour:
   goldMedal: {fileID: 1443260188}
   buttonSfx: {fileID: 8300000, guid: 6078c467dc5641c42ab797d595fa4815, type: 3}
   pagingSfx: {fileID: 8300000, guid: 239498e1dec2ab448bc60658d78ef31f, type: 3}
+  colleaguePanel: {fileID: 2103003964}
+  catsArrows: {fileID: 2049439680}
+  memoArrows: {fileID: 2142985307}
+  familyPanel: {fileID: 580274154}
+  catsPanel: {fileID: 1404593227}
+  memoPanel: {fileID: 1695026552}
+  stampPanel: {fileID: 235232356}
+  memoPage2: {fileID: 1061634774}
+  skipButton: {fileID: 1621925673}
 --- !u!4 &879364948
 Transform:
   m_ObjectHideFlags: 0
@@ -15402,15 +15410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160e137991d064247a1bf60a9c77da0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colleaguePanel: {fileID: 2103003964}
-  catsArrows: {fileID: 2049439680}
-  memoArrows: {fileID: 2142985307}
-  memoPage2: {fileID: 1061634774}
-  familyPanel: {fileID: 580274154}
-  catsPanel: {fileID: 1404593227}
-  memoPanel: {fileID: 1695026552}
-  stampPanel: {fileID: 235232356}
-  skipButton: {fileID: 1621925673}
   familyPicture: {fileID: 11400000, guid: 93a90ab945791f54db408f9c6d5ce5af, type: 2}
   familyInfos: {fileID: 11400000, guid: 8a3a80364ed69334b93afd4c93ff2d43, type: 2}
   cats: {fileID: 11400000, guid: 42b98523357636747abd4bcb614829ca, type: 2}
@@ -15450,7 +15449,24 @@ MonoBehaviour:
   - "On a donc d\xE9cid\xE9 de mettre en place un syst\xE8me plus pratique pour que
     je puisse retrouver les raisons des refus. Regarde sur ton bureau."
   - "Maintenant, tu peux entourer les crit\xE8res qui entra\xEEnent un refus."
-  - 'Si on reprend '
+  - "Prenons cette famille comme exemple. S\xE9lectionne le chat demand\xE9 avec
+    le post-it. "
+  - "Bien. On peut voir qu'il a besoin d'un ext\xE9rieur mais que la famille n'en
+    a pas."
+  - "Tu dois d\xE9sormais entourer le crit\xE8re r\xE9dhibitoire avant de refuser
+    le dossier."
+  - "Vas-y, entoure le crit\xE8re qui ne va pas."
+  - "Super, tu as peut-\xEAtre pu remarquer que tu ne pouvais entourer qu'un seul
+    crit\xE8re \xE0 la fois."
+  - "Il faut aussi savoir que tu ne peux pas valider un dossier dont tu as entour\xE9
+    un probl\xE8me."
+  - "Mais pas de panique, tu peux effacer ta s\xE9lection si tu recliques dessus."
+  - Bien. Maintenant, refuse le dossier.
+  - "Parfait, voil\xE0 une bonne chose de faite."
+  - "Bon... Tu as refus\xE9 avec le mauvais motif..."
+  - Fais attention, si tu refuses un dossier avec un motif non valable, tu ne progresseras
+    pas.
+  - "Bien, je pense que tu as compris. Je te laisse, \xE0 plus !"
   tuto3Str: []
 --- !u!4 &1636951423
 Transform:

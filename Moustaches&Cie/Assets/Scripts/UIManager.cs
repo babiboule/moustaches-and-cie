@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject memoPage1;
-    [SerializeField] private GameObject memoPage2;
+    public static GameObject MemoPage2;
     
     // Pause components
     [SerializeField] private Button pauseButton;
@@ -35,6 +35,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip buttonSfx;
     [SerializeField] private AudioClip pagingSfx;
     
+    // UI
+    public static GameObject ColleaguePanel;
+    public static GameObject CatsArrows;
+    public static GameObject MemoArrows;
+    public static GameObject FamilyPanel;
+    public static GameObject CatsPanel;
+    public static GameObject MemoPanel;
+    public static GameObject StampPanel;
+    public static Button SkipButton;
+    
+    public GameObject colleaguePanel;
+    public GameObject catsArrows;
+    public GameObject memoArrows;
+    public GameObject familyPanel;
+    public GameObject catsPanel;
+    public GameObject memoPanel;
+    public GameObject stampPanel;
+    public GameObject memoPage2;
+    public Button skipButton;
+    
+    
+    
     private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
@@ -50,6 +72,18 @@ public class UIManager : MonoBehaviour
         nextCatButton.onClick.AddListener(NextCatButtonClicked);
         previousCatButton.onClick.AddListener(PreviousCatButtonClicked);
         postItButton.onClick.AddListener(PostItButtonClicked);
+        
+        ColleaguePanel = colleaguePanel;
+        CatsArrows = catsArrows;
+        MemoArrows = memoArrows;
+        FamilyPanel = familyPanel;
+        CatsPanel = catsPanel;
+        MemoPanel = memoPanel;
+        StampPanel = stampPanel;
+        MemoPage2 = memoPage2;
+        SkipButton = skipButton;
+        
+        skipButton.gameObject.SetActive(false);
         
         // Active medals depending on the level
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
@@ -139,8 +173,8 @@ public class UIManager : MonoBehaviour
         // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
         
-        memoPage1.SetActive(memoPage2.activeSelf);
-        memoPage2.SetActive(!memoPage1.activeSelf);
+        memoPage1.SetActive(MemoPage2.activeSelf);
+        MemoPage2.SetActive(!memoPage1.activeSelf);
     }
     
     /*
