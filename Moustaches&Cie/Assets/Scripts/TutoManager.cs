@@ -3,7 +3,6 @@ using System.Collections;
 using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TutoManager : MonoBehaviour
 {
@@ -22,6 +21,7 @@ public class TutoManager : MonoBehaviour
     private FamilyManager.Family _family;
     private int _index;
     private static bool _declineStamp;
+    private static bool _isPhoneOk;
     
     // Coroutines
     private Coroutine _tutoCo;
@@ -100,6 +100,7 @@ public class TutoManager : MonoBehaviour
     public void LaunchTuto(int i)
     {
         UIManager.SkipButton.onClick.AddListener(SkipButtonClicked);
+        UIManager.PhoneButton.onClick.AddListener(PhoneButtonClicked);
         UIManager.SkipButton.gameObject.SetActive(true);
         
         // Launch the good tutorial
@@ -297,7 +298,103 @@ public class TutoManager : MonoBehaviour
     
     private IEnumerator Tuto3()
     {
-        yield return null;
+        _family = new FamilyManager.Family()
+        {
+            Name = "TUTO",
+            Forename = "Riley",
+            Age = 43,
+            Budget = 120,
+            Car = true,
+            Cat = DayManager.GetCurrentCats().Last(),
+            Cats = false,
+            Child = false,
+            Comment = familyInfos.listComments[2],
+            FreeTime = 1,
+            Home = familyInfos.listHomes[0],
+            Outdoor = FamilyInfosScriptableObject.Outdoor.Aucun,
+            Guarantor = true,
+            JobName = "Testeur"
+        };
+        _family.Picture = FamilyManager.GenerateFamilyPicture(_family, familyPicture);
+        FamilyManager.PrintFamily(_family);
+        
+        // Start of the tutorial
+        UIManager.StampPanel.SetActive(false);
+        UIManager.PhonePanel.SetActive(false);
+        UIManager.PhoneButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(0,3)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Enumeration of new directives 
+        UIManager.ColleaguePanel.SetActive(false);
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(3,7)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Explains phone
+        UIManager.PhonePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(7,11)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Wait for good cat
+        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(11,15)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        UIManager.PhoneButton.gameObject.SetActive(true);
+        // Wait for good call
+        while (!_isPhoneOk || DialogueController.GetIsWriting())
+        {
+            yield return null;
+        }
+        //TODO : Sfx turn off phone
+        
+        // Continue
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(15,17)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // Wait for good stamp
+        UIManager.StampPanel.SetActive(true);
+        while (!_declineStamp)
+            yield return null;
+        
+        UIManager.ColleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(17,19)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        // End of the tutorial
+        ProblemsSelector.ResetCircles();
+        UIManager.PhoneButton.gameObject.SetActive(false);
+        UIManager.SkipButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
+        StatsManager.instance.SetTuto(false);
+    }
+
+    private void PhoneButtonClicked()
+    {
+        var s1 = "Allô ?";
+        var s2 = "[...]";
+        var s3 = "Non, je ne peux pas télétravailler...";
+        var str = new []{s1, s2, s3};
+
+        if (ProblemsSelector.JobCircle.activeSelf)
+        {
+            //TODO : Sfx calling
+            StartCoroutine(DialogueController.WriteDialog(str));
+            _isPhoneOk = true;
+        }
+        else
+        {
+            StartCoroutine(DialogueController.WriteDialog("Ce n'est pas pour ça qu'on appelle..."));
+        }
     }
 
     public static IEnumerator SetDeclineStampClicked()

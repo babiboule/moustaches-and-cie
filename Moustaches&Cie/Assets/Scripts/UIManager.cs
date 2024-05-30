@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     public static GameObject CatsPanel;
     public static GameObject MemoPanel;
     public static GameObject StampPanel;
+    public static GameObject PhonePanel;
+    public static Button PhoneButton;
     public static Button SkipButton;
     
     public GameObject colleaguePanel;
@@ -53,6 +55,8 @@ public class UIManager : MonoBehaviour
     public GameObject memoPanel;
     public GameObject stampPanel;
     public GameObject memoPage2;
+    public GameObject phonePanel;
+    public Button phoneButton;
     public Button skipButton;
     
     
@@ -81,6 +85,8 @@ public class UIManager : MonoBehaviour
         MemoPanel = memoPanel;
         StampPanel = stampPanel;
         MemoPage2 = memoPage2;
+        PhonePanel = phonePanel;
+        PhoneButton = phoneButton;
         SkipButton = skipButton;
         
         skipButton.gameObject.SetActive(false);

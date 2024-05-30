@@ -377,19 +377,6 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: ae377c5571b4b5f4783ded4d8408c3ac, type: 3}
-    reference: {fileID: 21300000, guid: 1ba9539dbf0c5004a83dedcbb4b3ede3, type: 3}
-    name: Jack
-    age: 7
-    fur: "Tigr\xE9 gris"
-    sex: 0
-    sick: 0
-    disability: 0
-    nature: 3
-    outdoor: 1
-    animals: 1
-    adopted: 0
-    level: 3
   - picture: {fileID: 21300000, guid: c65594612bf661f4d8857f6b7861b109, type: 3}
     reference: {fileID: 21300000, guid: c65594612bf661f4d8857f6b7861b109, type: 3}
     name: Canelle
@@ -505,6 +492,19 @@ MonoBehaviour:
     nature: 1
     outdoor: 1
     animals: 0
+    adopted: 0
+    level: 3
+  - picture: {fileID: 21300000, guid: ae377c5571b4b5f4783ded4d8408c3ac, type: 3}
+    reference: {fileID: 21300000, guid: 1ba9539dbf0c5004a83dedcbb4b3ede3, type: 3}
+    name: Jack
+    age: 7
+    fur: "Tigr\xE9 gris"
+    sex: 0
+    sick: 0
+    disability: 0
+    nature: 3
+    outdoor: 1
+    animals: 1
     adopted: 0
     level: 3
   - picture: {fileID: 21300000, guid: 2fffc35756c7ebe4e81c058f9c4f9742, type: 3}
