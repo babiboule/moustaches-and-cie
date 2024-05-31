@@ -44,7 +44,10 @@ public class UIManager : MonoBehaviour
     public static GameObject MemoPanel;
     public static GameObject StampPanel;
     public static GameObject PhonePanel;
+    public static GameObject PhoneOn;
+    public static GameObject PhoneOff;
     public static Button PhoneButton;
+    public static Button FakePhoneButton;
     public static Button SkipButton;
     
     public GameObject colleaguePanel;
@@ -56,7 +59,10 @@ public class UIManager : MonoBehaviour
     public GameObject stampPanel;
     public GameObject memoPage2;
     public GameObject phonePanel;
+    public GameObject phoneOn;
+    public GameObject phoneOff;
     public Button phoneButton;
+    public Button fakePhoneButton;
     public Button skipButton;
     
     
@@ -86,7 +92,10 @@ public class UIManager : MonoBehaviour
         StampPanel = stampPanel;
         MemoPage2 = memoPage2;
         PhonePanel = phonePanel;
+        PhoneOff = phoneOff;
+        PhoneOn = phoneOn;
         PhoneButton = phoneButton;
+        FakePhoneButton = fakePhoneButton;
         SkipButton = skipButton;
         
         skipButton.gameObject.SetActive(false);
@@ -95,6 +104,7 @@ public class UIManager : MonoBehaviour
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
+        phonePanel.SetActive(StatsManager.instance.GetLevel()>2);
 
         _postIt = postIt;
         _postItBack = postItBack;

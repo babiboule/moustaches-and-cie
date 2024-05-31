@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class TutoManager : MonoBehaviour
 {
-    // UI
-    // Panel
-    // Button
-
     // Variables
     [SerializeField] private FamilyPictureScriptableObject familyPicture;
     [SerializeField] private FamilyInfosScriptableObject familyInfos;
@@ -68,30 +64,18 @@ public class TutoManager : MonoBehaviour
         
         // Stop coroutine and end the tuto
         StopCoroutine(_tutoCo);
-        UIManager.ColleaguePanel.SetActive(true);
         switch (StatsManager.instance.GetTutoLvl())
         {
             case 1:
-                StartCoroutine(DialogueController.WriteDialog(tuto1Str[18]));
+                StartCoroutine(EndTuto1());
                 break;
             case 2:
+                StartCoroutine(EndTuto2());
                 break;
             case 3:
+                StartCoroutine(EndTuto3());
                 break;
         }
-        
-        while (DialogueController.GetIsWriting())
-            yield return null;
-        
-        UIManager.CatsArrows.SetActive(true);
-        UIManager.MemoArrows.SetActive(true);
-        UIManager.FamilyPanel.SetActive(true);
-        UIManager.CatsPanel.SetActive(true);
-        UIManager.MemoPanel.SetActive(true);
-        UIManager.StampPanel.SetActive(true);
-        UIManager.ColleaguePanel.SetActive(false);
-        UIManager.SkipButton.gameObject.SetActive(false);
-        StatsManager.instance.SetTuto(false);
     }
 
     /*
@@ -100,7 +84,7 @@ public class TutoManager : MonoBehaviour
     public void LaunchTuto(int i)
     {
         UIManager.SkipButton.onClick.AddListener(SkipButtonClicked);
-        UIManager.PhoneButton.onClick.AddListener(PhoneButtonClicked);
+        UIManager.FakePhoneButton.onClick.AddListener(PhoneButtonClicked);
         UIManager.SkipButton.gameObject.SetActive(true);
         
         // Launch the good tutorial
@@ -199,17 +183,8 @@ public class TutoManager : MonoBehaviour
         // Wait for good stamp
         while (!_declineStamp)
             yield return null;
-        
-        // Continue
-        UIManager.ColleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
-        while (DialogueController.GetIsWriting())
-            yield return null;
-            
-        // End of the tutorial
-        UIManager.SkipButton.gameObject.SetActive(false);
-        UIManager.ColleaguePanel.SetActive(false);
-        StatsManager.instance.SetTuto(false);
+
+        StartCoroutine(EndTuto1());
     }
 
     private IEnumerator Tuto2()
@@ -284,16 +259,8 @@ public class TutoManager : MonoBehaviour
             while (DialogueController.GetIsWriting())
                 yield return null;
         }
-        
-        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(15,17)]));
-        while (DialogueController.GetIsWriting())
-            yield return null;
-        
-        // End of the tutorial
-        ProblemsSelector.ResetCircles();
-        UIManager.SkipButton.gameObject.SetActive(false);
-        UIManager.ColleaguePanel.SetActive(false);
-        StatsManager.instance.SetTuto(false);
+
+        StartCoroutine(EndTuto2());
     }
     
     private IEnumerator Tuto3()
@@ -320,8 +287,9 @@ public class TutoManager : MonoBehaviour
         
         // Start of the tutorial
         UIManager.StampPanel.SetActive(false);
-        UIManager.PhonePanel.SetActive(false);
-        UIManager.PhoneButton.gameObject.SetActive(false);
+        UIManager.PhonePanel.SetActive(true);
+        UIManager.FakePhoneButton.gameObject.SetActive(false);
+        UIManager.PhoneButton.interactable = false;
         UIManager.ColleaguePanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(0,3)]));
         while (DialogueController.GetIsWriting())
@@ -334,7 +302,6 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // Explains phone
-        UIManager.PhonePanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(7,11)]));
         while (DialogueController.GetIsWriting())
             yield return null;
@@ -347,13 +314,18 @@ public class TutoManager : MonoBehaviour
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        UIManager.PhoneButton.gameObject.SetActive(true);
         // Wait for good call
-        while (!_isPhoneOk || DialogueController.GetIsWriting())
+        while (!_isPhoneOk)
         {
+            UIManager.FakePhoneButton.gameObject.SetActive(UIManager.PhoneButton.gameObject.activeSelf);
             yield return null;
         }
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
         //TODO : Sfx turn off phone
+        UIManager.PhoneOff.SetActive(true);
+        UIManager.PhoneOn.SetActive(false);
         
         // Continue
         StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(15,17)]));
@@ -364,7 +336,46 @@ public class TutoManager : MonoBehaviour
         UIManager.StampPanel.SetActive(true);
         while (!_declineStamp)
             yield return null;
+
+        StartCoroutine(EndTuto3());
+    }
+
+    private IEnumerator EndTuto1()
+    {
+        UIManager.ColleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // End of the tutorial
+        UIManager.CatsArrows.SetActive(true);
+        UIManager.MemoArrows.SetActive(true);
+        UIManager.FamilyPanel.SetActive(true);
+        UIManager.CatsPanel.SetActive(true);
+        UIManager.MemoPanel.SetActive(true);
+        UIManager.StampPanel.SetActive(true);
+        UIManager.SkipButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
+        StatsManager.instance.SetTuto(false);
+    }
+    
+    private IEnumerator EndTuto2()
+    {
+        UIManager.ColleaguePanel.SetActive(true);
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(15,17)]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
         
+        // End of the tutorial
+        ProblemsSelector.ResetCircles();
+        UIManager.StampPanel.SetActive(true);
+        UIManager.SkipButton.gameObject.SetActive(false);
+        UIManager.ColleaguePanel.SetActive(false);
+        StatsManager.instance.SetTuto(false);
+    }
+    
+    private IEnumerator EndTuto3()
+    {
         UIManager.ColleaguePanel.SetActive(true);
         StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(17,19)]));
         while (DialogueController.GetIsWriting())
@@ -372,7 +383,9 @@ public class TutoManager : MonoBehaviour
         
         // End of the tutorial
         ProblemsSelector.ResetCircles();
+        UIManager.FakePhoneButton.gameObject.SetActive(false);
         UIManager.PhoneButton.gameObject.SetActive(false);
+        UIManager.PhoneButton.interactable = true;
         UIManager.SkipButton.gameObject.SetActive(false);
         UIManager.ColleaguePanel.SetActive(false);
         StatsManager.instance.SetTuto(false);
@@ -387,6 +400,11 @@ public class TutoManager : MonoBehaviour
 
         if (ProblemsSelector.JobCircle.activeSelf)
         {
+            // UI
+            UIManager.PhoneOff.SetActive(false);
+            UIManager.PhoneOn.SetActive(true);
+            UIManager.FakePhoneButton.gameObject.SetActive(false);
+            
             //TODO : Sfx calling
             StartCoroutine(DialogueController.WriteDialog(str));
             _isPhoneOk = true;
@@ -403,5 +421,4 @@ public class TutoManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         _declineStamp = false;
     }
-    
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,6 @@ public class ProblemsSelector : MonoBehaviour
     [SerializeField] private Button outdoorButton;
     [SerializeField] private Button animalsButton;
     [SerializeField] private Button commentButton;
-    [SerializeField] private Button phoneButton;
     
     // Images
     [SerializeField] private GameObject ageCircle;
@@ -34,8 +34,6 @@ public class ProblemsSelector : MonoBehaviour
     public static GameObject OutdoorCircle;
     private static GameObject _animalsCircle;
     private static GameObject _commentCircle;
-    private static Button _phoneButton;
-    
     
     // Dialog
     [SerializeField] private GameObject dialogBox;
@@ -55,7 +53,7 @@ public class ProblemsSelector : MonoBehaviour
         outdoorButton.onClick.AddListener(OutdoorButtonClicked);
         animalsButton.onClick.AddListener(AnimalsButtonClicked);
         commentButton.onClick.AddListener(CommentButtonClicked);
-        phoneButton.onClick.AddListener(PhoneButtonClicked);
+        UIManager.PhoneButton.onClick.AddListener(PhoneButtonClicked);
         
         // Assign correspondences
         _ageCircle = ageCircle;
@@ -66,7 +64,6 @@ public class ProblemsSelector : MonoBehaviour
         OutdoorCircle = outdoorCircle;
         _animalsCircle = animalsCircle;
         _commentCircle = commentCircle;
-        _phoneButton = phoneButton;
         
         // Set the circle interaction ON if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)
@@ -93,8 +90,13 @@ public class ProblemsSelector : MonoBehaviour
         }
         
         // Set the phone button ON if on level 3 or more
-        _phoneButton.gameObject.SetActive(StatsManager.instance.GetLevel() > 2 && !StatsManager.instance.GetTuto());
-        _phoneButton.interactable = false;
+        if(StatsManager.instance.GetLevel() > 2 && !StatsManager.instance.GetTuto())
+        {
+            UIManager.PhonePanel.gameObject.SetActive(true);
+            UIManager.PhoneButton.gameObject.SetActive(false);
+            UIManager.PhoneOff.SetActive(true);
+            UIManager.PhoneOn.SetActive(false);
+        }
     }
 
     /*
@@ -110,7 +112,13 @@ public class ProblemsSelector : MonoBehaviour
         OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
-        _phoneButton.gameObject.SetActive(StatsManager.instance.GetLevel() > 2);
+        if(StatsManager.instance.GetLevel() > 2)
+        {
+            UIManager.PhonePanel.gameObject.SetActive(true);
+            UIManager.PhoneButton.gameObject.SetActive(false);
+            UIManager.PhoneOff.SetActive(true);
+            UIManager.PhoneOn.SetActive(false);
+        }
     }
 
     /*
@@ -139,6 +147,16 @@ public class ProblemsSelector : MonoBehaviour
 
     private void PhoneButtonClicked()
     {
+        StartCoroutine(Call());
+    }
+
+    private IEnumerator Call()
+    {
+        // UI
+        UIManager.PhoneOff.SetActive(false);
+        UIManager.PhoneOn.SetActive(true);
+        UIManager.PhoneButton.gameObject.SetActive(false);
+        
         var family = DayManager.GetCurrentFamily();
         
         if (_ageCircle.activeSelf)
@@ -146,12 +164,24 @@ public class ProblemsSelector : MonoBehaviour
             if (family.Age < 70)
             {
                 StartCoroutine(DialogueController.WriteDialog("Pourquoi j'aurais besoin d'un garant ?..."));
+                
+                while (DialogueController.GetIsWriting())
+                    yield return null;
+                UIManager.PhoneOff.SetActive(true);
+                UIManager.PhoneOn.SetActive(false);
+                UIManager.PhoneButton.gameObject.SetActive(true);
             }
             else
             {
                 StartCoroutine(family.Guarantor
                     ? DialogueController.WriteDialog("Oui, je possède un garant.")
                     : DialogueController.WriteDialog("Non, je n'ai pas de garant, pourquoi ?"));
+               
+                while (DialogueController.GetIsWriting())
+                    yield return null;
+                UIManager.PhoneOff.SetActive(true);
+                UIManager.PhoneOn.SetActive(false);
+                UIManager.PhoneButton.gameObject.SetActive(true);
             }
         }
 
@@ -160,6 +190,12 @@ public class ProblemsSelector : MonoBehaviour
             StartCoroutine(family.Car
                 ? DialogueController.WriteDialog("Oui, je possède une voiture.")
                 : DialogueController.WriteDialog("Non je n'ai pas de voiture..."));
+            
+            while (DialogueController.GetIsWriting())
+                yield return null;
+            UIManager.PhoneOff.SetActive(true);
+            UIManager.PhoneOn.SetActive(false);
+            UIManager.PhoneButton.gameObject.SetActive(true);
         }
 
         if (JobCircle.activeSelf)
@@ -168,16 +204,30 @@ public class ProblemsSelector : MonoBehaviour
             {
                 case 1:
                     StartCoroutine(DialogueController.WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
+                    while (DialogueController.GetIsWriting())
+                        yield return null;
+                    UIManager.PhoneOff.SetActive(true);
+                    UIManager.PhoneOn.SetActive(false);
+                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
                 case 2:
                     StartCoroutine(DialogueController.WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
+                    while (DialogueController.GetIsWriting())
+                        yield return null;
+                    UIManager.PhoneOff.SetActive(true);
+                    UIManager.PhoneOn.SetActive(false);
+                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
                 case 3:
                     StartCoroutine(DialogueController.WriteDialog("Euuuh... C'est une blague ?"));
+                    while (DialogueController.GetIsWriting())
+                        yield return null;
+                    UIManager.PhoneOff.SetActive(true);
+                    UIManager.PhoneOn.SetActive(false);
+                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
             }
         }
-        
     }
 
 
@@ -186,7 +236,7 @@ public class ProblemsSelector : MonoBehaviour
     private void AgeButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = !_ageCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+        UIManager.PhoneButton.gameObject.SetActive(!_ageCircle.activeSelf);
 
         // Circles
         _ageCircle.SetActive(!_ageCircle.activeSelf);
@@ -207,7 +257,7 @@ public class ProblemsSelector : MonoBehaviour
     private void HomeButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = !_homeCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+        UIManager.PhoneButton.gameObject.SetActive(!_homeCircle.activeSelf);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -229,7 +279,7 @@ public class ProblemsSelector : MonoBehaviour
     private void JobButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = !JobCircle.activeSelf && StatsManager.instance.GetLevel()>2;
+        UIManager.PhoneButton.gameObject.SetActive(!JobCircle.activeSelf);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -251,7 +301,7 @@ public class ProblemsSelector : MonoBehaviour
     private void IncomeButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = false;
+        UIManager.PhoneButton.gameObject.SetActive(false);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -273,7 +323,7 @@ public class ProblemsSelector : MonoBehaviour
     private void ChildButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = false;
+        UIManager.PhoneButton.gameObject.SetActive(false);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -295,7 +345,7 @@ public class ProblemsSelector : MonoBehaviour
     private void OutdoorButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = false;
+        UIManager.PhoneButton.gameObject.SetActive(false);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -317,7 +367,7 @@ public class ProblemsSelector : MonoBehaviour
     private void AnimalsButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = false;
+        UIManager.PhoneButton.gameObject.SetActive(false);
         
         // Circles
         _ageCircle.SetActive(false);
@@ -339,7 +389,7 @@ public class ProblemsSelector : MonoBehaviour
     private void CommentButtonClicked()
     {
         // Phone button
-        _phoneButton.interactable = false;
+        UIManager.PhoneButton.gameObject.SetActive(false);
         
         // Circles
         _ageCircle.SetActive(false);
