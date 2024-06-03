@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject memoPage1;
     public static GameObject MemoPage2;
+    [SerializeField] private GameObject memoPage3;
     
     // Pause components
     [SerializeField] private Button pauseButton;
@@ -189,8 +191,18 @@ public class UIManager : MonoBehaviour
         // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
         
-        memoPage1.SetActive(MemoPage2.activeSelf);
-        MemoPage2.SetActive(!memoPage1.activeSelf);
+        if(StatsManager.instance.GetLevel()<3)
+        {
+            memoPage1.SetActive(MemoPage2.activeSelf);
+            MemoPage2.SetActive(!memoPage1.activeSelf);
+            memoPage3.SetActive(false);
+        }
+        else
+        {
+            memoPage1.SetActive(memoPage3.activeSelf);
+            MemoPage2.SetActive(false);
+            memoPage3.SetActive(!memoPage1.activeSelf);
+        }
     }
     
     /*
