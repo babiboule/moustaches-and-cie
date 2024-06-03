@@ -163,98 +163,55 @@ public class ProblemsSelector : MonoBehaviour
         SfxManager.instance.PlaySfxClip(phoneCall);
         yield return new WaitForSeconds(3);
         
-        /*var s1 = "Allô ?";
-        var s2 = "[...]";
-        var s3;
-        var str = new []{s1, s2, s3};*/
+        // Start of the conversation
+        const string s1 = "Allô ?";
+        const string s2 = "[...]";
+        string s3 = null;
         
+        // Check the infos
         var family = DayManager.GetCurrentFamily();
-        
         if (_ageCircle.activeSelf)
         {
             if (family.Age < 70)
             {
-                StartCoroutine(DialogueController.WriteDialog("Pourquoi j'aurais besoin d'un garant ?..."));
-                
-                while (DialogueController.GetIsWriting())
-                    yield return null;
-                
-                // UI
-                UIManager.PhoneOff.SetActive(true);
-                UIManager.PhoneOn.SetActive(false);
-                UIManager.PhoneButton.gameObject.SetActive(true);
-                
-                // Sfx
-                SfxManager.instance.PlaySfxClip(phoneDown);
+                s3 = "Pourquoi j'aurais besoin d'un garant ?...";
             }
             else
             {
-                StartCoroutine(family.Guarantor
-                    ? DialogueController.WriteDialog("Oui, je possède un garant.")
-                    : DialogueController.WriteDialog("Non, je n'ai pas de garant, pourquoi ?"));
-               
-                while (DialogueController.GetIsWriting())
-                    yield return null;
-                
-                // UI
-                UIManager.PhoneOff.SetActive(true);
-                UIManager.PhoneOn.SetActive(false);
-                UIManager.PhoneButton.gameObject.SetActive(true);
-                
-                // Sfx
-                SfxManager.instance.PlaySfxClip(phoneDown);
+                s3 = family.Guarantor ? "Oui, je possède un garant." : "Non, je n'ai pas de garant, pourquoi ?";
             }
         }
 
         if (_homeCircle.activeSelf)
         {
-            StartCoroutine(family.Car
-                ? DialogueController.WriteDialog("Oui, je possède une voiture.")
-                : DialogueController.WriteDialog("Non je n'ai pas de voiture..."));
-            
-            while (DialogueController.GetIsWriting())
-                yield return null;
-            
-            // UI
-            UIManager.PhoneOff.SetActive(true);
-            UIManager.PhoneOn.SetActive(false);
-            UIManager.PhoneButton.gameObject.SetActive(true);
-            
-            // Sfx
-            SfxManager.instance.PlaySfxClip(phoneDown);
+            s3 = family.Car ? "Oui, je possède une voiture." : "Non je n'ai pas de voiture...";
         }
 
         if (JobCircle.activeSelf)
         {
-            switch (family.FreeTime)
+            s3 = family.FreeTime switch
             {
-                case 1:
-                    StartCoroutine(DialogueController.WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
-                    while (DialogueController.GetIsWriting())
-                        yield return null;
-                    break;
-                
-                case 2:
-                    StartCoroutine(DialogueController.WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
-                    while (DialogueController.GetIsWriting())
-                        yield return null;
-                    break;
-                
-                case 3:
-                    StartCoroutine(DialogueController.WriteDialog("Euuuh... C'est une blague ?"));
-                    while (DialogueController.GetIsWriting())
-                        yield return null;
-                    break;
-            }
-            
-            // UI
-            UIManager.PhoneOff.SetActive(true);
-            UIManager.PhoneOn.SetActive(false);
-            UIManager.PhoneButton.gameObject.SetActive(true);
-                    
-            // Sfx
-            SfxManager.instance.PlaySfxClip(phoneDown);
+                1 => "Non je n'ai pas la possibilité d'exercer mon métier en télétravail...",
+                2 => "Oui, je peux facilement travailler depuis chez moi !",
+                3 => "Euuuh... C'est une blague ?",
+                _ => s3
+            };
         }
+        
+        // Print the asked info 
+        var str = new[] { s1, s2, s3 };
+        StartCoroutine(DialogueController.WriteDialog(str));
+            
+        while (DialogueController.GetIsWriting())
+            yield return null;
+            
+        // UI
+        UIManager.PhoneOff.SetActive(true);
+        UIManager.PhoneOn.SetActive(false);
+        UIManager.PhoneButton.gameObject.SetActive(true);
+                    
+        // Sfx
+        SfxManager.instance.PlaySfxClip(phoneDown);
     }
 
 

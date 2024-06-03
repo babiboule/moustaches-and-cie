@@ -392,6 +392,7 @@ public class TutoManager : MonoBehaviour
         UIManager.FakePhoneButton.gameObject.SetActive(false);
         UIManager.PhoneButton.gameObject.SetActive(false);
         UIManager.PhoneButton.interactable = true;
+        UIManager.StampPanel.SetActive(true);
         UIManager.SkipButton.gameObject.SetActive(false);
         UIManager.ColleaguePanel.SetActive(false);
         StatsManager.instance.SetTuto(false);
