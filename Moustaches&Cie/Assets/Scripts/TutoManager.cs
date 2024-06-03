@@ -53,6 +53,7 @@ public class TutoManager : MonoBehaviour
      */
     private void SkipButtonClicked()
     {
+        UIManager.SkipButton.gameObject.SetActive(false);
         StartCoroutine(Skip());
     }
     
@@ -62,6 +63,7 @@ public class TutoManager : MonoBehaviour
      */
     private IEnumerator Skip()
     {
+        
         // Wait for the last line to print
         while (DialogueController.GetIsWriting())
             yield return null;
@@ -222,7 +224,7 @@ public class TutoManager : MonoBehaviour
         
         // Desk view
         UIManager.ColleaguePanel.SetActive(false);
-        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,6)]));
+         StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,6)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
