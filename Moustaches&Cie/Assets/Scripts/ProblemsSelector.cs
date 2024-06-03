@@ -41,6 +41,8 @@ public class ProblemsSelector : MonoBehaviour
     
     // Sfx
     [SerializeField] private AudioClip circleSfx;
+    [SerializeField] private AudioClip phoneCall;
+    [SerializeField] private AudioClip phoneDown;
 
     private void Awake()
     {
@@ -157,6 +159,15 @@ public class ProblemsSelector : MonoBehaviour
         UIManager.PhoneOn.SetActive(true);
         UIManager.PhoneButton.gameObject.SetActive(false);
         
+        // Sfx
+        SfxManager.instance.PlaySfxClip(phoneCall);
+        yield return new WaitForSeconds(3);
+        
+        /*var s1 = "Allô ?";
+        var s2 = "[...]";
+        var s3;
+        var str = new []{s1, s2, s3};*/
+        
         var family = DayManager.GetCurrentFamily();
         
         if (_ageCircle.activeSelf)
@@ -167,9 +178,14 @@ public class ProblemsSelector : MonoBehaviour
                 
                 while (DialogueController.GetIsWriting())
                     yield return null;
+                
+                // UI
                 UIManager.PhoneOff.SetActive(true);
                 UIManager.PhoneOn.SetActive(false);
                 UIManager.PhoneButton.gameObject.SetActive(true);
+                
+                // Sfx
+                SfxManager.instance.PlaySfxClip(phoneDown);
             }
             else
             {
@@ -179,9 +195,14 @@ public class ProblemsSelector : MonoBehaviour
                
                 while (DialogueController.GetIsWriting())
                     yield return null;
+                
+                // UI
                 UIManager.PhoneOff.SetActive(true);
                 UIManager.PhoneOn.SetActive(false);
                 UIManager.PhoneButton.gameObject.SetActive(true);
+                
+                // Sfx
+                SfxManager.instance.PlaySfxClip(phoneDown);
             }
         }
 
@@ -193,9 +214,14 @@ public class ProblemsSelector : MonoBehaviour
             
             while (DialogueController.GetIsWriting())
                 yield return null;
+            
+            // UI
             UIManager.PhoneOff.SetActive(true);
             UIManager.PhoneOn.SetActive(false);
             UIManager.PhoneButton.gameObject.SetActive(true);
+            
+            // Sfx
+            SfxManager.instance.PlaySfxClip(phoneDown);
         }
 
         if (JobCircle.activeSelf)
@@ -206,27 +232,28 @@ public class ProblemsSelector : MonoBehaviour
                     StartCoroutine(DialogueController.WriteDialog("Non je n'ai pas la possibilité d'exercer mon métier en télétravail..."));
                     while (DialogueController.GetIsWriting())
                         yield return null;
-                    UIManager.PhoneOff.SetActive(true);
-                    UIManager.PhoneOn.SetActive(false);
-                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
+                
                 case 2:
                     StartCoroutine(DialogueController.WriteDialog("Oui, je peux facilement travailler depuis chez moi !"));
                     while (DialogueController.GetIsWriting())
                         yield return null;
-                    UIManager.PhoneOff.SetActive(true);
-                    UIManager.PhoneOn.SetActive(false);
-                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
+                
                 case 3:
                     StartCoroutine(DialogueController.WriteDialog("Euuuh... C'est une blague ?"));
                     while (DialogueController.GetIsWriting())
                         yield return null;
-                    UIManager.PhoneOff.SetActive(true);
-                    UIManager.PhoneOn.SetActive(false);
-                    UIManager.PhoneButton.gameObject.SetActive(true);
                     break;
             }
+            
+            // UI
+            UIManager.PhoneOff.SetActive(true);
+            UIManager.PhoneOn.SetActive(false);
+            UIManager.PhoneButton.gameObject.SetActive(true);
+                    
+            // Sfx
+            SfxManager.instance.PlaySfxClip(phoneDown);
         }
     }
 

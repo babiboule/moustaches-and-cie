@@ -19,6 +19,10 @@ public class TutoManager : MonoBehaviour
     private static bool _declineStamp;
     private static bool _isPhoneOk;
     
+    // Sfx
+    [SerializeField] private AudioClip phoneCall;
+    [SerializeField] private AudioClip phoneDown;
+    
     // Coroutines
     private Coroutine _tutoCo;
 
@@ -323,9 +327,11 @@ public class TutoManager : MonoBehaviour
         while (DialogueController.GetIsWriting())
             yield return null;
         
-        //TODO : Sfx turn off phone
+        // UI & Sfx
         UIManager.PhoneOff.SetActive(true);
         UIManager.PhoneOn.SetActive(false);
+        SfxManager.instance.PlaySfxClip(phoneDown);
+        yield return new WaitForSeconds(2);
         
         // Continue
         StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(15,17)]));
@@ -393,6 +399,11 @@ public class TutoManager : MonoBehaviour
 
     private void PhoneButtonClicked()
     {
+        StartCoroutine(PhoneCall());
+    }
+
+    private IEnumerator PhoneCall()
+    {
         var s1 = "Allô ?";
         var s2 = "[...]";
         var s3 = "Non, je ne peux pas télétravailler...";
@@ -400,12 +411,13 @@ public class TutoManager : MonoBehaviour
 
         if (ProblemsSelector.JobCircle.activeSelf)
         {
-            // UI
+            // UI & Sfx
             UIManager.PhoneOff.SetActive(false);
             UIManager.PhoneOn.SetActive(true);
             UIManager.FakePhoneButton.gameObject.SetActive(false);
+            SfxManager.instance.PlaySfxClip(phoneCall);
+            yield return new WaitForSeconds(3);
             
-            //TODO : Sfx calling
             StartCoroutine(DialogueController.WriteDialog(str));
             _isPhoneOk = true;
         }
