@@ -12405,6 +12405,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTMP: {fileID: 1614301075}
   dialogBox: {fileID: 1415452047}
+  a: {fileID: 8300000, guid: eecb871540a304241a2908222fd76da2, type: 3}
+  b: {fileID: 8300000, guid: d01cafae65a3c534dacd938d959200e5, type: 3}
+  c: {fileID: 8300000, guid: 7381ff27da9a1a049814a1d3006f6d08, type: 3}
+  d: {fileID: 8300000, guid: e53045aadfe83f1449d08b2815fc4644, type: 3}
+  e: {fileID: 8300000, guid: 521b56c075d6397489c2b48e791bb37b, type: 3}
+  f: {fileID: 8300000, guid: 7edc3a98853b79746a4bc9ee7f2de667, type: 3}
+  g: {fileID: 8300000, guid: 0cee6bea6c4d9ed4eb68cae972ab3ac0, type: 3}
+  h: {fileID: 8300000, guid: e9a3c332c7d0d03449026644bdab7bdd, type: 3}
+  i: {fileID: 8300000, guid: 9c6db337c2f46f847a5b72b96a85579b, type: 3}
+  j: {fileID: 8300000, guid: 586352d8611cc7c4ab294d804bf8e3cb, type: 3}
+  k: {fileID: 8300000, guid: d3f4c3ab053922944bbdf37b6be8e4e3, type: 3}
+  l: {fileID: 8300000, guid: 0eb88d51bce56f9479722b274fd421a8, type: 3}
+  m: {fileID: 8300000, guid: d989bd8d8af79124ebf75abe11c44dd1, type: 3}
+  n: {fileID: 8300000, guid: c335b57ffed563a4ba2caf11f868d16e, type: 3}
+  o: {fileID: 8300000, guid: 1825857cdeaa26a469de615b8c3a7288, type: 3}
+  p: {fileID: 8300000, guid: fff5f07163bf14e4399ce90106451482, type: 3}
+  q: {fileID: 8300000, guid: 3d6f1cbcd4eab974b8ba769f8d0b0321, type: 3}
+  r: {fileID: 8300000, guid: ff9fd6cc5ff8b164abce85d17c2eff31, type: 3}
+  s: {fileID: 8300000, guid: 0f052c6303205764ba36161f7021d535, type: 3}
+  t: {fileID: 8300000, guid: d7ceaeee89c7b454faed49e88af2fd5b, type: 3}
+  u: {fileID: 8300000, guid: 71b4ff70f84ec264095600a78803a290, type: 3}
+  v: {fileID: 8300000, guid: 4dc1ba2cf3630b842bdba6fd6dabff18, type: 3}
+  w: {fileID: 8300000, guid: eda7b7e1ca885d94c899cae8de4c4f58, type: 3}
+  x: {fileID: 8300000, guid: 61a900994ba662a469407514664589ae, type: 3}
+  y: {fileID: 8300000, guid: fa391081ecde677498cf7c449bef6460, type: 3}
+  z: {fileID: 8300000, guid: 8683dc959c57d79418ac91590bbd4447, type: 3}
+  point: {fileID: 8300000, guid: 48eed086203c2a645ab1bd256c5f043d, type: 3}
 --- !u!4 &1287445731
 Transform:
   m_ObjectHideFlags: 0
@@ -13808,6 +13835,8 @@ MonoBehaviour:
   dialogBox: {fileID: 1415452047}
   dialogTMP: {fileID: 1614301075}
   circleSfx: {fileID: 8300000, guid: 019c33337a6009046933bb4cc774ee88, type: 3}
+  phoneCall: {fileID: 8300000, guid: a15ff9b4f7745a347924cc9c311e044e, type: 3}
+  phoneDown: {fileID: 8300000, guid: 07550e2cb8d095e488eda288e4072724, type: 3}
 --- !u!4 &1501815831
 Transform:
   m_ObjectHideFlags: 0
@@ -15765,6 +15794,8 @@ MonoBehaviour:
   - "Super, j'ai aussi ajout\xE9 une nouvelle page \xE0 ton m\xE9mo pour les nouvelles
     directives."
   - "T'as l'air d'avoir compris le truc. Je te laisse tranquille, \xE0 plus !"
+  phoneCall: {fileID: 8300000, guid: a15ff9b4f7745a347924cc9c311e044e, type: 3}
+  phoneDown: {fileID: 8300000, guid: 07550e2cb8d095e488eda288e4072724, type: 3}
 --- !u!4 &1636951423
 Transform:
   m_ObjectHideFlags: 0
