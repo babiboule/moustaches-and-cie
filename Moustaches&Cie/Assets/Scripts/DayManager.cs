@@ -68,13 +68,13 @@ public class DayManager : MonoBehaviour
                 _nFoldersMax = 5;
                 break;
             case 2:
-                _nFoldersMax = 7;
+                _nFoldersMax = 6;
                 break;
             case 3:
-                _nFoldersMax = 8;
+                _nFoldersMax = 7;
                 break;
             case 4:
-                _nFoldersMax = 8;
+                _nFoldersMax = 7;
                 break;
             default:
                 Debug.Log("NOT ON A LEVEL");
@@ -355,7 +355,9 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            StatsManager.instance.AddGoodDecline();
+            if (StatsManager.instance.GetLevel()>1)
+                StatsManager.instance.AddGoodDecline();
+            
             SfxManager.instance.PlaySfxClip(goodSfx);
         }
         

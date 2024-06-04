@@ -67,8 +67,8 @@ public class CatManager : MonoBehaviour
         _natureTMP.text = cat.nature.ToString();
         _sickTMP.text = cat.sick.ToString();
         _disabilityTMP.text = cat.disability ? "Oui" : "Non";
-        _outdoorTMP.text = cat.outdoor ? "Oui" : "Non";
-        _animalsTMP.text = cat.animals ? "Oui" : "Non";
+        _outdoorTMP.text = cat.outdoor ? "Besoin" : "Pas Besoin";
+        _animalsTMP.text = cat.animals ? "Ok" : "Pas Ok";
     }
 
     /*
