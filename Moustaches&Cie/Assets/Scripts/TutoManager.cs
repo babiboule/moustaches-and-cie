@@ -124,9 +124,8 @@ public class TutoManager : MonoBehaviour
         };
         _family.Picture = FamilyManager.GenerateFamilyPicture(_family, familyPicture);
         FamilyManager.PrintFamily(_family);
-
+        CatManager.PrintCatInfos(_family.Cat);
         
-        UIManager.CatsArrows.SetActive(false);
         UIManager.MemoArrows.SetActive(false);
         UIManager.FamilyPanel.SetActive(false);
         UIManager.CatsPanel.SetActive(false);
@@ -155,24 +154,13 @@ public class TutoManager : MonoBehaviour
             
         // Print cats folder and continue
         UIManager.CatsPanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,9)]));
-        while (DialogueController.GetIsWriting())
-            yield return null;
-            
-        // Wait for good cat to be selected
-        UIManager.CatsArrows.SetActive(true);
-        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
-            yield return null;
-        
-            
-        // Continue 
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(9, 11)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,8)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         UIManager.MemoPanel.SetActive(true);
             
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(8,11)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -180,7 +168,7 @@ public class TutoManager : MonoBehaviour
         while(!UIManager.MemoPage2.activeSelf)
             yield return null;
             
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(14,17)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -214,6 +202,7 @@ public class TutoManager : MonoBehaviour
         };
         _family.Picture = FamilyManager.GenerateFamilyPicture(_family, familyPicture);
         FamilyManager.PrintFamily(_family);
+        CatManager.PrintCatInfos(_family.Cat);
         
         // Start of the tutorial
         UIManager.StampPanel.SetActive(false);
@@ -224,16 +213,7 @@ public class TutoManager : MonoBehaviour
         
         // Desk view
         UIManager.ColleaguePanel.SetActive(false);
-         StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,6)]));
-        while (DialogueController.GetIsWriting())
-            yield return null;
-        
-        // Wait for the good cat
-        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
-            yield return null;
-        
-        // Continue
-        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(6,9)]));
+         StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,9)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -290,6 +270,7 @@ public class TutoManager : MonoBehaviour
         };
         _family.Picture = FamilyManager.GenerateFamilyPicture(_family, familyPicture);
         FamilyManager.PrintFamily(_family);
+        CatManager.PrintCatInfos(_family.Cat);
         
         // Start of the tutorial
         UIManager.StampPanel.SetActive(false);
@@ -308,15 +289,7 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // Explains phone
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(7,11)]));
-        while (DialogueController.GetIsWriting())
-            yield return null;
-        
-        // Wait for good cat
-        while (DayManager.GetCurrentCats()[DayManager.GetIndex()].name != _family.Cat.name)
-            yield return null;
-        
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(11,15)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(7,15)]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -351,12 +324,11 @@ public class TutoManager : MonoBehaviour
     private IEnumerator EndTuto1()
     {
         UIManager.ColleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(17,19)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(14,16)]));
         while (DialogueController.GetIsWriting())
             yield return null;
             
         // End of the tutorial
-        UIManager.CatsArrows.SetActive(true);
         UIManager.MemoArrows.SetActive(true);
         UIManager.FamilyPanel.SetActive(true);
         UIManager.CatsPanel.SetActive(true);
@@ -375,6 +347,8 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // End of the tutorial
+        DayManager.SetAcceptButtonActive(true);
+        DayManager.SetDeclineButtonActive(false);
         ProblemsSelector.ResetCircles();
         UIManager.StampPanel.SetActive(true);
         UIManager.SkipButton.gameObject.SetActive(false);
@@ -390,6 +364,8 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // End of the tutorial
+        DayManager.SetAcceptButtonActive(true);
+        DayManager.SetDeclineButtonActive(false);
         ProblemsSelector.ResetCircles();
         UIManager.FakePhoneButton.gameObject.SetActive(false);
         UIManager.PhoneButton.gameObject.SetActive(false);

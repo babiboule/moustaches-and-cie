@@ -6,7 +6,10 @@ public class StatsManager : MonoBehaviour
 {
     // Debug settings
     public int dayMax;
-    public int upExp;
+    public int bonusGoodAdoption;
+    public int bonusGoodDecline;
+    public int malusBadAdoption;
+    public int malusBadDecline;
     public int upLvl1;
     public int upLvl2;
     public int upLvl3;

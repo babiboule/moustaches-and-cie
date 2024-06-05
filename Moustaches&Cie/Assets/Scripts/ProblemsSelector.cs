@@ -114,13 +114,15 @@ public class ProblemsSelector : MonoBehaviour
         OutdoorCircle.SetActive(false);
         _animalsCircle.SetActive(false);
         _commentCircle.SetActive(false);
-        if(StatsManager.instance.GetLevel() > 2)
+
+        if (StatsManager.instance.GetLevel() > 2)
         {
             UIManager.PhonePanel.gameObject.SetActive(true);
             UIManager.PhoneButton.gameObject.SetActive(false);
             UIManager.PhoneOff.SetActive(true);
             UIManager.PhoneOn.SetActive(false);
         }
+        
     }
 
     /*

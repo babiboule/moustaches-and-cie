@@ -26,7 +26,6 @@ public class DayManager : MonoBehaviour
     
     // Private variables
     private int _level;
-    private static int _index;
     private int _nFoldersMax;
     private int _nFolder;
     private LogicManager.Problem _problem;
@@ -84,7 +83,6 @@ public class DayManager : MonoBehaviour
         // Set the variables
         _validFolders = SetValidFolders();
         _nFolder = 1 ;
-        _index = 0 ;
         
         // Get list of cats that are not adopted yet
         CurrentCats.Clear();
@@ -194,10 +192,7 @@ public class DayManager : MonoBehaviour
             }
         }
         
-        // Set the cat page on the current cat index
-        PreviousIndex();
-        UIManager.SwitchPostIt();
-        CatManager.PrintCatInfos(CurrentCats[_index]);
+        CatManager.PrintCatInfos(_family.Cat);
         
         // Print the family infos 
         FamilyManager.PrintFamily(_family);
@@ -210,22 +205,6 @@ public class DayManager : MonoBehaviour
     {
         return CurrentCats;
     }
-
-    /*
-     * Return the current index
-     */
-    public static int GetIndex()
-    {
-        return _index;
-    }
-
-    /*
-     * Set the current index to param i
-     */
-    public static void SetIndex(int i)
-    {
-        _index = i;
-    }
     
     /*
      * Return the cat index max
@@ -233,26 +212,6 @@ public class DayManager : MonoBehaviour
     public static int GetIndexMax()
     {
         return CurrentCats.Count - 1;
-    }
-
-    /*
-     * Increment the index (loop to 0 if at the end)
-     */
-    public static void NextIndex()
-    {
-        _index++;
-        if (_index > GetIndexMax())
-            _index = 0;
-    }
-    
-    /*
-     * Decrement the index (loop to max if at 0)
-     */
-    public static void PreviousIndex()
-    {
-        _index--;
-        if (_index < 0)
-            _index = GetIndexMax();
     }
     
     /*
@@ -277,9 +236,6 @@ public class DayManager : MonoBehaviour
         }
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
-        
-        // Vfx
-        UIManager.SwitchPostIt();
         
         // Reset circles and stamps if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)
@@ -333,9 +289,6 @@ public class DayManager : MonoBehaviour
         
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
-        
-        // Vfx
-        UIManager.SwitchPostIt();
         
         // Reset circles and stamps if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)

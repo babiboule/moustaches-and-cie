@@ -1132,7 +1132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayMax: 9
-  upExp: 50
+  bonusGoodAdoption: 50
+  bonusGoodDecline: 20
+  malusBadAdoption: 20
+  malusBadDecline: 10
   upLvl1: 300
   upLvl2: 800
   upLvl3: 1200

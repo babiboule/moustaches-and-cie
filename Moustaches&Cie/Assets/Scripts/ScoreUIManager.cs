@@ -16,6 +16,8 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private TMP_Text levelTMP;
     [SerializeField] private TMP_Text upExpGoodAdoptionTMP;
     [SerializeField] private TMP_Text upExpGoodDeclineTMP;
+    [SerializeField] private TMP_Text downExpBadAdoptionTMP;
+    [SerializeField] private TMP_Text downExpBadDeclineTMP;
     [SerializeField] private TMP_Text totalExpTMP;
     [SerializeField] private Button nextDayButton;
     [SerializeField] private Button toTitleButton;
@@ -63,11 +65,13 @@ public class ScoreUIManager : MonoBehaviour
         goodAdoptionTMP.text = "Chats bien placés : " + _goodAdoptions;
         badAdoptionTMP.text = "Chats mal placés : " + _badAdoptions;
         goodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Refus bien justifiés : " + _goodDecline: "";
-        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvaises justifications : " + _badDecline : "Bons dossiers refusés : " + _badDecline;
+        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvais refus : " + _badDecline : "Bons dossiers refusés : " + _badDecline;
 
         detailsTMP.text = "Détails : \n";
-        upExpGoodAdoptionTMP.text = "+ " + StatsManager.instance.upExp * _goodAdoptions + " exp";
-        upExpGoodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "+ " + StatsManager.instance.upExp / 2 * _goodDecline + " exp" : "";
+        upExpGoodAdoptionTMP.text = "+ " + StatsManager.instance.bonusGoodAdoption * _goodAdoptions + " exp";
+        upExpGoodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "+ " + StatsManager.instance.bonusGoodDecline * _goodDecline + " exp" : "";
+        downExpBadAdoptionTMP.text = "- " + StatsManager.instance.malusBadAdoption * _badAdoptions + "exp";
+        downExpBadDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "- " + StatsManager.instance.malusBadDecline * _badDecline + " exp" : "";
 
         // Update the gained exp
         UpExp();
@@ -96,7 +100,11 @@ public class ScoreUIManager : MonoBehaviour
     private void UpExp()
     {
         // Set xp
-        StatsManager.instance.SetExp(StatsManager.instance.GetExp()+StatsManager.instance.upExp*_goodAdoptions+StatsManager.instance.upExp/2*_goodDecline);
+        StatsManager.instance.SetExp(StatsManager.instance.GetExp() + StatsManager.instance.bonusGoodAdoption*_goodAdoptions
+                                     - StatsManager.instance.malusBadAdoption*_badAdoptions);
+        if(StatsManager.instance.GetLevel()>1)
+            StatsManager.instance.SetExp(StatsManager.instance.GetExp() + StatsManager.instance.bonusGoodDecline*_goodDecline
+                                         - StatsManager.instance.malusBadDecline*_badDecline);
         float exp = StatsManager.instance.GetExp();
         
         // Switch level if enough xp and fill the xp bar
