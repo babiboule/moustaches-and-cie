@@ -1136,10 +1136,12 @@ MonoBehaviour:
   bonusGoodDecline: 20
   malusBadAdoption: 20
   malusBadDecline: 10
-  upLvl1: 300
-  upLvl2: 800
-  upLvl3: 1200
+  upLvl1: 250
+  upLvl2: 600
+  upLvl3: 1000
   tuto: 1
+  day: 0
+  gameOver: 0
 --- !u!4 &1499203357
 Transform:
   m_ObjectHideFlags: 0

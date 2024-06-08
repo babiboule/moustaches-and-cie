@@ -14,6 +14,8 @@ public class StatsManager : MonoBehaviour
     public int upLvl2;
     public int upLvl3;
     public bool tuto = true;
+    public int day;
+    public bool gameOver;
     
     // Daily stats
     private int _goodAdoptions;

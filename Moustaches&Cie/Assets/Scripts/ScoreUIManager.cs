@@ -54,6 +54,7 @@ public class ScoreUIManager : MonoBehaviour
         
         // Increment the day
         StatsManager.instance.AddDate();
+        StatsManager.instance.day++;
         
         // Get the stats of the day
         _goodAdoptions = StatsManager.instance.GetGoodAdoptions();
@@ -111,11 +112,13 @@ public class ScoreUIManager : MonoBehaviour
         if (exp >= StatsManager.instance.upLvl3)
         {
             StatsManager.instance.SetLevel(4);
+            StatsManager.instance.day = 0;
             xpBar.fillAmount = 1;
         }
         else if (exp >= StatsManager.instance.upLvl2)
         {
             StatsManager.instance.SetLevel(3);
+            StatsManager.instance.day = 0;
             if(StatsManager.instance.GetTutoLvl() == 2)
             {
                 StatsManager.instance.SetTuto(true);
@@ -126,6 +129,7 @@ public class ScoreUIManager : MonoBehaviour
         else if (exp >= StatsManager.instance.upLvl1)
         {
             StatsManager.instance.SetLevel(2);
+            StatsManager.instance.day = 0;
             if(StatsManager.instance.GetTutoLvl() == 1)
             {
                 StatsManager.instance.SetTuto(true);
@@ -206,6 +210,13 @@ public class ScoreUIManager : MonoBehaviour
     {
         // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+
+        if (StatsManager.instance.day >= 4)
+        {
+            StatsManager.instance.gameOver = true;
+            GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
+            return;
+        }
         
         // End the game if it was the last day, else go on next day 
         if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)

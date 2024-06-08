@@ -134,8 +134,7 @@ public class TitleScreen : MonoBehaviour
         // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
         
-        // TODO : IMPLEMENT CREDITS
-        throw new NotImplementedException();
+        GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
     }
 
     /*
