@@ -24,7 +24,10 @@ public class GameOverManager : MonoBehaviour
     private void Start()
     {
         if(StatsManager.instance.gameOver)
+        {
+            StatsManager.instance.gameOver = false;
             StartCoroutine(GameOver());
+        }
     }
 
     /*

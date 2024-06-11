@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class FamilyManager : MonoBehaviour
 {
@@ -172,6 +174,18 @@ public class FamilyManager : MonoBehaviour
         var i = Random.Range(0, cats.Count);
         family.Cat = cats[i];
 
+        family.Budget = family.Cat.sick switch
+        {
+            CatsScriptableObject.Sick.Aucune => Random.Range(7, 13) * 10,
+            CatsScriptableObject.Sick.Coriza => Random.Range(8, 14) * 10,
+            CatsScriptableObject.Sick.FIV => Random.Range(13, 20) * 10,
+            CatsScriptableObject.Sick.PIF => Random.Range(22, 30) * 10,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        if (family.Cat.disability)
+            family.Outdoor = FamilyInfosScriptableObject.Outdoor.Aucun;
+
         // Assign a job depending on the age 
         switch (family.Age)
         {
@@ -253,10 +267,9 @@ public class FamilyManager : MonoBehaviour
                 break;
             
             case 5 : // Reduce budget
-                if (family.Budget <= 20)
-                    AddConstraint(family, familyInfos);
-                else
-                    family.Budget -= Random.Range(3, 14) * 20;
+                if (family.Budget <= 50)
+                    break;
+                family.Budget -= 40;
                 break;
             
             case 6 : // Change outdoor conditions

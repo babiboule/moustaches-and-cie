@@ -211,7 +211,8 @@ public class ScoreUIManager : MonoBehaviour
         // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
 
-        if (StatsManager.instance.day >= 4)
+        if (StatsManager.instance.GetDate() > 4 && StatsManager.instance.GetLevel() == 1
+            || StatsManager.instance.GetDate() > 8 && StatsManager.instance.GetLevel() == 2)
         {
             StatsManager.instance.gameOver = true;
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);

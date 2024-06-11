@@ -82,7 +82,7 @@ public class CatManager : MonoBehaviour
         foreach (var cat in cats.cats)
         {
             var adopted = false;
-            if(cat.level == level)
+            if(cat.level <= level)
                 if (StatsManager.instance.GetAdoptedCats().Count > 0)
                 {
                     foreach (var adoptedCat in StatsManager.instance.GetAdoptedCats())

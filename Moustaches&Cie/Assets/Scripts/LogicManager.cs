@@ -1,3 +1,4 @@
+using System;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -70,6 +71,10 @@ public class LogicManager : MonoBehaviour
             return problem;
         
         problem = CheckFamilyHome(problem);
+        if (problem.Exists)
+            return problem;
+        
+        problem = CheckFamilyBudget(problem);
         if (problem.Exists)
             return problem;
         
@@ -154,6 +159,21 @@ public class LogicManager : MonoBehaviour
             }
         }
         
+        return problem;
+    }
+    
+    /*
+     * Check the family budget and return the updated Param problem
+     */
+    private static Problem CheckFamilyBudget(Problem problem)
+    {
+        if (_family.Budget < 70)
+        {
+            problem.PbFamily = PbFamily.TooPoor;
+            problem.PbCat = PbCat.None;
+            problem.Exists = true;
+        }
+
         return problem;
     }
 

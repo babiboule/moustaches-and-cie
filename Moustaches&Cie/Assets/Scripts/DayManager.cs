@@ -79,14 +79,18 @@ public class DayManager : MonoBehaviour
                 Debug.Log("NOT ON A LEVEL");
                 break;
         }
-
-        // Set the variables
-        _validFolders = SetValidFolders();
-        _nFolder = 1 ;
         
         // Get list of cats that are not adopted yet
         CurrentCats.Clear();
         CatManager.InitialiseCurrentCats(_level, cats, CurrentCats);
+        if (CurrentCats.Count <= _nFoldersMax)
+        {
+            _nFoldersMax = CurrentCats.Count - 1;
+        }
+        
+        // Set the variables
+        _validFolders = SetValidFolders();
+        _nFolder = 1 ;
         
         // Set the first cat page
         CatManager.PrintCatInfos(CurrentCats[0]);
@@ -102,7 +106,7 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            NextFolder();
+            StartCoroutine(NextFolder());
         }
     }
 
@@ -112,7 +116,7 @@ public class DayManager : MonoBehaviour
         while(StatsManager.instance.GetTuto())
             yield return null;
         StopCoroutine(_coTuto);
-        NextFolder();
+        StartCoroutine(NextFolder());
     }
 
     /*
@@ -122,14 +126,14 @@ public class DayManager : MonoBehaviour
     private List<bool> SetValidFolders()
     {
         // Define the value of valid folders for the day
-        List<bool> tempList = new List<bool>();
-        List<bool> list = new List<bool>();
-        int nbValid = Random.Range(Mathf.FloorToInt(_nFoldersMax / 2.0f), Mathf.FloorToInt(_nFoldersMax / 2.0f)*2);
+        var tempList = new List<bool>();
+        var list = new List<bool>();
+        var nbValid = Random.Range((int)(_nFoldersMax / 2.0f), (int)(_nFoldersMax / 2.0f)+2);
         
         // Set a temp bool list with x false and n-x true
-        for (int i = 0; i < _nFoldersMax-nbValid; i++)
+        for (var i = 0; i < _nFoldersMax-nbValid; i++)
             tempList.Add(false);
-        for (int i = 0; i < nbValid; i++)
+        for (var i = 0; i < nbValid; i++)
             tempList.Add(true);
         
         // Shuffle the list
@@ -148,7 +152,7 @@ public class DayManager : MonoBehaviour
      * Generate a clean family which would accept any cat and add modifiers one by one until there is a problem
      * if the folder is a valid one, it will take the iteration n-1, else it will take the iteration n
      */
-    private void NextFolder()
+    private IEnumerator NextFolder()
     {
         // Update n° folder text
         nFolderTMP.text = "Dossier n°" + _nFolder + " / " + _nFoldersMax; 
@@ -168,6 +172,7 @@ public class DayManager : MonoBehaviour
             {
                 _family = FamilyManager.GenerateFamily(familyPicture, familyInfos, CurrentCats);
                 _problem = LogicManager.CheckProblem(_family, _family.Cat);
+                yield return null;
             }
         
         // Add constraints until there is a conflict
@@ -175,6 +180,7 @@ public class DayManager : MonoBehaviour
         var tempProblem = _problem;
         while (!tempProblem.Exists)
         {
+            yield return null;
             tempFamily = FamilyManager.AddConstraint(tempFamily, familyInfos);
             tempProblem = LogicManager.CheckProblem(tempFamily, tempFamily.Cat);
             if (tempProblem.Exists)
@@ -196,6 +202,10 @@ public class DayManager : MonoBehaviour
         
         // Print the family infos 
         FamilyManager.PrintFamily(_family);
+        
+        /******** DEBUG ********/
+        Debug.Log(_validFolders[_nFolder-1]);
+        Debug.Log(CurrentCats.Count);
     }
     
     /*
@@ -265,10 +275,10 @@ public class DayManager : MonoBehaviour
         StatsManager.instance.AddAdoptedCat(_problem.Cat.name);
 
         // Next folder if not the end of the day
-        if (_nFolder < _nFoldersMax)
+        if (_nFolder < _nFoldersMax  && CurrentCats.Count > 1)
         {
             _nFolder++;
-            NextFolder();
+            StartCoroutine(NextFolder());
         }
         else
         {
@@ -318,7 +328,7 @@ public class DayManager : MonoBehaviour
         if (_nFolder < _nFoldersMax)
         {
             _nFolder++;
-            NextFolder();
+            StartCoroutine(NextFolder());
         }
         else
         {

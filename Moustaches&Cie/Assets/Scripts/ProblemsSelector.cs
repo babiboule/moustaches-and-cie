@@ -94,7 +94,7 @@ public class ProblemsSelector : MonoBehaviour
         // Set the phone button ON if on level 3 or more
         if(StatsManager.instance.GetLevel() > 2 && !StatsManager.instance.GetTuto())
         {
-            UIManager.PhonePanel.gameObject.SetActive(true);
+            UIManager.PhonePanel.SetActive(true);
             UIManager.PhoneButton.gameObject.SetActive(false);
             UIManager.PhoneOff.SetActive(true);
             UIManager.PhoneOn.SetActive(false);
@@ -117,8 +117,9 @@ public class ProblemsSelector : MonoBehaviour
 
         if (StatsManager.instance.GetLevel() > 2)
         {
-            UIManager.PhonePanel.gameObject.SetActive(true);
+            UIManager.PhonePanel.SetActive(true);
             UIManager.PhoneButton.gameObject.SetActive(false);
+            UIManager.FakePhoneButton.gameObject.SetActive(false);
             UIManager.PhoneOff.SetActive(true);
             UIManager.PhoneOn.SetActive(false);
         }
@@ -138,7 +139,7 @@ public class ProblemsSelector : MonoBehaviour
             LogicManager.PbFamily.TooOld => _ageCircle.activeSelf,
             LogicManager.PbFamily.TooYoung => _ageCircle.activeSelf,
             LogicManager.PbFamily.TooPoor => _incomeCircle.activeSelf,
-            LogicManager.PbFamily.TooBusy => JobCircle.activeSelf,
+            LogicManager.PbFamily.TooBusy => JobCircle.activeSelf || _animalsCircle.activeSelf,
             LogicManager.PbFamily.Child => _childCircle.activeSelf,
             LogicManager.PbFamily.NoOutdoor => OutdoorCircle.activeSelf,
             LogicManager.PbFamily.Animals => _animalsCircle.activeSelf,

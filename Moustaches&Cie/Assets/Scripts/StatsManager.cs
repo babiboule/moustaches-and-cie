@@ -74,6 +74,7 @@ public class StatsManager : MonoBehaviour
     {
         _goodAdoptions = 0;
         _badAdoptions = 0;
+        _goodDecline = 0;
         _badDecline = 0;
         _listProblems.Clear();
     }

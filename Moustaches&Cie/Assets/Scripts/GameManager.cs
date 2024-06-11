@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Exp", 0);
         PlayerPrefs.SetInt("AdoptedCats", 0);
         PlayerPrefs.SetInt("Date", 1);
+        PlayerPrefs.SetInt("Day", 0);
+        PlayerPrefs.SetInt("Tuto", 1);
         StatsManager.instance.ClearAdoptedCat();
         
         PlayerPrefs.Save();
@@ -131,6 +133,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Exp", StatsManager.instance.GetExp());
         PlayerPrefs.SetInt("AdoptedCats", StatsManager.instance.GetAdoptedCats().Count);
         PlayerPrefs.SetInt("Date", StatsManager.instance.GetDate());
+        PlayerPrefs.SetInt("Day", StatsManager.instance.day);
+        PlayerPrefs.SetInt("Tuto", StatsManager.instance.GetTutoLvl());
         for (int i = 0; i<StatsManager.instance.GetAdoptedCats().Count; i++)
         {
             PlayerPrefs.SetString("Cat"+i, StatsManager.instance.GetAdoptedCats(i));
@@ -156,6 +160,8 @@ public class GameManager : MonoBehaviour
         int nCats = PlayerPrefs.GetInt("AdoptedCats", 0);
         StatsManager.instance.SetDate(PlayerPrefs.GetInt("Date", 1));
         StatsManager.instance.ClearAdoptedCat();
+        StatsManager.instance.day = PlayerPrefs.GetInt("Day", 0);
+        StatsManager.instance.SetTutoLevel(PlayerPrefs.GetInt("Tuto", 1));
         for (int i = 0; i < nCats ; i++)
         {
             StatsManager.instance.AddAdoptedCat(PlayerPrefs.GetString("Cat" + i));

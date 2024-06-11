@@ -1131,14 +1131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00bb15c361da2040aa2350047403bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayMax: 9
+  dayMax: 10
   bonusGoodAdoption: 50
   bonusGoodDecline: 20
   malusBadAdoption: 20
   malusBadDecline: 10
-  upLvl1: 250
-  upLvl2: 600
-  upLvl3: 1000
+  upLvl1: 300
+  upLvl2: 850
+  upLvl3: 1500
   tuto: 1
   day: 0
   gameOver: 0
