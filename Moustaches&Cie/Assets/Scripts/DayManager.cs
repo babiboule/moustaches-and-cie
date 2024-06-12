@@ -300,16 +300,6 @@ public class DayManager : MonoBehaviour
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
         
-        // Reset circles and stamps if on level 2 or more
-        if (StatsManager.instance.GetLevel() > 1)
-        {
-            ProblemsSelector.ResetCircles();
-            SetAcceptButtonActive(true);
-            SetDeclineButtonActive(false);
-            if(!ProblemsSelector.CheckProblemSelected(_problem))
-                StatsManager.instance.AddBadDecline();
-        }
-
         // If decline folder but it is valid, bad answer
         if (!_problem.Exists)
         {
@@ -318,10 +308,32 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            if (StatsManager.instance.GetLevel()>1)
-                StatsManager.instance.AddGoodDecline();
+            if (StatsManager.instance.GetLevel() > 1)
+            {
+                if(!ProblemsSelector.CheckProblemSelected(_problem))
+                {
+                    StatsManager.instance.AddBadDecline();
+                    SfxManager.instance.PlaySfxClip(badSfx);
+                }
+                else
+                {
+                    StatsManager.instance.AddGoodDecline();
+                    SfxManager.instance.PlaySfxClip(goodSfx);
+                }
+            }
+            else
+            {
+                SfxManager.instance.PlaySfxClip(goodSfx);
+            }
             
-            SfxManager.instance.PlaySfxClip(goodSfx);
+        }
+        
+        // Reset circles and stamps if on level 2 or more
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            ProblemsSelector.ResetCircles();
+            SetAcceptButtonActive(true);
+            SetDeclineButtonActive(false);
         }
         
         // Next folder if not the end of the day

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -69,7 +70,15 @@ public class GameOverManager : MonoBehaviour
 
         StartCoroutine(Credits());
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            toTitleButton.gameObject.SetActive(true);
+        }
+    }
+
     /*
      * Animation of the credits
      */

@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject memoPage1;
     public static GameObject MemoPage2;
     [SerializeField] private GameObject memoPage3;
+    public GameObject phonePanel;
+    [SerializeField] private GameObject assetsLvl1Panel;
+    [SerializeField] private GameObject assetsLvl2Panel;
     
     // Pause components
     [SerializeField] private Button pauseButton;
@@ -51,7 +54,7 @@ public class UIManager : MonoBehaviour
     public GameObject memoPanel;
     public GameObject stampPanel;
     public GameObject memoPage2;
-    public GameObject phonePanel;
+
     public GameObject phoneOn;
     public GameObject phoneOff;
     public Button phoneButton;
@@ -93,6 +96,10 @@ public class UIManager : MonoBehaviour
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
+        
+        // Active assets depending on the level
+        assetsLvl1Panel.SetActive(StatsManager.instance.GetLevel()==1);
+        assetsLvl2Panel.SetActive(StatsManager.instance.GetLevel()==2);
         phonePanel.SetActive(StatsManager.instance.GetLevel()>2);
     }
 
