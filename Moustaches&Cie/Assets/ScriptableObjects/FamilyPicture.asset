@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: FamilyPicture
   m_EditorClassIdentifier: 
   listHairs:
+  - {fileID: 21300000, guid: ea6530b458923f7449b55c7d9de933f8, type: 3}
+  - {fileID: 21300000, guid: fc203b20d62bd0e4ca1851f9d518851b, type: 3}
   - {fileID: 21300000, guid: 288e6db381546d947a58faa47c2c9f4c, type: 3}
   - {fileID: 21300000, guid: c5213809de6fa6b4b91ffbc42af56350, type: 3}
   - {fileID: 21300000, guid: c8e6fe9899d85c94289408c358761d8d, type: 3}
+  - {fileID: 21300000, guid: 936987b8f9ee2c24c8dd1802cffd751d, type: 3}
+  - {fileID: 21300000, guid: 6392c2d821838d64989f730f4bc4b66c, type: 3}
   listSkins:
   - {fileID: 21300000, guid: 8da72cc50a02cdc4ea5fd0bde8587aa0, type: 3}
   - {fileID: 21300000, guid: f4589383edc1b40449f9b32b51f99e88, type: 3}
@@ -37,9 +41,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a19ea3bae51f62342b3c688ff1c774d0, type: 3}
   - {fileID: 21300000, guid: 61857c4ac1aa31447b1ed55a94a581c4, type: 3}
   listClothes:
-  - {fileID: 21300000, guid: 711bf38f82fec3a4e85be6c4f09bd3d8, type: 3}
+  - {fileID: 21300000, guid: 542e3adff42ff81478aba32bf151bba6, type: 3}
   - {fileID: 21300000, guid: 38a17186cd8a7004fbd49c75ec6a3b2a, type: 3}
   - {fileID: 21300000, guid: 7b52b3843fda3684989e43149657dbe6, type: 3}
+  - {fileID: 21300000, guid: d836b7b2ae9a17f45a32c5b1e7a8963d, type: 3}
+  - {fileID: 21300000, guid: 1d0dff295015a274987c04b8ce27818d, type: 3}
+  - {fileID: 21300000, guid: a1e41a1e6e4a71948a951b5bc181598b, type: 3}
   listAccessories:
   - {fileID: 21300000, guid: fba00294c4e60fb4da6957074b296d39, type: 3}
   - {fileID: 21300000, guid: 2d30895caef5679428c3700261b58083, type: 3}
