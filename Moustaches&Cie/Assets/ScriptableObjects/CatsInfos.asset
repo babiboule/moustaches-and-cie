@@ -403,7 +403,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: 95fd3d1779f4d7a41ad1440b807238f7, type: 3}
+  - picture: {fileID: 21300000, guid: cee379a0f63a3354f9fe19ad33b4605c, type: 3}
     reference: {fileID: 21300000, guid: 95fd3d1779f4d7a41ad1440b807238f7, type: 3}
     name: Potiron
     age: 3
@@ -442,7 +442,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: 1ec72db796dc92a429f2516a6ef8dc3e, type: 3}
+  - picture: {fileID: 21300000, guid: 742ca49fca9114f4aa0a66345608db36, type: 3}
     reference: {fileID: 21300000, guid: 1ec72db796dc92a429f2516a6ef8dc3e, type: 3}
     name: "Th\xE9odor"
     age: 2
