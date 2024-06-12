@@ -39,7 +39,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 76c00b0669497ec44ac03baff2c1a875, type: 3}
+  - picture: {fileID: 21300000, guid: 296257012edc88448a403db98ecdc0ce, type: 3}
     reference: {fileID: 21300000, guid: 76c00b0669497ec44ac03baff2c1a875, type: 3}
     name: Jumbo
     age: 0.8
@@ -91,7 +91,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: 71aa3d4e5660ccf4eb936a74aab724cf, type: 3}
+  - picture: {fileID: 21300000, guid: fe44b4cc791524d449430c275f89094d, type: 3}
     reference: {fileID: 21300000, guid: 71aa3d4e5660ccf4eb936a74aab724cf, type: 3}
     name: Sureau
     age: 0.1
@@ -117,7 +117,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 1
-  - picture: {fileID: 21300000, guid: cb5f4ad07c846a44b8861c67b3cb4ef4, type: 3}
+  - picture: {fileID: 21300000, guid: 555d31ebbf1570d4e8930f20910dbdf3, type: 3}
     reference: {fileID: 21300000, guid: cb5f4ad07c846a44b8861c67b3cb4ef4, type: 3}
     name: Saly
     age: 3
@@ -195,7 +195,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 2
-  - picture: {fileID: 21300000, guid: a9dd9dfc77322bc42af9a2d7036e3830, type: 3}
+  - picture: {fileID: 21300000, guid: ae5b23fe750e13f4fb70145a4fa1afdf, type: 3}
     reference: {fileID: 21300000, guid: a9dd9dfc77322bc42af9a2d7036e3830, type: 3}
     name: Nana
     age: 0.9
@@ -234,7 +234,7 @@ MonoBehaviour:
     animals: 1
     adopted: 0
     level: 2
-  - picture: {fileID: 21300000, guid: 6cf4a47e53c0da44893e08983e9aa4a1, type: 3}
+  - picture: {fileID: 21300000, guid: 09844ca711fc550489a9e9c76e883ac0, type: 3}
     reference: {fileID: 21300000, guid: 6cf4a47e53c0da44893e08983e9aa4a1, type: 3}
     name: Yamada
     age: 5
@@ -429,7 +429,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 3
-  - picture: {fileID: 21300000, guid: 21288d61af182314bbd04b086e53a7e3, type: 3}
+  - picture: {fileID: 21300000, guid: 1bbc139d23f7b87499d14ab91aa07da3, type: 3}
     reference: {fileID: 21300000, guid: 21288d61af182314bbd04b086e53a7e3, type: 3}
     name: Hestia
     age: 3
