@@ -24,7 +24,7 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private AudioClip phoneDown;
     
     // Coroutines
-    private Coroutine _tutoCo;
+    public Coroutine TutoCo;
 
     // Singleton
     private static TutoManager _instance;
@@ -69,7 +69,7 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // Stop coroutine and end the tuto
-        StopCoroutine(_tutoCo);
+        StopCoroutine(TutoCo);
         switch (StatsManager.instance.GetTutoLvl())
         {
             case 1:
@@ -94,13 +94,18 @@ public class TutoManager : MonoBehaviour
         UIManager.SkipButton.gameObject.SetActive(true);
         
         // Launch the good tutorial
-        _tutoCo = i switch
+        TutoCo = i switch
         {
             1 => StartCoroutine(Tuto1()),
             2 => StartCoroutine(Tuto2()),
             3 => StartCoroutine(Tuto3()),
-            _ => _tutoCo
+            _ => TutoCo
         };
+    }
+
+    public void StopTuto()
+    {
+        StopCoroutine(TutoCo);
     }
 
     private IEnumerator Tuto1()

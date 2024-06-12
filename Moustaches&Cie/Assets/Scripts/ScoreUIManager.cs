@@ -221,7 +221,10 @@ public class ScoreUIManager : MonoBehaviour
         
         // End the game if it was the last day, else go on next day 
         if (StatsManager.instance.GetDate() > StatsManager.instance.dayMax)
+        {
+            StatsManager.instance.gameOver = true;
             GameManager.instance.UpdateGameState(GameManager.GameState.GameOver);
+        }
         
         else
             GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Level);

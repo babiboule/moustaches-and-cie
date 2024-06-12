@@ -163,7 +163,12 @@ public class UIManager : MonoBehaviour
     {
         // Sfx
         SfxManager.instance.PlaySfxClip(buttonSfx);
+
+        // Reset the tuto if running
+        if (StatsManager.instance.GetTuto())
+            Destroy(TutoManager.instance);
         
+        // Launch the title scene
         GameManager.instance.UpdateGameLevel(GameManager.GameLevel.Title);
     }
 
