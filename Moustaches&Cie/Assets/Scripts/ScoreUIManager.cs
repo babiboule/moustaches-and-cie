@@ -1,8 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreUIManager : MonoBehaviour
@@ -32,10 +33,12 @@ public class ScoreUIManager : MonoBehaviour
     private string _catPb;
     private string _familyPb;
     
+    // Const 
+    private const float BlankTime = 0.2f;
+    private const float IncrementTime = 0.005f;
+
     // Sfx
     [SerializeField] private AudioClip dayEndSfx;
-    [SerializeField] private AudioClip typewriterSfx;
-    [SerializeField] private AudioClip expUpSfx;
     [SerializeField] private AudioClip lvlUpSfx;
     [SerializeField] private AudioClip buttonSfx;
 
@@ -44,11 +47,26 @@ public class ScoreUIManager : MonoBehaviour
         // Add listeners on buttons
         nextDayButton.onClick.AddListener(NextDayButtonClicked);
         toTitleButton.onClick.AddListener(ToTitleButtonClicked);
+        
+        // Clear texts
+        goodAdoptionTMP.text = "";
+        badAdoptionTMP.text = "";
+        goodDeclineTMP.text = "";
+        badDeclineTMP.text = "";
+        detailsTMP.text = "";
+        upExpGoodAdoptionTMP.text = "";
+        upExpGoodDeclineTMP.text = "";
+        downExpBadAdoptionTMP.text = "";
+        downExpBadDeclineTMP.text = "";
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    private IEnumerator Start()
     {
+        nextDayButton.interactable = false;
+        toTitleButton.interactable = false;
+        
         // Sfx
         SfxManager.instance.PlaySfxClip(dayEndSfx);
         
@@ -62,20 +80,36 @@ public class ScoreUIManager : MonoBehaviour
         _goodDecline = StatsManager.instance.GetGoodDecline();
         _badDecline = StatsManager.instance.GetBadDecline();
         
+        // Print last stats (xp + lvl)
+        xpBar.fillAmount = StatsManager.instance.GetLevel() switch
+        {
+            1 => StatsManager.instance.GetExp() / (float)StatsManager.instance.upLvl1,
+            2 => (StatsManager.instance.GetExp()-StatsManager.instance.upLvl1) / (float)StatsManager.instance.upLvl2,
+            3 => (StatsManager.instance.GetExp()-StatsManager.instance.upLvl2) / (float)StatsManager.instance.upLvl3,
+            _ => 1
+        };
+        totalExpTMP.text = StatsManager.instance.GetExp() + " / " + StatsManager.instance.GetLevel() switch
+        {
+            1 => StatsManager.instance.upLvl1,
+            2 => StatsManager.instance.upLvl2,
+            3 => StatsManager.instance.upLvl3,
+            _ => StatsManager.instance.upLvl3,
+        };
+        levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
+        
         // Print the stats of the day
-        goodAdoptionTMP.text = "Chats bien placés : " + _goodAdoptions;
-        badAdoptionTMP.text = "Chats mal placés : " + _badAdoptions;
-        goodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Refus bien justifiés : " + _goodDecline: "";
-        badDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "Mauvais refus : " + _badDecline : "Bons dossiers refusés : " + _badDecline;
-
+        yield return PrintDailyStats();
+        
+        yield return new WaitForSeconds(BlankTime);
+        
+        // Print the detailed problems
         detailsTMP.text = "Détails : \n";
-        upExpGoodAdoptionTMP.text = "+ " + StatsManager.instance.bonusGoodAdoption * _goodAdoptions + " exp";
-        upExpGoodDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "+ " + StatsManager.instance.bonusGoodDecline * _goodDecline + " exp" : "";
-        downExpBadAdoptionTMP.text = "- " + StatsManager.instance.malusBadAdoption * _badAdoptions + "exp";
-        downExpBadDeclineTMP.text = StatsManager.instance.GetLevel() > 1 ? "- " + StatsManager.instance.malusBadDecline * _badDecline + " exp" : "";
-
+        PrintProblems();
+        
+        yield return new WaitForSeconds(BlankTime);
+        
         // Update the gained exp
-        UpExp();
+        yield return UpExp();
         
         // Set the xp text
         totalExpTMP.text = StatsManager.instance.GetLevel() switch
@@ -88,17 +122,79 @@ public class ScoreUIManager : MonoBehaviour
         
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
         
-        // Print the detailed problems
-        PrintProblems();
-        
         // Save the game
         GameManager.instance.SaveGame();
+        nextDayButton.interactable = true;
+        toTitleButton.interactable = true;
+    }
+
+    private IEnumerator PrintDailyStats()
+    {
+        yield return new WaitForSeconds(BlankTime);
+        
+        // Good adoptions
+        goodAdoptionTMP.text = "Chats bien placés : " + _goodAdoptions;
+        yield return new WaitForSeconds(BlankTime);
+        var i = 0;
+        while (i < StatsManager.instance.bonusGoodAdoption * _goodAdoptions)
+        {
+            i++;
+            upExpGoodAdoptionTMP.text = "+ " + i + "exp";
+            SfxManager.instance.PlaySfxClip(buttonSfx);
+            yield return new WaitForSeconds(IncrementTime);
+        }
+        
+        yield return new WaitForSeconds(BlankTime);
+
+        // Good declines
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            goodDeclineTMP.text = "Refus bien justifiés : " + _goodDecline;
+            i = 0;
+            while (i < StatsManager.instance.bonusGoodDecline * _goodDecline)
+            {
+                i++;
+                upExpGoodDeclineTMP.text = "+ " + i + "exp";
+                SfxManager.instance.PlaySfxClip(buttonSfx);
+                yield return new WaitForSeconds(IncrementTime);
+            }
+        }
+        
+        yield return new WaitForSeconds(BlankTime);
+        
+        // Bad Adoptions
+        badAdoptionTMP.text = "Chats mal placés : " + _badAdoptions;
+        yield return new WaitForSeconds(BlankTime);
+        i = 0;
+        while (i < StatsManager.instance.malusBadAdoption * _badAdoptions)
+        {
+            i++;
+            downExpBadAdoptionTMP.text = "- " + i + "exp";
+            SfxManager.instance.PlaySfxClip(buttonSfx);
+            yield return new WaitForSeconds(IncrementTime);
+        }
+        
+        yield return new WaitForSeconds(BlankTime);
+        
+        // Bad Declines
+        if (StatsManager.instance.GetLevel() > 1)
+        {
+            badDeclineTMP.text = "Mauvais refus : " + _badDecline;
+            i = 0;
+            while (i <StatsManager.instance.malusBadDecline * _badDecline)
+            {
+                i++;
+                downExpBadDeclineTMP.text = "- " + i + " exp";
+                SfxManager.instance.PlaySfxClip(buttonSfx);
+                yield return new WaitForSeconds(IncrementTime);
+            }
+        }
     }
 
     /*
      * Add exp points depending on the good adoptions made on the day
      */
-    private void UpExp()
+    private IEnumerator UpExp()
     {
         // Set xp
         StatsManager.instance.SetExp(StatsManager.instance.GetExp() + StatsManager.instance.bonusGoodAdoption*_goodAdoptions
@@ -111,12 +207,21 @@ public class ScoreUIManager : MonoBehaviour
         // Switch level if enough xp and fill the xp bar
         if (exp >= StatsManager.instance.upLvl3)
         {
+            yield return(StatsManager.instance.GetLevel() == 3
+                ? AnimLevelUp(1)
+                : AnimXpBar(1));
+            
             StatsManager.instance.SetLevel(4);
             StatsManager.instance.day = 0;
-            xpBar.fillAmount = 1;
         }
         else if (exp >= StatsManager.instance.upLvl2)
         {
+            yield return (StatsManager.instance.GetLevel() == 2
+                ? AnimLevelUp((exp - StatsManager.instance.upLvl2) /
+                              (StatsManager.instance.upLvl3 - StatsManager.instance.upLvl2))
+                : AnimXpBar((exp - StatsManager.instance.upLvl2) /
+                            (StatsManager.instance.upLvl3 - StatsManager.instance.upLvl2)));
+            
             StatsManager.instance.SetLevel(3);
             StatsManager.instance.day = 0;
             if(StatsManager.instance.GetTutoLvl() == 2)
@@ -124,10 +229,15 @@ public class ScoreUIManager : MonoBehaviour
                 StatsManager.instance.SetTuto(true);
                 StatsManager.instance.SetTutoLevel(3);
             }
-            xpBar.fillAmount = (exp - StatsManager.instance.upLvl2) / (StatsManager.instance.upLvl3-StatsManager.instance.upLvl2);
         }
         else if (exp >= StatsManager.instance.upLvl1)
         {
+            yield return (StatsManager.instance.GetLevel() == 1
+                ? AnimLevelUp((exp - StatsManager.instance.upLvl1) /
+                              (StatsManager.instance.upLvl2 - StatsManager.instance.upLvl1))
+                : AnimXpBar((exp - StatsManager.instance.upLvl1) /
+                            (StatsManager.instance.upLvl2 - StatsManager.instance.upLvl1)));
+            
             StatsManager.instance.SetLevel(2);
             StatsManager.instance.day = 0;
             if(StatsManager.instance.GetTutoLvl() == 1)
@@ -135,13 +245,49 @@ public class ScoreUIManager : MonoBehaviour
                 StatsManager.instance.SetTuto(true);
                 StatsManager.instance.SetTutoLevel(2);
             }
-            xpBar.fillAmount = (exp - StatsManager.instance.upLvl1) / (StatsManager.instance.upLvl2-StatsManager.instance.upLvl1);
         }
         else
         {
-            xpBar.fillAmount = exp / StatsManager.instance.upLvl1;
+            yield return (AnimXpBar(exp / StatsManager.instance.upLvl1));
+        }
+    }
+
+    private IEnumerator AnimXpBar(float expMax)
+    {
+        var exp = xpBar.fillAmount;
+        while (exp < expMax)
+        {
+            exp += .01f;
+            xpBar.fillAmount = exp;
+            
+            SfxManager.instance.PlaySfxClip(buttonSfx);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private IEnumerator AnimLevelUp(float expMax)
+    {
+        var exp = xpBar.fillAmount;
+        while (exp < 1)
+        {
+            exp += .01f;
+            xpBar.fillAmount = exp;
+            
+            SfxManager.instance.PlaySfxClip(buttonSfx);
+            yield return new WaitForSeconds(0.05f);
         }
 
+        // Level up animation
+
+        exp = 0;
+        while (exp < expMax)
+        {
+            exp += .01f;
+            xpBar.fillAmount = exp;
+            
+            SfxManager.instance.PlaySfxClip(buttonSfx);
+            yield return new WaitForSeconds(0.05f);
+        }
     }
     
     /*

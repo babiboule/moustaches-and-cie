@@ -317,8 +317,9 @@ public class FamilyManager : MonoBehaviour
     public static Picture GenerateFamilyPicture(Family family, FamilyPictureScriptableObject familyPicture)
     {
         Picture picture = new()
-        {
-            Hair = familyPicture.listHairs[Random.Range(0, familyPicture.listHairs.Count)],
+        {   
+            Hair = family.Age > 65 ? familyPicture.listHairs[Random.Range(0,2)] 
+                : familyPicture.listHairs[Random.Range(2,familyPicture.listHairs.Count)],
             Skin = familyPicture.listSkins[Random.Range(0, familyPicture.listSkins.Count)],
             Eyes = familyPicture.listEyes[Random.Range(0, familyPicture.listEyes.Count)],
             Nose = familyPicture.listNoses[Random.Range(0, familyPicture.listNoses.Count)],
