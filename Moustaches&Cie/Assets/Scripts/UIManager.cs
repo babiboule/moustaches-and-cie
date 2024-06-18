@@ -110,6 +110,8 @@ public class UIManager : MonoBehaviour
         assetsLvl1Panel.SetActive(StatsManager.instance.GetLevel()==1);
         assetsLvl2Panel.SetActive(StatsManager.instance.GetLevel()==2);
         phonePanel.SetActive(StatsManager.instance.GetLevel()>2);
+
+        _lastTime = Time.time;
     }
 
     private void OnDestroy()
@@ -132,17 +134,22 @@ public class UIManager : MonoBehaviour
         // Medals Animation
         if (bronzeMedal.activeSelf && Time.time > _delayReflection + _lastTime)
         {
-            animBronzeReflection.Play("Reflection_Bronze");
-        }
-        if (silverMedal.activeSelf && Time.time > _delayReflection + .2 + _lastTime)
-        {
-            animArgentReflection.Play("argent_medal");
-        }
-        if (goldMedal.activeSelf && Time.time > _delayReflection + .4 + _lastTime)
-        {
             _lastTime = Time.time;
-            animOrReflection.Play("Or_Medal");
+            animBronzeReflection.Play("Reflection_Bronze");
+            
+            if (silverMedal.activeSelf && Time.time > .2 + _lastTime)
+            {
+                animArgentReflection.Play("argent_medal");
+                
+                if (goldMedal.activeSelf && Time.time > .4 + _lastTime)
+                {
+            
+                    animOrReflection.Play("Or_Medal");
+                }
+            }
         }
+      
+   
     }
     
     /*

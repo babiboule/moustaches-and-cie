@@ -23,6 +23,7 @@ public class StatsManager : MonoBehaviour
     private int _goodDecline;
     private int _badDecline;
     private readonly List<LogicManager.Problem> _listProblems = new();
+    public int newAdoptions;
     
     // Adopted cats
     private readonly List<string> _adoptedCats = new();

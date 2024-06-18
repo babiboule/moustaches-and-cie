@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreUIManager : MonoBehaviour
@@ -41,6 +41,15 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField] private AudioClip dayEndSfx;
     [SerializeField] private AudioClip lvlUpSfx;
     [SerializeField] private AudioClip buttonSfx;
+    
+    // Success
+    [SerializeField] private GameObject successFrame;
+    [SerializeField] private GameObject bronzeMedal;
+    [SerializeField] private GameObject silverMedal;
+    [SerializeField] private GameObject goldenMedal;
+    [SerializeField] private TMP_Text successTxt;
+    [SerializeField] private TMP_Text successNewCats;
+    
 
     private void Awake()
     {
@@ -58,7 +67,6 @@ public class ScoreUIManager : MonoBehaviour
         upExpGoodDeclineTMP.text = "";
         downExpBadAdoptionTMP.text = "";
         downExpBadDeclineTMP.text = "";
-        
     }
 
     // Start is called before the first frame update
@@ -122,10 +130,14 @@ public class ScoreUIManager : MonoBehaviour
         
         levelTMP.text = "Niveau : " + StatsManager.instance.GetLevel();
         
+        // New adoptions
+        yield return NewAdoptionsSuccess();
+        
         // Save the game
         GameManager.instance.SaveGame();
         nextDayButton.interactable = true;
         toTitleButton.interactable = true;
+        StatsManager.instance.newAdoptions = 0;
     }
 
     private IEnumerator PrintDailyStats()
@@ -277,7 +289,25 @@ public class ScoreUIManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        // Level up animation
+        // Level up frame
+        SfxManager.instance.PlaySfxClip(dayEndSfx);
+        successFrame.SetActive(true);
+        
+        bronzeMedal.SetActive(StatsManager.instance.GetLevel() == 1);
+        silverMedal.SetActive(StatsManager.instance.GetLevel() == 2);
+        goldenMedal.SetActive(StatsManager.instance.GetLevel() == 3);
+        successTxt.text = "LVL UP !";
+
+        while (!Input.GetButtonDown("Fire1"))
+        {
+            yield return null;
+        }
+        
+        bronzeMedal.SetActive(false);
+        silverMedal.SetActive(false);
+        goldenMedal.SetActive(false);
+        successFrame.SetActive(false);
+        successTxt.text = "";
 
         exp = 0;
         while (exp < expMax)
@@ -334,10 +364,13 @@ public class ScoreUIManager : MonoBehaviour
                 _ => throw new ArgumentOutOfRangeException()
             };
             
+            // Remove the adopted cat is already adopted ?
             foreach (var cat in StatsManager.instance.GetAdoptedCats())
             {
                 if (cat == problem.Cat.name)
+                {
                     adoptedTemp.Add(cat);
+                }
                 
             }
         }
@@ -347,6 +380,27 @@ public class ScoreUIManager : MonoBehaviour
         {
             StatsManager.instance.RemoveAdoptedCat(t);
         }
+    }
+
+    private IEnumerator NewAdoptionsSuccess()
+    {
+        if (StatsManager.instance.newAdoptions <= 0) 
+            yield break;
+        
+        successFrame.SetActive(true);
+        successTxt.text = "Nouvelles photos dans l'album !";
+        successNewCats.gameObject.SetActive(true);
+        successNewCats.text = StatsManager.instance.newAdoptions.ToString();
+
+        while (!Input.GetButtonDown("Fire1"))
+        {
+            yield return null;
+        }
+
+        successFrame.SetActive(false);
+        successNewCats.gameObject.SetActive(false);
+        successTxt.text = "";
+        successNewCats.text = "";
     }
     
     /*

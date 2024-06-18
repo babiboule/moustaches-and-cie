@@ -205,7 +205,8 @@ public class DayManager : MonoBehaviour
         
         /******** DEBUG ********/
         Debug.Log(_validFolders[_nFolder-1]);
-        Debug.Log(CurrentCats.Count);
+        if(StatsManager.instance.GetLevel()>1 && _problem.Exists)
+            Debug.Log(_problem.PbFamily);
     }
     
     /*
@@ -244,6 +245,7 @@ public class DayManager : MonoBehaviour
                     return;
             }
         }
+        
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
         
@@ -265,9 +267,13 @@ public class DayManager : MonoBehaviour
         // Else it's a good one
         else
         {
+           
             StatsManager.instance.AddGoodAdoptions();
             if(!StatsManager.instance.GetAlbumCats().Contains(_problem.Cat.name))
+            {
                 StatsManager.instance.AddAlbumCat(_problem.Cat.name);
+                StatsManager.instance.newAdoptions ++;
+            }
             SfxManager.instance.PlaySfxClip(goodSfx);
         }
         
