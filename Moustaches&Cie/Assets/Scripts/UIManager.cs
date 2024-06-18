@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class UIManager : MonoBehaviour
 {
@@ -33,6 +34,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip buttonSfx;
     [SerializeField] private AudioClip pagingSfx;
     
+    // Vfx
+    [SerializeField] private Animator animBronzeReflection;
+    [SerializeField] private Animator animArgentReflection;
+    [SerializeField] private Animator animOrReflection;
+
+    private float _delayReflection = 10f;
+    private float _lastTime = 0;
+    
     // UI
     public static GameObject ColleaguePanel;
     public static GameObject MemoArrows;
@@ -60,9 +69,9 @@ public class UIManager : MonoBehaviour
     public Button phoneButton;
     public Button fakePhoneButton;
     public Button skipButton;
-    
-    
-    
+    private static readonly int OnClick = Animator.StringToHash("OnClick");
+
+
     private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged; //Subscribe to the OnStateChange event
@@ -92,10 +101,15 @@ public class UIManager : MonoBehaviour
         
         skipButton.gameObject.SetActive(false);
         
+        ///////////////////// DEBUG ///////////////////////////
+        /**************************************************
+        
         // Active medals depending on the level
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
+        
+        ****************************************************/
         
         // Active assets depending on the level
         assetsLvl1Panel.SetActive(StatsManager.instance.GetLevel()==1);
@@ -118,6 +132,21 @@ public class UIManager : MonoBehaviour
 
             else if (GameManager.instance.state == GameManager.GameState.Play)
                 GameManager.instance.UpdateGameState(GameManager.GameState.Pause);
+        }
+        
+        // Medals Animation
+        if (Time.time > _delayReflection + _lastTime)
+        {
+            animBronzeReflection.Play("Reflection_Bronze");
+        }
+        if (Time.time > _delayReflection + .2 + _lastTime)
+        {
+            animArgentReflection.Play("argent_medal");
+        }
+        if (Time.time > _delayReflection + .4 + _lastTime)
+        {
+            _lastTime = Time.time;
+            animOrReflection.Play("Or_Medal");
         }
     }
     

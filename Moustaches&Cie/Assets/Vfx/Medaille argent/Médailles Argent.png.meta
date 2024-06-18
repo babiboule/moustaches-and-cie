@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_0"
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afcc35376ce334a49bc0ebe77964194f
+      internalID: -96990546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_1"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cffb148517f842469a54e704c1c503a
+      internalID: 1720973284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_2"
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89a8e6268efbcb49bdec77863123b11
+      internalID: 1304114691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_3"
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 228c391e0492e8349a2c0600e0016546
+      internalID: 1528494033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_4"
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742ff5f93cc35864cbc015661c8f453e
+      internalID: -717035595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_5"
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8c05a6f7fda794db5073afbef1b8bb
+      internalID: -1221672610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_6"
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9afe05a1df0e35349ac3fc6e79e834f4
+      internalID: 1822570746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xE9dailles Argent_7"
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 5
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97e42387a1b3af468568ab9814afe60
+      internalID: -1776729694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +300,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "M\xE9dailles Argent_0": -96990546
+      "M\xE9dailles Argent_1": 1720973284
+      "M\xE9dailles Argent_2": 1304114691
+      "M\xE9dailles Argent_3": 1528494033
+      "M\xE9dailles Argent_4": -717035595
+      "M\xE9dailles Argent_5": -1221672610
+      "M\xE9dailles Argent_6": 1822570746
+      "M\xE9dailles Argent_7": -1776729694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

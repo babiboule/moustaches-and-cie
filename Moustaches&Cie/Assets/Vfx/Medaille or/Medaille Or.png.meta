@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Medaille Or_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a6604af2547234da5311ee97442ef6
+      internalID: -765131105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912f51ade6a98df478e74d74e842928d
+      internalID: -1830670074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d6eb9d388cae64a92b90cb5973242e
+      internalID: -362047392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_3
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e189d8a9e2f3f6d46aba7fca95d27c22
+      internalID: 1127689231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd9c40c18edc764a915752df5e649a9
+      internalID: -1441814116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_5
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482602c1f7169e54aa183cfbed8f68de
+      internalID: -1827194753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_6
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a89a121e39cf3489e4a9dbbfa464de
+      internalID: 248913536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medaille Or_7
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 4
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8301c0ecd76064f8f999b21631ef28
+      internalID: 1150321760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +300,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Medaille Or_0: -765131105
+      Medaille Or_1: -1830670074
+      Medaille Or_2: -362047392
+      Medaille Or_3: 1127689231
+      Medaille Or_4: -1441814116
+      Medaille Or_5: -1827194753
+      Medaille Or_6: 248913536
+      Medaille Or_7: 1150321760
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
