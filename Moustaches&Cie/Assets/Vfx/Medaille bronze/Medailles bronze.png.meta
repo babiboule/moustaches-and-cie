@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Medailles bronze_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d953b591abb0141bffeae4895f59d9
+      internalID: 46647228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bfb14a2495ead43bb2e0e10b9fff7a
+      internalID: 437249869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84127bd899e5eb34d960fb3c7f7c1bd9
+      internalID: 206642199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_3
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9111ef67ecbd80343a96a57b6bca8c04
+      internalID: -1003043318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ab41866e48d5449bc1d9f9804e715c
+      internalID: 842422764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_5
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36da77dd886c6b44684abc43a955d60c
+      internalID: 1353965851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_6
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12a2658617b0eab46ac85de0344371b8
+      internalID: 469119937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medailles bronze_7
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 7
+        width: 50
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535a6b2eea36ba74eb25ff109f08bc7d
+      internalID: 678693168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +300,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Medailles bronze_0: 46647228
+      Medailles bronze_1: 437249869
+      Medailles bronze_2: 206642199
+      Medailles bronze_3: -1003043318
+      Medailles bronze_4: 842422764
+      Medailles bronze_5: 1353965851
+      Medailles bronze_6: 469119937
+      Medailles bronze_7: 678693168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
