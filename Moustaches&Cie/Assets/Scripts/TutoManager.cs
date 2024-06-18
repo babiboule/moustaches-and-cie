@@ -140,11 +140,22 @@ public class TutoManager : MonoBehaviour
 
         // Start of the tutorial
         UIManager.ColleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(0,4)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[0]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
-            
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[1]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[2]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[3]));
+        while (DialogueController.GetIsWriting())
+            yield return null;    
+        
         // Desk view
         UIManager.ColleaguePanel.SetActive(false);
         StartCoroutine(DialogueController.WriteDialog(tuto1Str[4]));
@@ -159,13 +170,25 @@ public class TutoManager : MonoBehaviour
             
         // Print cats folder and continue
         UIManager.CatsPanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(6,8)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[6]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[7]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         UIManager.MemoPanel.SetActive(true);
             
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(8,11)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[8]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[9]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[10]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -173,7 +196,15 @@ public class TutoManager : MonoBehaviour
         while(!UIManager.MemoPage2.activeSelf)
             yield return null;
             
-        StartCoroutine(DialogueController.WriteDialog(tuto1Str[new Range(11,14)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[11]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[12]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto1Str[13]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -212,13 +243,41 @@ public class TutoManager : MonoBehaviour
         // Start of the tutorial
         UIManager.StampPanel.SetActive(false);
         UIManager.ColleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(0,4)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[0]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[1]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[2]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[3]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         // Desk view
         UIManager.ColleaguePanel.SetActive(false);
-         StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(4,9)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[4]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[5]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[6]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[7]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[8]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -227,7 +286,19 @@ public class TutoManager : MonoBehaviour
             yield return null;
         
         // Continue
-        StartCoroutine(DialogueController.WriteDialog(tuto2Str[new Range(9,13)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[9]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[10]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[11]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto2Str[12]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -283,18 +354,66 @@ public class TutoManager : MonoBehaviour
         UIManager.FakePhoneButton.gameObject.SetActive(false);
         UIManager.PhoneButton.interactable = false;
         UIManager.ColleaguePanel.SetActive(true);
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(0,3)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[0]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[1]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[2]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         // Enumeration of new directives 
         UIManager.ColleaguePanel.SetActive(false);
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(3,7)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[3]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[4]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[5]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[6]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
         // Explains phone
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(7,15)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[7]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[8]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[9]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[10]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[11]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[12]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[13]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[14]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
@@ -314,7 +433,11 @@ public class TutoManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         
         // Continue
-        StartCoroutine(DialogueController.WriteDialog(tuto3Str[new Range(15,17)]));
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[15]));
+        while (DialogueController.GetIsWriting())
+            yield return null;
+        
+        StartCoroutine(DialogueController.WriteDialog(tuto3Str[16]));
         while (DialogueController.GetIsWriting())
             yield return null;
         
