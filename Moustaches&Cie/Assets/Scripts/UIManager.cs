@@ -101,15 +101,10 @@ public class UIManager : MonoBehaviour
         
         skipButton.gameObject.SetActive(false);
         
-        ///////////////////// DEBUG ///////////////////////////
-        /**************************************************
-        
         // Active medals depending on the level
         bronzeMedal.SetActive(StatsManager.instance.GetLevel() > 1);
         silverMedal.SetActive(StatsManager.instance.GetLevel() > 2);
         goldMedal.SetActive(StatsManager.instance.GetLevel() > 3);
-        
-        ****************************************************/
         
         // Active assets depending on the level
         assetsLvl1Panel.SetActive(StatsManager.instance.GetLevel()==1);
@@ -135,15 +130,15 @@ public class UIManager : MonoBehaviour
         }
         
         // Medals Animation
-        if (Time.time > _delayReflection + _lastTime)
+        if (bronzeMedal.activeSelf && Time.time > _delayReflection + _lastTime)
         {
             animBronzeReflection.Play("Reflection_Bronze");
         }
-        if (Time.time > _delayReflection + .2 + _lastTime)
+        if (silverMedal.activeSelf && Time.time > _delayReflection + .2 + _lastTime)
         {
             animArgentReflection.Play("argent_medal");
         }
-        if (Time.time > _delayReflection + .4 + _lastTime)
+        if (goldMedal.activeSelf && Time.time > _delayReflection + .4 + _lastTime)
         {
             _lastTime = Time.time;
             animOrReflection.Play("Or_Medal");
