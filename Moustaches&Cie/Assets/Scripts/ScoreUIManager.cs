@@ -214,6 +214,10 @@ public class ScoreUIManager : MonoBehaviour
         if(StatsManager.instance.GetLevel()>1)
             StatsManager.instance.SetExp(StatsManager.instance.GetExp() + StatsManager.instance.bonusGoodDecline*_goodDecline
                                          - StatsManager.instance.malusBadDecline*_badDecline);
+
+        if (StatsManager.instance.GetExp() < 0)
+            StatsManager.instance.SetExp(0);
+        
         float exp = StatsManager.instance.GetExp();
         
         // Switch level if enough xp and fill the xp bar

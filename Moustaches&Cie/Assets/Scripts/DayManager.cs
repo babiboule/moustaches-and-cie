@@ -164,6 +164,9 @@ public class DayManager : MonoBehaviour
      */
     private IEnumerator NextFolder()
     {
+        _declineStampButton.interactable = true;
+        _acceptStampButton.interactable = true;
+        
         // Update n° folder text
         nFolderTMP.text = "Dossier n°" + _nFolder + " / " + _nFoldersMax; 
         
@@ -263,9 +266,11 @@ public class DayManager : MonoBehaviour
         }
         
         // Sfx
-        SfxManager.instance.PlaySfxClip(stampSfx);
+        _declineStampButton.interactable = false;
+        _acceptStampButton.interactable = false;
         validedImage.SetActive(true);
         valided.Play("Valided");
+        SfxManager.instance.PlaySfxClip(stampSfx);
 
         yield return new WaitForSeconds(1);
         
@@ -335,9 +340,11 @@ public class DayManager : MonoBehaviour
         }
         
         // Sfx & Vfx
-        SfxManager.instance.PlaySfxClip(stampSfx);
+        _declineStampButton.interactable = false;
+        _acceptStampButton.interactable = false;
         refusedImage.SetActive(true);
         refused.Play("Refused");
+        SfxManager.instance.PlaySfxClip(stampSfx);
 
         yield return new WaitForSeconds(1);
         
@@ -366,7 +373,6 @@ public class DayManager : MonoBehaviour
             {
                 SfxManager.instance.PlaySfxClip(goodSfx);
             }
-            
         }
         
         // Sfx page
