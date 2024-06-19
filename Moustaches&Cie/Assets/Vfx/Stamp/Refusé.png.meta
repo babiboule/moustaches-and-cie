@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "Refus\xE9_0"
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 20
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e79c226527526a846a3b92a6290adae9
+      internalID: 1181469352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_1"
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 20
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dda6bf7d71eda24da426d2534b10097
+      internalID: 929909483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_2"
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 20
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14f5c5e8a044a84796c09dd172ae50b
+      internalID: 1485589049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_3"
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 19
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d5fb425399e644088e196a74d0e932
+      internalID: 517097746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_4"
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 20
+        width: 200
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5100305, y: 0.49570164}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a342944bb5b1aff4ba9603fd371b90d5
+      internalID: -1617305899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_5"
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 19
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf081bf7e398cd348b7bd3ed72dada78
+      internalID: -1276946154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_6"
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 19
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a5e83ccfbbd9bb4e8a533767085f583
+      internalID: -140440935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_7"
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 20
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c838eed042ee66409b6055596ae8784
+      internalID: -168387789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Refus\xE9_8"
+      rect:
+        serializedVersion: 2
+        x: 2092
+        y: 20
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674ea8d2d83a2dd4d9424ea97adb5927
+      internalID: -293192219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +321,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Refus\xE9_0": 1181469352
+      "Refus\xE9_1": 929909483
+      "Refus\xE9_10": 1801316883
+      "Refus\xE9_11": -1469141196
+      "Refus\xE9_12": -160355733
+      "Refus\xE9_13": -1023030676
+      "Refus\xE9_14": -1334272834
+      "Refus\xE9_15": -1001393213
+      "Refus\xE9_16": -1552334346
+      "Refus\xE9_17": -1430768022
+      "Refus\xE9_18": 1858051462
+      "Refus\xE9_19": -850334907
+      "Refus\xE9_2": 1485589049
+      "Refus\xE9_20": 1122064155
+      "Refus\xE9_21": 2040418225
+      "Refus\xE9_22": 1740982486
+      "Refus\xE9_23": -1848102387
+      "Refus\xE9_24": 1019382940
+      "Refus\xE9_3": 517097746
+      "Refus\xE9_4": -1617305899
+      "Refus\xE9_5": -1276946154
+      "Refus\xE9_6": -140440935
+      "Refus\xE9_7": -168387789
+      "Refus\xE9_8": -293192219
+      "Refus\xE9_9": -1824485954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
