@@ -35,6 +35,13 @@ public class DayManager : MonoBehaviour
     [SerializeField] private AudioClip stampSfx;
     [SerializeField] private AudioClip goodSfx;
     [SerializeField] private AudioClip badSfx;
+    [SerializeField] private AudioClip pageSfx;
+    
+    // Vfx
+    [SerializeField] private GameObject validedImage;
+    [SerializeField] private GameObject refusedImage;
+    [SerializeField] private Animator valided;
+    [SerializeField] private Animator refused;
     
     // Coroutine
     private Coroutine _coTuto;
@@ -48,6 +55,9 @@ public class DayManager : MonoBehaviour
         // Assign the correspondences
         _acceptStampButton = acceptStampButton;
         _declineStampButton = declineStampButton;
+        
+        validedImage.SetActive(false);
+        refusedImage.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -224,11 +234,16 @@ public class DayManager : MonoBehaviour
     {
         return CurrentCats.Count - 1;
     }
+
+    private void AcceptStampButtonClicked()
+    {
+        StartCoroutine(Accept());
+    }
     
     /*
      * Change stats depending on the validity of the folder and go to the next folder
      */
-    private void AcceptStampButtonClicked()
+    private IEnumerator Accept()
     {
         if (StatsManager.instance.GetTuto())
         {
@@ -236,18 +251,24 @@ public class DayManager : MonoBehaviour
             {
                 case 1:
                     StartCoroutine(DialogueController.WriteDialog("Non, celui-là c'est pour valider le dossier..."));
-                    return;
+                    yield break;
                 case 2:
                     StartCoroutine(DialogueController.WriteDialog("Tu dois refuser le dossier, pas le valider..."));
-                    return;
+                    yield break;
                 case 3:
                     StartCoroutine(DialogueController.WriteDialog("Tu dois refuser le dossier, pas le valider..."));
-                    return;
+                    yield break;
             }
+            yield break;
         }
         
         // Sfx
         SfxManager.instance.PlaySfxClip(stampSfx);
+        validedImage.SetActive(true);
+        valided.Play("Valided");
+
+        yield return new WaitForSeconds(1);
+        
         
         // Reset circles and stamps if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)
@@ -276,6 +297,11 @@ public class DayManager : MonoBehaviour
             }
             SfxManager.instance.PlaySfxClip(goodSfx);
         }
+
+        // Sfx Page
+        yield return new WaitForSeconds(0.5f);
+        SfxManager.instance.PlaySfxClip(pageSfx);
+        validedImage.SetActive(false);
         
         // The cat is added to the adopted cats to not see it again in the next folders
         StatsManager.instance.AddAdoptedCat(_problem.Cat.name);
@@ -292,19 +318,28 @@ public class DayManager : MonoBehaviour
         }
     }
 
+    private void DeclineStampButtonClicked()
+    {
+        StartCoroutine(Decline());
+    }
+
     /*
      * Change stats depending on the validity of the folder and go to the next folder
      */
-    private void DeclineStampButtonClicked()
+    private IEnumerator Decline()
     {
         if (StatsManager.instance.GetTuto())
         {
             StartCoroutine(TutoManager.SetDeclineStampClicked());
-            return;
+            yield break;
         }
         
-        // Sfx
+        // Sfx & Vfx
         SfxManager.instance.PlaySfxClip(stampSfx);
+        refusedImage.SetActive(true);
+        refused.Play("Refused");
+
+        yield return new WaitForSeconds(1);
         
         // If decline folder but it is valid, bad answer
         if (!_problem.Exists)
@@ -333,6 +368,11 @@ public class DayManager : MonoBehaviour
             }
             
         }
+        
+        // Sfx page
+        yield return new WaitForSeconds(0.5f);
+        SfxManager.instance.PlaySfxClip(pageSfx);
+        refusedImage.SetActive(false);
         
         // Reset circles and stamps if on level 2 or more
         if (StatsManager.instance.GetLevel() > 1)
