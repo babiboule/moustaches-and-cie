@@ -1,6 +1,7 @@
 using System;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -48,6 +49,8 @@ public class TitleScreen : MonoBehaviour
 
         // Active continue button if there is a save
         continueButton.interactable = PlayerPrefs.GetInt("IsSave") == 1;
+        
+        GameManager.instance.LoadGame();
     }
 
     private void Start()
@@ -61,6 +64,16 @@ public class TitleScreen : MonoBehaviour
             index2 = Random.Range(0, cat.cats.Count);
         }
         catPicture2.sprite = cat.cats[index2].picture;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("BIP BOUP");
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadSceneAsync("Scenes/Main/Title screen");
+        }
     }
 
     /*

@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         {
             StatsManager.instance.AddAdoptedCat(PlayerPrefs.GetString("Cat" + i));
         }
-        for (int i = 0; i<StatsManager.instance.GetAlbumCats().Count; i++)
+        for (int i = 0; i<PlayerPrefs.GetInt("AdoptedCats"); i++)
         {
             if(!StatsManager.instance.GetAlbumCats().Contains(PlayerPrefs.GetString("CatAlbum"+i)))
                 StatsManager.instance.AddAlbumCat(PlayerPrefs.GetString("CatAlbum"+i));
