@@ -325,7 +325,7 @@ MonoBehaviour:
     animals: 0
     adopted: 0
     level: 2
-  - picture: {fileID: 21300000, guid: b7bd834b020dc414fb28a045a30a4649, type: 3}
+  - picture: {fileID: 21300000, guid: c6df3d52f222c584a83ac0687f6f3a52, type: 3}
     reference: {fileID: 21300000, guid: b7bd834b020dc414fb28a045a30a4649, type: 3}
     name: Kira
     age: 4
