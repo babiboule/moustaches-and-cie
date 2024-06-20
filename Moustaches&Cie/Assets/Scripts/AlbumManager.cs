@@ -1,3 +1,4 @@
+using System.Collections;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,11 @@ public class AlbumManager : MonoBehaviour
     // Sfx
     [SerializeField] private AudioClip buttonSfx;
     [SerializeField] private AudioClip pagingSfx;
+    
+    // Vfx
+    [SerializeField] private GameObject catInfos;
+    [SerializeField] private GameObject page;
+    [SerializeField] private Animator pageAlbum;
 
     // Private variables
     private int _indexL;
@@ -64,14 +70,25 @@ public class AlbumManager : MonoBehaviour
             albumPanel.SetActive(false);
         }
     }
+
+    private void NextButtonClicked()
+    {
+        StartCoroutine(Next());
+    }
     
     /* Print the next pages when right arrow clicked
      * (loop at the start if at the end)
      */
-    private void NextButtonClicked()
+    private IEnumerator Next()
     {
         // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
+        catInfos.SetActive(false);
+        page.SetActive(true);
+        pageAlbum.Play("PageEndroit");
+        yield return new WaitForSeconds(0.5f);
+        catInfos.SetActive(true);
+        page.SetActive(false);
         
         _indexL = (_indexL + 2) % cats.cats.Count;
         _indexR = (_indexR + 2) % cats.cats.Count;
@@ -79,13 +96,24 @@ public class AlbumManager : MonoBehaviour
         PrintRightCat();
     }
 
+    private void PreviousButtonClicked()
+    {
+        StartCoroutine(Previous());
+    }
+    
     /* Print the previous pages when left arrow clicked
      * (loop at the end if at the start)
      */
-    private void PreviousButtonClicked()
+    private IEnumerator Previous()
     {
         // Sfx
         SfxManager.instance.PlaySfxClip(pagingSfx);
+        catInfos.SetActive(false);
+        page.SetActive(true);
+        pageAlbum.Play("PageReverse");
+        yield return new WaitForSeconds(0.5f);
+        catInfos.SetActive(true);
+        page.SetActive(false);
         
         _indexL = (_indexL - 2) % cats.cats.Count;
         _indexR = (_indexR - 2) % cats.cats.Count;

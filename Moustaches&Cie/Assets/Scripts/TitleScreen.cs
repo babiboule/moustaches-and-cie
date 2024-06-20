@@ -69,7 +69,6 @@ public class TitleScreen : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("BIP BOUP");
             PlayerPrefs.DeleteAll();
             SceneManager.LoadSceneAsync("Scenes/Main/Title screen");
         }

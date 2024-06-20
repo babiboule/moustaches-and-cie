@@ -42,6 +42,13 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject refusedImage;
     [SerializeField] private Animator valided;
     [SerializeField] private Animator refused;
+
+    [SerializeField] private GameObject familyText;
+    [SerializeField] private GameObject catText;
+    [SerializeField] private GameObject familyPage;
+    [SerializeField] private GameObject catPage;
+    [SerializeField] private Animator pageF;
+    [SerializeField] private Animator pageC;
     
     // Coroutine
     private Coroutine _coTuto;
@@ -211,6 +218,20 @@ public class DayManager : MonoBehaviour
             }
         }
         
+        // Vfx & Sfx
+        SfxManager.instance.PlaySfxClip(pageSfx);
+        familyText.SetActive(false);
+        catText.SetActive(false);
+        familyPage.SetActive(true);
+        catPage.SetActive(true);
+        pageF.Play("Page");
+        pageC.Play("Page");
+        yield return new WaitForSeconds(0.5f);
+        familyText.SetActive(true);
+        catText.SetActive(true);
+        familyPage.SetActive(false);
+        catPage.SetActive(false);
+        
         CatManager.PrintCatInfos(_family.Cat);
         
         // Print the family infos 
@@ -377,7 +398,6 @@ public class DayManager : MonoBehaviour
         
         // Sfx page
         yield return new WaitForSeconds(0.5f);
-        SfxManager.instance.PlaySfxClip(pageSfx);
         refusedImage.SetActive(false);
         
         // Reset circles and stamps if on level 2 or more
