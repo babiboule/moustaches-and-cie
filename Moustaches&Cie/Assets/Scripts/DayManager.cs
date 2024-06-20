@@ -171,8 +171,11 @@ public class DayManager : MonoBehaviour
      */
     private IEnumerator NextFolder()
     {
-        _declineStampButton.interactable = true;
-        _acceptStampButton.interactable = true;
+        if (StatsManager.instance.GetLevel() == 1)
+        {
+            _declineStampButton.interactable = true;
+            _acceptStampButton.interactable = true;
+        }
         
         // Update n° folder text
         nFolderTMP.text = "Dossier n°" + _nFolder + " / " + _nFoldersMax; 
@@ -326,7 +329,6 @@ public class DayManager : MonoBehaviour
 
         // Sfx Page
         yield return new WaitForSeconds(0.5f);
-        SfxManager.instance.PlaySfxClip(pageSfx);
         validedImage.SetActive(false);
         
         // The cat is added to the adopted cats to not see it again in the next folders

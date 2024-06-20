@@ -340,7 +340,7 @@ public class TutoManager : MonoBehaviour
             Comment = familyInfos.listComments[2],
             FreeTime = 1,
             Home = familyInfos.listHomes[0],
-            Outdoor = FamilyInfosScriptableObject.Outdoor.Aucun,
+            Outdoor = FamilyInfosScriptableObject.Outdoor.Fermé,
             Guarantor = true,
             JobName = "Testeur"
         };
@@ -423,6 +423,7 @@ public class TutoManager : MonoBehaviour
             UIManager.FakePhoneButton.gameObject.SetActive(UIManager.PhoneButton.gameObject.activeSelf);
             yield return null;
         }
+        UIManager.FakePhoneButton.gameObject.SetActive(false);
         while (DialogueController.GetIsWriting())
             yield return null;
         
